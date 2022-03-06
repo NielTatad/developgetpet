@@ -215,17 +215,11 @@ if($query->rowCount()>0)
       </div>
       <div class="modal-body mx-3">
       <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
-				</div>
+        
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->adID);?>" required = "required" class="form-control" id="success">
 				</div>
-        <div style="text-align: center">
-						  <button  class="login100-form-btn" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
-							 <a style="color:White"> Update Profile </a>
-						 </button>
-				</div>
+       
         <div style="text-align: center">
              <h6 class="mt-1 mb-2"><?php echo ($result->adUsername);?></h6>
              <h6 class="mt-1 mb-2"><?php echo ($result->adPassword);?></h6>

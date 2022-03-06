@@ -21,7 +21,7 @@ if(isset($_POST['login']))
 		    $_SESSION['adID'] = $results['adID'];
        
         echo '<script>alert("Login Successfully!")</script>';
-        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/web/AdminDashboard.php'</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/admin.php'</script>";
 
 
     }
