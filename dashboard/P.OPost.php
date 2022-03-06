@@ -280,7 +280,7 @@ if($query->rowCount()>0)
 
 					<!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                    <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
@@ -305,8 +305,8 @@ if($query->rowCount()>0)
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Profile"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Settings</a>
-                      <!--<a class="dropdown-item"  href="javascript:;">
+                      <!--<a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Settings</a>
+                      <a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
@@ -642,7 +642,7 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/GETPET/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
@@ -651,7 +651,7 @@ if($query->rowCount()>0)
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center">
-						  <button  class="login100-form-btn" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
+						  <button class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
 							 <a style="color:White"> Update Profile </a>
 						 </button>
 				</div>
@@ -683,7 +683,7 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/GETPET/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
@@ -722,7 +722,7 @@ if($query->rowCount()>0)
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->ownerPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
-						<button  class="login100-form-btn" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
+						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
 							<a style="color:White"> Update </a>
 						</button>
 				</div><br>
@@ -735,9 +735,9 @@ if($query->rowCount()>0)
 
 			<!-- footer content -->
 			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
+        <p class="tweet-p1">
+		    ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		    </p>
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->

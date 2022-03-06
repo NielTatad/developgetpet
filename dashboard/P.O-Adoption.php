@@ -280,7 +280,7 @@ if($query->rowCount()>0)
 
 					<!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                    <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
@@ -301,12 +301,12 @@ if($query->rowCount()>0)
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img <?php echo"<img src = '/GETPET/web/images/$result->ownerPicture'";?> alt=""><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt=""><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Profile"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Settings</a>
-                      <!--<a class="dropdown-item"  href="javascript:;">
+                      <!--<a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Settings</a>
+                      <a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
@@ -384,16 +384,12 @@ if($query->rowCount()>0)
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
-                            <th class="column-title">Pet ID </th>
-                            <th class="column-title">Pet Type </th>
-                            <th class="column-title">Pet Name </th>
-                            <th class="column-title">Bill to Name </th>
-                            <th class="column-title">Status </th>
-                            <th class="column-title">Amount </th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            <th class="column-title" style="text-align:center;">Pet Owner</th>
+                            <th class="column-title" style="text-align:center;">Pet Type </th>
+                            <th class="column-title" style="text-align:center;">Pet Name </th>
+                            <th class="column-title" style="text-align:center;">Contact No</th>
+                            <th class="column-title" style="text-align:center;">Status</th>
+                            <th class="column-title no-link last" style="text-align:center;"><span class="nobr">Information</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -414,16 +410,13 @@ if($query->rowCount()>0)
                         {
                            ?>
                           <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" "><?php echo htmlentities($result->petID);?></td>
-                            <td class=" "><?php echo htmlentities($result->petType);?></td>
-                            <td class=" "><?php echo htmlentities($result->petName);?></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->Name);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->petType);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->petName);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->userContactNo);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->availabilityStatus);?></td>
+
+                            <td class=" last" style="text-align:center;"><a href="#">View</a></td>
                             <?php $cnt=$cnt+1;}} ?>
                           </tr>
                         </tbody>
@@ -438,7 +431,7 @@ if($query->rowCount()>0)
           </div>
         </div>
 			<!-- /page content -->
-
+<script>
 <?php 
 $ID=$_SESSION['ownerID'];
 $sql = "SELECT * from petowner where ownerID=:ID";
@@ -456,8 +449,9 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
+</script>
 
-     <!-- ModalProfile -->
+  <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -471,7 +465,7 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/GETPET/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
@@ -480,7 +474,7 @@ if($query->rowCount()>0)
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center">
-						  <button  class="login100-form-btn" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
+						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
 							 <a style="color:White"> Update Profile </a>
 						 </button>
 				</div>
@@ -512,7 +506,7 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/GETPET/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
@@ -551,7 +545,7 @@ if($query->rowCount()>0)
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->ownerPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
-						<button  class="login100-form-btn" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
+						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
 							<a style="color:White"> Update </a>
 						</button>
 				</div><br>
@@ -564,9 +558,9 @@ if($query->rowCount()>0)
 
 			<!-- footer content -->
 			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
+      <p class="tweet-p1">
+		  ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		  </p>
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
@@ -660,49 +654,9 @@ if($query->rowCount()>0)
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 
-    <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!-- bootstrap-datetimepicker -->    
-    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <!-- Ion.RangeSlider -->
-    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
-    <!-- Bootstrap Colorpicker -->
-    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+  
 
-     <!-- Initialize datetimepicker -->
-    <script  type="text/javascript">
-   $(function () {
-                $('#myDatepicker').datetimepicker();
-            });
-    
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-    
-    $('#myDatepicker3').datetimepicker({
-        format: 'hh:mm A'
-    });
-    
-    $('#myDatepicker4').datetimepicker({
-        ignoreReadonly: true,
-        allowInputToggle: true
-    });
-
-    $('#datetimepicker6').datetimepicker();
-    
-    $('#datetimepicker7').datetimepicker({
-        useCurrent: false
-    });
-    
-    $("#datetimepicker6").on("dp.change", function(e) {
-        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-    });
-    
-    $("#datetimepicker7").on("dp.change", function(e) {
-        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-    });
-</script>
+     
 
 </body>
 </html>
