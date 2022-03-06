@@ -65,38 +65,51 @@ if($query->rowCount()>0)
 
             <br />
 
-            <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <ul class="nav side-menu">
-                <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i ></i> Dashboard </a>
-                    </li>
+				<div class="menu_section">						
+					<ul class="nav side-menu">
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet Adoption</a>
-                    </li>
+                            <li>
+                            <li><a href="#" style="font-size:15px;">Dashboard</a>
+                            </li>
 
-                    <li>
-                    <li><a href="#">Short-term Care</a>
-                    </li>
+								<li><a style="font-size:15px;">Manage Pet adoption & <br> Short term-care<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="#">Pet Adoption</a></li>
+										<li><a href="#">Short term-care</a></li>
+									</ul>
+								</li>
 
-                    <li>
-                    <li><a href="#">Donation</a>
-                    </li>
+                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="#">Donation</a></li>
+										<li><a href="#">Fundraising Activities</a></li>
+									</ul>
+								</li>
 
-                    <li>
-                    <li><a href="#">Fundraising activities</a>
-                    </li>
+                                <li><a style="font-size:15px;">Manage Tips, Advice & Articles<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="#">Tips</a></li>
+										<li><a href="#">Advice</a></li>
+                                        <li><a href="#">Articles</a></li>
+									</ul>
+								</li>
 
-                    <li>
-                    <li><a href="#">Tips, Advice & Articles</a>
-                    </li>
+                                <li><a style="font-size:15px;">History<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="#">Adoption</a></li>
+										<li><a href="#">Short Term-care</a></li>
+									</ul>
+								</li>
+                                
+                                <li>
+                                <li><a href="#" style="font-size:15px;">Report</a>
+                                </li>
 
-                  
-              </div>
-            </div>
-            <!-- /sidebar menu -->
+                    </ul>		
+				</div>
+		    </div>
+					<!-- /sidebar menu -->
             <!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
                     <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
