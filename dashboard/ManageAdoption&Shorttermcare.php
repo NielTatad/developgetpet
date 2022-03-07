@@ -77,7 +77,6 @@ if($query->rowCount()>0)
                             <li><a href="http://localhost/developgetpet/dashboard/ManageAdoption&Shorttermcare.php" style="font-size:15px;">Manage Pet Adoption & <br> Short Term-Care</a>
                             </li>
 
-
                                 <li><a style="font-size:15px;">Manage Donation & Fundraising Activities<span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="#">Donation</a></li>
@@ -131,15 +130,16 @@ if($query->rowCount()>0)
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <?php echo ($result->adUsername);?>
+                    <?php echo($result->adUsername);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Profile</a>
-                      <!--<a class="dropdown-item"  href="javascript:;">
+                      <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Profile"> Profile</a>
+                      <!--<a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Settings</a>
+                      <a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php" id="contact">Contact Us</a>
+                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php">Contact Us</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -170,100 +170,28 @@ if($query->rowCount()>0)
         <!-- page content -->
 
         <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-              <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
-              </div>
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                        <br>
+                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
+                        </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="clearfix"></div>
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Timeline</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                   </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
+                    <!-- /page content -->
 
-                    
-                  <div class="top_tiles">
-                  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 ">
-                  <div class="tile-stats">
-                  <div class="icon"></div>
-                  <a href="#" data-toggle="modal" data-target="#signin">
-                  <h6>Total:<br> Sign-in Today<br> </h6 >
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
-                  
-                  </a>
-                  </div>
-                  </div>
-                  </div>
-
-                  <div class="top_tiles">
-                  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 ">
-                  <div class="tile-stats">
-                  <div class="icon"></div>
-                  <a href="#" data-toggle="modal" data-target="#petadopter">
-                  <h6>Total:<br> Pet Adopters</h6>
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
-                  
-                  </a>
-                  </div>
-                  </div>
-                  </div>
-
-                  <div class="top_tiles">
-                  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 ">
-                  <div class="tile-stats">
-                  <div class="icon"></div>
-                  <a href="#" data-toggle="modal" data-target="#petowner">
-                  <h6>Total:<br> Pet Owners</h6>
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
-                  
-                  </a>
-                  </div>
-                  </div>
-                  </div>
-
-                  <div class="top_tiles">
-                  <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 ">
-                  <div class="tile-stats">
-                  <div class="icon"></div>
-                  <a href="#" data-toggle="modal" data-target="#AWO">
-                  <h6>Total:<br> Animal Welfare Organzation</h6>
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
-                  
-                  </a>
-                  </div>
-                  </div>
-                  </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- /page content -->
   
   <!-- ModalProfile -->

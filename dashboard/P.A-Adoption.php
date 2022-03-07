@@ -340,7 +340,7 @@ if($query->rowCount()>0)
                         </div>
 
                         <div class="x_content">
-                    <div class="table-responsive">
+                      <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
