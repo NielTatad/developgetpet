@@ -417,8 +417,8 @@ if($query->rowCount()>0)
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->availabilityStatus);?></td>
 
                             <td class=" last" style="text-align:center;"><a href="#">View</a></td>
-                            <?php $cnt=$cnt+1;}} ?>
                           </tr>
+                        <?php $cnt=$cnt+1;}} ?>
                         </tbody>
                       </table>
                     </div>

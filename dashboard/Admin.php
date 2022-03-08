@@ -12,11 +12,54 @@ if($query->rowCount()>0)
 {
   foreach($results as $result)
   {
-     ?>
+    ?>
+                              
 <p></p>
 <?php
 ?>
 <?php }} ?>
+?>
+
+<?php
+
+$query=$dbh->prepare("SELECT COUNT(ownerID) FROM petowner");
+$query->execute();
+
+$pet_owner=$query->fetchColumn();
+
+?>
+
+<?php
+$query=$dbh->prepare("SELECT COUNT(adopterID) FROM petadopter");
+$query->execute();
+
+$pet_adopter=$query->fetchColumn();
+
+?>
+
+<?php
+$query=$dbh->prepare("SELECT COUNT(orgID) FROM animalwelfareorganization");
+$query->execute();
+
+$animal_welfare_organization=$query->fetchColumn();
+
+?>
+
+<?php
+$query=$dbh->prepare("SELECT COUNT(*) FROM register ");
+$query->execute();
+
+$Registered=$query->fetchColumn();
+
+?>
+
+<?php
+$query=$dbh->prepare("SELECT COUNT(*) FROM login WHERE (loginDate) = (CURDATE())");
+$query->execute();
+
+$Date=$query->fetchColumn();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -212,7 +255,7 @@ if($query->rowCount()>0)
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#signin">
                   <h6>Total:<br> Sign-in Today<br> </h6 >
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
+                  <div class="count"><?php echo $Date;?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
                   
                   </a>
                   </div>
@@ -225,7 +268,7 @@ if($query->rowCount()>0)
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#petadopter">
                   <h6>Total:<br> Pet Adopters</h6>
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
+                  <div class="count"><?php echo $pet_adopter; ?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
                   
                   </a>
                   </div>
@@ -238,7 +281,7 @@ if($query->rowCount()>0)
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#petowner">
                   <h6>Total:<br> Pet Owners</h6>
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
+                  <div class="count"><?php echo $pet_owner; ?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
                   
                   </a>
                   </div>
@@ -251,7 +294,7 @@ if($query->rowCount()>0)
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#AWO">
                   <h6>Total:<br> Animal Welfare Organzation</h6>
-                  <div class="count">179&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
+                  <div class="count"><?php echo $animal_welfare_organization;?> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
                   
                   </a>
                   </div>
@@ -325,57 +368,43 @@ if($query->rowCount()>0)
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
+                            <th class="column-title">ID</th>
+                            <th class="column-title">Organization Name/First Name</th>
+                            <th class="column-title">Organization Manager/Last Name</th>
+                            <th class="column-title">Contact No.</th>
+                            <th class="column-title">Address</th>
+                            <th class="column-title">Logo/Picture</th>
+                            <th class="column-title">Email</th>
                             <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
+                            </th> 
                             </tr>
                             </thead>
 
                             <tbody>
+                            <?php
+                            $sql="SELECT * from login WHERE (loginDate) = (CURDATE())";
+                            $query=$dbh->prepare($sql);
+                            $query->execute();
+                            $results=$query->fetchALL(PDO::FETCH_OBJ);
+                            $cnt=1;
+                            if($query->rowCount()>0)
+                            {
+                             foreach($results as $result)
+                            {
+                             ?>
                               <tr class="even pointer">
                                 
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
+                                <td class=" "><?php echo htmlentities($result->userID);?></td>
+                                <td class=" "><?php echo htmlentities($result->orgName);?><?php echo htmlentities($result->userFirstname);?></td>
+                                <td class=" "><?php echo htmlentities($result->orgManager);?><?php echo htmlentities($result->userLastname);?><i class="success fa fa-long-arrow-up"></i></td>
+                                <td class=" "><?php echo htmlentities($result->contactNo);?></td>
+                                <td class=" "><?php echo htmlentities($result->Address);?></td>
+                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->Image' style = height:80px; width: 80px;/>";?></td>
+                                <td class=" "><?php echo htmlentities($result->Email);?></td>
+                                <td class=" "><?php echo htmlentities($result->Role);?></td>
                                 
-                                </td>
                               </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
-            
+                            <?php $cnt=$cnt+1;}} ?>
                               </tbody>
                             </table>
                           </div>
@@ -404,7 +433,7 @@ if($query->rowCount()>0)
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2>Total Pet Adopters</h2>
+      <h2>Total Pet Owners</h2>
       <ul class="nav navbar-right panel_toolbox">
         <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
         </li>
@@ -419,10 +448,15 @@ if($query->rowCount()>0)
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
+                            <th class="column-title">ID</th>
+                            <th class="column-title">First Name</th>
+                            <th class="column-title">Last Name</th>
+                            <th class="column-title">Contact No.</th>
+                            <th class="column-title">Address</th>
+                            <th class="column-title">Picture</th>
+                            <th class="column-title">Email</th>
                             <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            
                             </th>
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -431,44 +465,30 @@ if($query->rowCount()>0)
                             </thead>
 
                             <tbody>
+                            <?php
+                            $sql="SELECT * from petadopter";
+                            $query=$dbh->prepare($sql);
+                            $query->execute();
+                            $results=$query->fetchALL(PDO::FETCH_OBJ);
+                            $cnt=1;
+                            if($query->rowCount()>0)
+                            {
+                             foreach($results as $result)
+                            {
+                             ?>
                               <tr class="even pointer">
                                 
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
+                                <td class=" "><?php echo htmlentities($result->adopterID);?></td>
+                                <td class=" "><?php echo htmlentities($result->adopterFirstname);?></td>
+                                <td class=" "><?php echo htmlentities($result->adopterLastname);?><i class="success fa fa-long-arrow-up"></i></td>
+                                <td class=" "><?php echo htmlentities($result->adopterContactNo);?></td>
+                                <td class=" "><?php echo htmlentities($result->adopterAddress);?></td>
+                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture' style = height:80px; width: 80px;/>";?></td>
+                                <td class=" "><?php echo htmlentities($result->adopterEmail);?></td>
+                                <td class=" "><?php echo htmlentities($result->Role);?></td>
                                 
-                                </td>
                               </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
+                            <?php $cnt=$cnt+1;}} ?>
             
                               </tbody>
                             </table>
@@ -513,10 +533,15 @@ if($query->rowCount()>0)
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
+                            <th class="column-title">ID</th>
+                            <th class="column-title">First Name</th>
+                            <th class="column-title">Last Name</th>
+                            <th class="column-title">Contact No.</th>
+                            <th class="column-title">Address</th>
+                            <th class="column-title">Picture</th>
+                            <th class="column-title">Email</th>
                             <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            
                             </th>
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -525,44 +550,30 @@ if($query->rowCount()>0)
                             </thead>
 
                             <tbody>
+                            <?php
+                            $sql="SELECT * from petowner";
+                            $query=$dbh->prepare($sql);
+                            $query->execute();
+                            $results=$query->fetchALL(PDO::FETCH_OBJ);
+                            $cnt=1;
+                            if($query->rowCount()>0)
+                            {
+                             foreach($results as $result)
+                            {
+                             ?>
                               <tr class="even pointer">
                                 
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
+                                <td class=" "><?php echo htmlentities($result->ownerID);?></td>
+                                <td class=" "><?php echo htmlentities($result->ownerFirstname);?></td>
+                                <td class=" "><?php echo htmlentities($result->ownerLastname);?><i class="success fa fa-long-arrow-up"></i></td>
+                                <td class=" "><?php echo htmlentities($result->ownerContactNo);?></td>
+                                <td class=" "><?php echo htmlentities($result->ownerAddress);?></td>
+                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture' style = height:80px; width: 80px;/>";?></td>
+                                <td class=" "><?php echo htmlentities($result->ownerEmail);?></td>
+                                <td class=" "><?php echo htmlentities($result->Role);?></td>
                                 
-                                </td>
                               </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
+                            <?php $cnt=$cnt+1;}} ?>
             
                               </tbody>
                             </table>
@@ -607,56 +618,42 @@ if($query->rowCount()>0)
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
+                            <th class="column-title">ID</th>
+                            <th class="column-title">Organization Name</th>
+                            <th class="column-title">Organization Manager</th>
+                            <th class="column-title">Contact No.</th>
+                            <th class="column-title">Address</th>
+                            <th class="column-title">Logo</th>
+                            <th class="column-title">Email</th>
                             <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
                             </tr>
                             </thead>
 
                             <tbody>
+                            <?php
+                            $sql="SELECT * from animalwelfareorganization";
+                            $query=$dbh->prepare($sql);
+                            $query->execute();
+                            $results=$query->fetchALL(PDO::FETCH_OBJ);
+                            $cnt=1;
+                            if($query->rowCount()>0)
+                            {
+                             foreach($results as $result)
+                            {
+                             ?>
                               <tr class="even pointer">
                                 
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
+                                <td class=" "><?php echo htmlentities($result->orgID);?></td>
+                                <td class=" "><?php echo htmlentities($result->orgName);?></td>
+                                <td class=" "><?php echo htmlentities($result->orgManager);?><i class="success fa fa-long-arrow-up"></i></td>
+                                <td class=" "><?php echo htmlentities($result->orgContactNo);?></td>
+                                <td class=" "><?php echo htmlentities($result->orgAddress);?></td>
+                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->orgLogo' style = height:80px; width: 80px;/>";?></td>
+                                <td class=" "><?php echo htmlentities($result->orgEmail);?></td>
+                                <td class=" "><?php echo htmlentities($result->Role);?></td>
                                 
-                                </td>
                               </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
+                            <?php $cnt=$cnt+1;}} ?>
             
                               </tbody>
                             </table>
