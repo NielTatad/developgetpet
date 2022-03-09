@@ -255,7 +255,7 @@ $Date=$query->fetchColumn();
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#signin">
                   <h6>Total:<br> Sign-in Today<br> </h6 >
-                  <div class="count"><?php echo $Date;?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
+                  <div class="count"><?php echo $Date;?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
                   
                   </a>
                   </div>
@@ -268,7 +268,7 @@ $Date=$query->fetchColumn();
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#petadopter">
                   <h6>Total:<br> Pet Adopters</h6>
-                  <div class="count"><?php echo $pet_adopter; ?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
+                  <div class="count"><?php echo $pet_adopter;?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
                   
                   </a>
                   </div>
@@ -281,7 +281,7 @@ $Date=$query->fetchColumn();
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#petowner">
                   <h6>Total:<br> Pet Owners</h6>
-                  <div class="count"><?php echo $pet_owner; ?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
+                  <div class="count"><?php echo $pet_owner; ?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
                   
                   </a>
                   </div>
@@ -294,7 +294,7 @@ $Date=$query->fetchColumn();
                   <div class="icon"></div>
                   <a href="#" data-toggle="modal" data-target="#AWO">
                   <h6>Total:<br> Animal Welfare Organzation</h6>
-                  <div class="count"><?php echo $animal_welfare_organization;?> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-paw"></i></div>
+                  <div class="count"><?php echo $animal_welfare_organization;?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fas fa-users"></i></div>
                   
                   </a>
                   </div>

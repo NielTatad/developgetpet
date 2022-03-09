@@ -288,7 +288,7 @@ if($query->rowCount()>0)
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img <?php echo"<img src = '/GETPET/web/images/$result->ownerPicture'";?> alt=""><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt=""><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Profile"> Profile</a>
@@ -359,9 +359,36 @@ if($query->rowCount()>0)
                    </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
+                  <div class="x_content" style="text-align:center;">
+
                   
-                      Add content to the page ...
+                  
+                  <?php
+                        $sql="SELECT * from postforadoption";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                        <div class="col-nd-4">
+                            <div class="card">
+                              <div class="card-body">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
+                                  <h2 class="card-title"> <?php echo ( $result->Name);?> </h2>
+                                  <p class="card-text">
+                                      Dummy Data
+                                  </p>
+                          </div>
+                        </div>
+                      </div>
+                      <?php $cnt=$cnt+1;}} ?>
+                    
+                  
+
                   </div>
                 </div>
               </div>

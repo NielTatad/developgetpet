@@ -416,14 +416,12 @@ if($query->rowCount()>0)
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->userContactNo);?></td>
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->availabilityStatus);?></td>
 
-                            <td class=" last" style="text-align:center;"><a href="#">View</a></td>
+                            <td class=" last" style="text-align:center;" data-toggle="modal" data-target="#View"><a href="#">View</a></td>
                           </tr>
                         <?php $cnt=$cnt+1;}} ?>
                         </tbody>
                       </table>
                     </div>
-							
-						
                   </div>
                 </div>
               </div>
@@ -431,6 +429,53 @@ if($query->rowCount()>0)
           </div>
         </div>
 			<!-- /page content -->
+
+  <!-- ModalView -->
+  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+      <?php
+                        $sql="SELECT * from postforadoption";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+        <div class="modal-header">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+        </div>
+
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="hidden" name="petID" value="<?php echo ( $result->petID);?>" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center">
+             <h6 class="mt-1 mb-2"><?php echo ($result->Name);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->petName);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->petBreed);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->petType);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->petSex);?></h6>
+        </div><br>
+      </form>
+      <?php $cnt=$cnt+1;}} ?>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //ModalView -->
+
 <script>
 <?php 
 $ID=$_SESSION['ownerID'];

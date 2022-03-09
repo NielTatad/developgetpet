@@ -686,20 +686,23 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 										</div>
 
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo</label>
-                    <br>
+                    
                     <div style="text-align: center" class="wrap-input100 validate-input">
                      <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:420px" placeholder="Upload Picture">
 			              </div>
-                    <?php
-                    date_default_timezone_set("Asia/Manila");
-                    ?>
-                     <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Date<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petweight" class="form-control" name="Date" value="<?php echo date("m/d/Y h:i:s A", time());?>" placeholder="Current Date and Time" required="required"/>
-                                            </div>
-                                        </div>
 
+                    <div class="field item form-group">
+                                        <label class='col-form-label col-md-3 col-sm-3  label-align'>
+                                        Date</label>
+                                        <div class="col-md-6 col-sm-6">
+                                        <div class='input-group date' id='myDatepicker4'>
+                                        <input type='text' class="form-control" readonly="readonly" />
+                                        <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        </div>
+                                        </div>
+                                        </div>
 
                                         <div class="ln_solid">
                                             <br>

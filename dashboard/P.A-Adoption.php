@@ -377,19 +377,16 @@ if($query->rowCount()>0)
                         </div>
 
                         <div class="x_content">
-                      <div class="table-responsive">
+                    <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
-                            
-                            <th class="column-title">Owner</th>
-                            <th class="column-title">Contact No</th>
-                            <th class="column-title">Address</th>
-                            <th class="column-title">Email</th>
-                            <th class="column-title">Pet Name</th>
-                            <th class="column-title">Pet Breed</th>
-                            <th class="column-title">Status</th>
-                            <th class="column-title no-link last"><span class="nobr">Information</span>
+                            <th class="column-title" style="text-align:center;">Pet Owner</th>
+                            <th class="column-title" style="text-align:center;">Pet Type </th>
+                            <th class="column-title" style="text-align:center;">Pet Name </th>
+                            <th class="column-title" style="text-align:center;">Contact No</th>
+                            <th class="column-title" style="text-align:center;">Status</th>
+                            <th class="column-title no-link last" style="text-align:center;"><span class="nobr">Information</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -398,123 +395,31 @@ if($query->rowCount()>0)
                         </thead>
 
                         <tbody>
+                        <?php
+                        $sql="SELECT * from postforadoption";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                          ?>
                           <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 24, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$432.26</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 24, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$333.21</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 24, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 26, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 26, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$432.26</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 26, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$333.21</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->Name);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->petType);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->petName);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->userContactNo);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->availabilityStatus);?></td>
 
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 27, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
+                            <td class=" last" style="text-align:center;"><a href="#">View</a></td>
                           </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 28, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
+                        <?php $cnt=$cnt+1;}} ?>
                         </tbody>
                       </table>
                     </div>
+
 							
 						
                   </div>
