@@ -18,7 +18,7 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
-?>
+
 
 <?php
 

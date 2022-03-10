@@ -384,7 +384,10 @@ if($query->rowCount()>0)
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
+                            <th class="column-title" style="text-align:center;">Pet ID</th>
                             <th class="column-title" style="text-align:center;">Pet Owner</th>
+                            <th class="column-title" style="text-align:center;">Picture</th>
+                            <th class="column-title" style="text-align:center;">Picture</th>
                             <th class="column-title" style="text-align:center;">Pet Type </th>
                             <th class="column-title" style="text-align:center;">Pet Name </th>
                             <th class="column-title" style="text-align:center;">Contact No</th>
@@ -399,7 +402,7 @@ if($query->rowCount()>0)
 
                         <tbody>
                         <?php
-                        $sql="SELECT * from postforadoption";
+                        $sql="SELECT * from postforadoption ORDER BY petID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -410,13 +413,16 @@ if($query->rowCount()>0)
                         {
                            ?>
                           <tr class="even pointer">
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->petID);?></td>
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->Name);?></td>
+                            <td class=" " style="text-align:center;"><?php echo htmlentities($result->petPicture);?></td>
+                            <td class=" " style="text-align:center;"><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->petType);?></td>
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->petName);?></td>
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->userContactNo);?></td>
                             <td class=" " style="text-align:center;"><?php echo htmlentities($result->availabilityStatus);?></td>
 
-                            <td class=" last" style="text-align:center;" data-toggle="modal" data-target="#View"><a href="#">View</a></td>
+                            <td class=" " style="text-align:center;"><button type="button" class="btn btn-success viewbtn">View</button></td>
                           </tr>
                         <?php $cnt=$cnt+1;}} ?>
                         </tbody>
@@ -429,7 +435,7 @@ if($query->rowCount()>0)
           </div>
         </div>
 			<!-- /page content -->
-
+       
   <!-- ModalView -->
   <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -442,8 +448,24 @@ if($query->rowCount()>0)
         </button>
       </div>
       <div class="modal-body mx-3">
-      <form method="post">
-      <?php
+      <form action="" method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="text" id="pet_id" name="pet_id" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="text" id="Name" name="Name" required = "required" class="form-control">
+				</div>
+    
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="text" id="Path" name="Path" required = "required" class="form-control">
+				</div>
+        <div class="modal-header">  
+              <img <?php echo"<img src = '/developgetpet/web/images/$picture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+        </div>
+        <?php
+      
+     
+                       
                         $sql="SELECT * from postforadoption";
                         $query=$dbh->prepare($sql);
                         $query->execute();
@@ -454,13 +476,7 @@ if($query->rowCount()>0)
                           foreach($results as $result)
                         {
                            ?>
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
 
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="petID" value="<?php echo ( $result->petID);?>" required = "required" class="form-control" id="success">
-				</div>
         <div style="text-align: center">
              <h6 class="mt-1 mb-2"><?php echo ($result->Name);?></h6>
              <h6 class="mt-1 mb-2"><?php echo ($result->petName);?></h6>
@@ -468,15 +484,13 @@ if($query->rowCount()>0)
              <h6 class="mt-1 mb-2"><?php echo ($result->petType);?></h6>
              <h6 class="mt-1 mb-2"><?php echo ($result->petSex);?></h6>
         </div><br>
-      </form>
-      <?php $cnt=$cnt+1;}} ?>
+        <?php $cnt=$cnt+1;}} ?>
       </div>
     </div>
   </div>
 </div>
 	<!-- //ModalView -->
 
-<script>
 <?php 
 $ID=$_SESSION['ownerID'];
 $sql = "SELECT * from petowner where ownerID=:ID";
@@ -494,7 +508,6 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
-</script>
 
   <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -615,6 +628,29 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.viewbtn').on('click', function () {
+
+                $('#View').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#pet_id').val(data[0]);
+                $('#Name').val(data[1]);
+                $('#Path').val(data[2]);
+                $('#Picture').val(data[3]);
+            });
+        });
+    </script>
 
 	<!-- Javascript functions	-->
 	<script>

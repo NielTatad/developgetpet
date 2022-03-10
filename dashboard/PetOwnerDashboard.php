@@ -364,7 +364,7 @@ if($query->rowCount()>0)
                   
                   
                   <?php
-                        $sql="SELECT * from postforadoption";
+                        $sql="SELECT * from postforadoption ORDER BY petID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -378,10 +378,13 @@ if($query->rowCount()>0)
                             <div class="card">
                               <div class="card-body">
                                   <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
-                                  <h2 class="card-title"> <?php echo ( $result->Name);?> </h2>
-                                  <p class="card-text">
-                                      Dummy Data
-                                  </p>
+                                  <ul>
+                                  <li><h2 class="card-title"> <?php echo ( $result->petID);?> </h2></li>
+                                  <h2 class="card-title"> <?php echo ( $result->petType);?> </h2>
+                                  <h2 class="card-title">Posted By: <?php echo ( $result->Name);?> </h2>
+                                  <h2 class="card-title"> <?php echo ( $result->petName);?> </h2>
+                                  <button type="button" class="btn btn-success viewbtn">View</button>
+                                  </ul>
                           </div>
                         </div>
                       </div>
@@ -396,6 +399,52 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
+        <!-- ModalView -->
+  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form action="" method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="text" id="pet_id" name="pet_id" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="text" id="Name" name="Name" required = "required" class="form-control">
+				</div>
+    
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="text" id="Path" name="Path" required = "required" class="form-control">
+				</div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //ModalView -->
+<?php
+$ID=$_SESSION['ownerID'];           
+$sql = "SELECT * from petowner where ownerID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
   
   <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -512,6 +561,34 @@ if($query->rowCount()>0)
         <!-- /footer content -->
       </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../vendors/validator/multifield.js"></script>
+    <script src="../vendors/validator/validator.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.viewbtn').on('click', function () {
+
+                $('#View').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#pet_id').val(data[0]);
+                $('#Name').val(data[1]);
+                $('#Path').val(data[2]);
+                $('#Picture').val(data[3]);
+            });
+        });
+    </script>
+
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
