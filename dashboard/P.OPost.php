@@ -682,7 +682,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
 											<div class="col-md-6 col-sm-6">
 												<textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
-                                            </div>
+                      </div>
 										</div>
 
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo</label>

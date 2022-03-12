@@ -378,12 +378,29 @@ if($query->rowCount()>0)
                             <div class="card">
                               <div class="card-body">
                                   <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
-                                  <ul>
-                                  <li><h2 class="card-title"> <?php echo ( $result->petID);?> </h2></li>
-                                  <h2 class="card-title"> <?php echo ( $result->petType);?> </h2>
-                                  <h2 class="card-title">Posted By: <?php echo ( $result->Name);?> </h2>
-                                  <h2 class="card-title"> <?php echo ( $result->petName);?> </h2>
-                                  <button type="button" class="btn btn-success viewbtn">View</button>
+                                  <ul style="list-style: none;"><br>
+                                  <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
+                                  <h3 class="card-title"><?php echo ($result->petName);?></h3>
+                                  <label style="">Description:</label>
+												          <li><textarea disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
+                                  <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                  <?php $user_id = $result->userID;
+
+                                  $sql1="SELECT * from register WHERE userID='$user_id'";
+                                  $query1=$dbh->prepare($sql1);
+                                  $query1->execute();
+                                  $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                  $cnt1=1;
+                                  if($query1->rowCount()>0)
+                                  {
+                                    foreach($userids as $userid)
+                                  {
+                                    ?>
+                                  
+                                  <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> </label><br>
+                                  <?php $cnt1=$cnt1+1;}} ?>
+                                  <label style=""><?php echo ($result->postDate);?></label><br>
+                                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
                                   </ul>
                           </div>
                         </div>

@@ -344,7 +344,7 @@ $Date=$query->fetchColumn();
   
   <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-lg" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
@@ -424,7 +424,7 @@ $Date=$query->fetchColumn();
   
   <div class="modal fade" id="petadopter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-lg" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
@@ -509,7 +509,7 @@ $Date=$query->fetchColumn();
   
   <div class="modal fade" id="petowner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-lg" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
@@ -594,7 +594,7 @@ $Date=$query->fetchColumn();
   
   <div class="modal fade" id="AWO" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-lg" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
