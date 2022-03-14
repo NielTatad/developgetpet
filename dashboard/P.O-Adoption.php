@@ -409,7 +409,7 @@ if($query->rowCount()>0)
                                   <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
                                   <ul style="list-style: none;"><br>
                                   <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
-                                  <li><h3 class="card-title"><?php echo ($result->petName);?></h3></li>
+                                  <li><h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2></li>
                                   <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
                                   <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
                                   <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
