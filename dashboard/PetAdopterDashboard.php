@@ -351,24 +351,60 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Timeline</h2>
+                    <h2>New Post For Adoption</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                          </div>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                      </li>      
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                      Add content to the page ...
+                  <div class="x_content" style="text-align:center;">
+                      
+                  <?php
+                        $sql="SELECT * from postforadoption ORDER BY petID DESC LIMIT 3";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                              <div class="card-body">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:180px;width:200px;">
+                                  
+                                  <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                                  <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
+                                  <label style="">Description:</label><br>
+												          <textarea disabled="yes" id="description" style="width:180px;height:150px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea>
+                                  <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                  <?php $user_id = $result->userID;
+
+                                  $sql1="SELECT * from register WHERE userID='$user_id'";
+                                  $query1=$dbh->prepare($sql1);
+                                  $query1->execute();
+                                  $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                  $cnt1=1;
+                                  if($query1->rowCount()>0)
+                                  {
+                                    foreach($userids as $userid)
+                                  {
+                                    ?>
+                                  
+                                  <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> </label><br>
+                                  <?php $cnt1=$cnt1+1;}} ?>
+                                  <label style=""><?php echo ($result->postDate);?></label><br>
+                                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
+                                  
+                          </div>
+                        </div>
+                      </div>
+                      <?php $cnt=$cnt+1;}} ?>
+                    
+
                   </div>
                 </div>
               </div>
@@ -376,6 +412,27 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
+
+<script>
+<?php
+$ID=$_SESSION['adopterID'];           
+$sql = "SELECT * from petadopter where adopterID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+</script>
+        
 
         <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

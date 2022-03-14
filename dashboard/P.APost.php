@@ -355,7 +355,7 @@ if($query->rowCount()>0)
                         </div>
                     </div>
 
-                    <?php 
+<?php 
 $ID=$_SESSION['adopterID'];
 
 $sql = "SELECT * from petadopter where adopterID=:ID";
@@ -424,10 +424,11 @@ $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Adoption.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
 
 }
 ?>
+
 
                     <!-- Back Button -->
                     <a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
@@ -677,24 +678,27 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
 											<div class="col-md-6 col-sm-6">
 												<textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
-                                            </div>
+                      </div>
 										</div>
 
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo</label>
-                    <br>
+                    
                     <div style="text-align: center" class="wrap-input100 validate-input">
                      <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:420px" placeholder="Upload Picture">
 			              </div>
-                    <?php
-                    date_default_timezone_set("Asia/Manila");
-                    ?>
-                     <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Date<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petweight" class="form-control" name="Date" value="<?php echo date("m/d/Y h:i:s A", time());?>" placeholder="Current Date and Time" required="required"/>
-                                            </div>
-                                        </div>
 
+                    <div class="field item form-group">
+                                        <label class='col-form-label col-md-3 col-sm-3  label-align'>
+                                        Date</label>
+                                        <div class="col-md-6 col-sm-6">
+                                        <div class='input-group date' id='myDatepicker4'>
+                                        <input type='text' class="form-control" readonly="readonly" />
+                                        <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        </div>
+                                        </div>
+                                        </div>
 
                                         <div class="ln_solid">
                                             <br>
@@ -713,6 +717,26 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 </div>
             </div>
 			<!-- /page content -->
+
+<script>
+<?php 
+$ID=$_SESSION['adopterID'];
+$sql = "SELECT * from petadopter where adopterID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+</script>
 
             <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

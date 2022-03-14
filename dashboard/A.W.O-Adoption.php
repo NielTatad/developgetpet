@@ -195,15 +195,15 @@ if($query->rowCount()>0)
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GETPET</title>
+	<title>GETPET</title>
 
-    <!-- Bootstrap -->
+	<!-- Bootstrap -->
 	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Font Awesome -->
 	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -224,39 +224,39 @@ if($query->rowCount()>0)
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+</head>
 
-  <body class="nav-md">
+<body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/PetAdopterDashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+              <a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
 
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <!--<div class="profile_pic">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
-              </div>-->
-              <div class="profile_info">
-                <!--<span>Welcome,</span>
-                <h2><?php echo ($result->orgManager);?></h2>-->
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                    <!--<div class="profile_pic">
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
+                    </div>
+                    <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    </div>
+                    <!-- /menu profile quick info -->
 
-            <br />
+					<br />
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
               <div class="menu_section">
-                <ul class="nav side-menu">
-                <li>
+                    <ul class="nav side-menu">
+                    <li>
                     <li><a href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php"><i></i> Dashboard </a>
                     </li>
 
@@ -279,27 +279,27 @@ if($query->rowCount()>0)
                     <li>
                     <li><a href="#">Tips, Advice & Articles</a>
                     </li>
-                
-              </div>
 
-            </div>
-            <!-- /sidebar menu -->
+                    </ul>
+					</div>
+					</div>
+					<!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
+					<!-- /menu footer buttons -->
+					<div class="sidebar-footer hidden-small">
+                    <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                    </div>
+					<!-- /menu footer buttons -->
+				</div>
+			</div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
+			<!-- top navigation -->
+			<div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -312,11 +312,12 @@ if($query->rowCount()>0)
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Profile"> Profile</a>
-                      <!--<a class="dropdown-item"  href="javascript:;">
+                      <!--<a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Settings</a>
+                      <a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php">Contact Us</a>
+                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php" id="contact">Contact Us</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -324,7 +325,7 @@ if($query->rowCount()>0)
                   <li role="presentation" class="nav-item dropdown open">
                     <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-envelope-o"></i>
-                       <!--<span class="badge bg-green">6</span>-->
+                      <!--<span class="badge bg-green">6</span>-->
                     </a>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       
@@ -342,199 +343,292 @@ if($query->rowCount()>0)
               </nav>
             </div>
           </div>
-        <!-- /top navigation -->
+			<!-- /top navigation -->
 
-        <!-- page content -->
-			<div class="right_col" role="main">
-                <div class="">
-                    <div class="page-title">
-                        <div class="title_left">
-                        <br>
-                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
-                        </div>
+	  <!-- page content -->
+    <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+              <br>
+              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
+              </div>
 
-                        <div class="title_right">
-                            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Post Button -->
-                    <a href="http://localhost/developgetpet/dashboard/A.W.OPost.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Post Pet Adoption</button></a>
-
-                    <!-- /page content -->
-
-                    <div class="clearfix"></div>
-
-                    <div class="row">
-
-                        <div class="col-md-12 col-sm-12  ">
-                        <div class="x_panel">
-                        <div class="x_title">
-                        <h2>Table Information</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                        </li>          
-                        </ul>
-                        <div class="clearfix"></div>
-                        </div>
-
-                        <div class="x_content">
-                    <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                          <tr class="headings">
-                            
-                            <th class="column-title">Owner</th>
-                            <th class="column-title">Contact No</th>
-                            <th class="column-title">Address</th>
-                            <th class="column-title">Email</th>
-                            <th class="column-title">Pet Name</th>
-                            <th class="column-title">Pet Breed</th>
-                            <th class="column-title">Status</th>
-                            <th class="column-title no-link last"><span class="nobr">Information</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 24, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$432.26</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 24, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$333.21</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 24, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 26, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 26, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$432.26</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 26, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            <td class=" ">Mike Smith</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$333.21</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-
-                          <tr class="even pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 27, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class=" ">Name</td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 28, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                            <td class=" last" style="text-align:center;"><a href="#">View</a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-							
-						
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-			<!-- /page content -->
 
-      <!-- ModalProfile -->
+            <!-- Post Button -->
+            <a href="http://localhost/developgetpet/dashboard/A.W.OPost.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+
+            <!-- /page content -->
+            <div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12  ">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Post Pet For Adoption</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+          </li>
+       </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" style="text-align:center;">
+
+      
+      
+      <?php
+            $sql="SELECT * from postforadoption ORDER BY petID DESC";
+            $query=$dbh->prepare($sql);
+            $query->execute();
+            $results=$query->fetchALL(PDO::FETCH_OBJ);
+            $cnt=1;
+            if($query->rowCount()>0)
+            {
+              foreach($results as $result)
+            {
+               ?>
+            <div class="col-nd-4">
+                <div class="card">
+                  <div class="card-body">
+                      <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
+                      
+                      <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                      <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
+                      <h3 hidden class="card-title"><?php echo ($result->petType);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->petSex);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->petAge);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->petColor);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3>
+                      <label style="">Description:</label><br>
+                      <textarea disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea><br>
+                      <h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->availabilityStatus);?></h3>
+                      <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                      <?php $user_id = $result->userID;
+
+                      $sql1="SELECT * from register WHERE userID='$user_id'";
+                      $query1=$dbh->prepare($sql1);
+                      $query1->execute();
+                      $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                      $cnt1=1;
+                      if($query1->rowCount()>0)
+                      {
+                        foreach($userids as $userid)
+                      {
+                        ?>
+                      
+                      <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> </label><br>
+                      <?php $cnt1=$cnt1+1;}} ?>
+                      <h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?></h3>
+                      <label style=""><?php echo ($result->postDate);?></label><br>
+                      <h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3>
+                      <h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3>
+                      <h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3>
+                      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
+                      
+              </div>
+            </div>
+          </div>
+          <br>
+          <?php $cnt=$cnt+1;}} ?>
+          
+        
+      
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+        <!-- /page content -->
+
+<script>
+<?php 
+$ID=$_SESSION['orgID'];
+$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+</script>
+       
+  <!-- ModalView -->
+  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form action="" method="post">
+        
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="pet_id" name="PetID" required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_name" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Type<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_type" name="Type" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Breed<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_breed" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_sex" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_age" name="Age" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_color" name="Color" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_weight" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="vaccination_status" name="Vaccination" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="deworming_status" name="Deworming" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <textarea disabled="yes" id="pet_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
+        </div>
+        </div>
+
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
+				</div>
+
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="pet_picture" name="Picture"  required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Availability Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="availability_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="user_id" name="UserID"  required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="post_by" name="Name" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="post_date" name="PostDate" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="user_email" name="Email" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="user_address" name="Address" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="user_contactno" name="ContactNo" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //ModalView -->
+
+  <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -554,10 +648,10 @@ if($query->rowCount()>0)
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
+					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center">
-						  <button  class="login100-form-btn" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
+						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
 							 <a style="color:White"> Update Profile </a>
 						 </button>
 				</div>
@@ -575,9 +669,9 @@ if($query->rowCount()>0)
   </div>
 </div>
 	<!-- //ModalProfile -->
-
-  <!-- ModalSettings -->
-  <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  
+   <!-- ModalSettings -->
+   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -596,10 +690,10 @@ if($query->rowCount()>0)
 					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgname" required="required" value="<?php echo ($result->orgName);?>" placeholder="Organization Name">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Firstname" required="required" value="<?php echo ($result->orgName);?>" placeholder="First Name">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgmanager" required="required" value="<?php echo ($result->orgManager);?>" placeholder="Organization Manager">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Lastname" required="required" value="<?php echo ($result->orgManager);?>" placeholder="Last Name">
 						<span class="focus-input100"></span>
 				</div><br>
         <div  style="text-align: center" class="wrap-input100 validate-input">
@@ -623,13 +717,13 @@ if($query->rowCount()>0)
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->orgEmail);?>" placeholder="Email">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->orgUsername);?>" placeholder="Username">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->orgName);?>" placeholder="Username">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->orgPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
-						<button  class="login100-form-btn" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
+						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
 							<a style="color:White"> Update </a>
 						</button>
 				</div><br>
@@ -642,9 +736,9 @@ if($query->rowCount()>0)
 
 			<!-- footer content -->
 			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
+      <p class="tweet-p1">
+		  ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		  </p>
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
@@ -655,7 +749,91 @@ if($query->rowCount()>0)
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
 
-	
+    <script>
+        $(document).ready(function () {
+
+            $('.viewbtn').on('click', function () {
+
+                $('#View').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#pet_id').val(data[0]);
+                $('#pet_name').val(data[1]);
+                $('#pet_type').val(data[2]);
+                $('#pet_breed').val(data[3]);
+                $('#pet_sex').val(data[4]);
+                $('#pet_age').val(data[5]);
+                $('#pet_color').val(data[6]);
+                $('#pet_weight').val(data[7]);
+                $('#vaccination_status').val(data[8]);
+                $('#deworming_status').val(data[9]);
+                $('#pet_description').val(data[10]);
+                $('#des').val(data[11]);
+                $('#pet_picture').val(data[12]);
+                $('#availability_status').val(data[13]);
+                $('#user_id').val(data[14]);
+                $('#post_by').val(data[15]);
+                $('#post_date').val(data[16]);
+                $('#user_email').val(data[17]);
+                $('#user_address').val(data[18]);
+                $('#user_contactno').val(data[19]);
+            });
+        });
+    </script>
+
+	<!-- Javascript functions	-->
+	<script>
+		function hideshow(){
+			var password = document.getElementById("password1");
+			var slash = document.getElementById("slash");
+			var eye = document.getElementById("eye");
+			
+			if(password.type === 'password'){
+				password.type = "text";
+				slash.style.display = "block";
+				eye.style.display = "none";
+			}
+			else{
+				password.type = "password";
+				slash.style.display = "none";
+				eye.style.display = "block";
+			}
+
+		}
+	</script>
+
+    <script>
+        // initialize a validator instance from the "FormValidator" constructor.
+        // A "<form>" element is optionally passed as an argument, but is not a must
+        var validator = new FormValidator({
+            "events": ['blur', 'input', 'change']
+        }, document.forms[0]);
+        // on form "submit" event
+        document.forms[0].onsubmit = function(e) {
+            var submit = true,
+                validatorResult = validator.checkAll(this);
+            console.log(validatorResult);
+            return !!validatorResult.valid;
+        };
+        // on form "reset" event
+        document.forms[0].onreset = function(e) {
+            validator.reset();
+        };
+        // stuff related ONLY for this demo page:
+        $('.toggleValidationTooltips').change(function() {
+            validator.settings.alerts = !this.checked;
+            if (this.checked)
+                $('form .alert').remove();
+        }).prop('checked', false);
+
+    </script>
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -693,17 +871,9 @@ if($query->rowCount()>0)
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 
-    <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!-- bootstrap-datetimepicker -->    
-    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <!-- Ion.RangeSlider -->
-    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
-    <!-- Bootstrap Colorpicker -->
-    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+  
+
+     
 
 </body>
 </html>
-
-

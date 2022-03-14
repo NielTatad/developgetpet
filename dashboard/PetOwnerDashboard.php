@@ -213,19 +213,17 @@ if($query->rowCount()>0)
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+              <a href="http://localhost/developgetpet/dashboard/PetAdopterDashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
-              <!--<div class="profile_pic">
-              <img <?php echo"<img src = '/GETPET/web/images/$result->ownerPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
+            
+              <!--<div class="profile_info" style="margin-left:60px;">
+                
+                <h2>Welcome, <br><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
               </div>-->
               <div class="clearfix"></div>
             </div>
@@ -237,8 +235,8 @@ if($query->rowCount()>0)
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i ></i> Dashboard </a>
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
@@ -263,18 +261,20 @@ if($query->rowCount()>0)
 
                   
               </div>
+
             </div>
             <!-- /sidebar menu -->
+
             <!-- /menu footer buttons -->
-					<div class="sidebar-footer hidden-small">
-                    <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                    </div>
-					<!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
           </div>
         </div>
 
@@ -288,16 +288,15 @@ if($query->rowCount()>0)
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt=""><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt=""><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Profile"> Profile</a>
-                      <!--<a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Settings</a>
-                      <a class="dropdown-item"  href="javascript:;">
+                      <!--<a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php">Contact Us</a>
+                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php" id="contact">Contact Us</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -352,19 +351,17 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Timeline</h2>
+                    <h2>New Post For Adoption</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                   </ul>
+                      </li>      
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-
-                  
-                  
+                      
                   <?php
-                        $sql="SELECT * from postforadoption ORDER BY petID DESC";
+                        $sql="SELECT * from postforadoption ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -374,15 +371,15 @@ if($query->rowCount()>0)
                           foreach($results as $result)
                         {
                            ?>
-                        <div class="col-nd-4">
+                        <div class="col-md-4">
                             <div class="card">
                               <div class="card-body">
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
-                                  <ul style="list-style: none;"><br>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
-                                  <h3 class="card-title"><?php echo ($result->petName);?></h3>
-                                  <label style="">Description:</label>
-												          <li><textarea disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:180px;width:200px;">
+                                  
+                                  <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                                  <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
+                                  <label style="">Description:</label><br>
+												          <textarea disabled="yes" id="description" style="width:180px;height:150px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea>
                                   <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                   <?php $user_id = $result->userID;
 
@@ -401,13 +398,12 @@ if($query->rowCount()>0)
                                   <?php $cnt1=$cnt1+1;}} ?>
                                   <label style=""><?php echo ($result->postDate);?></label><br>
                                   <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
-                                  </ul>
+                                  
                           </div>
                         </div>
                       </div>
                       <?php $cnt=$cnt+1;}} ?>
                     
-                  
 
                   </div>
                 </div>
@@ -416,35 +412,8 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
-        <!-- ModalView -->
-  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form action="" method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="text" id="pet_id" name="pet_id" required = "required" class="form-control">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="text" id="Name" name="Name" required = "required" class="form-control">
-				</div>
-    
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="text" id="Path" name="Path" required = "required" class="form-control">
-				</div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //ModalView -->
+
+<script>
 <?php
 $ID=$_SESSION['ownerID'];           
 $sql = "SELECT * from petowner where ownerID=:ID";
@@ -462,8 +431,9 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
-  
-  <!-- ModalProfile -->
+</script>
+
+        <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -571,41 +541,14 @@ if($query->rowCount()>0)
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
-		    ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
-		    </p>
+		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		<!--<a href="#">http://ax.by/zzzz</a>-->
+		</p>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
       </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="../vendors/validator/multifield.js"></script>
-    <script src="../vendors/validator/validator.js"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.viewbtn').on('click', function () {
-
-                $('#View').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#pet_id').val(data[0]);
-                $('#Name').val(data[1]);
-                $('#Path').val(data[2]);
-                $('#Picture').val(data[3]);
-            });
-        });
-    </script>
-
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
