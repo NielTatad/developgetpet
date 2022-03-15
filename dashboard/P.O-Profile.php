@@ -388,7 +388,7 @@ if($query->rowCount()>0)
                             <div class="card">
                               <div class="card-body">
                                   
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:300px;width:300px;" data-toggle="modal" data-target="#Profile">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:300px;width:300px;">
                                   <h3 class="card-title"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h3>
                                   <h2 class="card-title"><?php echo ($result->Role);?></h2>
                                   
@@ -407,7 +407,7 @@ if($query->rowCount()>0)
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile1" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact1" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        <a class="nav-link" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">Request Notification</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -517,7 +517,7 @@ if($query->rowCount()>0)
                                     </form>
                                 </div>
                       </div>
-                      <div class="tab-pane fade" id="contact1" role="tabpanel" aria-labelledby="contact-tab">
+                      <div class="tab-pane fade" id="request1" role="tabpanel" aria-labelledby="request-tab">
                         xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
                             booth letterpress, commodo enim craft beer mlkshk 
                       </div>
