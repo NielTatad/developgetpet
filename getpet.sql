@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2022 at 04:21 AM
+-- Generation Time: Mar 15, 2022 at 05:00 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -45,13 +45,41 @@ INSERT INTO `admin` (`adID`, `adUsername`, `adPassword`, `adEmail`, `Role`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `adoptionrequest`
+--
+
+CREATE TABLE `adoptionrequest` (
+  `requestID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `userEmail` varchar(50) NOT NULL,
+  `userAddress` varchar(50) NOT NULL,
+  `userContactNo` int(11) NOT NULL,
+  `petID` int(11) NOT NULL,
+  `petType` varchar(50) NOT NULL,
+  `petName` varchar(50) NOT NULL,
+  `petDescription` varchar(100) NOT NULL,
+  `requestMessage` varchar(100) DEFAULT NULL,
+  `requestDate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `adoptionrequest`
+--
+
+INSERT INTO `adoptionrequest` (`requestID`, `userID`, `Name`, `userEmail`, `userAddress`, `userContactNo`, `petID`, `petType`, `petName`, `petDescription`, `requestMessage`, `requestDate`) VALUES
+(4, 11, 'Getpet', 'getpet@gmail.com', 'Consolacion', 2147483647, 5, 'Dog', 'Bossing', 'say hello to Bossing', '', '03/15/2022 12:10 AM'),
+(5, 6, 'Gen Navarro', 'gen@gmail.com', 'Cordova, Cebu', 2147483647, 6, 'Dog', 'Puppy', 'Say hi to puppy', 'adopt', '03/15/2022 11:58 AM');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `animalwelfareorganization`
 --
 
 CREATE TABLE `animalwelfareorganization` (
   `orgID` int(11) NOT NULL,
   `orgName` varchar(50) NOT NULL,
-  `orgManager` varchar(50) NOT NULL,
   `orgContactNo` int(11) NOT NULL,
   `orgAddress` varchar(50) NOT NULL,
   `orgLogo` varchar(255) NOT NULL,
@@ -65,13 +93,10 @@ CREATE TABLE `animalwelfareorganization` (
 -- Dumping data for table `animalwelfareorganization`
 --
 
-INSERT INTO `animalwelfareorganization` (`orgID`, `orgName`, `orgManager`, `orgContactNo`, `orgAddress`, `orgLogo`, `orgEmail`, `orgUsername`, `orgPassword`, `Role`) VALUES
-(11, 'Gepet', 'Jen Baring', 2147483647, 'Consolacions', 'logo.png', 'getpet@gmail.coms', 'getpet2022', 'getpet123', 'Animal Welfare Organization'),
-(16, 'PAWS', 'Niels', 2147483647, 'tokyo', 'default_logo.png', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization'),
-(17, 'Sagop', 'Juan Tamad', 2147483647, 'Mandaue City', 'default_logo.png', 'sagop@gmail.com', 'sagop2018', 'sagop123', 'Animal Welfare Organization'),
-(55, 'W', 'W', 2147483647, 'W', 'logo.png', 'W', 'W', 'W', 'Animal Welfare Organization'),
-(56, 'D', 'D', 2147483647, 'D', 'default_logo.png', 'D', 'D', 'D', 'Animal Welfare Organization'),
-(57, 'T', 'T', 2147483647, 'T', 'default_logo.png', 'T', 'T', 'T', 'Animal Welfare Organization');
+INSERT INTO `animalwelfareorganization` (`orgID`, `orgName`, `orgContactNo`, `orgAddress`, `orgLogo`, `orgEmail`, `orgUsername`, `orgPassword`, `Role`) VALUES
+(11, 'Getpet', 2147483647, 'Consolacion', 'logo.png', 'getpet@gmail.com', 'getpet2022', 'getpet123', 'Animal Welfare Organization'),
+(16, 'PAWS', 2147483647, 'tokyo', 'default_logo.png', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization'),
+(17, 'Sagop', 2147483647, 'Mandaue City', 'default_logo.png', 'sagop@gmail.com', 'sagop2018', 'sagop123', 'Animal Welfare Organization');
 
 -- --------------------------------------------------------
 
@@ -84,7 +109,6 @@ CREATE TABLE `login` (
   `userFirstname` varchar(50) NOT NULL,
   `orgName` varchar(50) NOT NULL,
   `userLastname` varchar(50) NOT NULL,
-  `orgManager` varchar(50) NOT NULL,
   `contactNo` int(11) NOT NULL,
   `Address` varchar(50) NOT NULL,
   `Image` varchar(255) NOT NULL,
@@ -99,19 +123,15 @@ CREATE TABLE `login` (
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`userID`, `userFirstname`, `orgName`, `userLastname`, `orgManager`, `contactNo`, `Address`, `Image`, `Email`, `Username`, `Password`, `Role`, `loginDate`) VALUES
-(6, 'Gen', '', 'Navarro', '', 2147483647, 'Cordova, Cebu', 'Genesis.jpg', 'gen@gmail.com', 'gen17', '', 'Pet Owner', '2022-03-08'),
-(11, '', 'Gepet', '', 'Jen Baring', 2147483647, 'Consolacions', 'logo.png', 'getpet@gmail.coms', 'getpet2022', 'getpet123', 'Animal Welfare Organization', '2022-03-07'),
-(14, 'pet', '', 'adopter', '', 2147483647, 'petadopters', 't3.jpg', 'pet@gmail.com', 'pet', '', 'Pet Adopter', '2022-03-03'),
-(15, 'pet', '', 'owner', '', 2147483647, 'petowner', '', 'petowner@gmail.com', 'owner', '123', 'Pet Owner', '2022-02-08'),
-(16, '', 'PAWS', '', 'Niels', 2147483647, 'tokyo', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization', '2022-03-01'),
-(17, '', 'Sagop', '', 'Juan Tamad', 2147483647, 'Mandaue City', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'sagop@gmail.com', 'sagop2018', 'sagop123', 'Animal Welfare Organization', '2022-02-01'),
-(52, 'bars', '', 'Tatad', '', 2147483647, '0', 't3.jpg', '0', 'A', '', 'Pet Adopter', '2022-03-02'),
-(53, 'JUAN', '', 'TAMAD', '', 2147483647, 'JUAN', 't1.jpg', 'JUAN', 'JUAN', '', 'Pet Adopter', '2022-03-08'),
-(54, 'B', '', 'B', '', 2147483647, 'B', 'default_profile.png', 'B', 'B', 'B', 'Pet Owner', '0000-00-00'),
-(55, '', 'W', '', 'W', 2147483647, 'W', 'logo.png', 'W', 'W', 'W', 'Animal Welfare Organization', '2022-03-04'),
-(56, '', 'D', '', 'D', 2147483647, 'D', 'default_logo.png', 'D', 'D', 'D', 'Animal Welfare Organization', '2022-03-04'),
-(57, '', 'T', '', 'T', 2147483647, 'T', 'default_logo.png', 'T', 'T', 'T', 'Animal Welfare Organization', '0000-00-00');
+INSERT INTO `login` (`userID`, `userFirstname`, `orgName`, `userLastname`, `contactNo`, `Address`, `Image`, `Email`, `Username`, `Password`, `Role`, `loginDate`) VALUES
+(6, 'Gen', '', 'Navarro', 2147483647, 'Cordova, Cebu', 'Genesis.jpg', 'gen@gmail.com', 'gen17', '', 'Pet Owner', '2022-03-15'),
+(11, '', 'Getpet', '', 2147483647, 'Consolacion', 'logo.png', 'getpet@gmail.com', 'getpet2022', 'getpet123', 'Animal Welfare Organization', '2022-03-14'),
+(14, 'pet', '', 'adopter', 2147483647, 'petadopters', 't3.jpg', 'pet@gmail.com', 'pet', '', 'Pet Adopter', '2022-03-03'),
+(15, 'pet', '', 'owner', 2147483647, 'petowner', 't4.jpg', 'petowner@gmail.com', 'owner', '123', 'Pet Owner', '2022-03-11'),
+(16, '', 'PAWS', '', 2147483647, 'tokyo', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization', '2022-03-01'),
+(17, '', 'Sagop', '', 2147483647, 'Mandaue City', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'sagop@gmail.com', 'sagop2018', 'sagop123', 'Animal Welfare Organization', '2022-02-01'),
+(52, 'bars', '', 'Tatad', 2147483647, '0', 't3.jpg', '0', 'A', '', 'Pet Adopter', '2022-03-02'),
+(53, 'JUAN', '', 'TAMAD', 2147483647, 'JUAN', 't1.jpg', 'JUAN', 'JUAN', '', 'Pet Adopter', '2022-03-14');
 
 -- --------------------------------------------------------
 
@@ -166,7 +186,7 @@ CREATE TABLE `petowner` (
 
 INSERT INTO `petowner` (`ownerID`, `ownerFirstname`, `ownerLastname`, `ownerContactNo`, `ownerAddress`, `ownerPicture`, `ownerEmail`, `ownerUsername`, `ownerPassword`, `Role`) VALUES
 (6, 'Gen', 'Navarro', 2147483647, 'Cordova, Cebu', 'Genesis.jpg', 'gen@gmail.com', 'gen17', 'gen123', 'Pet Owner'),
-(15, 'pet', 'owner', 2147483647, 'petowner', '', 'petowner@gmail.com', 'owner', '123', 'Pet Owner'),
+(15, 'pet', 'owner', 2147483647, 'petowner', 't4.jpg', 'petowner@gmail.com', 'owner', '123', 'Pet Owner'),
 (54, 'B', 'B', 2147483647, 'B', 'default_profile.png', 'B', 'B', 'B', 'Pet Owner');
 
 -- --------------------------------------------------------
@@ -202,8 +222,12 @@ CREATE TABLE `postforadoption` (
 --
 
 INSERT INTO `postforadoption` (`petID`, `userID`, `Name`, `userEmail`, `userAddress`, `userContactNo`, `petType`, `petName`, `petBreed`, `petSex`, `petAge`, `petColor`, `petWeight`, `vaccinationStatus`, `dewormingStatus`, `petDescription`, `petPicture`, `postDate`, `availabilityStatus`) VALUES
-(1, 6, 'Gen Navarro', 'gen@gmail.com', 'Cordova, Cebu', 2147483647, 'Cat', 'Koko', 'Bengal', 'Male', '1 year old', 'White and orange', '12 pounds', 'Vaccinated', 'Deworm', 'Hello ', 'm6.jpg', '03/08/2022 04:57:10AM', 'Available'),
-(2, 6, 'Gen Navarro', 'gen@gmail.com', 'Cordova, Cebu', 2147483647, 'Dog', 'Cloudy', 'Beagle', 'Male', '1 year old', 'White ', '25 pounds', 'Vaccinated', 'Deworm', 'Hello', 'Dog.jpg', '03/08/2022 11:12:18AM', 'Available');
+(1, 6, 'Gen Navarro', 'gen@gmail.com', 'Cordova, Cebu', 2147483647, 'Cat', 'Koko', 'Bengal', 'Male', '1 year old', 'White and orange', '12 pounds', 'Vaccinated', 'Deworm', 'Koko was a kitten when he was found', 'm6.jpg', '03/08/2022 04:57 AM', 'Available'),
+(2, 6, 'Gen Navarro', 'gen@gmail.com', 'Cordova, Cebu', 2147483647, 'Dog', 'Cloudy', 'Beagle', 'Male', '1 year old', 'White ', '25 pounds', 'Vaccinated', 'Deworm', 'Cloudy was abandoned by his owner', 'Dog.jpg', '03/08/2022 11:12 AM', 'Available'),
+(3, 15, 'pet owner', 'petowner@gmail.com', 'petowner', 2147483647, 'Cat', 'Be-er', 'Bengal', 'Male', '2 years old', 'Gray', '10 pounds ', 'Not vaccinated', 'Deworm', 'Beer was found In a dumpster near...', 'f4.jpg', '03/11/2022 02:29 PM', 'Available'),
+(4, 53, 'JUAN TAMAD', 'JUAN', 'JUAN', 2147483647, 'Cat', 'Max', 'Bengal', 'Please Choose...', '1 year old', 'Gray ', '8 pounds', 'Not vaccinated', 'Not deworm', 'Max is a stray cat...', 'm2.jpg', '03/14/2022 03:15 AM', 'Available'),
+(5, 53, 'JUAN TAMAD', 'JUAN', 'JUAN', 2147483647, 'Dog', 'Bossing', 'Beagle', 'Please Choose...', '3 years old', 'White spotted black', '20 pounds', 'Not vaccinated', 'Not deworm', 'say hello to Bossing', 'bossing.jpg', '03/14/2022 03:36 PM', 'Not available'),
+(6, 11, 'Gepet', 'getpet@gmail.coms', 'Consolacions', 2147483647, 'Dog', 'Puppy', 'Beagle', 'Male', '2 years old', 'Brown', '14 pounds', 'Not vaccinated', 'Not deworm', 'Say hi to puppy', 'images.jpg', '03/14/2022 11:12 PM', 'Not available');
 
 -- --------------------------------------------------------
 
@@ -216,7 +240,6 @@ CREATE TABLE `register` (
   `userFirstname` varchar(50) NOT NULL,
   `orgName` varchar(50) NOT NULL,
   `userLastname` varchar(50) NOT NULL,
-  `orgManager` varchar(50) NOT NULL,
   `contactNo` int(11) NOT NULL,
   `Address` varchar(50) NOT NULL,
   `Image` varchar(255) NOT NULL,
@@ -231,19 +254,15 @@ CREATE TABLE `register` (
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`userID`, `userFirstname`, `orgName`, `userLastname`, `orgManager`, `contactNo`, `Address`, `Image`, `Email`, `Username`, `Password`, `Role`, `registerDate`) VALUES
-(6, 'Gen', '', 'Navarro', '', 2147483647, 'Cordova, Cebu', 'Genesis.jpg', 'gen@gmail.com', 'gen17', 'gen123', 'Pet Owner', '2022-01-12'),
-(11, '', 'Gepet', '', 'Jen Baring', 2147483647, 'Consolacions', 'logo.png', 'getpet@gmail.coms', 'getpet2022', 'getpet123', 'Animal Welfare Organization', '2022-01-13'),
-(14, 'pet', '', 'adopter', '', 2147483647, 'petadopters', 't3.jpg', 'pet@gmail.com', 'pet', '123', 'Pet Adopter', '2022-01-20'),
-(15, 'pet', '', 'owner', '', 2147483647, 'petowner', '', 'petowner@gmail.com', 'owner', '', 'Pet Owner', '2022-01-20'),
-(16, '', 'PAWS', '', 'Niels', 2147483647, 'tokyo', 'default_logo.png', 'paws@gmail.com', 'paws', '', 'Animal Welfare Organization', '2022-01-20'),
-(17, '', 'Sagop', '', 'Juan Tamad', 2147483647, 'Mandaue City', 'default_logo.png', 'sagop@gmail.com', 'sagop2018', '', 'Animal Welfare Organization', '2022-02-01'),
-(52, 'bars', '', 'Tatad', '', 2147483647, '0', 't3.jpg', '0', 'A', 'A', 'Pet Adopter', '2022-03-02'),
-(53, 'JUAN', '', 'TAMAD', '', 2147483647, 'JUAN', 't1.jpg', 'JUAN', 'JUAN', 'JUAN', 'Pet Adopter', '2022-03-04'),
-(54, 'B', '', 'B', '', 2147483647, 'B', 'default_profile.png', 'B', 'B', 'B', 'Pet Owner', '2022-03-04'),
-(55, '', 'W', '', 'W', 2147483647, 'W', 'logo.png', 'W', 'W', 'W', 'Animal Welfare Organization', '2022-03-04'),
-(56, '', 'D', '', 'D', 2147483647, 'D', 'default_logo.png', 'D', 'D', 'D', 'Animal Welfare Organization', '2022-03-04'),
-(57, '', 'T', '', 'T', 2147483647, 'T', 'default_logo.png', 'T', 'T', 'T', 'Animal Welfare Organization', '2022-03-04');
+INSERT INTO `register` (`userID`, `userFirstname`, `orgName`, `userLastname`, `contactNo`, `Address`, `Image`, `Email`, `Username`, `Password`, `Role`, `registerDate`) VALUES
+(6, 'Gen', '', 'Navarro', 2147483647, 'Cordova, Cebu', 'Genesis.jpg', 'gen@gmail.com', 'gen17', 'gen123', 'Pet Owner', '2022-01-12'),
+(11, '', 'Getpet', '', 2147483647, 'Consolacion', 'logo.png', 'getpet@gmail.com', 'getpet2022', 'getpet123', 'Animal Welfare Organization', '2022-01-13'),
+(14, 'pet', '', 'adopter', 2147483647, 'petadopters', 't3.jpg', 'pet@gmail.com', 'pet', '123', 'Pet Adopter', '2022-01-20'),
+(15, 'pet', '', 'owner', 2147483647, 'petowner', 't4.jpg', 'petowner@gmail.com', 'owner', '', 'Pet Owner', '2022-01-20'),
+(16, '', 'PAWS', '', 2147483647, 'tokyo', 'default_logo.png', 'paws@gmail.com', 'paws', '', 'Animal Welfare Organization', '2022-01-20'),
+(17, '', 'Sagop', '', 2147483647, 'Mandaue City', 'default_logo.png', 'sagop@gmail.com', 'sagop2018', '', 'Animal Welfare Organization', '2022-02-01'),
+(52, 'bars', '', 'Tatad', 2147483647, '0', 't3.jpg', '0', 'A', 'A', 'Pet Adopter', '2022-03-02'),
+(53, 'JUAN', '', 'TAMAD', 2147483647, 'JUAN', 't1.jpg', 'JUAN', 'JUAN', 'JUAN', 'Pet Adopter', '2022-03-04');
 
 --
 -- Indexes for dumped tables
@@ -254,6 +273,12 @@ INSERT INTO `register` (`userID`, `userFirstname`, `orgName`, `userLastname`, `o
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`adID`);
+
+--
+-- Indexes for table `adoptionrequest`
+--
+ALTER TABLE `adoptionrequest`
+  ADD PRIMARY KEY (`requestID`);
 
 --
 -- Indexes for table `animalwelfareorganization`
@@ -302,16 +327,22 @@ ALTER TABLE `admin`
   MODIFY `adID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `adoptionrequest`
+--
+ALTER TABLE `adoptionrequest`
+  MODIFY `requestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `postforadoption`
 --
 ALTER TABLE `postforadoption`
-  MODIFY `petID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `petID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
