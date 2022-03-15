@@ -407,7 +407,10 @@ if($query->rowCount()>0)
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile1" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">Request Notification</a>
+                        <a class="nav-link" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">My Request</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">User Request</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
