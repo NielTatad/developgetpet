@@ -384,7 +384,7 @@ if($query->rowCount()>0)
 
 <?php
 date_default_timezone_set("Asia/Manila");
-$date = date('m/d/Y h:i:s A', time());
+$date = date('m/d/Y h:i A', time());
 ?>
 
 <?php
@@ -666,7 +666,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 												<select class="form-control" name="Vaccination">
 													<option>Vaccination Status...</option>
 													<option>Vaccinated</option>
-													<option>Not Vaccinated</option>
+													<option>Not vaccinated</option>
 												</select>
 											</div>
 										</div>
@@ -677,7 +677,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 												<select class="form-control" name="Deworming">
 													<option>Deworming Status...</option>
 													<option>Deworm</option>
-													<option>Not Deworm</option>
+													<option>Not deworm</option>
 												</select>
 											</div>
 										</div>

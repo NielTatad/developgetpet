@@ -595,7 +595,7 @@ if($query->rowCount()>0)
   <!-- Adoption Request Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
-$date = date('m/d/Y h:i:s A', time());
+$date = date('m/d/Y h:i A', time());
 ?>
 
 <?php

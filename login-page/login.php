@@ -106,7 +106,6 @@ if(isset($_POST['login']))
         session_regenerate_id();
 		    $_SESSION['orgID'] = $results3['orgID'];
         $_SESSION['orgName'] = $results3['orgName'];
-        $_SESSION['orgManager'] = $results3['orgManager'];
 
         $ID=$_SESSION['orgID'];
 

@@ -24,7 +24,6 @@ if($query->rowCount()>0)
 if(isset($_POST['update']))
 {
 $OrganizationName=($_POST['Orgname']);
-$OrganizationManager=($_POST['Orgmanager']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
@@ -33,7 +32,6 @@ $Password=($_POST['Password']);
 
 $sql="update register set 
 orgName=:Orgname,
-orgManager=:Orgmanager,
 contactNo=:ContactNo,
 Address=:Address,
 Email=:Email,
@@ -45,7 +43,6 @@ userID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);  
 $query->bindParam(':Orgname',$OrganizationName,PDO::PARAM_STR);
-$query->bindParam(':Orgmanager',$OrganizationManager,PDO::PARAM_STR);
 $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -54,7 +51,6 @@ $query->bindParam(':Password',$Password,PDO::PARAM_STR);
 $query->execute();
 
 $OrganizationName=($_POST['Orgname']);
-$OrganizationManager=($_POST['Orgmanager']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
@@ -63,7 +59,6 @@ $Password=($_POST['Password']);
 
 $sql1="update animalwelfareorganization set
 orgName=:Orgname,
-orgManager=:Orgmanager,
 orgContactNo=:ContactNo,
 orgAddress=:Address,
 orgEmail=:Email,
@@ -75,7 +70,6 @@ orgID=:ID";
 $query1=$dbh->prepare($sql1); 
 $query1->bindParam(':ID',$ID,PDO::PARAM_STR); 
 $query1->bindParam(':Orgname',$OrganizationName,PDO::PARAM_STR);
-$query1->bindParam(':Orgmanager',$OrganizationManager,PDO::PARAM_STR);
 $query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query1->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query1->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -84,7 +78,6 @@ $query1->bindParam(':Password',$Password,PDO::PARAM_STR);
 $query1->execute();
 
 $OrganizationName=($_POST['Orgname']);
-$OrganizationManager=($_POST['Orgmanager']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
@@ -93,7 +86,6 @@ $Password=($_POST['Password']);
 
 $sql3="update login set 
 orgName=:Orgname,
-orgManager=:Orgmanager,
 contactNo=:ContactNo,
 Address=:Address,
 Email=:Email,
@@ -104,7 +96,6 @@ where userID=:ID";
 $query3=$dbh->prepare($sql3); 
 $query3->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query3->bindParam(':Orgname',$OrganizationName,PDO::PARAM_STR);
-$query3->bindParam(':Orgmanager',$OrganizationManager,PDO::PARAM_STR);
 $query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query3->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query3->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -298,7 +289,7 @@ if($query->rowCount()>0)
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt=""><?php echo ($result->orgManager);?>
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt=""><?php echo ($result->orgName);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Profile"> Profile</a>
@@ -404,7 +395,7 @@ if($query->rowCount()>0)
                                   {
                                     ?>
                                   
-                                  <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> </label><br>
+                                  <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> <?php echo ($userid->orgName);?></label><br>
                                   <?php $cnt1=$cnt1+1;}} ?>
                                   <label style=""><?php echo ($result->postDate);?></label><br>
                                   <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
@@ -472,7 +463,6 @@ if($query->rowCount()>0)
 				</div>
         <div style="text-align: center">
              <h6 class="mt-1 mb-2"><?php echo ($result->orgName);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgManager);?></h6>
              <h6 class="mt-1 mb-2"><?php echo ($result->orgContactNo);?></h6>
              <h6 class="mt-1 mb-2"><?php echo ($result->orgAddress);?></h6>
              <h6 class="mt-1 mb-2"><?php echo ($result->orgEmail);?></h6>
@@ -507,10 +497,6 @@ if($query->rowCount()>0)
         <div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgname" required="required" value="<?php echo ($result->orgName);?>" placeholder="Organization Name">
 				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgmanager" required="required" value="<?php echo ($result->orgManager);?>" placeholder="Organization Manager">
-						<span class="focus-input100"></span>
-				</div><br>
         <div  style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->orgContactNo);?>" placeholder="Contact No.">
 						<script>
@@ -538,7 +524,7 @@ if($query->rowCount()>0)
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->orgPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
-						<button  class="login100-form-btn" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
+						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
 							<a style="color:White"> Update </a>
 						</button>
 				</div><br>

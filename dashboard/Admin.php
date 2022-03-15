@@ -63,6 +63,14 @@ $Date=$query->fetchColumn();
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+      td {
+ white-space: nowrap;
+}
+th {
+ white-space: nowrap;
+}
+    </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -368,14 +376,13 @@ $Date=$query->fetchColumn();
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">ID</th>
-                            <th class="column-title">Organization Name/First Name</th>
-                            <th class="column-title">Organization Manager/Last Name</th>
-                            <th class="column-title">Contact No.</th>
-                            <th class="column-title">Address</th>
-                            <th class="column-title">Logo/Picture</th>
-                            <th class="column-title">Email</th>
-                            <th class="column-title">Role</th>
+                            <th style="text-align:center" class="column-title">ID</th>
+                            <th style="text-align:center" class="column-title">Organization Name/Name</th>
+                            <th style="text-align:center" class="column-title">Contact No.</th>
+                            <th style="text-align:center" class="column-title">Address</th>
+                            <th style="text-align:center" class="column-title">Logo/Picture</th>
+                            <th style="text-align:center" class="column-title">Email</th>
+                            <th style="text-align:center" class="column-title">Role</th>
                             </th> 
                             </tr>
                             </thead>
@@ -394,14 +401,13 @@ $Date=$query->fetchColumn();
                              ?>
                               <tr class="even pointer">
                                 
-                                <td class=" "><?php echo htmlentities($result->userID);?></td>
-                                <td class=" "><?php echo htmlentities($result->orgName);?><?php echo htmlentities($result->userFirstname);?></td>
-                                <td class=" "><?php echo htmlentities($result->orgManager);?><?php echo htmlentities($result->userLastname);?><i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" "><?php echo htmlentities($result->contactNo);?></td>
-                                <td class=" "><?php echo htmlentities($result->Address);?></td>
-                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->Image' style = height:80px; width: 80px;/>";?></td>
-                                <td class=" "><?php echo htmlentities($result->Email);?></td>
-                                <td class=" "><?php echo htmlentities($result->Role);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->orgName);?><?php echo htmlentities($result->userFirstname);?> <?php echo htmlentities($result->userLastname);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->contactNo);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Address);?></td>
+                                <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->Image' style = height:80px; width: 80px;/>";?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Email);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Role);?></td>
                                 
                               </tr>
                             <?php $cnt=$cnt+1;}} ?>
@@ -433,7 +439,7 @@ $Date=$query->fetchColumn();
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2>Total Pet Owners</h2>
+      <h2>Total Pet Adopters</h2>
       <ul class="nav navbar-right panel_toolbox">
         <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
         </li>
@@ -448,14 +454,13 @@ $Date=$query->fetchColumn();
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">ID</th>
-                            <th class="column-title">First Name</th>
-                            <th class="column-title">Last Name</th>
-                            <th class="column-title">Contact No.</th>
-                            <th class="column-title">Address</th>
-                            <th class="column-title">Picture</th>
-                            <th class="column-title">Email</th>
-                            <th class="column-title">Role</th>
+                            <th style="text-align:center" class="column-title">ID</th>
+                            <th style="text-align:center" class="column-title">Name</th>
+                            <th style="text-align:center" class="column-title">Contact No.</th>
+                            <th style="text-align:center" class="column-title">Address</th>
+                            <th style="text-align:center" class="column-title">Picture</th>
+                            <th style="text-align:center" class="column-title">Email</th>
+                            <th style="text-align:center" class="column-title">Role</th>
                             
                             </th>
                             <th class="bulk-actions" colspan="7">
@@ -478,14 +483,13 @@ $Date=$query->fetchColumn();
                              ?>
                               <tr class="even pointer">
                                 
-                                <td class=" "><?php echo htmlentities($result->adopterID);?></td>
-                                <td class=" "><?php echo htmlentities($result->adopterFirstname);?></td>
-                                <td class=" "><?php echo htmlentities($result->adopterLastname);?><i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" "><?php echo htmlentities($result->adopterContactNo);?></td>
-                                <td class=" "><?php echo htmlentities($result->adopterAddress);?></td>
-                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture' style = height:80px; width: 80px;/>";?></td>
-                                <td class=" "><?php echo htmlentities($result->adopterEmail);?></td>
-                                <td class=" "><?php echo htmlentities($result->Role);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->adopterID);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->adopterFirstname);?> <?php echo htmlentities($result->adopterLastname);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->adopterContactNo);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->adopterAddress);?></td>
+                                <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture' style = height:80px; width: 80px;/>";?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->adopterEmail);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Role);?></td>
                                 
                               </tr>
                             <?php $cnt=$cnt+1;}} ?>
@@ -533,14 +537,13 @@ $Date=$query->fetchColumn();
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">ID</th>
-                            <th class="column-title">First Name</th>
-                            <th class="column-title">Last Name</th>
-                            <th class="column-title">Contact No.</th>
-                            <th class="column-title">Address</th>
-                            <th class="column-title">Picture</th>
-                            <th class="column-title">Email</th>
-                            <th class="column-title">Role</th>
+                            <th style="text-align:center" class="column-title">ID</th>
+                            <th style="text-align:center" class="column-title">Name</th>
+                            <th style="text-align:center" class="column-title">Contact No.</th>
+                            <th style="text-align:center" class="column-title">Address</th>
+                            <th style="text-align:center" class="column-title">Picture</th>
+                            <th style="text-align:center" class="column-title">Email</th>
+                            <th style="text-align:center" class="column-title">Role</th>
                             
                             </th>
                             <th class="bulk-actions" colspan="7">
@@ -563,14 +566,13 @@ $Date=$query->fetchColumn();
                              ?>
                               <tr class="even pointer">
                                 
-                                <td class=" "><?php echo htmlentities($result->ownerID);?></td>
-                                <td class=" "><?php echo htmlentities($result->ownerFirstname);?></td>
-                                <td class=" "><?php echo htmlentities($result->ownerLastname);?><i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" "><?php echo htmlentities($result->ownerContactNo);?></td>
-                                <td class=" "><?php echo htmlentities($result->ownerAddress);?></td>
-                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture' style = height:80px; width: 80px;/>";?></td>
-                                <td class=" "><?php echo htmlentities($result->ownerEmail);?></td>
-                                <td class=" "><?php echo htmlentities($result->Role);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->ownerID);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->ownerFirstname);?> <?php echo htmlentities($result->ownerLastname);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->ownerContactNo);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->ownerAddress);?></td>
+                                <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture' style = height:80px; width: 80px;/>";?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->ownerEmail);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Role);?></td>
                                 
                               </tr>
                             <?php $cnt=$cnt+1;}} ?>
@@ -618,14 +620,13 @@ $Date=$query->fetchColumn();
                             <thead>
                             <tr class="headings">
               
-                            <th class="column-title">ID</th>
-                            <th class="column-title">Organization Name</th>
-                            <th class="column-title">Organization Manager</th>
-                            <th class="column-title">Contact No.</th>
-                            <th class="column-title">Address</th>
-                            <th class="column-title">Logo</th>
-                            <th class="column-title">Email</th>
-                            <th class="column-title">Role</th>
+                            <th style="text-align:center" class="column-title">ID</th>
+                            <th style="text-align:center" class="column-title">Organization Name</th>
+                            <th style="text-align:center" class="column-title">Contact No.</th>
+                            <th style="text-align:center" class="column-title">Address</th>
+                            <th style="text-align:center" class="column-title">Logo</th>
+                            <th style="text-align:center" class="column-title">Email</th>
+                            <th style="text-align:center" class="column-title">Role</th>
                             </tr>
                             </thead>
 
@@ -643,14 +644,13 @@ $Date=$query->fetchColumn();
                              ?>
                               <tr class="even pointer">
                                 
-                                <td class=" "><?php echo htmlentities($result->orgID);?></td>
-                                <td class=" "><?php echo htmlentities($result->orgName);?></td>
-                                <td class=" "><?php echo htmlentities($result->orgManager);?><i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" "><?php echo htmlentities($result->orgContactNo);?></td>
-                                <td class=" "><?php echo htmlentities($result->orgAddress);?></td>
-                                <td class=" "><?php echo"<img src = '/developgetpet/web/images/$result->orgLogo' style = height:80px; width: 80px;/>";?></td>
-                                <td class=" "><?php echo htmlentities($result->orgEmail);?></td>
-                                <td class=" "><?php echo htmlentities($result->Role);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->orgID);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->orgName);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->orgContactNo);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->orgAddress);?></td>
+                                <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->orgLogo' style = height:80px; width: 80px;/>";?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->orgEmail);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Role);?></td>
                                 
                               </tr>
                             <?php $cnt=$cnt+1;}} ?>

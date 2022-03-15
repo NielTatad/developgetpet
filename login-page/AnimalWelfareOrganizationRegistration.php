@@ -4,17 +4,15 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 if(isset($_POST['insert']))
 {
 $OrganizationName=($_POST['OrganizationName']);
-$OrganizationManager=($_POST['OrganizationManager']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
 $Username=($_POST['Username']);
 $Password=($_POST['Password']);
 
-$sql="INSERT INTO register(orgName,orgManager,Image,contactNo,Address,Email,Username,Password,Role,registerDate)VALUES(:OrganizationName,:OrganizationManager,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization',Now())";
+$sql="INSERT INTO register(orgName,Image,contactNo,Address,Email,Username,Password,Role,registerDate)VALUES(:OrganizationName,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization',Now())";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':OrganizationName',$OrganizationName,PDO::PARAM_STR);
-$query->bindParam(':OrganizationManager',$OrganizationManager,PDO::PARAM_STR);
 $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -30,17 +28,15 @@ $ID=$query2->fetchColumn();
 
 
 $OrganizationName=($_POST['OrganizationName']);
-$OrganizationManager=($_POST['OrganizationManager']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
 $Username=($_POST['Username']);
 $Password=($_POST['Password']);
 
-$sql1="INSERT INTO animalwelfareorganization(orgID,orgName,orgManager,orgLogo,orgContactNo,orgAddress,orgEmail,orgUsername,orgPassword,Role)VALUES($ID,:OrganizationName,:OrganizationManager,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization')";
+$sql1="INSERT INTO animalwelfareorganization(orgID,orgName,orgLogo,orgContactNo,orgAddress,orgEmail,orgUsername,orgPassword,Role)VALUES($ID,:OrganizationName,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization')";
 $query1=$dbh->prepare($sql1); 
 $query1->bindParam(':OrganizationName',$OrganizationName,PDO::PARAM_STR);
-$query1->bindParam(':OrganizationManager',$OrganizationManager,PDO::PARAM_STR);
 $query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query1->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query1->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -55,10 +51,9 @@ $Email=($_POST['Email']);
 $Username=($_POST['Username']);
 $Password=($_POST['Password']);
 
-$sql3="INSERT INTO login(userID,orgName,orgManager,Image,contactNo,Address,Email,Username,Password,Role)VALUES($ID,:OrganizationName,:OrganizationManager,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization')";
+$sql3="INSERT INTO login(userID,orgName,Image,contactNo,Address,Email,Username,Password,Role)VALUES($ID,:OrganizationName,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization')";
 $query3=$dbh->prepare($sql3); 
 $query3->bindParam(':OrganizationName',$OrganizationName,PDO::PARAM_STR);
-$query3->bindParam('OrganizationManager',$OrganizationManager,PDO::PARAM_STR);
 $query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query3->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query3->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -100,19 +95,15 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <div class="bg order-1 order-md-2" style="background-image: url('images/doggy1.jpg');"></div>
     <div class="contents order-2 order-md-1">
 
-      
+
       <div class="row align-items-center justify-content-center">  
           <div class="col-md-7">      
           <br>
             <form class="login100-form validate-form" method="post">
-            <h6 style="text-align:center;margin-top:-14px;margin-right:-15px;">ANIMAL WELFARE ORGANIZATION <strong>REGISTRATION</strong></h6>
+            <h6 style="text-align:center;margin-top:15px;margin-right:-15px;">ANIMAL WELFARE ORGANIZATION <strong>REGISTRATION</strong></h6>
 					
 					<div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="OrganizationName" required="required" placeholder="Organization Name">
-					</div><br>
-                    <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="OrganizationManager" required="required" placeholder="Organization Manager">
-						<span class="focus-input100"></span>
 					</div><br>
 					<div  style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" placeholder="Contact No.">

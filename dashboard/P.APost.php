@@ -358,6 +358,7 @@ if($query->rowCount()>0)
                         </div>
                     </div>
 
+<!-- Post Pet Code -->
 <?php 
 $ID=$_SESSION['adopterID'];
 
@@ -379,7 +380,7 @@ if($query->rowCount()>0)
 
 <?php
 date_default_timezone_set("Asia/Manila");
-$date = date('m/d/Y h:i:sA', time());
+$date = date('m/d/Y h:i:s A', time());
 ?>
 
 <?php
@@ -427,11 +428,11 @@ $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Adoption.php'</script>";
 
 }
 ?>
-
+<!-- //Post Pet Code -->
 
                     <!-- Back Button -->
                     <a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
@@ -443,7 +444,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel">
                         <div class="x_title">
-                        <h2>Post Pet Adoption</h2>
+                        <h2>Post Pet For Adoption</h2>
                         <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                         </li>          
@@ -661,7 +662,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 												<select class="form-control" name="Vaccination">
 													<option>Vaccination Status...</option>
 													<option>Vaccinated</option>
-													<option>Not Vaccinated</option>
+													<option>Not vaccinated</option>
 												</select>
 											</div>
 										</div>
@@ -672,7 +673,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 												<select class="form-control" name="Deworming">
 													<option>Deworming Status...</option>
 													<option>Deworm</option>
-													<option>Not Deworm</option>
+													<option>Not deworm</option>
 												</select>
 											</div>
 										</div>
