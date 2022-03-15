@@ -401,7 +401,7 @@ if($query->rowCount()>0)
                       
                      <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home" aria-selected="true">Posts</a>
+                        <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post1" role="tab" aria-controls="post" aria-selected="true">Posts</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile1" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
@@ -411,7 +411,7 @@ if($query->rowCount()>0)
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab">
+                      <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
                      
 
 
@@ -485,8 +485,37 @@ if($query->rowCount()>0)
 
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile-tab">
-                        Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk aliquip
+                      <div class="x_content">
+                                    <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+                                         
+                                        <br>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>" style="background-color:#fff;width:400px;"/>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->Address);?>" style="background-color:#fff;width:400px;"/>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->Email);?>" style="background-color:#fff;width:400px;"/>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->contactNo);?>" style="background-color:#fff;width:400px;"/>
+                                            </div>
+                                        </div>
+                                        <br><br><br><br><br><br>
+                                    </form>
+                                </div>
                       </div>
                       <div class="tab-pane fade" id="contact1" role="tabpanel" aria-labelledby="contact-tab">
                         xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
