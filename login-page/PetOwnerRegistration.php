@@ -108,12 +108,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 					<div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="Firstname" required="required" placeholder="Firstname">
 					</div><br>
-                    <div style="text-align: center" class="wrap-input100 validate-input">
+          <div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="Lastname" required="required" placeholder="Lastname">
 						<span class="focus-input100"></span>
 					</div><br>
 					<div  style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" placeholder="Contact No.">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;font-family:Arial;" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" placeholder="Contact No.">
 						<script>     
             function isInputNumber(evt){
                 

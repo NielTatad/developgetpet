@@ -486,31 +486,52 @@ if($query->rowCount()>0)
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="x_content">
+<!-- Search By ID Code -->
+<script>
+<?php 
+$ID=$_SESSION['ownerID'];
+$sql = "SELECT * from petowner where ownerID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+</script>
+  <!-- //Search By ID Code -->
                                     <form class="" action="" method="post" novalidate enctype="multipart/form-data">
                                          
                                         <br>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>" style="background-color:#fff;width:400px;"/>
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerFirstname);?> <?php echo ( $result->ownerLastname);?>" style="background-color:#fff;width:400px;"/>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->Address);?>" style="background-color:#fff;width:400px;"/>
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerAddress);?>" style="background-color:#fff;width:400px;"/>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->Email);?>" style="background-color:#fff;width:400px;"/>
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerEmail);?>" style="background-color:#fff;width:400px;"/>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $userid->contactNo);?>" style="background-color:#fff;width:400px;"/>
+                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerContactNo);?>" style="background-color:#fff;width:400px;"/>
                                             </div>
                                         </div>
                                         <br><br><br><br><br><br>
