@@ -545,7 +545,14 @@ if($query->rowCount()>0)
             </div>
           </div>
           <br>
-          <?php $cnt=$cnt+1;}} ?>
+          <?php $cnt=$cnt+1;
+        }
+        }
+        else
+        {
+          echo "No Post Yet";
+        }
+         ?>
          <!-- //View Pet Post for Adotion Code -->     
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
