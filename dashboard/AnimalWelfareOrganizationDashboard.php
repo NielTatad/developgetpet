@@ -306,7 +306,7 @@ if($query->rowCount()>0)
                   $query->execute();
 
                   $request=$query->fetchColumn();
-
+  
                   ?>
                   
                   <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;">
@@ -364,7 +364,7 @@ if($query->rowCount()>0)
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
+                            <a>See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -476,7 +476,8 @@ if($query->rowCount()>0)
                       <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Adoption.php';" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:120px;">Check Now!</button>
                     
 
-                  </div>
+                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
+                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                 </div>
               </div>
             </div>

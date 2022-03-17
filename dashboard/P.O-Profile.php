@@ -374,7 +374,7 @@ if($query->rowCount()>0)
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
+                            <a>See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -411,7 +411,7 @@ if($query->rowCount()>0)
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
+              <h2><?php echo ($result->Role);?> Profile Information</h2>
               </div>
 
               <div class="title_right">
@@ -463,6 +463,12 @@ if($query->rowCount()>0)
                                   <h3 class="card-title"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h3>
                                   <h2 class="card-title"><?php echo ($result->Role);?></h2>
                                   
+                                  <button class="btn btn-secondary dropdown-toggle btn btn-round btn-success" data-toggle="dropdown" type="button" style="background-color:#00cdc1;border:#00cdc1;width:250px;height:30px;margin-right:8px;"><p style="margin-top:-3px;">Update Profile Information</p></button>
+                                  <div class="dropdown-menu" style="margin-left:45px;">
+                                  <a class="dropdown-item" data-toggle="modal" data-target="#Profiles">Update Profile Picture</a>
+                                  <a class="dropdown-item" data-toggle="modal" data-target="#Settings">Update Information</a>
+                                  <a class="dropdown-item" href="#">Change Password</a>
+                                  </div>
                           </div>
                         </div>
                       </div>
@@ -476,6 +482,7 @@ if($query->rowCount()>0)
                       <li class="nav-item">
                         <a href="http://localhost/developgetpet/dashboard/P.O-About.php" role="tab" aria-controls="profile" aria-selected="false">About</a>
                       </li>
+                      <!--
                       <li class="nav-item">
                         <a href="http://localhost/developgetpet/dashboard/P.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request</a>
                       </li>
@@ -500,7 +507,7 @@ if($query->rowCount()>0)
             <div class="col-nd-4">
                 <div class="card">
                   <div class="card-body">
-                      <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
+                      <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
                       <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
@@ -528,9 +535,9 @@ if($query->rowCount()>0)
                       $cnt1=1;
                       if($query1->rowCount()>0)
                       {
-                        foreach($userids as $userid)
-                      {
-                        ?>
+                            foreach($userids as $userid)
+                            {
+                                    ?>
                       
                       <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> </label><br>
                       <?php $cnt1=$cnt1+1;}} ?>
@@ -550,7 +557,6 @@ if($query->rowCount()>0)
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
                       <div class="x_content">
-
                                 </div>
                       </div>
                       <div class="tab-pane fade" id="request1" role="tabpanel" aria-labelledby="request-tab">
@@ -636,9 +642,6 @@ if($query->rowCount()>0)
       </div>
       <div class="modal-body mx-3">
       <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div>
@@ -674,10 +677,10 @@ if($query->rowCount()>0)
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->ownerPassword);?>" placeholder="Password">
-				</div><br><br>
+				</div><br>
         <div style="text-align: center">
 						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
-							<a style="color:White"> Update </a>
+							<a style="color:White"> Update Information </a>
 						</button>
 				</div><br>
       </form>

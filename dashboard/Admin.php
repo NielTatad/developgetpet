@@ -195,7 +195,7 @@ th {
                     </div>
                   </li>
   
-                  <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;">
+                  <li role="presentation" class="nav-item dropdown open" style="margin-top:1px;">
                     <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false" >
                       <i class="fa fa-bell"></i>
                       <!--<span class="badge bg-green">6</span>-->
@@ -205,7 +205,7 @@ th {
                       <li class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
+                            <a>See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
