@@ -314,7 +314,7 @@ if($query->rowCount()>0)
                       <li class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
+                            <a href="http://localhost/developgetpet/dashboard/P.O-Requestnotification.php">See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -377,7 +377,7 @@ if($query->rowCount()>0)
                         <div class="col-md-4">
                             <div class="card">
                               <div class="card-body">
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:180px;width:200px;">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:190px;">
                                   
                                   <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
                                   <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
@@ -400,15 +400,16 @@ if($query->rowCount()>0)
                                   <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> </label><br>
                                   <?php $cnt1=$cnt1+1;}} ?>
                                   <label style=""><?php echo ($result->postDate);?></label><br>
-                                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
+                                  
                                   
                           </div>
                         </div>
                       </div>
                       <?php $cnt=$cnt+1;}} ?>
-                    
+                                  
 
-                  </div>
+                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><h2 style="text-align:center;">
+                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                 </div>
               </div>
             </div>

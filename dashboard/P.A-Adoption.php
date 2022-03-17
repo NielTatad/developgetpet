@@ -328,7 +328,7 @@ if($query->rowCount()>0)
                       <li class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
+                            <a>See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -399,7 +399,7 @@ if($query->rowCount()>0)
                         <div class="col-nd-4">
                             <div class="card">
                               <div class="card-body">
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                   <ul style="list-style:none;margin-left:-50px;"><br>
                                   <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
                                   <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
