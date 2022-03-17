@@ -534,6 +534,7 @@ if($query->rowCount()>0)
 
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
+                      
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                             <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">View</button>
