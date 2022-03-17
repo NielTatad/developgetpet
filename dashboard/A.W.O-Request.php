@@ -477,7 +477,7 @@ if($query->rowCount()>0)
                         <a class="nav-link active" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">My Request</a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php"role="tab" aria-controls="request" aria-selected="false">My Request</a>
+                        <a href="http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php"role="tab" aria-controls="request" aria-selected="false">User Request</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
