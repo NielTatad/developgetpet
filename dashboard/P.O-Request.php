@@ -480,7 +480,7 @@ if($query->rowCount()>0)
                         <a class="nav-link active" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">My Request</a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php"role="tab" aria-controls="request" aria-selected="false">My Request</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php"role="tab" aria-controls="request" aria-selected="false">User Request</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -530,7 +530,7 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Pet Description: <?php echo ( $petid->petDescription);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Pet Description: <?php echo ( $petid->petDescription);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
 
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
