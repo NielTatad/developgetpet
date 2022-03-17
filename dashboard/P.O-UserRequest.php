@@ -215,7 +215,7 @@ if($query->rowCount()>0)
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md" onLoad="window.scroll(0, 150)">
+  <body class="nav-md" onLoad="window.scroll(0, 550)">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -289,8 +289,8 @@ if($query->rowCount()>0)
           </div>
         </div>
 
-       <!-- top navigation -->
-       <div class="top_nav">
+          <!-- top navigation -->
+        <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -471,7 +471,7 @@ if($query->rowCount()>0)
                       
                      <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post1" role="tab" aria-controls="post" aria-selected="true">Posts</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-Posts.php" role="tab" aria-controls="post" aria-selected="true">Posts</a>
                       </li>
                       <li class="nav-item">
                         <a href="http://localhost/developgetpet/dashboard/P.O-About.php" role="tab" aria-controls="profile" aria-selected="false">About</a>
@@ -480,14 +480,15 @@ if($query->rowCount()>0)
                         <a href="http://localhost/developgetpet/dashboard/P.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request</a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php" role="tab" aria-controls="user_request" aria-selected="false">User Request</a>
+                        <a class="nav-link active" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">User Request</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
- <!-- View Pet Post for Adotion Code -->
+                        
+ <!-- View User Request Code -->
  <?php
-            $sql="SELECT * from postforadoption WHERE userID='$ID' ORDER BY petID DESC";
+            $sql="SELECT * from adoptionrequest WHERE masterID='$ID' ORDER BY petID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -500,24 +501,8 @@ if($query->rowCount()>0)
             <div class="col-nd-4">
                 <div class="card">
                   <div class="card-body">
-                      <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;">
+                  <h3>Adoption Request</h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
-                      <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
-                      <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
-                      <label style="">Description:</label>
-                      <li><textarea disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->availabilityStatus);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
                       <?php $user_id = $result->userID;
 
@@ -532,30 +517,70 @@ if($query->rowCount()>0)
                       {
                         ?>
                       
-                      <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> </label><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:100px;height:100px;margin-bottom:5px" class="rounded-circle img-responsive"><br>
+
+                      <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
+ 
+                      <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
+                      <tr>
+                          <td align='center'>Name:</td>
+                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>"></td>
+                      </tr>
+                      <tr> <td>&nbsp;</td> </tr>
+                      <tr>
+                      <td align='center'>Address:</td>
+                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->Address);?>"></td>
+                      </tr>
+                      <tr> <td>&nbsp;</td> </tr>
+                      <tr>
+                          <td align='center'>Email:</td>
+                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->Email);?>""></td>
+                      </tr>
+                      <tr> <td>&nbsp;</td> </tr>
+                      <tr>
+                          <td align='center'>Contact No:</td>
+                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->contactNo);?>""></td>
+                      </tr>
+                      <tr> <td>&nbsp;</td> </tr>
+                      <tr>
+                          <td align='center'>Message:</td>
+                          <td><textarea disabled="yes" id="description" style="width:300px;margin-bottom:-10px;height:80px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'><?php echo ( $result->requestMessage);?></textarea></td>
+                      </tr>
+                      <tr> <td>&nbsp;</td> </tr>
+                      <table border='0' cellpadding='0' cellspacing='0' width='480px' align='center'>
+                      </table>
+                      </table>
+                      
+                      </table>
+                      <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
+                      <?php $pet_id = $result->petID;
+
+                      $sql2="SELECT * from postforadoption WHERE petID='$pet_id'";
+                      $query2=$dbh->prepare($sql2);
+                      $query2->execute();
+                      $petids=$query2->fetchALL(PDO::FETCH_OBJ);
+                      $cnt2=1;
+                      if($query2->rowCount()>0)
+                      {
+                        foreach($petids as $petid)
+                      {
+                        ?>
+                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Pet Description: <?php echo ( $petid->petDescription);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+                      <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
-                      <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?></h3></li>
-                      <li><label style=""><?php echo ($result->postDate);?></label><br></li>
-                      <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
-                      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
+                      <div style="text-align: center" class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
+                            <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+                      </div>
+                      </div>
                       </ul>
               </div>
             </div>
           </div>
           <br>
           <?php $cnt=$cnt+1;}} ?>
-         <!-- //View Pet Post for Adotion Code -->     
-                      </div>
-                      <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
-                      <div class="x_content">
-
-                                </div>
-                      </div>
-                      <div class="tab-pane fade" id="request1" role="tabpanel" aria-labelledby="request-tab">
-                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk 
+         <!-- //View User Request Code -->
                       </div>
                     </div>     
                     

@@ -215,7 +215,7 @@ if($query->rowCount()>0)
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md" onLoad="window.scroll(0, 150)">
+  <body class="nav-md" onLoad="window.scroll(0, 550)">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
