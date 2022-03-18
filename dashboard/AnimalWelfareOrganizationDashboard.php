@@ -479,10 +479,6 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>
-                       
-                      <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Adoption.php';" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:120px;">Check Now!</button>
-                    
-
                   </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
                   <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                 </div>
