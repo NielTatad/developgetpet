@@ -454,11 +454,10 @@ if($query->rowCount()>0)
                             <div class="card">
                               <div class="card-body">
                                   
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;border:1px solid #E5E4E2"><br><br>
-
-                                  <i class="fa fa-camera" style="font-size:35px" data-toggle="modal" href="#ProfilePicture"></i><br><label data-toggle="modal" href="#ProfilePicture">Update Profile Logo</label>
-                                  <h3 class="card-title"><?php echo ($result->orgName);?></h3>
-                                  <h2 class="card-title"><?php echo ($result->Role);?></h2>
+                                  <button class="rounded-circle img-responsive" style="border:0px solid white;">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;" data-toggle="modal" href="#ProfilePicture">
+                                  </button><br>                            
+                                  <h2 class="card-title"><?php echo ($result->orgName);?></h2>
                                   
                           </div>
                         </div>
@@ -527,14 +526,14 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Pet Description: <?php echo ( $petid->petDescription);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Pet Description: <?php echo ( $petid->petDescription);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
 
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                             <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">View</button>
-                            <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+                            <button type='reset' class="btn btn-round btn-danger" name="Cancel Request" class="close" data-dismiss="modal" style="width:150px;height:37px;">Cancel Request</button>
                       </div>
                       </div>
                       </ul>
@@ -542,7 +541,14 @@ if($query->rowCount()>0)
             </div>
           </div>
           <br>
-          <?php $cnt=$cnt+1;}} ?>
+          <?php $cnt=$cnt+1;
+          }
+          }
+          else
+          {
+          echo "You don't have any adoption requests that should be displayed.";
+          }
+            ?>
          <!-- //View User Request Code -->
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">

@@ -152,6 +152,7 @@ if(isset($_POST['login']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <style>
     .material-icons {vertical-align:-16%}
     </style>
@@ -170,17 +171,18 @@ if(isset($_POST['login']))
           <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-90px;margin-top:-50px;margin-right:-15px;" alt=" " class="img-responsive"/><br></p>
           </a>
           </div>
-         
+          <br>
           <br>
             <form action="#" method="post">
             <strong style="font-size:14px;" >Username:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="Username" required="required" id="Username">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Username" required="required" id="Username">
 					  </div>
             <br>
             <strong style="font-size:14px;">Password:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="password" name="Password" required="required" id="Password">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" id="Password">
+            
 					  </div>
               
               <?php
@@ -198,7 +200,7 @@ if(isset($_POST['login']))
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>--> 
               </div>
   
-              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;">
+              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;">
               <h4><p style="text-align:center;"><span class="ml-auto"><a href="http://localhost/developgetpet/login-page/selectrole.php" class="forgot-pass">Don't have an account yet?Click here to register!</a></span></p><h/4>
             </form>
           </div>

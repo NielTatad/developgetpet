@@ -456,9 +456,10 @@ if($query->rowCount()>0)
                                   
                                   <Img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;border:1px solid #E5E4E2"><br><br>
 
-                                  <i class="fa fa-camera" style="font-size:35px" data-toggle="modal" href="#ProfilePicture"></i><br><label data-toggle="modal" href="#ProfilePicture">Update Profile Logo</label>
-                                  <h3 class="card-title"><?php echo ($result->orgName);?></h3>
-                                  <h2 class="card-title"><?php echo ($result->Role);?></h2>
+                                  <button class="rounded-circle img-responsive" style="border:0px solid white;">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;" data-toggle="modal" href="#ProfilePicture">
+                                  </button><br>                            
+                                  <h2 class="card-title"><?php echo ($result->orgName);?></h2>
                                   
                           </div>
                         </div>

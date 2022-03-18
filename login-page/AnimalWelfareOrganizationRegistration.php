@@ -100,13 +100,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           <div class="col-md-7">      
           <br>
             <form class="login100-form validate-form" method="post">
-            <h6 style="text-align:center;margin-top:15px;margin-right:-15px;">ANIMAL WELFARE ORGANIZATION <strong>REGISTRATION</strong></h6>
+            <h5 style="text-align:center;margin-top:15px;margin-right:-1px;">ANIMAL WELFARE ORGANIZATION <strong>REGISTRATION</strong></h5>
 					
 					<div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="OrganizationName" required="required" placeholder="Organization Name">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="OrganizationName" required="required" placeholder="Organization Name">
 					</div><br>
 					<div  style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;font-family:Arial;" type="tel" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" placeholder="Contact No.">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;font-family:Arial;" type="tel" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" placeholder="Contact No.">
 						<script>     
             function isInputNumber(evt){
                 
@@ -119,19 +119,19 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </script>
 					</div><br>
 					<div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="Address" required="required" placeholder="Address">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Address" required="required" placeholder="Address">
 					</div><br>
 					<div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="Email" required="required" placeholder="Email">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Email" required="required" placeholder="Email">
 					</div><br>
                     <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="text" name="Username" required="required" placeholder="Username">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Username" required="required" placeholder="Username">
 					</div><br>
 					<div  style="text-align: center" class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border:none;" type="password" name="Password" required="required" placeholder="Password">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" placeholder="Password">
 					</div><br>
 					<div style="text-align: center">
-						<button  class="login100-form-btn" style="background-color:#00cdc1;width:300px;height:40px;border:none;" name="insert">
+						<button  class="login100-form-btn" style="background-color:#00cdc1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" name="insert">
 							<a style="color:White"> Register </a>
 						</button>
 					</div>
