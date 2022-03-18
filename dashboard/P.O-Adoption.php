@@ -468,58 +468,65 @@ if($query->rowCount()>0)
                         $cnt=1;
                         if($query->rowCount()>0)
                         {
-                          foreach($results as $result)
-                        {
-                           ?>
-                        <div class="col-nd-4">
-                            <div class="card">
-                              <div class="card-body">
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
-                                  <ul style="list-style:none;margin-left:-50px;"><br>
-                                  <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
-                                  <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
-                                  <label style="">Description:</label>
-												          <li><textarea disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->availabilityStatus);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
-                                  <?php $user_id = $result->userID;
+                              foreach($results as $result)
+                            {
+                              ?>
+                                    <div class="col-nd-4">
+                                        <div class="card">
+                                          <div class="card-body">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <ul style="list-style:none;margin-left:-50px;"><br>
+                                              <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
+                                              <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
+                                              <label style="">Description:</label>
+                                              <li><textarea disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->availabilityStatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
+                                              <?php $user_id = $result->userID;
 
-                                  $sql1="SELECT * from register WHERE userID='$user_id'";
-                                  $query1=$dbh->prepare($sql1);
-                                  $query1->execute();
-                                  $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                  $cnt1=1;
-                                  if($query1->rowCount()>0)
-                                  {
-                                        foreach($userids as $userid)
-                                      {
-                                        ?>
-                                  
-                                  <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?> <?php echo ($userid->orgName);?></label><br>
-                                  <?php $cnt1=$cnt1+1;}} ?>
-                                  <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
-                                  <li><label style=""><?php echo ($result->postDate);?></label><br></li>
-                                  <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
-                                  <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
-                                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
-                                  </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <br>
-                      <?php $cnt=$cnt+1;}} ?>
+                                              $sql1="SELECT * from register WHERE userID='$user_id'";
+                                              $query1=$dbh->prepare($sql1);
+                                              $query1->execute();
+                                              $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt1=1;
+                                              if($query1->rowCount()>0)
+                                              {
+                                                foreach($userids as $userid)
+                                              {
+                                                ?>
+                                              
+                                              <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                              <?php $cnt1=$cnt1+1;}} ?>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
+                                              <li><label style=""><?php echo ($result->postDate);?></label><br></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
+                                              <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
+                                              </ul>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <br>
+                                      <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
                      <!-- //View Pet Post for Adotion Code -->
                       
                     

@@ -457,11 +457,10 @@ if($query->rowCount()>0)
                             <div class="card">
                               <div class="card-body">
                                   
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;"><br><br>
-
-                                  <i class="fa fa-camera" style="font-size:35px" data-toggle="modal" href="#ProfilePicture"></i><br><label data-toggle="modal" href="#ProfilePicture">Update Profile Picture</label>
-                                  <h3 class="card-title"><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h3>
-                                  <h2 class="card-title"><?php echo ($result->Role);?></h2>
+                                  <button class="rounded-circle img-responsive" style="border:0px solid white;">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;" data-toggle="modal" href="#ProfilePicture">
+                                  </button><br>                            
+                                  <h2 class="card-title"><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
                                   
                           </div>
                         </div>
@@ -579,7 +578,14 @@ if($query->rowCount()>0)
             </div>
           </div>
           <br>
-          <?php $cnt=$cnt+1;}} ?>
+          <?php $cnt=$cnt+1;
+          }
+          }
+          else
+          {
+          echo "There is no display of adoption requests.";
+          }
+          ?>
          <!-- //View User Request Code -->
                       </div>
                     </div>     

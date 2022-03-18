@@ -456,12 +456,11 @@ if($query->rowCount()>0)
                         <div class="col-nd-4">
                             <div class="card">
                               <div class="card-body">
-                                  
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;"><br><br>
 
-                                  <i class="fa fa-camera" style="font-size:35px" data-toggle="modal" href="#ProfilePicture"></i><br><label data-toggle="modal" href="#ProfilePicture">Update Profile Picture</label>
-                                  <h3 class="card-title"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h3>
-                                  <h2 class="card-title"><?php echo ($result->Role);?></h2>
+                                  <button class="rounded-circle img-responsive" style="border:0px solid white;">
+                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;" data-toggle="modal" href="#ProfilePicture">
+                                  </button><br>                            
+                                  <h2 class="card-title"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
                                   
                           </div>
                         </div>
@@ -538,7 +537,7 @@ if($query->rowCount()>0)
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                             <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">View</button>
-                            <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+                            <button type='reset' class="btn btn-round btn-danger" name="Cancel Request" class="close" data-dismiss="modal" style="width:150px;height:37px;">Cancel Request</button>
                       </div>
                       </div>
                       </ul>
@@ -546,7 +545,14 @@ if($query->rowCount()>0)
             </div>
           </div>
           <br>
-          <?php $cnt=$cnt+1;}} ?>
+          <?php $cnt=$cnt+1;
+          }
+          }
+          else
+          {
+          echo "You don't have any adoption requests that should be displayed.";
+          }
+            ?>
          <!-- //View User Request Code -->
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
