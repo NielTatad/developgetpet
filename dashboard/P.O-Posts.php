@@ -498,28 +498,30 @@ if($query->rowCount()>0)
             {
                ?>
             <div class="col-nd-4">
-                <div class="card">
-                  <div class="card-body">
-                      <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+              <div class="card" style="border-radius:10px;border-width:2px;">                 
+                <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                      <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;float:left;">
                       <ul style="list-style:none;margin-left:-50px;"><br>
-                      <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
+                      <h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2>
                       <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
-                      <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
-                      <label style="">Description:</label>
-                      <li><textarea disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->availabilityStatus);?></h3></li>
-                      <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
-                      <?php $user_id = $result->userID;
+                                              <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
+                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
+                                              
+                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h3></ul>
+                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->userAddress);?></h3></ul>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->availabilityStatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
+                                              <?php $user_id = $result->userID;
 
                       $sql1="SELECT * from register WHERE userID='$user_id'";
                       $query1=$dbh->prepare($sql1);

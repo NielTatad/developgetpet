@@ -498,8 +498,8 @@ if($query->rowCount()>0)
             {
                ?>
             <div class="col-nd-4">
-                <div class="card">
-                  <div class="card-body">
+              <div class="card" style="border-radius:10px;border-width:2px;">                 
+                <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                   <h3>Adoption Request</h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
@@ -570,7 +570,7 @@ if($query->rowCount()>0)
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                             <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
-                            <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+                            <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Decline</button>
                       </div>
                       </div>
                       </ul>

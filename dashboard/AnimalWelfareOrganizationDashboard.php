@@ -442,14 +442,14 @@ if($query->rowCount()>0)
                         {
                            ?>
                                   <div class="col-md-4">
-                                      <div class="card">
-                                        <div class="card-body">
+                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
+                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                             <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:180px;">
                                             
                                             <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                            <h2 class="card-title">Pet Name: <?php echo ($result->petName);?></h2>
-                                            <label style="">Description:</label><br>
-                                            <textarea disabled="yes" id="description" style="width:180px;height:150px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea>
+                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
+                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
+                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->availabilityStatus);?></h2></h2>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 

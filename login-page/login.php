@@ -168,7 +168,7 @@ if(isset($_POST['login']))
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
           <a href="http://localhost/developgetpet/web/Dashboard.php">
-          <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-90px;margin-top:-50px;margin-right:-15px;" alt=" " class="img-responsive"/><br></p>
+          <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-90px;margin-top:-50px;" alt=" " class="img-responsive"/><br></p>
           </a>
           </div>
           <br>

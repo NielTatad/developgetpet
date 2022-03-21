@@ -498,8 +498,8 @@ if($query->rowCount()>0)
             {
                ?>
             <div class="col-nd-4">
-                <div class="card">
-                  <div class="card-body">
+              <div class="card" style="border-radius:10px;border-width:2px;">                 
+                <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                   <h3>Adoption Request</h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
@@ -564,13 +564,13 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Pet Description: <?php echo ( $petid->petDescription);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Pet Description: <?php echo ( $petid->petDescription);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                             <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
-                            <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+                            <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Decline</button>
                       </div>
                       </div>
                       </ul>

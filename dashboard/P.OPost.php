@@ -555,182 +555,107 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         </div>
 
                                         <div class="field item form-group">
-											<label class="col-form-label col-md-3 col-sm-3  label-align">Select<span class="required"></span></label>
-											<div class="col-md-6 col-sm-6">
-												<select class="form-control" name="Type">
-													<option>Type of pet...</option>
-													<option>Dog</option>
-													<option>Cat</option>
-												</select>
-											</div>
-										</div>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="form-control" name="Type" id="slct1" required="required" onchange="populate(this.id,'slct2')">
+                                            <option value="">Type of pet...</option>
+                                            <option value="dog">DOG</option>
+                                            <option value="cat">CAT</option>
+                                          </select>
+                                        </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Breed</label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="select2_group form-control" name="Breed" required="required" id="slct2"></select>
+                                        </div>
+                                      </div>
+
+                                      <script>
+
+                                            function populate(s1,s2)
+                                            {
+                                                var s1 = document.getElementById(s1);
+                                                var s2 = document.getElementById(s2);
+
+                                                s2.innerHTML = "";
+
+                                                if(s1. value == "dog")
+                                                {
+                                                    var optionArray = ['labrador retriever|Labrador Retriever', 'bulldog|Bulldog', 'german shepherd|German Shepherd','poodle|Poodle','golden retriever|Golden Retriever','chihuahua|Chihuahua','french bulldog|French Bulldog','afghan hound|Afghan Hound','great dane|Great Dane','american staffordshire terrier|American Staffordshire Terrier','bichon frise|Bichon Frise','yorkshire terrier|Yorkshire Terrier','siberian husky|Siberian Husky','australian shepherd|Australian Shepherd','affenpinscher|Affenpinscher','pug|Pug','cavalier king charles spaniel|Cavalier King Charles Spaniel','american eskimo dog|American Eskimo Dog','shih tzu|Shih Tzu','newfoundland dog|Newfoundland Dog','bull terrier|Bull Terrier','boxer|Boxer','english cocker spaniel|English Cocker Spaniel','border collie|Border Collie','maltese dog|Maltese Dog','airedale terrier|Airedale Terrier','st. bernard|St. Bernard','dobermann|Dobermann','basset hound|Basset Hound','boston terrier|Boston Terrier','bedlington terrier|Bedlington Terrier','rhodesian ridgeback|Rhodesian Ridgeback','chinese crested dog|Chinese Crested Dog','anatolian shepherd dog|Anatolian Shepherd Dog','bloodhound|Bloodhound','brussels griffon|Brussels Griffon','bullmastiff|Bullmastiff','english springer spaniel|English Springer Spaniel','brittany|Brittany','pomeranian|Pomeranian','american pit bull terrier|American Pit Bull Terrier','dachshund|Dachshund','shiba inu|Shiba Inu','rottweiler|Rottweiler','chow chow|Chow Chow','cane corso|Cane Corso','sarabi dog|Sarabi Dog','samoyed|Samoyed','maltipoo|Maltipoo','jack russell terrier|Jack Russell Terrier','pembroke welsh corgi|Pembroke Welsh Corgi'];
+                                                }
+                                                else if(s1.value == 'cat')
+                                                {
+                                                    var optionArray = ['persian cat|Persian Cat','maine coon|Maine Coon',
+                                                        'british shorthair|British Shorthair','bengal cat|Bengal Cat','sphynx cat|Sphynx Cat','siamese cat|Siamese Cat','ragdoll|Ragdoll','Munchkin cat|Munchkin Cat','scottish fold|Scottish Fold','savannah cat|Savannah Cat','norwegian forest cat|Norwegian Forest Cat','siberian cat|Siberian Cat','american shorthair|American Shorthair','exotic shorthair|Exotic Shorthair','russian blue|Russian Blue','turkish angora|Turkish Angora','himalayan cat|Himalayan Cat','european shorthair|European Shorthair','bombay cat|Bombay Cat','abyssinian|Abyssinian','chartreux|Chartreux','birman|Birman','kinkalow|Kinkalow','ragamuffin|Ragamuffin','singapura cat|Singapura Cat','toyger|Toyger','burmese cat|Burmese Cat','oriental shorthair|Oriental Shorthair','manx cat|Manx Cat','somali cat|Somali Cat','british longhair|British Longhair','american curl|American Curl','havana brown|Havana Brown','balinese cat|Balinese Cat','donskoy|Donskoy','ocicat|Ocicat','american bobtail|American Bobtail','selkirk rex|Selkirk Rex','thai cat|Thai Cat','tonkinese cat|Tonkinese Cat','peterbald|Peterbald','laPerm|LaPerm','snowshoe cat|Snowshoe Cat','american wirehair|American Wirehair','nebelung|Nebelung','korat|Korat','burmilla|Burmilla','lykoi|Lykoi','oriental longhair|Oriental Longhair','cymric|Cymric','cornish rex|Cornish Rex'];
+                                                }
+                                                for (var option in optionArray)
+                                                {
+                                                  var pair = optionArray[option].split("|");
+                                                  var newoption = document.createElement("option");
+                                                  newoption.value = pair[0];
+                                                  newoption.innerHTML = pair[1];
+                                                  s2.options.add(newoption);
+                                                }
+                                            }
+                                            
+                                      </script>
 
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petname" class="form-control" name="Petname" placeholder="Pet Name" required="required"/>
+                                                <input type="text" id="petname" class="form-control" name="Petname" placeholder="Pet Name" required="required" onkeypress="return /[a-z]/i.test(event.key)"/>
                                             </div>
                                         </div>
 
                                         <div class="field item form-group">
-											<label class="col-form-label col-md-3 col-sm-3  label-align">Select Breed</label>
-											<div class="col-md-6 col-sm-6">
-												<select class="select2_group form-control" name="Breed">
-													<optgroup label="Dog Breed">
-                                                        <option>Please Choose Breed...</option>
-														<option>Affenpinscher</option>
-														<option>Afghan hound</option>
-														<option>Airedale terrier</option>
-														<option>Beagle</option>
-                                                        <option>Bearded collie</option>
-														<option>bloodhound</option>
-														<option>Chihuahua</option>
-														<option">Chow chow</option>
-                                                        <option>Curly-coated retriever</option>
-														<option>Dachshund</option>
-														<option>Dalmatian</option>
-														<option>Doberman pinscher</option>
-                                                        <option>English cocker spaniel</option>
-														<option>English setter</option>
-														<option>English toy spaniel</option>
-														<option>French bulldog</option>
-                                                        <option>Foxhound</option>
-                                                        <option>Fox terrier</option>
-                                                        <option>German shepherd</option>
-                                                        <option>Golden retriever</option>
-                                                        <option>Greyhound</option>
-                                                        <option>Irish setter</option>
-                                                        <option>Irish water spaniel</option>
-                                                        <option>Irish wolfhound</option>
-                                                        <option>Jack Russell terrier</option>
-                                                        <option>Japanese spaniel</option>
-                                                        <option>keeshond</option>
-                                                        <option>Kerry blue terrier</option>
-                                                        <option>komondor</option>
-                                                        <option>Labrador retriever</option>
-                                                        <option>Lakeland terrier</option>
-                                                        <option>Lhasa apso</option>
-                                                        <option>Maltese</option>
-                                                        <option>Manchester terrier</option>
-                                                        <option>Mexican hairless</option>
-                                                        <option>Newfoundland</option>
-                                                        <option>Norwegian elkhound</option>
-                                                        <option>Norwich terrier</option>
-                                                        <option>Otterhound</option>
-                                                        <option>Pekingese</option>
-                                                        <option>Pomeranian</option>
-                                                        <option>Poodle</option>
-                                                        <option>Rottweiler</option>
-                                                        <option>Rhodesian ridgeback</option>
-                                                        <option>Saint Bernard</option>
-                                                        <option>Shih tzu</option>
-                                                        <option>Siberian husky</option>
-                                                        <option>Tibetan terrier</option>
-                                                        <option>Vizsla</option>
-                                                        <option>Weimaraner</option>
-                                                        <option>Welsh terrier</option>
-                                                        <option>West Highland white terrier</option>
-                                                        <option>Yorkshire terrier</option>
-													</optgroup>
-                                                    
-                                                    <optgroup label="Cat Breed">
-                                                    <option>Please Choose Breed...</option>
-                                                    <option>Abyssinian</option>
-                                                    <option>Aegean</option>
-                                                    <option>American Bobtail</option>
-                                                    <option>Bengal</option>
-                                                    <option>Birman</option>
-                                                    <option>British Shorthair</option>
-                                                    <option>California Spangled</option>
-                                                    <option>Chantilly-Tiffany</option>
-                                                    <option>Chartreux</option>
-                                                    <option>Devon Rex</option>
-                                                    <option>Dwelf</option>
-                                                    <option>Dragon Li or
-                                                    Chinese Li Hua</option>
-                                                    <option>Egyptian Mau</option>
-                                                    <option>Exotic Shorthair</option>
-                                                    <option>European Shorthair</option>
-                                                    <option>German Rex</option>
-                                                    <option>Havana Brown</option>
-                                                    <option>Highlander</option>
-                                                    <option>Himalayan or
-                                                    Colorpoint Persian</option>
-                                                    <option>Japanese Bobtail</option>
-                                                    <option>Javanese or
-                                                    Colorpoint Longhair</option>
-                                                    <option>Kanaani</option>
-                                                    <option>Khao Manee</option>
-                                                    <option>Kinkalow</option>
-                                                    <option>LaPerm</option>
-                                                    <option>Lykoi</option>
-                                                    <option>Lambkin</option>
-                                                    <option>Maine Coon</option>
-                                                    <option>Manx</option>
-                                                    <option>Mekong Bobtail</option>
-                                                    <option>Napoleon</option>
-                                                    <option>Nebelung</option>
-                                                    <option>Norwegian Forest Cat</option>
-                                                    <option>Ocicat</option>
-                                                    <option>Ojos Azules</option>
-                                                    <option>Oregon Rex</option>
-                                                    <option>Peterbald</option>
-                                                    <option>Persian</option>
-                                                    <option>Pixie-bob</option>
-                                                    <option>Ragamuffin or
-                                                    Liebling</option>
-                                                    <option>Ragdoll</option>
-                                                    <option>Russian Blue</option>
-                                                    <option>Savannah</option>
-                                                    <option>Scottish Fold</option>
-                                                    <option>Selkirk Rex</option>
-                                                    <option>Tonkinese</option>
-                                                    <option>Toybob</option>
-                                                    <option>Toyger</option>
-                                                    <option>Ukrainian Levkoy</option>
-                                                    <option>York Chocolate</option>
-                                                    </optgroup>
-
-												</select>
-											</div>
-										</div>
-
-                                        <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
-											<div class="col-md-6 col-sm-6">
-												<select class="form-control" name="Gender">
-													<option>Please Choose...</option>
-													<option>Male</option>
-													<option>Female</option>
-												</select>
-											</div>
-										</div>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="form-control" required="required" name="Gender">
+                                            <option>Please Choose...</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                          </select>
+                                        </div>
+                                      </div>
 
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petcolor" class="form-control" name="Age" placeholder="Pet Age" required="required"/>
+                                                <input type="text" id="ages" id="extra7" class="form-control" name="Age" placeholder="Pet Age" required="required" onkeypress="return isNumber(event)"/>
                                             </div>
                                         </div>
+
+                                        <script>
+                                          function isNumber(evt) {
+                                              evt = (evt) ? evt : window.event;
+                                              var charCode = (evt.which) ? evt.which : evt.keyCode;
+                                              if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                                  return false;
+                                              }
+                                              return true;
+                                          }
+                                        </script>
 
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petcolor" class="form-control" name="Color" placeholder="Pet Color" required="required"/>
+                                                <input type="text" id="petcolor" class="form-control" name="Color" placeholder="Pet Color" required="required" onkeypress="return /[a-z]/i.test(event.key)"/>
                                             </div>
                                         </div>
 
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petweight" class="form-control" name="Weight" placeholder="Pet Weight" required="required"/>
+                                                <input type="text" id="petweight" id="extra7" class="form-control" name="Weight" placeholder="Pet Weight" required="required" onkeypress="return isNumber(event)"/>
                                             </div>
                                         </div>
 
                     <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
 											<div class="col-md-6 col-sm-6">
-												<select class="form-control" name="Vaccination">
+												<select class="form-control" id="vax" name="Vaccination">
 													<option>Vaccination Status...</option>
 													<option>Vaccinated</option>
 													<option>Not vaccinated</option>
@@ -741,7 +666,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
 											<div class="col-md-6 col-sm-6">
-												<select class="form-control" name="Deworming">
+												<select class="form-control" required="required" id="deworm" name="Deworming">
 													<option>Deworming Status...</option>
 													<option>Deworm</option>
 													<option>Not deworm</option>
@@ -759,7 +684,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo</label>
                     
                     <div style="text-align: center" class="wrap-input100 validate-input">
-                     <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:420px" placeholder="Upload Picture">
+                     <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
 			              </div>
 
                     <div class="field item form-group">
@@ -767,7 +692,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         Date</label>
                                         <div class="col-md-6 col-sm-6">
                                         <div class='input-group date' id='myDatepicker4'>
-                                        <input type='text' class="form-control" readonly="readonly" />
+                                        <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
                                         <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -779,7 +704,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             <br>
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <button name ="Post" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                    <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                     <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                 </div>
                                             </div>
