@@ -200,8 +200,17 @@ if(isset($_POST['login']))
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>--> 
               </div>
   
-              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;">
-              <h4><p style="text-align:center;"><span class="ml-auto"><a href="http://localhost/developgetpet/login-page/selectrole.php" class="forgot-pass">Don't have an account yet?Click here to register!</a></span></p><h/4>
+              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;"><br>
+
+                <div class="w-full text-center p-t-55">
+                <span class="txt2">
+                Not a member?
+                </span>
+
+                <a href="http://localhost/developgetpet/login-page/selectrole.php" class="txt2 bo1" style="color:blue">
+                Sign up now!
+                </a>
+					    </div>
             </form>
           </div>
         </div>

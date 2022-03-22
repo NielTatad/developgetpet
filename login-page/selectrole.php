@@ -84,7 +84,12 @@ if(isset($_POST['AnimalWelfareOrganization']))
 							  <a style="color:White">Animal Welfare Organization</a>
 						    </button>
 					  </div>
-            <h4><p  style="text-align:center;"><span class="ml-auto"><a href="http://localhost/developgetpet/login-page/login.php" class="forgot-pass">I am already a member</a></span></p></h4>
+            <br>
+          <div class="w-full text-center p-t-55">
+          <a href="http://localhost/developgetpet/login-page/login.php" class="txt2 bo1" style="color:black">
+          I am already a member
+          </a>    
+          </div>
             </form>
           </div>
         </div>
