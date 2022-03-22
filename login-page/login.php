@@ -196,7 +196,7 @@ if(isset($_POST['login']))
 					    </div>
               
               <div class="d-flex mb-5 align-items-center" >
-              <input type="checkbox" onclick="myfunction()" value="Show password">Show password
+              <input type="checkbox" onclick="myfunction()" value="Show password" >Show password
               
               <div class="control__indicator"></div>
               <!--</label>
@@ -206,11 +206,11 @@ if(isset($_POST['login']))
               <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;"><br>
 
                 <div class="w-full text-center p-t-55">
-                <span class="txt2">
+                <span class="txt2" style ="font-size: 12px;">
                 Not a member?
                 </span>
 
-                <a href="http://localhost/developgetpet/login-page/selectrole.php" class="txt2 bo1" style="color:blue">
+                <a href="http://localhost/developgetpet/login-page/selectrole.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
                 Sign up now!
                 </a>
 					    </div>
