@@ -258,7 +258,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Short-term Care</a>
+                    <li><a href="#">Short-term Care</a>
                     </li>
 
                     <li>
@@ -506,7 +506,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!-- //Post Pet Code -->
 
                     <!-- Back Button -->
-                    <a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
+                    <a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
 
                     <div class="clearfix"></div>
 
@@ -515,7 +515,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel">
                         <div class="x_title">
-                        <h2>Post Pet For Adoption</h2>
+                        <h2>Post Short-Term Care</h2>
                         <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                         </li>          
@@ -675,9 +675,62 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 										</div>
 
                     <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Range<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="form-control" name="Type" id="slct3" required="required" onchange="populate(this.id,'slct4')">
+                                            <option value="">Select...</option>
+                                            <option value="day">DAY</option>
+                                            <option value="week">WEEK</option>
+                                            <option value="month">MONTH</option>
+                                          </select>
+                                        </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select </label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="select2_group form-control" name="Breed" required="required" id="slct4">
+                                          </select>
+                                        </div>
+                                      </div>
+
+                                      <script>
+
+                                            function populate(s3,s4)
+                                            {
+                                                var s3 = document.getElementById(s3);
+                                                var s4 = document.getElementById(s4);
+
+                                                s4.innerHTML = "";
+
+                                                if(s3. value == "day")
+                                                {
+                                                    var optionArray = ['select...|Select...','one day|One Day', 'two days|Two Days', 'three days|Three Days','four days|Four Days','five days|Five Days','six days|Six Days'];
+                                                }
+                                                else if(s3.value == 'week')
+                                                {
+                                                    var optionArray = ['select...|Select...','one week|One Week','two weeks|Two Weeks','three weeks|Three Weeks','four weeks|Four Weeks','five weeks|Five Weeks'];
+                                                }
+                                                else if(s3.value == 'month')
+                                                {
+                                                    var optionArray = ['select...|Select...','one month|One Month','two months|Two Months','three months|Three Months','four months|Four Months'];
+                                                }
+                                                for (var option in optionArray)
+                                                {
+                                                  var pair = optionArray[option].split("|");
+                                                  var newoption = document.createElement("option");
+                                                  newoption.value = pair[0];
+                                                  newoption.innerHTML = pair[1];
+                                                  s4.options.add(newoption);
+                                                }
+                                            }
+                                            
+                                      </script>
+
+                    <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
 											<div class="col-md-6 col-sm-6">
-												<textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+												<textarea id="description" required="required" class="form-control" name="Description" placeholder="Description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
                       </div>
 										</div>
 

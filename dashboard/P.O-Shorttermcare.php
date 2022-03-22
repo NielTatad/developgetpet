@@ -438,7 +438,7 @@ if($query->rowCount()>0)
             </div>
 
             <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/P.OPost.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+            <a href="http://localhost/developgetpet/dashboard/P.O-Postshorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:300px;">Create Post for Short-term Care</button></a>
 
             <!-- /page content -->
 
@@ -448,7 +448,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Available Pet For Adoption</h2>
+                    <h2>Short-Term Care</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -460,76 +460,7 @@ if($query->rowCount()>0)
                   
                   
                   <!-- View Pet Post for Adotion Code -->
-                  <?php
-                        $sql="SELECT * from postforadoption WHERE availabilityStatus='Available' ORDER BY petID DESC";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                              foreach($results as $result)
-                            {
-                              ?>   
-                                    <div class="col-nd-4">
-                                        <div class="card" style="border-radius:10px;border-width:2px;">
-                                        
-                                          <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;float:left;">
-                                              <ul style="list-style:none;margin-left:-50px;"><br>
-                                              <h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
-                                              <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
-                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
-                                              
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h3></ul>
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->userAddress);?></h3></ul>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->availabilityStatus);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
-                                              <?php $user_id = $result->userID;
-
-                                              $sql1="SELECT * from register WHERE userID='$user_id'";
-                                              $query1=$dbh->prepare($sql1);
-                                              $query1->execute();
-                                              $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                              $cnt1=1;
-                                              if($query1->rowCount()>0)
-                                              {
-                                                foreach($userids as $userid)
-                                              {
-                                                ?>
-                                              
-                                              <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                              <?php $cnt1=$cnt1+1;}} ?>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
-                                              <li><label style=""><?php echo ($result->postDate);?></label><br></li>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
-                                              <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <br>
-                                      <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
+                  
                      <!-- //View Pet Post for Adotion Code -->
                       
                     
