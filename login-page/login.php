@@ -193,7 +193,7 @@ if(isset($_POST['login']))
 					    </div>
               
               <div class="d-flex mb-5 align-items-center" >
-              Show password:<input type="checkbox" onclick="myfunction()" value="Show password">
+              <input type="checkbox" onclick="myfunction()" value="Show password">Show password
               
               <div class="control__indicator"></div>
               <!--</label>
