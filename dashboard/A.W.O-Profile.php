@@ -241,7 +241,7 @@ if($query->rowCount()>0)
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                <li>
+                    <li>
                     <li><a href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php"><i></i> Dashboard </a>
                     </li>
 
@@ -250,7 +250,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Short-term Care</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>

@@ -250,7 +250,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Short-term Care</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>

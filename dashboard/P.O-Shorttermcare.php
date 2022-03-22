@@ -459,9 +459,9 @@ if($query->rowCount()>0)
 
                   
                   
-                  <!-- View Pet Post for Adotion Code -->
-                  
-                     <!-- //View Pet Post for Adotion Code -->
+                  <!-- View Pet Post for SHORT-TERM CARE Code -->
+                  VIEW POST FOR SHORT-TERM CARE
+                     <!-- //View Pet Post for SHORT-TERM CARE Code -->
                       
                     
                   
