@@ -258,7 +258,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Short-term Care</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>
@@ -430,7 +430,7 @@ if($query->rowCount()>0)
             </div>
 
             <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/P.APost.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+            <a href="http://localhost/developgetpet/dashboard/P.A-Postshorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:300px;">Create Post for Short-term Care</button></a>
 
             <!-- /page content -->
 
@@ -451,9 +451,9 @@ if($query->rowCount()>0)
 
                   
                   
-                   <!-- View Pet Post for Short-term care Code -->
-                   
-                     <!-- //View Pet Post for Short-term care Code -->
+                   <!-- View Pet Post for Adotion Code -->
+                   POST FOR SHORT-TERM CARE
+                     <!-- //View Pet Post for Adotion Code -->
                       
                     
                   
