@@ -269,6 +269,10 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
+                    <li><a href="#">Donation</a>
+                    </li>
+
+                    <li>
                     <li><a href="#">Fundraising activities</a>
                     </li>
 
