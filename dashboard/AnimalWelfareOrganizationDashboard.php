@@ -186,6 +186,9 @@ if($query->rowCount()>0)
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script language="javascript" type="text/javascript">
+    window.history.forward();
+    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
