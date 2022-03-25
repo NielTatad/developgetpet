@@ -21,7 +21,7 @@ if(isset($_POST['login']))
 		    $_SESSION['adID'] = $results['adID'];
        
         echo '<script>alert("Login Successfully!")</script>';
-        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/admin.php'</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/SuperAdmin-Dashboard.php'</script>";
 
 
     }
@@ -52,7 +52,7 @@ if(isset($_POST['login']))
         $query->execute();
 
         echo '<script>alert("Login Successfully!")</script>';
-        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/PetOwnerDashboard.php'</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Dashboard.php'</script>";
         echo $_SESSION['ownerID'];
         echo $_SESSION['ownerFirstname'];
         echo $_SESSION['ownerLastname'];
@@ -85,7 +85,7 @@ if(isset($_POST['login']))
         $query->execute();
 
         echo '<script>alert("Login Successfully!")</script>';
-        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/PetAdopterDashboard.php'</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dashboard.php'</script>";
         echo $_SESSION['adopterID'];
         echo $_SESSION['adopterFirstname'];
         echo $_SESSION['adopterLastname'];
@@ -117,7 +117,7 @@ if(isset($_POST['login']))
         $query->execute();
 
         echo '<script>alert("Login Successfully!")</script>';
-        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php'</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php'</script>";
         echo $_SESSION['ID'];
         echo $_SESSION['OrganizationName'];
         echo $_SESSION['OrganizationManager'];

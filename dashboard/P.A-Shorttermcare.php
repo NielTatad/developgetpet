@@ -250,7 +250,7 @@ if($query->rowCount()>0)
               <div class="menu_section">
                     <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/PetAdopterDashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>

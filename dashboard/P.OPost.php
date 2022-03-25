@@ -250,7 +250,7 @@ if($query->rowCount()>0)
               <div class="menu_section">
                     <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
@@ -839,25 +839,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="../vendors/validator/validator.js"></script>
 
 	<!-- Javascript functions	-->
-	<script>
-		function hideshow(){
-			var password = document.getElementById("password1");
-			var slash = document.getElementById("slash");
-			var eye = document.getElementById("eye");
-			
-			if(password.type === 'password'){
-				password.type = "text";
-				slash.style.display = "block";
-				eye.style.display = "none";
-			}
-			else{
-				password.type = "password";
-				slash.style.display = "none";
-				eye.style.display = "block";
-			}
-
-		}
-	</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.

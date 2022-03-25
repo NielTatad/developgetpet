@@ -244,7 +244,7 @@ if($query->rowCount()>0)
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
@@ -486,7 +486,7 @@ if($query->rowCount()>0)
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
                         
  <!-- View User Request Code -->
- <?php
+            <?php
             $sql="SELECT * from adoptionrequest WHERE userID='$ID' ORDER BY petID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
@@ -552,7 +552,7 @@ if($query->rowCount()>0)
           {
           echo "You don't have any adoption requests that should be displayed.";
           }
-            ?>
+          ?>
          <!-- //View User Request Code -->
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">

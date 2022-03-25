@@ -186,29 +186,38 @@ if($query->rowCount()>0)
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script language="javascript" type="text/javascript">
-    window.history.forward();
-    </script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GETPET</title>
+	<title>GETPET</title>
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+	<!-- Custom Theme Style -->
+	<link href="../build/css/custom.min.css" rel="stylesheet">
+</head>
 
-  <body class="nav-md">
+<body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -219,34 +228,31 @@ if($query->rowCount()>0)
 
             <div class="clearfix"></div>
 
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <!--<div class="profile_pic">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
-              </div>-->
-              <div class="profile_info">
-                <!--<span>Welcome,</span>
-                <h2><?php echo ($result->orgManager);?></h2>-->
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                    <!--<div class="profile_pic">
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
+                    </div>
+                    <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    </div>
+                    <!-- /menu profile quick info -->
 
+					<br />
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
               <div class="menu_section">
-                <ul class="nav side-menu">
-                <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php"><i></i> Dashboard </a>
+                    <ul class="nav side-menu">
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php">Pet Adoption</a>
-                    </li>
-
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>
@@ -258,32 +264,32 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Tips, Advice & Articles</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Tips, Advice & Articles</a>
                     </li>
-                 
-              </div>
 
-            </div>
-            <!-- /sidebar menu -->
+                    </ul>
+					</div>
+					</div>
+					<!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php">
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
+					<!-- /menu footer buttons -->
+					<div class="sidebar-footer hidden-small">
+                    <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                    </div>
+					<!-- /menu footer buttons -->
+				</div>
+			</div>
 
-      <!-- top navigation -->
-      <div class="top_nav">
+	  <!-- top navigation -->
+    <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -309,7 +315,7 @@ if($query->rowCount()>0)
                   $query->execute();
 
                   $request=$query->fetchColumn();
-  
+
                   ?>
                   
                   <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;">
@@ -397,8 +403,9 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
+
+	  <!-- page content -->
+    <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
@@ -418,23 +425,44 @@ if($query->rowCount()>0)
               </div>
             </div>
 
+            <!-- Post Button -->
+            <a href="#"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+
+            <!-- /page content -->
             <div class="clearfix"></div>
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>New Post For Adoption</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
+<div class="row">
+  <div class="col-md-12 col-sm-12  ">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Available Pet For Adoption</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+          </li>
+       </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" style="text-align:center;">
+
+      
+      
+       <!-- View Post for Tips advice and articles Code -->
+       <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="tips-tab" data-toggle="tab" href="#tips1" role="tab" aria-controls="Tips" aria-selected="true">Tips Tab</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="advice-tab" data-toggle="tab" href="#advice1" role="tab" aria-controls="advice" aria-selected="false">Advice Tab</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles1" role="tab" aria-controls="articles" aria-selected="false">Articles Tab</a>
+                      </li>
                     </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content" style="text-align:center;">
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
                       
-                  <?php
-                        $sql="SELECT * from postforadoption WHERE availabilityStatus='Available' ORDER BY petID DESC LIMIT 3";
+                      <?php
+                        $sql="SELECT * from blog WHERE blogStatus='Tips' ORDER BY blogID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -444,15 +472,23 @@ if($query->rowCount()>0)
                           foreach($results as $result)
                         {
                            ?>
-                                  <div class="col-md-4">
+                                  <div class="col-nd-4">
                                     <div class="card" style="border-radius:10px;border-width:2px;">                 
                                       <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:180px;">
                                             
-                                            <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->availabilityStatus);?></h2></h2>                                
+                                            
+                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                        
+                                            <div class="field item form-group">  
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <div class="field item form-group">                                        
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                            </div>
+                                            </div>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 
@@ -482,18 +518,89 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>
-                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
-                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+                      </div>
+                      <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
+                      <?php
+                        $sql="SELECT * from blog WHERE blogStatus='Advice' ORDER BY blogID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                                  <div class="col-nd-4">
+                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
+                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                            
+                                            
+                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                        
+                                            <div class="field item form-group">  
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <div class="field item form-group">                                        
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                            <?php $user_id = $result->userID;
+
+                                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                                            $query1=$dbh->prepare($sql1);
+                                            $query1->execute();
+                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt1=1;
+                                            if($query1->rowCount()>0)
+                                            {
+                                              foreach($userids as $userid)
+                                            {
+                                              ?>
+                                            
+                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <?php $cnt1=$cnt1+1;}} ?>
+                                            <label style=""><?php echo ($result->postDate);?></label><br>
+                                            
+                                    </div>
+                                  </div><br>
+                                </div>
+                              <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+                      </div>
+                      <div class="tab-pane fade" id="articles1" role="tabpanel" aria-labelledby="articles-tab">
+                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                            booth letterpress, commodo enim craft beer mlkshk 
+                      </div>
+                    </div>
+
+                     <!-- //View Post for Tips advice and articles Code -->
+          
+        
+      
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
         <!-- /page content -->
 
 <script>
-<?php
-$ID=$_SESSION['orgID'];           
+<?php 
+$ID=$_SESSION['orgID'];
 $sql = "SELECT * from animalwelfareorganization where orgID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
@@ -509,15 +616,15 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
-</script>        
+</script>
 
-        <!-- ModalProfile -->
-<div class="modal fade" id="ProfilePicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <!-- ModalProfile -->
+  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Update Profile Picture</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -525,27 +632,33 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;border:1px solid #E5E4E2" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
-				</div><br>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
-              <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
-         </div>
-        </div>
+					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center">
+						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
+							 <a style="color:White"> Update Profile </a>
+						 </button>
+				</div>
+        <div style="text-align: center">
+             <h6 class="mt-1 mb-2"><?php echo ($result->orgName);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->orgContactNo);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->orgAddress);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->orgEmail);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
+        </div><br>
       </form>
       </div>
     </div>
   </div>
 </div>
 	<!-- //ModalProfile -->
-
+  
   <!-- ModalSettings -->
   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -560,7 +673,7 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;border:1px solid #E5E4E2" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
@@ -606,28 +719,146 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-        <!-- footer content -->
-        <footer>
-        <p class="tweet-p1">
-		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
-		<!--<a href="#">http://ax.by/zzzz</a>-->
-		</p>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
-    </div>
+			<!-- footer content -->
+			<footer>
+      <p class="tweet-p1">
+		  ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		  </p>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../vendors/validator/multifield.js"></script>
+    <script src="../vendors/validator/validator.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.viewbtn').on('click', function () {
+
+                $('#View').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#pet_id').val(data[0]);
+                $('#pet_name').val(data[1]);
+                $('#pet_type').val(data[2]);
+                $('#pet_breed').val(data[3]);
+                $('#pet_sex').val(data[4]);
+                $('#pet_age').val(data[5]);
+                $('#pet_color').val(data[6]);
+                $('#pet_weight').val(data[7]);
+                $('#vaccination_status').val(data[8]);
+                $('#deworming_status').val(data[9]);
+                $('#pet_description').val(data[10]);
+                $('#des').val(data[11]);
+                $('#pet_picture').val(data[12]);
+                $('#availability_status').val(data[13]);
+                $('#user_id').val(data[14]);
+                $('#post_by').val(data[15]);
+                $('#post_date').val(data[16]);
+                $('#user_email').val(data[17]);
+                $('#user_address').val(data[18]);
+                $('#user_contactno').val(data[19]);
+            });
+        });
+    </script>
+
+	<!-- Javascript functions	-->
+	<script>
+		function hideshow(){
+			var password = document.getElementById("password1");
+			var slash = document.getElementById("slash");
+			var eye = document.getElementById("eye");
+			
+			if(password.type === 'password'){
+				password.type = "text";
+				slash.style.display = "block";
+				eye.style.display = "none";
+			}
+			else{
+				password.type = "password";
+				slash.style.display = "none";
+				eye.style.display = "block";
+			}
+
+		}
+	</script>
+
+    <script>
+        // initialize a validator instance from the "FormValidator" constructor.
+        // A "<form>" element is optionally passed as an argument, but is not a must
+        var validator = new FormValidator({
+            "events": ['blur', 'input', 'change']
+        }, document.forms[0]);
+        // on form "submit" event
+        document.forms[0].onsubmit = function(e) {
+            var submit = true,
+                validatorResult = validator.checkAll(this);
+            console.log(validatorResult);
+            return !!validatorResult.valid;
+        };
+        // on form "reset" event
+        document.forms[0].onreset = function(e) {
+            validator.reset();
+        };
+        // stuff related ONLY for this demo page:
+        $('.toggleValidationTooltips').change(function() {
+            validator.settings.alerts = !this.checked;
+            if (this.checked)
+                $('form .alert').remove();
+        }).prop('checked', false);
+
+    </script>
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
-    
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-  </body>
+    <!-- bootstrap-progressbar -->
+	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="../vendors/iCheck/icheck.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="../vendors/moment/min/moment.min.js"></script>
+	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="../vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="../vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="../vendors/starrr/dist/starrr.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
+
+  
+
+     
+
+</body>
 </html>

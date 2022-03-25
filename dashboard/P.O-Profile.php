@@ -244,7 +244,7 @@ if($query->rowCount()>0)
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
@@ -559,7 +559,7 @@ if($query->rowCount()>0)
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
                       <div class="x_content">
 
-                                </div>
+                      </div>
                       </div>
                       <div class="tab-pane fade" id="request1" role="tabpanel" aria-labelledby="request-tab">
                         xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo

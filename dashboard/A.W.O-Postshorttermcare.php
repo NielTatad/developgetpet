@@ -248,15 +248,11 @@ if($query->rowCount()>0)
                     <div class="menu_section">
                     <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php">Pet Adoption</a>
-                    </li>
-
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>
