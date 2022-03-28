@@ -299,22 +299,72 @@ if($query->rowCount()>0)
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php" id="contact">Contact Us</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#Settings">Settings</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
-  
+                  <?php
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' ");
+                  $query->execute();
+
+                  $request=$query->fetchColumn();
+
+                  ?>
                   <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false" >
+                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-bell"></i>
-                      <!--<span class="badge bg-green">6</span>-->
+                      <span class="badge bg-green" id="count"><?php echo ($request);?></span>
                     </a>
+                    <script type="text/javascript">
+                    var number = <?php echo ($request);?>;
+                    if (number === 0){
+                      document.getElementById("count").style.display = "none";
+                    }
+                    </script>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      
                       <li class="nav-item">
+                      <?php
+                        $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                            <?php $user_id = $result->userID;
+
+                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                            $query1=$dbh->prepare($sql1);
+                            $query1->execute();
+                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                            $cnt1=1;
+                            if($query1->rowCount()>0)
+                            {
+                              foreach($userids as $userid)
+                            {
+                              ?>
+                           
+                        <a class ="dropdown-item">
+                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
+                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
+                          <span>
+                            <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                          </span>
+                          <span class="message">
+                          <?php echo ($result->notificationDescription);?>
+                          </span>
+                        </a>
+                         <?php $cnt1=$cnt1+1;}} ?>
+                        <?php $cnt=$cnt+1;}} ?>
+                      </li>
+                      <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <a>See All Alerts</a>
+                            <a href="http://localhost/developgetpet/dashboard/P.O-Requestnotification.php">See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -327,13 +377,30 @@ if($query->rowCount()>0)
           </div>
         <!-- /top navigation -->
 
+<?php 
+$sql = "SELECT * from petowner where ownerID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Notification</h2>
+              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -354,7 +421,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Manage Notification</h2>
+                    <h2>New Post For Adoption</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                       </li>      
@@ -363,9 +430,57 @@ if($query->rowCount()>0)
                   </div>
                   <div class="x_content" style="text-align:center;">
                       
-                  <h2>Content...</h2>
-                    
+                  <?php
+                        $sql="SELECT * from postforadoption WHERE availabilityStatus='Available' ORDER BY petID DESC LIMIT 3";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                                  <div class="col-md-4">
+                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
+                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:180px;">
+                                            
+                                            <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
+                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
+                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->availabilityStatus);?></h2></h2>                                
+                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                            <?php $user_id = $result->userID;
 
+                                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                                            $query1=$dbh->prepare($sql1);
+                                            $query1->execute();
+                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt1=1;
+                                            if($query1->rowCount()>0)
+                                            {
+                                              foreach($userids as $userid)
+                                            {
+                                              ?>
+                                            
+                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <?php $cnt1=$cnt1+1;}} ?>
+                                            <label style=""><?php echo ($result->postDate);?></label><br>
+                                            
+                                    </div>
+                                  </div><br>
+                                </div>
+                              <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+                        </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><h2 style="text-align:center;">
+                        <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                   </div>
                 </div>
               </div>
@@ -373,6 +488,7 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
+
 
 <script>
 <?php
@@ -393,47 +509,6 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
-
-        <!-- ModalProfile -->
-  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center">
-						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
-							 <a style="color:White"> Update Profile </a>
-						 </button>
-				</div>
-        <div style="text-align: center">
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerContactNo);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerAddress);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerEmail);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
-        </div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //ModalProfile -->
 
   <!-- ModalSettings -->
   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

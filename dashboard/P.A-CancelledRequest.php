@@ -238,7 +238,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <br />
 
-           <!-- sidebar menu -->
+         <!-- sidebar menu -->
          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
@@ -288,7 +288,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           </div>
         </div>
 
-     <!-- top navigation -->
+      <!-- top navigation -->
      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
@@ -484,7 +484,7 @@ if($query->rowCount()>0)
 
                       ?>
                       <li class="nav-item">
-                        <a class="nav-link active" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
+                        <a href="http://localhost/developgetpet/dashboard/P.A-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
                         <script type="text/javascript">
                         var myrequest = <?php echo ($myrequest);?>;
                         if (myrequest === 0){
@@ -532,7 +532,8 @@ if($query->rowCount()>0)
 
                       ?>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.A-CancelledRequest.php" role="tab" aria-controls="user_request" aria-selected="false">Cancelled <span class="badge bg-green" id="cancelled" value=""><?php echo ($cancelled);?></span></a>
+                        <a class="nav-link active" id="contact-request" data-toggle="tab" href="#request1" role="tab" aria-controls="request" aria-selected="false">Cancelled <span class="badge bg-green" id="cancelled" value=""><?php echo ($cancelled);?></span>
+                        </a>
                         <script type="text/javascript">
                         var cancelled = <?php echo ($cancelled);?>;
                         if (cancelled === 0){
@@ -544,9 +545,9 @@ if($query->rowCount()>0)
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
                         
- <!-- View My Request Code -->
+ <!-- View Cancelled Request Code -->
 <?php
-            $sql="SELECT * from request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Cancelled' ORDER BY petID DESC";
+            $sql="SELECT * from request WHERE userID='$ID' AND requestStatus = 'Cancelled' ORDER BY petID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -559,7 +560,7 @@ if($query->rowCount()>0)
             <div class="col-nd-4">
               <div class="card" style="border-radius:10px;border-width:2px;">                 
                   <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                  <h3>Adoption Request</h3>
+                  <h3>Cancelled Request</h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <li><h3 hidden class="card-title"><?php echo ($result->requestID);?></h3></li>
                       <?php $user_id = $result->userID;
@@ -589,7 +590,7 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Name: <?php echo ( $petid->petName);?>&#13;&#10;Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Name: <?php echo ( $petid->petName);?>&#13;&#10;Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
 
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
@@ -597,7 +598,6 @@ if($query->rowCount()>0)
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                             <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">View</button>
-                            <button type="button" class="btn btn-round btn-danger cancelbtn"class="close" data-dismiss="modal" style="width:150px;height:37px;">Cancel Request</button>
                       </div>
                       </div>
                       </ul>
@@ -613,7 +613,7 @@ if($query->rowCount()>0)
           echo "You don't have any adoption requests that should be displayed.";
           }
             ?>
-         <!-- //View My Request Code -->
+         <!-- //View Cancelled Request Code -->
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
                       <div class="x_content">
@@ -634,103 +634,6 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
-
-        <?php
-date_default_timezone_set("Asia/Manila");
-$date = date('m/d/Y h:i A', time());
-?>
-
-<?php
-if(isset($_POST['CancelRequest']))
-{
-  $requestID=($_POST['requestID']);
-  $petID=($_POST['petID']);
-  $masterID=($_POST['masterID']);
-  $Reason=($_POST['Reason']);
-
-  $sql="update request set
-  cancellationDate='$date', requestStatus='Cancelled', cancellationReason=:Reason
-  where requestID=:requestID";
-  $query=$dbh->prepare($sql); 
-  $query->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-  $query->bindParam(':Reason',$Reason,PDO::PARAM_STR); 
-  $query->execute();
-
-  $sql1="update postpet set
-  petStatus='Available'
-  where petID=:petID";
-  $query1=$dbh->prepare($sql1); 
-  $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-  $query1->execute();
-
-  $sql3="INSERT INTO notification(activityID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Cancelled Adoption Request',:masterID,'$ID',:Reason,'$date','Unread')";
-  $query3=$dbh->prepare($sql3);
-  $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-  $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
-  $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
-  $query3->execute();
-
-
-  echo '<script>alert("Your Request Cancelled Successfully!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-CancelledRequest.php'</script>";
-}
-?>
-
-<!-- Modal Cancel My Request -->
-<div class="modal fade" id="CancelRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Cancel Request</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-          function cleartext() {
-          document.getElementById("Reason").value="";
-          document.getElementById('cancel').disabled = true;
-            }
-        </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to cancel your request?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="request_id" name="requestID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <textarea id="Reason" name="Reason" required = "required" class="form-control" id="success" placeholder="Write a reason..." style="height:100px;resize: none;font-size:16px;" onkeyup="request()"></textarea>
-				</div><br>
-        <script>
-          function request() {
-          if(document.getElementById("Reason").value==="") { 
-                    document.getElementById('cancel').disabled = true; 
-                } else { 
-                    document.getElementById('cancel').disabled = false;
-                }
-            }
-        </script>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="CancelRequest" id="cancel" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Cancel My Request -->
 
 <script>
 <?php

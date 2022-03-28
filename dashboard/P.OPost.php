@@ -250,15 +250,15 @@ if($query->rowCount()>0)
               <div class="menu_section">
                     <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet Adoption</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.OPost.php">Pet Adoption</a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Short-term Care</a>
+                    <li><a href="#">Short-term Care</a>
                     </li>
 
                     <li>
@@ -317,18 +317,16 @@ if($query->rowCount()>0)
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM adoptionrequest WHERE masterID='$ID' ");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' ");
                   $query->execute();
 
                   $request=$query->fetchColumn();
 
                   ?>
-                  
                   <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;">
-                    
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false" >
+                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-bell"></i>
-                      <span class="badge bg-green" id="count" value=""><?php echo ($request);?></span>
+                      <span class="badge bg-green" id="count"><?php echo ($request);?></span>
                     </a>
                     <script type="text/javascript">
                     var number = <?php echo ($request);?>;
@@ -339,7 +337,7 @@ if($query->rowCount()>0)
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       <li class="nav-item">
                       <?php
-                        $sql="SELECT * from adoptionrequest WHERE masterID='$ID' ORDER BY requestID DESC";
+                        $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -363,14 +361,14 @@ if($query->rowCount()>0)
                               ?>
                            
                         <a class ="dropdown-item">
-                          <span><b>Adoption Request</b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
-                            <span class="time"><?php echo ($result->requestDate);?></span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
                           </span>
                           <span class="message">
-                          <?php echo ($result->requestMessage);?>
+                          <?php echo ($result->notificationDescription);?>
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
@@ -379,7 +377,7 @@ if($query->rowCount()>0)
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <a>See All Alerts</a>
+                            <a href="http://localhost/developgetpet/dashboard/P.O-Requestnotification.php">See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -620,23 +618,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         </div>
                                       </div>
 
-                                        <div class="field item form-group">
+                                      <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="ages" id="extra7" class="form-control" name="Age" placeholder="Pet Age" required="required" onkeypress="return isNumber(event)"/>
+                                                <input type="text" id="petcolor" class="form-control" name="Age" placeholder="Pet Age" required="required"/>
                                             </div>
                                         </div>
-
-                                        <script>
-                                          function isNumber(evt) {
-                                              evt = (evt) ? evt : window.event;
-                                              var charCode = (evt.which) ? evt.which : evt.keyCode;
-                                              if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                                                  return false;
-                                              }
-                                              return true;
-                                          }
-                                        </script>
 
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
@@ -648,7 +635,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petweight" id="extra7" class="form-control" name="Weight" placeholder="Pet Weight" required="required" onkeypress="return isNumber(event)"/>
+                                                <input type="text" id="petweight" class="form-control" name="Weight" placeholder="Pet Weight" required="required"/>
                                             </div>
                                         </div>
 
@@ -839,6 +826,25 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="../vendors/validator/validator.js"></script>
 
 	<!-- Javascript functions	-->
+	<script>
+		function hideshow(){
+			var password = document.getElementById("password1");
+			var slash = document.getElementById("slash");
+			var eye = document.getElementById("eye");
+			
+			if(password.type === 'password'){
+				password.type = "text";
+				slash.style.display = "block";
+				eye.style.display = "none";
+			}
+			else{
+				password.type = "password";
+				slash.style.display = "none";
+				eye.style.display = "block";
+			}
+
+		}
+	</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
