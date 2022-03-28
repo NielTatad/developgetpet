@@ -193,7 +193,7 @@ if(isset($_POST['login']))
 					    </div>
               
               <div class="d-flex mb-5 align-items-center" >
-              Show password:<input type="checkbox" onclick="myfunction()" value="Show password">
+              <input type="checkbox" onclick="myfunction()" value="Show password">Show password
               
               <div class="control__indicator"></div>
               <!--</label>
@@ -201,7 +201,16 @@ if(isset($_POST['login']))
               </div>
   
               <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;">
-              <h4><p style="text-align:center;"><span class="ml-auto"><a href="http://localhost/developgetpet/login-page/selectrole.php" class="forgot-pass">Don't have an account yet?Click here to register!</a></span></p><h/4>
+              <br>
+              <div class="w-full text-center p-t-55">
+                <span class="txt2" style ="font-size: 12px;">
+                Not a member?
+                </span>
+
+                <a href="http://localhost/developgetpet/login-page/selectrole.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
+                Sign up now!
+                </a>
+					    </div>
             </form>
           </div>
         </div>
