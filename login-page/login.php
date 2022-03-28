@@ -21,7 +21,7 @@ if(isset($_POST['login']))
 		    $_SESSION['adID'] = $results['adID'];
        
         echo '<script>alert("Login Successfully!")</script>';
-        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/SuperAdmin-Dashboard.php'</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Dashboard.php'</script>";
 
 
     }
@@ -135,9 +135,6 @@ if(isset($_POST['login']))
 <!doctype html>
 <html lang="en">
   <head>
-  <script language="javascript" type="text/javascript">
-  window.history.forward();
-  </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -196,24 +193,15 @@ if(isset($_POST['login']))
 					    </div>
               
               <div class="d-flex mb-5 align-items-center" >
-              <input type="checkbox" onclick="myfunction()" value="Show password" >Show password
+              Show password:<input type="checkbox" onclick="myfunction()" value="Show password">
               
               <div class="control__indicator"></div>
               <!--</label>
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>--> 
               </div>
   
-              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;"><br>
-
-                <div class="w-full text-center p-t-55">
-                <span class="txt2" style ="font-size: 12px;">
-                Not a member?
-                </span>
-
-                <a href="http://localhost/developgetpet/login-page/selectrole.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
-                Sign up now!
-                </a>
-					    </div>
+              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;">
+              <h4><p style="text-align:center;"><span class="ml-auto"><a href="http://localhost/developgetpet/login-page/selectrole.php" class="forgot-pass">Don't have an account yet?Click here to register!</a></span></p><h/4>
             </form>
           </div>
         </div>

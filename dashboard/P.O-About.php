@@ -106,23 +106,7 @@ $query3->bindParam(':Password',$assword,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Account Updated Successfully!")</script>';
-$ID=$_SESSION['ownerID'];
-$sql = "SELECT * from petowner where ownerID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-    ?>
-                              
-<p></p>
-<?php
-?>
-<?php }}
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Profile.php'</script>";
 }
 }
 ?>
@@ -165,29 +149,44 @@ $query3->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Profile Picture Updated Successfully!")</script>';
-$ID=$_SESSION['ownerID'];
-$sql = "SELECT * from petowner where ownerID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-    ?>
-                              
-<p></p>
-<?php
-?>
-<?php }}
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Profile.php'</script>";
 }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <style>
+  .Img-icons i {
+            position: absolute;
+        }
+          
+        .Img-icons {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+          
+        .camera {
+            padding: 194px;
+            min-width: 300px;
+            width: 44%;
+        }
+        
+        .circle {
+            padding: 180px;
+            min-width: 300px;
+            color:white;
+            border-color: #F5F5F5;
+            color: #F5F5F5;
+            width: 44%;
+        }
+          
+        .Img-field {
+            width: 100%;
+            padding: 100px;
+            text-align: center;
+        }
+  </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -221,7 +220,7 @@ if($query->rowCount()>0)
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+               <a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -252,7 +251,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Short-term Care</a>
+                    <li><a href="#">Short-term Care</a>
                     </li>
 
                     <li>
@@ -281,7 +280,7 @@ if($query->rowCount()>0)
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php">
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
             </div>
@@ -289,8 +288,8 @@ if($query->rowCount()>0)
           </div>
         </div>
 
-       <!-- top navigation -->
-       <div class="top_nav">
+      <!-- top navigation -->
+      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -312,18 +311,16 @@ if($query->rowCount()>0)
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM adoptionrequest WHERE masterID='$ID' ");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
                   $query->execute();
 
                   $request=$query->fetchColumn();
 
                   ?>
-                  
                   <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;">
-                    
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false" >
+                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-bell"></i>
-                      <span class="badge bg-green" id="count" value=""><?php echo ($request);?></span>
+                      <span class="badge bg-green" id="count"><?php echo ($request);?></span>
                     </a>
                     <script type="text/javascript">
                     var number = <?php echo ($request);?>;
@@ -334,7 +331,7 @@ if($query->rowCount()>0)
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       <li class="nav-item">
                       <?php
-                        $sql="SELECT * from adoptionrequest WHERE masterID='$ID' ORDER BY requestID DESC";
+                        $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -358,14 +355,14 @@ if($query->rowCount()>0)
                               ?>
                            
                         <a class ="dropdown-item">
-                          <span><b>Adoption Request</b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
-                            <span class="time"><?php echo ($result->requestDate);?></span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
                           </span>
                           <span class="message">
-                          <?php echo ($result->requestMessage);?>
+                          <?php echo ($result->notificationDescription);?>
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
@@ -374,7 +371,7 @@ if($query->rowCount()>0)
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
+                            <a href="http://localhost/developgetpet/dashboard/P.O-Requestnotification.php">See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -457,9 +454,13 @@ if($query->rowCount()>0)
                             <div class="card">
                               <div class="card-body">
 
-                                  <button class="rounded-circle img-responsive" style="border:0px solid white;">
-                                  <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:250px;width:250px;" data-toggle="modal" href="#ProfilePicture">
-                                  </button><br>                            
+                                  <div style="max-width:400px;margin:auto">
+                                        <div class="Img-icons">
+                                        <i class="fa fa-circle circle fa-4x" data-toggle="modal" href="#ProfilePicture"></i>
+                                        <i class="fa fa-camera camera fa-2x" data-toggle="modal" href="#ProfilePicture"></i>
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" id="Modalprofile" alt="Post Images" style="height:250px;width:250px;border-style: solid;border-color: #F5F5F5;border-width: 6px;">
+                                        </div>
+                                  </div>                            
                                   <h2 class="card-title"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
                                   
                           </div>
@@ -475,11 +476,70 @@ if($query->rowCount()>0)
                       <li class="nav-item">
                         <a class="nav-link active" id="about-tab" data-toggle="tab" href="#post1" role="tab" role="tab" aria-controls="about" aria-selected="false">About</a>
                       </li>
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Cancelled' AND requestStatus != 'Approved'");
+                      $query->execute();
+
+                      $myrequest=$query->fetchColumn();
+
+                      ?>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?>
+                        </a>
+                        <script type="text/javascript">
+                        var myrequest = <?php echo ($myrequest);?>;
+                        if (myrequest === 0){
+                          document.getElementById("myrequest").style.display = "none";
+                        }
+                        </script>
                       </li>
+                      <?php
+                      $query1=$dbh->prepare("SELECT COUNT(masterID) FROM request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved'");
+                      $query1->execute();
+
+                      $user_request=$query1->fetchColumn();
+
+                      ?>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php" role="tab" aria-controls="user_request" aria-selected="false">User Request</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php" role="tab" aria-controls="user_request" aria-selected="false">User Request <span class="badge bg-green" id="user_request" value=""><?php echo ($user_request);?></a>
+                        <script type="text/javascript">
+                        var user_request = <?php echo ($user_request);?>;
+                        if (user_request === 0){
+                          document.getElementById("user_request").style.display = "none";
+                        }
+                        </script>
+                      </li>
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID'");
+                      $query->execute();
+
+                      $adoption=$query->fetchColumn();
+
+                      ?>
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-History.php" role="tab" aria-controls="user_request" aria-selected="false">History <span class="badge bg-green" id="adoption" value=""><?php echo ($adoption);?></span></a>
+                        <script type="text/javascript">
+                        var adoption = <?php echo ($adoption);?>;
+                        if (adoption === 0){
+                          document.getElementById("adoption").style.display = "none";
+                        }
+                        </script>
+                      </li>
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus = 'Cancelled'");
+                      $query->execute();
+
+                      $cancelled=$query->fetchColumn();
+
+                      ?>
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-CancelledRequest.php" role="tab" aria-controls="user_request" aria-selected="false">Cancelled <span class="badge bg-green" id="cancelled" value=""><?php echo ($cancelled);?></span></a>
+                        <script type="text/javascript">
+                        var cancelled = <?php echo ($cancelled);?>;
+                        if (cancelled === 0){
+                          document.getElementById("cancelled").style.display = "none";
+                        }
+                        </script>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -600,12 +660,19 @@ if($query->rowCount()>0)
         <div style="text-align: center" class="wrap-input100 validate-input">
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
+        <script>
+        document.getElementById("Picture").onchange = function() {
+            if(this.value) {
+                document.getElementById("profile").disabled = false; 
+            }  
+        }
+        </script>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div><br>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
+              <button name="profile" id="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
               <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
          </div>
         </div>
