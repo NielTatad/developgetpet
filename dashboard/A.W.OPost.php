@@ -256,10 +256,6 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Short-term Care</a>
-                    </li>
-
-                    <li>
                     <li><a href="#">Donation</a>
                     </li>
 
