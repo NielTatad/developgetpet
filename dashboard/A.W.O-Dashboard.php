@@ -23,7 +23,7 @@ if($query->rowCount()>0)
 
 if(isset($_POST['update']))
 {
-$OrganizationName=($_POST['Orgname']);
+$OrganizationName=($_POST['Orgame']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
@@ -381,6 +381,17 @@ if($query->rowCount()>0)
               </div>
             </div>
 
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel" style="border-radius:50px;">
+                  
+                  <a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" class="form-control" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
+                    <div class="clearfix"></div>
+
+                </div>
+              </div>
+            </div>  
+
             <div class="clearfix"></div>
 
             <div class="row">
@@ -572,6 +583,229 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
+  <!-- Modalcreate -->
+  <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Create Post here</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                      
+                      <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#tips1" role="tab" aria-controls="home" aria-selected="true">Post Tips</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#advice1" role="tab" aria-controls="profile" aria-selected="false">Post Advice</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#articles1" role="tab" aria-controls="contact" aria-selected="false">Post Articles</a>
+                      </li>
+                    </ul>
+
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
+                      <label>Create Tips</label>
+
+                      <!-- Post Pet Code -->
+<?php 
+$ID=$_SESSION['orgID'];
+
+$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Posttips']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Title=($_POST['Title']);
+$Content=($_POST['Content']);
+
+$sql="INSERT INTO blog(userID,Name,userEmail,blogTitle,blogContent,blogStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Tips','$date')";
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Title',$Title,PDO::PARAM_STR);
+$query->bindParam(':Content',$Content,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Posted Successfully!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+
+}
+?>
+<!-- //Post Pet Code -->
+
+                      <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+
+                      <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" placeholder="Tips Titles...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                    </div>
+                    </div>
+                      <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
+                    </div>
+                    </div>
+                                         
+                                         <span class="section"></span>
+                                         <div class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
+                                             </div>
+ 
+                                         </div>
+                                         <div class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
+                                             </div>
+ 
+                                         </div>
+                                         <div class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
+                                         </div>
+                                        
+                                                 <div class="col-md-6 offset-md-3">
+                                                     <button name ="Posttips" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                     <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                 </div>                                                   
+                                     </form>
+                      </div>
+                      <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
+                      <label>Create an Advice</label>
+<?php 
+$ID=$_SESSION['orgID'];
+
+$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Postadvice']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Title=($_POST['Title']);
+$Content=($_POST['Content']);
+
+$sql="INSERT INTO blog(userID,Name,userEmail,blogTitle,blogContent,blogStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Advice','$date')";
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Title',$Title,PDO::PARAM_STR);
+$query->bindParam(':Content',$Content,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Posted Successfully!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+
+}
+?>
+<!-- //Post Pet Code -->
+
+                      <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+
+                      <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" placeholder="Advice Titles...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                    </div>
+                    </div>
+                      <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
+                    </div>
+                    </div>
+                                         
+                                        <span class="section"></span>
+                                         <div class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
+                                             </div>
+ 
+                                         </div>
+                                         <div class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
+                                             </div>
+ 
+                                         </div>
+                                         <div class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
+                                         </div>                   
+ 
+                                         <div class="col-md-6 offset-md-3">
+                                                     <button name ="Postadvice" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                     <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                         </div>   
+                                     </form>
+                      </div>
+                      <div class="tab-pane fade" id="articles1" role="tabpanel" aria-labelledby="articles-tab">
+                      <label>Create Articles</label>
+                      
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  <!-- //Modalcreate -->    
+
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
@@ -595,5 +829,27 @@ if($query->rowCount()>0)
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+    <script>
+     let previousLength = 0;
+
+      const handleInput = (event) => {
+        const bullet = "\u2022";
+        const newLength = event.target.value.length;
+        const characterCode = event.target.value.substr(-1).charCodeAt(0);
+
+        if (newLength > previousLength) {
+          if (characterCode === 10) {
+            event.target.value = `${event.target.value}${bullet} `;
+          } else if (newLength === 1) {
+            event.target.value = `${bullet} ${event.target.value}`;
+          }
+        }
+        
+        previousLength = newLength;
+      }
+    </script>      
+
+
   </body>
 </html>

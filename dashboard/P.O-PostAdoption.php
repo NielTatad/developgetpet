@@ -460,7 +460,7 @@ $tmp_dir = $_FILES["Picture"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-$sql="INSERT INTO postpet(userID,userName,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Adoption')";
+$sql="INSERT INTO postpet(userID,Name,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Adoption')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
