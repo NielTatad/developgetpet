@@ -259,7 +259,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Tips, Advice & Articles</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-T.A.A.php">Tips, Advice & Articles</a>
                     </li>
 
                   
