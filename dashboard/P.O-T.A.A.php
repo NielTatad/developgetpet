@@ -1108,9 +1108,5 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 
-  
-
-     
-
 </body>
 </html>

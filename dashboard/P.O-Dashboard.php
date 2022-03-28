@@ -684,7 +684,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!-- //Post Pet Code -->
 
                       <form class="" action="" method="post" novalidate enctype="multipart/form-data">
-
+                      
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
@@ -694,9 +694,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
+                                                 <textarea id="description" contentEditable="true" required="required" class="form-control" id="Content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
+                                                 
                     </div>
                     </div>
+                    
                                          
                                          <span class="section"></span>
                                          <div class="field item form-group">
@@ -785,8 +787,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                       <div class="field item form-group">
                                              
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
+                                             <div id="display" class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
+                    
+                      </div>                             
                     </div>
                     </div>
                                          
@@ -809,7 +813,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          </div>                    
  
                                          <div class="col-md-6 offset-md-3">
-                                                     <button name ="Posttips" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                     <button name ="Postadvice" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                      <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                          </div>   
                                      </form>
@@ -915,6 +919,26 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $("#datetimepicker7").on("dp.change", function(e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
+</script>
+
+<script>
+     let previousLength = 0;
+
+      const handleInput = (event) => {
+        const bullet = "\u2022";
+        const newLength = event.target.value.length;
+        const characterCode = event.target.value.substr(-1).charCodeAt(0);
+
+        if (newLength > previousLength) {
+          if (characterCode === 10) {
+            event.target.value = `${event.target.value}${bullet} `;
+          } else if (newLength === 1) {
+            event.target.value = `${bullet} ${event.target.value}`;
+          }
+        }
+        
+        previousLength = newLength;
+      }
 </script>
 
   </body>

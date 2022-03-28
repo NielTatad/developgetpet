@@ -46,10 +46,11 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 		<div class="container">
 			<!-- header -->
 			<div class="header">
-				<div class="logo" style="width:300px;height:200px;">
+				<br>
+				<div class="logo" style="width:230px;height:200px;">
 					<h1>
-						<a href="http://localhost/developgetpet/Dashboard.php">
-							<img class="logo-img center-block" src="images/Logo/Logo.png" alt="" style="width:250px;height:250px;margin-left:-60px;margin-top:-50px;" />
+						<a href="http://localhost/developgetpet/web/Dashboard.php">
+							<img class="logo-img center-block" src="images/Logo/Logo.png" alt="" style="width:250px;height:250px;margin-left:-50px;margin-top:-50px;" />
 						</a>
 					</h1>
 				</div>
@@ -145,13 +146,13 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 							<a href="#home" class="scroll">Home</a>
 						</li>
 						<li style = "width:140px;">
-							<a href="#about" class="scroll">About Us</a>
-						</li>
-						<li style = "width:140px;">
 							<a href="#services" class="scroll">Services</a>
 						</li>
 						<li style = "width:140px;">
 							<a href="#team" class="scroll">Our Team</a>
+						</li>
+						<li style = "width:140px;">
+							<a href="#about" class="scroll">About Us</a>
 						</li>
 						<!--<li>
 							<a href="#gallery" class="scroll">Gallery</a>
@@ -161,9 +162,7 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 						</li>	
 						<li style = "margin-right:10px;">
 						   <form method="post">
-						    <button  class="login100-form-btn" style="border-style:solid;border-color:white;background-color:#00cdc1;width:130px;height:45px;" name="login">
-							  <div style="color:White;margin-top:-10px"><a style="color:White;text-align:center;"> Login </a></div>
-						    </button>
+						   <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="border-style:solid;border-color:white;background-color:#00cdc1;width:130px;height:45px;border-radius:5px;">
 							</form>
 							<?php 
 
@@ -181,9 +180,7 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
                             </script>
 	
 							<form method="post">
-						    <button  class="login100-form-btn" style="border-style:solid;border-color:white;background-color:#00cdc1;width:130px;height:45px;" name="signup">
-							<div style="color:White;margin-top:-10px"><a style="color:White"> Signup </a></div>
-						    </button>
+							<input type="submit" name="signup" value="Sign Up" class="btn btn-block btn-primary" style="border-style:solid;border-color:white;background-color:#00cdc1;width:130px;height:45px;border-radius:5px;">
 							</form>
 							<?php 
 
