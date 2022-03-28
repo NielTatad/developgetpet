@@ -66,7 +66,7 @@ if(isset($_POST['AnimalWelfareOrganization']))
           <br>
           <br>
             <form class="login100-form validate-form" method="post">
-            <b style="font-size:14px;">&nbspSELECT ROLE</b>
+            <b style="text-align:center;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPlease Select Role Type</b>
             <br>
             <br>
             <div style="text-align: center">
