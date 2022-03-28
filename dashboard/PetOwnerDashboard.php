@@ -106,7 +106,23 @@ $query3->bindParam(':Password',$assword,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Account Updated Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Profile.php'</script>";
+$ID=$_SESSION['ownerID'];
+$sql = "SELECT * from petowner where ownerID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+    ?>
+                              
+<p></p>
+<?php
+?>
+<?php }}
 }
 }
 ?>
@@ -149,7 +165,23 @@ $query3->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Profile Picture Updated Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Dashboard.php'</script>";
+$ID=$_SESSION['ownerID'];
+$sql = "SELECT * from petowner where ownerID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+    ?>
+                              
+<p></p>
+<?php
+?>
+<?php }}
 }
 }
 ?>
@@ -181,7 +213,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+              <a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -204,7 +236,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
@@ -241,7 +273,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
             </div>
@@ -272,7 +304,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' ");
                   $query->execute();
 
                   $request=$query->fetchColumn();
@@ -397,10 +429,9 @@ if($query->rowCount()>0)
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-                   
-                  <!-- New Post For Adoption Code -->
+                      
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND userID != '$ID' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+                        $sql="SELECT * from postforadoption WHERE availabilityStatus='Available' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -418,7 +449,7 @@ if($query->rowCount()>0)
                                             <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
                                             <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
                                             <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petStatus);?></h2></h2>                                
+                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->availabilityStatus);?></h2></h2>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 
@@ -448,8 +479,6 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>
-                        <!-- New Post For Adoption Code -->
-                        
                         </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><h2 style="text-align:center;">
                         <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                   </div>

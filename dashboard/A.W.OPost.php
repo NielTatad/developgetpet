@@ -248,11 +248,15 @@ if($query->rowCount()>0)
                     <div class="menu_section">
                     <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php">Pet Adoption</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.OPost.php">Pet Adoption</a>
+                    </li>
+
+                    <li>
+                    <li><a href="#">Short-term Care</a>
                     </li>
 
                     <li>
@@ -286,8 +290,8 @@ if($query->rowCount()>0)
 				</div>
 			</div>
 
-	 <!-- top navigation -->
-   <div class="top_nav">
+	   <!-- top navigation -->
+     <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -296,7 +300,7 @@ if($query->rowCount()>0)
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> style="border:1px solid #E5E4E2" alt=""><?php echo ($result->orgName);?>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt=""><?php echo ($result->orgName);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/A.W.O-Profile.php" id="Profile"> Profile</a>
@@ -309,18 +313,16 @@ if($query->rowCount()>0)
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM adoptionrequest WHERE masterID='$ID' ");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' ");
                   $query->execute();
 
                   $request=$query->fetchColumn();
 
                   ?>
-                  
                   <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;">
-                    
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false" >
+                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-bell"></i>
-                      <span class="badge bg-green" id="count" value=""><?php echo ($request);?></span>
+                      <span class="badge bg-green" id="count"><?php echo ($request);?></span>
                     </a>
                     <script type="text/javascript">
                     var number = <?php echo ($request);?>;
@@ -331,7 +333,7 @@ if($query->rowCount()>0)
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       <li class="nav-item">
                       <?php
-                        $sql="SELECT * from adoptionrequest WHERE masterID='$ID' ORDER BY requestID DESC";
+                        $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -355,14 +357,14 @@ if($query->rowCount()>0)
                               ?>
                            
                         <a class ="dropdown-item">
-                          <span><b>Adoption Request</b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
-                            <span class="time"><?php echo ($result->requestDate);?></span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
                           </span>
                           <span class="message">
-                          <?php echo ($result->requestMessage);?>
+                          <?php echo ($result->notificationDescription);?>
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>

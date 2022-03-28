@@ -144,12 +144,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 							<a style="color:White"> Register </a>
 						</button>
 					</div>
-          <br>
-          <div class="w-full text-center p-t-55">
-          <a href="http://localhost/developgetpet/login-page/login.php" class="txt2 bo1" style="color:blue; font-size:12px;">
-          I am already a member
-          </a>    
-          </div>
+          <h4><p style="text-align:center;"><span class="ml-auto"><a href="http://localhost/developgetpet/login-page/login.php" class="forgot-pass">I am already a member</a></span></p></h4>
 	        </form>
               
       </div>
