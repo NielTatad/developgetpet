@@ -419,9 +419,8 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-            <!-- Post Button 
+            <!-- Post Button -->
             <a href="http://localhost/developgetpet/dashboard/P.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
-             -->
 
             <!-- /page content -->
 
@@ -431,7 +430,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Available Pet For Adoption</h2>
+                    <h2>Available Pet For Short-Term Care</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -440,146 +439,9 @@ if($query->rowCount()>0)
                   </div>
                   <div class="x_content" style="text-align:center;">
                                   
-                  <!-- View Post for Tips Advice & Articles Code -->
-                  <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="tips-tab" data-toggle="tab" href="#tips1" role="tab" aria-controls="Tips" aria-selected="true">Tips Tab</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="advice-tab" data-toggle="tab" href="#advice1" role="tab" aria-controls="advice" aria-selected="false">Advice Tab</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles1" role="tab" aria-controls="articles" aria-selected="false">Articles Tab</a>
-                      </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
-                      
-                      <?php
-                        $sql="SELECT * from blog WHERE blogStatus='Tips' ORDER BY blogID DESC";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-nd-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
-                                        
-                                            <div class="field item form-group">  
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <div class="field item form-group">                                        
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
-
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
-                                    </div>
-                                  </div><br>
-                                </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
-
-                      </div>
-                      <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
-                      <?php
-                        $sql="SELECT * from blog WHERE blogStatus='Advice' ORDER BY blogID DESC";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-nd-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
-                                        
-                                            <div class="field item form-group">  
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <div class="field item form-group">                                        
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
-
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
-                                    </div>
-                                  </div><br>
-                                </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
-                      </div>
-                      <div class="tab-pane fade" id="articles1" role="tabpanel" aria-labelledby="articles-tab">
-                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk 
-                      </div>
-                    </div>
-                  
-                     <!-- //View Post for Tips Advice & Articles Code -->                                        
+                  <!-- View Pet Post for Short-term Care Code -->
+                    Code for Short-term Care
+                     <!-- //View Pet Post for Short-term Care Code -->                                        
                                        
                   </div>
                 </div>
