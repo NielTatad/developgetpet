@@ -1,8 +1,8 @@
 <?php 
 session_start();
 include('C:\xampp\htdocs\developgetpet\includes\config.php');
-$ID=$_SESSION['orgID'];
-$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$ID=$_SESSION['adopterID'];
+$sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->execute();
@@ -12,18 +12,16 @@ if($query->rowCount()>0)
 {
   foreach($results as $result)
   {
-    ?>
-                              
+     ?>
 <p></p>
 <?php
 ?>
 <?php }} ?>
-
 <?php
-
 if(isset($_POST['update']))
 {
-$OrganizationName=($_POST['Orgname']);
+$Firstname=($_POST['Firstname']);
+$Lastname=($_POST['Lastname']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
@@ -31,18 +29,19 @@ $Username=($_POST['Username']);
 $Password=($_POST['Password']);
 
 $sql="update register set 
-orgName=:Orgname,
+userFirstname=:Firstname,
+userLastname=:Lastname,
 contactNo=:ContactNo,
 Address=:Address,
 Email=:Email,
 Username=:Username,
 Password=:Password 
-where 
-userID=:ID";
+where userID=:ID";
 
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);  
-$query->bindParam(':Orgname',$OrganizationName,PDO::PARAM_STR);
+$query->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
+$query->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
 $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -50,26 +49,27 @@ $query->bindParam(':Username',$Username,PDO::PARAM_STR);
 $query->bindParam(':Password',$Password,PDO::PARAM_STR);
 $query->execute();
 
-$OrganizationName=($_POST['Orgname']);
+$Firstname=($_POST['Firstname']);
+$Lastname=($_POST['Lastname']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
 $Username=($_POST['Username']);
 $Password=($_POST['Password']);
 
-$sql1="update animalwelfareorganization set
-orgName=:Orgname,
-orgContactNo=:ContactNo,
-orgAddress=:Address,
-orgEmail=:Email,
-orgUsername=:Username,
-orgPassword=:Password 
-where 
-orgID=:ID";
-
+$sql1="update petadopter set
+adopterFirstname=:Firstname,
+adopterLastname=:Lastname,
+adopterContactNo=:ContactNo,
+adopterAddress=:Address,
+adopterEmail=:Email,
+adopterUsername=:Username,
+adopterPassword=:Password 
+where adopterID=:ID";
 $query1=$dbh->prepare($sql1); 
 $query1->bindParam(':ID',$ID,PDO::PARAM_STR); 
-$query1->bindParam(':Orgname',$OrganizationName,PDO::PARAM_STR);
+$query1->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
+$query1->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
 $query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query1->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query1->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -77,7 +77,8 @@ $query1->bindParam(':Username',$Username,PDO::PARAM_STR);
 $query1->bindParam(':Password',$Password,PDO::PARAM_STR);
 $query1->execute();
 
-$OrganizationName=($_POST['Orgname']);
+$Firstname=($_POST['Firstname']);
+$Lastname=($_POST['Lastname']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
@@ -85,26 +86,27 @@ $Username=($_POST['Username']);
 $Password=($_POST['Password']);
 
 $sql3="update login set 
-orgName=:Orgname,
+userFirstname=:Firstname,
+userLastname=:Lastname,
 contactNo=:ContactNo,
 Address=:Address,
 Email=:Email,
 Username=:Username,
-Password=:Password
-where userID=:ID";
+Password=:Password where userID=:ID";
 
 $query3=$dbh->prepare($sql3); 
 $query3->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query3->bindParam(':Orgname',$OrganizationName,PDO::PARAM_STR);
+$query3->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
+$query3->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
 $query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query3->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query3->bindParam(':Email',$Email,PDO::PARAM_STR);
 $query3->bindParam(':Username',$Username,PDO::PARAM_STR);
-$query3->bindParam(':Password',$Password,PDO::PARAM_STR);
+$query3->bindParam(':Password',$assword,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Account Updated Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Profile.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Profile.php'</script>";
 }
 }
 ?>
@@ -126,9 +128,9 @@ $query->execute();
 
 $Picture=($_POST['Picture']);
 
-$sql1="update animalwelfareorganization set
-orgLogo=:Picture
-where orgID=:ID";
+$sql1="update petadopter set
+adopterPicture=:Picture
+where adopterID=:ID";
 $query1=$dbh->prepare($sql1); 
 $query1->bindParam(':ID',$ID,PDO::PARAM_STR); 
 $query1->bindParam(':Picture',$Picture,PDO::PARAM_STR);
@@ -147,7 +149,7 @@ $query3->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Profile Picture Updated Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Profile.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Profile.php'</script>";
 }
 }
 ?>
@@ -191,7 +193,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+              <a href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -199,11 +201,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 					<!-- menu profile quick info -->
                     <div class="profile clearfix">
                     <!--<div class="profile_pic">
-                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
                     </div>
                     <div class="profile_info">
                     <span>Welcome,</span>
-                    <h2><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
+                    <h2><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
                     </div>-->
                     <div class="clearfix"></div>
                     </div>
@@ -211,16 +213,20 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 					<br />
 
-				 <!-- sidebar menu -->
-         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					<!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php"><i></i> Dashboard </a>
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php">Pet Adoption</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php">Pet Adoption</a>
+                    </li>
+
+                    <li>
+                    <li><a href="#">Short-term Care</a>
                     </li>
 
                     <li>
@@ -232,23 +238,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Tips, Advice & Articles</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-T.A.A.php">Tips, Advice & Articles</a>
                     </li>
-                 
+
+                  
               </div>
 
             </div>
             <!-- /sidebar menu -->
 
-				<!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
+					<!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
               <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php">
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php">
               <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
             </div>
@@ -256,8 +263,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				</div>
 			</div>
 
-	   <!-- top navigation -->
-     <div class="top_nav">
+			  <!-- top navigation -->
+        <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -266,10 +273,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt=""><?php echo ($result->orgName);?>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt=""><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/A.W.O-Profile.php" id="Profile"> Profile</a>
+                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/P.A-Profile.php" id="Profile"> Profile</a>
                       <!--<a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
@@ -336,7 +343,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                          <?php $cnt1=$cnt1+1;}} ?>
                         <?php $cnt=$cnt+1;}} ?>
                       </li>
-                      <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
+                      <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
                             <a>See All Alerts</a>
@@ -351,9 +358,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
           </div>
         <!-- /top navigation -->
-
 <?php 
-$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->execute();
@@ -368,7 +374,6 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
-
 
 	  <!-- page content -->
     <div class="right_col" role="main">
@@ -391,17 +396,18 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-            <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/A.W.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+            <!-- Post Button 
+            <a href="http://localhost/developgetpet/dashboard/P.A-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+             -->
 
             <!-- /page content -->
             <div class="clearfix"></div>
 
 <div class="row">
   <div class="col-md-12 col-sm-12  ">
-    <div class="x_panel" style="border-radius:10px;border-width:2px;">
+    <div class="x_panel">
       <div class="x_title">
-        <h2>Available Pet For Adoption</h2>
+        <h2>Tips Advice & Articles</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -410,70 +416,71 @@ if($query->rowCount()>0)
       </div>
       <div class="x_content" style="text-align:center;">
       
-       <!-- View Pet Post for Adotion Code -->
-       <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC";
+       <!-- View Post for Tips Advice & Articles Code -->
+       <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="tips-tab" data-toggle="tab" href="#tips1" role="tab" aria-controls="Tips" aria-selected="true">Tips Tab</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="advice-tab" data-toggle="tab" href="#advice1" role="tab" aria-controls="advice" aria-selected="false">Advice Tab</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles1" role="tab" aria-controls="articles" aria-selected="false">Articles Tab</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
+                      
+                      <?php
+                        $sql="SELECT * from blog WHERE blogStatus='Tips' ORDER BY blogID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
                         $cnt=1;
                         if($query->rowCount()>0)
                         {
-                              foreach($results as $result)
-                            {
-                              ?>   
-                                    <div class="col-nd-4">
-                                        <div class="card" style="border-radius:10px;border-width:2px;">
+                          foreach($results as $result)
+                        {
+                           ?>
+                                  <div class="col-nd-4">
+                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
+                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                            
+                                            
+                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
                                         
-                                          <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;float:left;">
-                                              <ul style="list-style:none;margin-left:-50px;"><br>
-                                              <h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
-                                              <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
-                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
-                                              
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h3></ul>
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->userAddress);?></h3></ul>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->petStatus);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
-                                              <?php $user_id = $result->userID;
-
-                                              $sql1="SELECT * from register WHERE userID='$user_id'";
-                                              $query1=$dbh->prepare($sql1);
-                                              $query1->execute();
-                                              $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                              $cnt1=1;
-                                              if($query1->rowCount()>0)
-                                              {
-                                                foreach($userids as $userid)
-                                              {
-                                                ?>
-                                              
-                                              <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                              <?php $cnt1=$cnt1+1;}} ?>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
-                                              <li><label style=""><?php echo ($result->postDate);?></label><br></li>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
-                                              <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
-                                              </ul>
+                                            <div class="field item form-group">  
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
                                             </div>
-                                          </div>
-                                        </div>
-                                        <br>
-                                      <?php $cnt=$cnt+1;
+                                            </div>                                
+                                            <div class="field item form-group">                                        
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                            <?php $user_id = $result->userID;
+
+                                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                                            $query1=$dbh->prepare($sql1);
+                                            $query1->execute();
+                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt1=1;
+                                            if($query1->rowCount()>0)
+                                            {
+                                              foreach($userids as $userid)
+                                            {
+                                              ?>
+                                            
+                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <?php $cnt1=$cnt1+1;}} ?>
+                                            <label style=""><?php echo ($result->postDate);?></label><br>
+                                            
+                                    </div>
+                                  </div><br>
+                                </div>
+                              <?php $cnt=$cnt+1;
                             }
                         } 
                         else
@@ -481,7 +488,74 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>
-                     <!-- //View Pet Post for Adotion Code -->
+
+                      </div>
+                      <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
+                      <?php
+                        $sql="SELECT * from blog WHERE blogStatus='Advice' ORDER BY blogID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                                  <div class="col-nd-4">
+                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
+                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                            
+                                            
+                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                        
+                                            <div class="field item form-group">  
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <div class="field item form-group">                                        
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                            <?php $user_id = $result->userID;
+
+                                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                                            $query1=$dbh->prepare($sql1);
+                                            $query1->execute();
+                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt1=1;
+                                            if($query1->rowCount()>0)
+                                            {
+                                              foreach($userids as $userid)
+                                            {
+                                              ?>
+                                            
+                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <?php $cnt1=$cnt1+1;}} ?>
+                                            <label style=""><?php echo ($result->postDate);?></label><br>
+                                            
+                                    </div>
+                                  </div><br>
+                                </div>
+                              <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+                      </div>
+                      <div class="tab-pane fade" id="articles1" role="tabpanel" aria-labelledby="articles-tab">
+                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                            booth letterpress, commodo enim craft beer mlkshk 
+                      </div>
+                    </div>
+      
+                     <!-- //View Post for Tips Advice & Articles Code -->
           
       </div>
     </div>
@@ -493,8 +567,8 @@ if($query->rowCount()>0)
 
 <script>
 <?php 
-$ID=$_SESSION['orgID'];
-$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$ID=$_SESSION['adopterID'];
+$sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->execute();
@@ -525,13 +599,13 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
+					    <input type="hidden" name="adopterID" value="<?php echo ( $result->adopterID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center">
 						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
@@ -539,10 +613,10 @@ if($query->rowCount()>0)
 						 </button>
 				</div>
         <div style="text-align: center">
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgName);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgContactNo);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgAddress);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgEmail);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterContactNo);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterAddress);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterEmail);?></h6>
              <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
         </div><br>
       </form>
@@ -552,7 +626,7 @@ if($query->rowCount()>0)
 </div>
 	<!-- //ModalProfile -->
   
-  <!-- ModalSettings -->
+   <!-- ModalSettings -->
   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -566,16 +640,20 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
+					    <input type="hidden" name="ownerID" value="<?php echo ( $result->adopterID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgname" required="required" value="<?php echo ($result->orgName);?>" placeholder="Organization Name">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Firstname" required="required" value="<?php echo ($result->adopterFirstname);?>" placeholder="First Name">
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Lastname" required="required" value="<?php echo ($result->adopterLastname);?>" placeholder="Last Name">
+						<span class="focus-input100"></span>
 				</div><br>
         <div  style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->orgContactNo);?>" placeholder="Contact No.">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->adopterContactNo);?>" placeholder="Contact No.">
 						<script>
             
                         function isInputNumber(evt){
@@ -589,16 +667,16 @@ if($query->rowCount()>0)
                     </script>
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->orgAddress);?>" placeholder="Address">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->adopterAddress);?>" placeholder="Address">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->orgEmail);?>" placeholder="Email">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->adopterEmail);?>" placeholder="Email">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->orgUsername);?>" placeholder="Username">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->adopterUsername);?>" placeholder="Username">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->orgPassword);?>" placeholder="Password">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->adopterPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
 						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
@@ -612,7 +690,7 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-  <!-- Adoption Request Code -->
+ <!-- Adoption Request Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -627,7 +705,7 @@ if(isset($_POST['Adopt']))
   if($MasterID == $ID){
 
   echo '<script>alert("Opps! You cannot adopt your own post pet")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Adoption.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Adoption.php'</script>";
 
   }
   else{
@@ -682,7 +760,7 @@ if(isset($_POST['Adopt']))
   $query3->execute();
 
   echo '<script>alert("Just Wait for the Owner Accept Your Adoption Request!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Request.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Request.php'</script>";
 
   }
 
@@ -854,15 +932,15 @@ if(isset($_POST['Adopt']))
             }
         </script>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" name="UserID" value="<?php echo ($result->orgID);?>"  required = "required" class="form-control">
+					    <input hidden type="text" name="UserID" value="<?php echo ($result->adopterID);?>"  required = "required" class="form-control">
 
-              <input hidden readonly type="text" class="form-control" name="Name" value="<?php echo ($result->orgName);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="Name" value="<?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>" style="background-color:#fff;width:400px;" required="required"/>
 
-              <input hidden readonly type="text" class="form-control" name="Email" value="<?php echo ($result->orgEmail);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="Email" value="<?php echo ($result->adopterEmail);?>" style="background-color:#fff;width:400px;" required="required"/>
 
-              <input hidden readonly type="text" class="form-control" name="Address" value="<?php echo ($result->orgAddress);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="Address" value="<?php echo ($result->adopterAddress);?>" style="background-color:#fff;width:400px;" required="required"/>
 
-              <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->orgContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->adopterContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
 
         </div>
 

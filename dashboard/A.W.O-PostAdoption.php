@@ -232,7 +232,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="#">Tips, Advice & Articles</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Tips, Advice & Articles</a>
                     </li>
                  
               </div>
@@ -473,7 +473,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <div class="row">
 
                         <div class="col-md-12 col-sm-12  ">
-                        <div class="x_panel">
+                        <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
                         <h2>Post Pet For Adoption</h2>
                         <ul class="nav navbar-right panel_toolbox">

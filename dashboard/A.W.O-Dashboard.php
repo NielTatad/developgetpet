@@ -219,7 +219,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="#">Tips, Advice & Articles</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Tips, Advice & Articles</a>
                     </li>
                  
               </div>
@@ -388,11 +388,12 @@ if($query->rowCount()>0)
               </div>
             </div>  
 
+            <!-- New Post For Adoption Code -->
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
+              <div class="col-md-12 col-sm-12">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>New Post For Adoption</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -402,8 +403,7 @@ if($query->rowCount()>0)
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-                  
-                  <!-- New Post For Adoption Code -->
+
                   <?php
                         $sql="SELECT * from postpet WHERE petStatus='Available' AND userID != '$ID' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
@@ -454,12 +454,94 @@ if($query->rowCount()>0)
                         }
                         ?>
 
-                        <!-- //New Post For Adoption Code -->
                   </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
                   <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                 </div>
               </div>
             </div>
+            <!-- //New Post For Adoption Code -->
+
+            <!-- New Post For Tips Advice & Articles Code -->
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                  <div class="x_title">
+                    <h2>New Post For Tips Advice & Articles</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                      </li>      
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" style="text-align:center;">
+
+                  <?php
+                        $sql="SELECT * from blog ORDER BY blogID DESC LIMIT 3";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                                  <div class="col-nd-4">
+                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
+                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                            
+                                            
+                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                        
+                                            <div class="field item form-group">  
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <div class="field item form-group">                                        
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                            </div>
+                                            </div>                                
+                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                            <?php $user_id = $result->userID;
+
+                                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                                            $query1=$dbh->prepare($sql1);
+                                            $query1->execute();
+                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt1=1;
+                                            if($query1->rowCount()>0)
+                                            {
+                                              foreach($userids as $userid)
+                                            {
+                                              ?>
+                                            
+                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <?php $cnt1=$cnt1+1;}} ?>
+                                            <label style=""><?php echo ($result->postDate);?></label><br>
+                                            
+                                    </div>
+                                  </div><br>
+                                </div>
+                              <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+
+                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php"><h2 style="text-align:center;">
+                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Read More!</button></h2></a>
+                </div>
+              </div>
+            </div>            
+            <!-- New Post For Tips Advice & Articles Code -->            
+
           </div>
         </div>
         <!-- /page content -->

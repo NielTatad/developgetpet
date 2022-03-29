@@ -257,7 +257,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="#">Tips, Advice & Articles</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Tips, Advice & Articles</a>
                     </li>
                  
               </div>
@@ -420,7 +420,7 @@ if($query->rowCount()>0)
 
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>My Profile</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -538,7 +538,7 @@ if($query->rowCount()>0)
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
  <!-- View Post Pet Code -->
  <?php
-            $sql="SELECT * from postpet WHERE userID='$ID' AND postStatus != 'Deleted' AND pe tStatus != 'Adopted' ORDER BY petID DESC";
+            $sql="SELECT * from postpet WHERE userID='$ID' AND postStatus != 'Deleted' AND petStatus != 'Adopted' ORDER BY petID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);
