@@ -420,7 +420,7 @@ if($query->rowCount()>0)
             </div>
 
             <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/P.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+            <a href="http://localhost/developgetpet/dashboard/P.O-PostShorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
 
             <!-- /page content -->
 
@@ -428,7 +428,7 @@ if($query->rowCount()>0)
 
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>Available Pet For Short-Term Care</h2>
                     <ul class="nav navbar-right panel_toolbox">

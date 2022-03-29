@@ -106,23 +106,7 @@ $query3->bindParam(':Password',$assword,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Account Updated Successfully!")</script>';
-$ID=$_SESSION['ownerID'];
-$sql = "SELECT * from petowner where ownerID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-    ?>
-                              
-<p></p>
-<?php
-?>
-<?php }}
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Profile.php'</script>";
 }
 }
 ?>
@@ -224,8 +208,8 @@ if($query->rowCount()>0)
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+             <div class="navbar nav_title" style="border: 0;">
+              <a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -250,11 +234,11 @@ if($query->rowCount()>0)
               <div class="menu_section">
                     <ul class="nav side-menu">
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/PetOwnerDashboard.php"><i></i> Dashboard </a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.OPost.php">Pet Adoption</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet Adoption</a>
                     </li>
 
                     <li>
@@ -286,7 +270,7 @@ if($query->rowCount()>0)
                     <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">
+                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                     </a>
                     </div>
@@ -317,7 +301,7 @@ if($query->rowCount()>0)
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' ");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
                   $query->execute();
 
                   $request=$query->fetchColumn();
@@ -476,7 +460,7 @@ $tmp_dir = $_FILES["Picture"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-$sql="INSERT INTO postforadoption(userID,Name,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,availabilityStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available')";
+$sql="INSERT INTO postpet(userID,Name,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Adoption')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -504,7 +488,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!-- //Post Pet Code -->
 
                     <!-- Back Button -->
-                    <a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
+                    <a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
 
                     <div class="clearfix"></div>
 
@@ -513,7 +497,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
-                        <h2>Post Pet For Adoption</h2>
+                        <h2>Post Pet For Short-Term Care</h2>
                         <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                         </li>          
@@ -557,8 +541,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <div class="col-md-6 col-sm-6">
                                           <select class="form-control" name="Type" id="slct1" required="required" onchange="populate(this.id,'slct2')">
                                             <option value="">Type of pet...</option>
-                                            <option value="dog">DOG</option>
-                                            <option value="cat">CAT</option>
+                                            <option value="Dog">DOG</option>
+                                            <option value="Cat">CAT</option>
                                           </select>
                                         </div>
                                       </div>
@@ -579,14 +563,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                                                 s2.innerHTML = "";
 
-                                                if(s1. value == "dog")
+                                                if(s1. value == "Dog")
                                                 {
-                                                    var optionArray = ['labrador retriever|Labrador Retriever', 'bulldog|Bulldog', 'german shepherd|German Shepherd','poodle|Poodle','golden retriever|Golden Retriever','chihuahua|Chihuahua','french bulldog|French Bulldog','afghan hound|Afghan Hound','great dane|Great Dane','american staffordshire terrier|American Staffordshire Terrier','bichon frise|Bichon Frise','yorkshire terrier|Yorkshire Terrier','siberian husky|Siberian Husky','australian shepherd|Australian Shepherd','affenpinscher|Affenpinscher','pug|Pug','cavalier king charles spaniel|Cavalier King Charles Spaniel','american eskimo dog|American Eskimo Dog','shih tzu|Shih Tzu','newfoundland dog|Newfoundland Dog','bull terrier|Bull Terrier','boxer|Boxer','english cocker spaniel|English Cocker Spaniel','border collie|Border Collie','maltese dog|Maltese Dog','airedale terrier|Airedale Terrier','st. bernard|St. Bernard','dobermann|Dobermann','basset hound|Basset Hound','boston terrier|Boston Terrier','bedlington terrier|Bedlington Terrier','rhodesian ridgeback|Rhodesian Ridgeback','chinese crested dog|Chinese Crested Dog','anatolian shepherd dog|Anatolian Shepherd Dog','bloodhound|Bloodhound','brussels griffon|Brussels Griffon','bullmastiff|Bullmastiff','english springer spaniel|English Springer Spaniel','brittany|Brittany','pomeranian|Pomeranian','american pit bull terrier|American Pit Bull Terrier','dachshund|Dachshund','shiba inu|Shiba Inu','rottweiler|Rottweiler','chow chow|Chow Chow','cane corso|Cane Corso','sarabi dog|Sarabi Dog','samoyed|Samoyed','maltipoo|Maltipoo','jack russell terrier|Jack Russell Terrier','pembroke welsh corgi|Pembroke Welsh Corgi'];
+                                                    var optionArray = ['Affenpinscher|Affenpinscher', 'Afghan hound|Afghan hound', 'Airedale terrier|Airedale terrier','Akita|Akita','Alaskan Malamute|Alaskan Malamute','American Staffordshire terrier|American Staffordshire terrier','American water spaniel|American water spaniel','Askal|Askal','Australian cattle dog|Australian cattle dog','Australian shepherd|Australian shepherd','Australian terrier|Australian terrier','Basenji|Basenji','Basset hound|Basset hound','Beagle|Beagle','Bearded collie|Bearded collie','Bedlington terrier|Bedlington terrier','Bernese mountain dog|Bernese mountain dog','Bichon frise|Bichon frise','Black and tan coonhound|Black and tan coonhound','Bloodhound|Bloodhound','Border collie|Border collie','Border terrier|Border terrier','Borzoi|Borzoi','Boston terrier|Boston terrier','Bouvier Des Flandres|Bouvier Des Flandres','Boxer|Boxer','Briard|Briard','Brittany|Brittany','Brussels griffon|Brussels griffon','Bull terrier|Bull terrier','Bulldog|Bulldog','Bullmastiff|Bullmastiff','Cairn terrier|Cairn terrier','Canaan dog|Canaan dog','Chesapeake Bay retriever|Chesapeake Bay retriever','Chihuahua|Chihuahua','Chinese crested|Chinese shar-pei','Chow chow|Chow chow','Clumber spaniel|Clumber spaniel','Cocker spaniel|Cocker spaniel','Collie|Collie','Curly-coated retriever|Curly-coated retriever','Dachshund|Dachshund','Dalmatian|Dalmatian','Doberman pinscher|Doberman pinscher','English cocker spaniel|English cocker spaniel','English setter|English setter','English springer spaniel|English springer spaniel','English toy spaniel|English toy spaniel','Eskimo dog|Eskimo dog','Finnish spitz|Finnish spitz','Flat-coated retriever|Flat-coated retriever','Fox terrier|Fox terrier','Foxhound|Foxhound','French bulldog|German shepherd','German shorthaired pointer|German shorthaired pointer','German wirehaired pointer|German wirehaired pointer','Golden retriever|Golden retriever','Gordon setter|Gordon setter','Great Dane|Great Dane','Greyhound|Greyhound','Irish setter|Irish setter','Irish water spaniel|Irish water spaniel','Irish wolfhound|Irish wolfhound','Jack Russell terrier|Jack Russell terrier','Japanese spaniel|Japanese spaniel','Keeshond|Keeshond','Kerry blue terrier|Kerry blue terrier','Komondor|Komondor','Kuvasz|Kuvasz','Labrador retriever|Labrador retriever','Lakeland terrier|Lakeland terrier','Lhasa apso|Lhasa apso','Maltese|Maltese','Manchester terrier|Manchester terrier','Mastiff|Mastiff','Mexican hairless|Mexican hairless','Newfoundland|Newfoundland','Norwegian elkhound|Norwegian elkhound','Otterhound|Otterhound','Papillon|Papillon','Pekingese|Pekingese','Pointer|Pointer','Pomeranian|Pomeranian','Poodle|Poodle','Pug|Pug','Puli|Puli','Rhodesian ridgeback|Rhodesian ridgeback','Rottweiler|Rottweiler','Saint Bernard|Saint Bernard','Saluki|Saluki','Samoyed|Samoyed','Schipperke|Schipperke','Schnauzer|Schnauzer','Scottish deerhound|Scottish deerhound','Scottish terrier|Scottish terrier','Sealyham terrier|Sealyham terrier','Shetland sheepdog|Shetland sheepdog','Shih tzu|Shih tzu','Siberian husky|Siberian husky','Silky terrier|Silky terrier','Skye terrier|Skye terrier','Staffordshire bull terrier|Staffordshire bull terrier','Soft-coated wheaten terrier|Soft-coated wheaten terrier','Sussex spaniel|Sussex spaniel','Spitz|Spitz','Tibetan terrier|Tibetan terrier','Vizsla|Vizsla','Weimaraner|Weimaraner','Welsh terrier|Welsh terrier','West Highland white terrier|West Highland white terrier','Whippet|Whippet'];
                                                 }
-                                                else if(s1.value == 'cat')
+                                                else if(s1.value == 'Cat')
                                                 {
-                                                    var optionArray = ['persian cat|Persian Cat','maine coon|Maine Coon',
-                                                        'british shorthair|British Shorthair','bengal cat|Bengal Cat','sphynx cat|Sphynx Cat','siamese cat|Siamese Cat','ragdoll|Ragdoll','Munchkin cat|Munchkin Cat','scottish fold|Scottish Fold','savannah cat|Savannah Cat','norwegian forest cat|Norwegian Forest Cat','siberian cat|Siberian Cat','american shorthair|American Shorthair','exotic shorthair|Exotic Shorthair','russian blue|Russian Blue','turkish angora|Turkish Angora','himalayan cat|Himalayan Cat','european shorthair|European Shorthair','bombay cat|Bombay Cat','abyssinian|Abyssinian','chartreux|Chartreux','birman|Birman','kinkalow|Kinkalow','ragamuffin|Ragamuffin','singapura cat|Singapura Cat','toyger|Toyger','burmese cat|Burmese Cat','oriental shorthair|Oriental Shorthair','manx cat|Manx Cat','somali cat|Somali Cat','british longhair|British Longhair','american curl|American Curl','havana brown|Havana Brown','balinese cat|Balinese Cat','donskoy|Donskoy','ocicat|Ocicat','american bobtail|American Bobtail','selkirk rex|Selkirk Rex','thai cat|Thai Cat','tonkinese cat|Tonkinese Cat','peterbald|Peterbald','laPerm|LaPerm','snowshoe cat|Snowshoe Cat','american wirehair|American Wirehair','nebelung|Nebelung','korat|Korat','burmilla|Burmilla','lykoi|Lykoi','oriental longhair|Oriental Longhair','cymric|Cymric','cornish rex|Cornish Rex'];
+                                                    var optionArray = ['American Shorthair|American Shorthair','Abyssinian|Abyssinian','American Curl|American Curl','American Bobtail|American Bobtail','American Wirehair|American Wirehair','Aegean|Aegean','Australian Mist|Australian Mist','American Polydactyl|American Polydactyl','Arabian Mau|Arabian Mau','Asian cat|Asian cat','Asian Semi-longhair|Asian Semi-longhair','British Shorthair|British Shorthair','Bengal|Bengal','Burmese|Burmese','Birman|Birman','Balinese|Balinese','Bombay|Bombay','Burmilla|Burmilla','Bambino|Bambino','Brazilian Shorthair|Brazilian Shorthair','British Longhair|British Longhair','Cornish Rex|Cornish Rex','Colorpoint Shorthair|Colorpoint Shorthair','Chartreux|Chartreux','California Spangled|California Spangled','Cymric|Cymric','Chantilly-Tiffany|Chantilly-Tiffany','Chausie|Chausie','Cheetoh|Cheetoh','Cyprus|Cyprus','Devon Rex|Devon Rex','Domestic shorthair cat|Domestic shorthair cat','Donskoy|Donskoy','Dwelf|Dwelf','Exotic Shorthair|Exotic Shorthair','Egyptian Mau|Egyptian Mau','European Burmese|European Burmese','Elf cat|Elf cat','Havana Brown|Havana Brown','Himalayan|Himalayan','Japanese Bobtail|Japanese Bobtail','Javanese|Javanese','Khao Manee|Khao Manee','Korat|Korat','Lykoi|Lykoi','LaPerm|LaPerm','Maine Coon|Maine Coon','Manx|Manx','Munchkin|Munchkin','Minskin|Minskin','Norwegian Forest Cat|Norwegian Forest Cat','Nebelung|Nebelung','Napoleon cat|Napoleon cat','Oriental|Oriental','Ocicat|Ocicat','Persian|Persian','Pixie-bob|Pixie-bob','Peterbald|Peterbald','Puspin|Puspin','Ragdoll|Ragdoll','Russian Blue|Russian Blue','Ragamuffin|Ragamuffin','Sphynx|Sphynx','Scottish Fold|Scottish Fold','Siamese|Siamese','Siberian|Siberian','Selkirk Rex|Selkirk Rex','Somali|Somali','Singapura|Singapura','Savannah|Savannah','Snowshoe|Snowshoe','Sokoke|Sokoke','Serengeti cat|Serengeti cat','Tonkinese|Tonkinese','Turkish Angora|Turkish Angora','Turkish Van|Turkish Van','Toyger|Toyger','Thai cat|Thai cat','Ukrainian Levkoy|Ukrainian Levkoy','York Chocolate|York Chocolate'];
                                                 }
                                                 for (var option in optionArray)
                                                 {
@@ -601,9 +584,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                       </script>
 
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Name<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petname" class="form-control" name="Petname" placeholder="Pet Name" required="required" onkeypress="return /[a-z]/i.test(event.key)"/>
+                                                <input type="text" id="petname" class="form-control" name="Petname" placeholder="Pet Name..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
                                             </div>
                                         </div>
 
@@ -611,7 +594,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
                                         <div class="col-md-6 col-sm-6">
                                           <select class="form-control" required="required" name="Gender">
-                                            <option>Please Choose...</option>
                                             <option>Male</option>
                                             <option>Female</option>
                                           </select>
@@ -619,25 +601,64 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                       </div>
 
                                       <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Age</label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:215px" placeholder="0" value="1"/>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petcolor" class="form-control" name="Age" placeholder="Pet Age" required="required"/>
+                                              <select class="form-control" onclick="ageFunction()"  id ="mnyr" style="width:231px">
+                                              <option value="month">Month</option>
+                                              <option value="year">Year</option>
+                                          </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <script>
+                                        function ageFunction() {
+                                        var age = document.getElementById('age').value;
+                                        var mnyr = document.getElementById('mnyr').value;
+                                        var petage = age +" "+ mnyr;
+                                        document.getElementById('petage').value = petage;
+                                        }
+                                        </script>
+
+                                        <div hidden  class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input readonly type="text" id="petage" name="Age" value ="1 month" style="width:360px;background-color:#fff;" class="form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Color<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petcolor" class="form-control" name="Color" placeholder="Pet Color" required="required" onkeypress="return /[a-z]/i.test(event.key)"/>
+                                                <input type="text" id="petcolor" class="form-control" name="Color" placeholder="Pet Color..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
                                             </div>
                                         </div>
 
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:150px" placeholder="0" value="1"/>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petweight" class="form-control" name="Weight" placeholder="Pet Weight" required="required"/>
+                                              <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:200px">
+                                              <option value="kg">Kilogram</option>
+                                              <option value="lb">Pound</option>
+                                          </select>
                                             </div>
                                         </div>
+                                        
+                                        <script>
+                                        function weightFunction() {
+                                        var weight = document.getElementById('weight').value;
+                                        var kgpd = document.getElementById('kgpd').value;
+                                        var petweight = weight +" "+ kgpd;
+                                        document.getElementById('petweight').value = petweight;
+                                        }
+                                        </script>
+
+                                        <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input readonly type="text" id="petweight" name="Weight" style="width:360px;background-color:#fff;" value = "1 kg"class="form-control"/>
+                                            </div>
+                                        </div>
+
 
                     <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
@@ -664,7 +685,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
 											<div class="col-md-6 col-sm-6">
-												<textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+												<textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
                       </div>
 										</div>
 
@@ -692,7 +713,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                    <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                 </div>
                                             </div>
                                         </div>
