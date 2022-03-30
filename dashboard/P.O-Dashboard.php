@@ -720,7 +720,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!-- //Post Pet Code -->
 
                       <form class="" action="" method="post" novalidate enctype="multipart/form-data">
-                      
+
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
@@ -730,40 +730,37 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" contentEditable="true" required="required" class="form-control" id="Content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
-                                                 
+                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
                     </div>
                     </div>
-                    
                                          
                                          <span class="section"></span>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
                                          </div>
                                         
                                                  <div class="col-md-6 offset-md-3">
                                                      <button name ="Posttips" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                      <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
-                                                 </div>                                             
-                                         
+                                                 </div>                                                   
                                      </form>
                       </div>
                       <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
                       <label>Create an Advice</label>
-                      <?php 
+<?php 
 $ID=$_SESSION['ownerID'];
 
 $sql = "SELECT * from petowner where ownerID=:ID";
@@ -823,30 +820,28 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                       <div class="field item form-group">
                                              
-                                             <div id="display" class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
-                    
-                      </div>                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
                     </div>
                     </div>
                                          
-                                         <span class="section"></span>
+                                        <span class="section"></span>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
-                                         </div>                    
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
+                                         </div>                   
  
                                          <div class="col-md-6 offset-md-3">
                                                      <button name ="Postadvice" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
