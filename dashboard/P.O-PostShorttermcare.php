@@ -242,7 +242,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Short-term Care</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-PostShorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>
@@ -460,7 +460,7 @@ $tmp_dir = $_FILES["Picture"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-$sql="INSERT INTO postpet(userID,Name,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Adoption')";
+$sql="INSERT INTO postpet(userID,Name,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Shorttermcare')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -505,7 +505,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="clearfix"></div>
                         </div>
 
-                                <div class="x_content">
+                        <div class="x_content">
                                     <form class="" action="" method="post" novalidate enctype="multipart/form-data">
                                          
                                         <span class="section"></span>
@@ -681,59 +681,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 												</select>
 											</div>
 										</div>
-
-                    <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Range<span class="required"></span></label>
-                                        <div class="col-md-6 col-sm-6">
-                                          <select class="form-control" name="Type" id="slct3" required="required" onchange="populate(this.id,'slct4')">
-                                            <option value="">Select...</option>
-                                            <option value="day">DAY</option>
-                                            <option value="week">WEEK</option>
-                                            <option value="month">MONTH</option>
-                                          </select>
-                                        </div>
-                                      </div>
-
-                                      <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select </label>
-                                        <div class="col-md-6 col-sm-6">
-                                          <select class="select2_group form-control" name="Breed" required="required" id="slct4">
-                                          </select>
-                                        </div>
-                                      </div>
-
-                                      <script>
-
-                                            function populate(s3,s4)
-                                            {
-                                                var s3 = document.getElementById(s3);
-                                                var s4 = document.getElementById(s4);
-
-                                                s4.innerHTML = "";
-
-                                                if(s3. value == "day")
-                                                {
-                                                    var optionArray = ['select...|Select...','one day|One Day', 'two days|Two Days', 'three days|Three Days','four days|Four Days','five days|Five Days','six days|Six Days'];
-                                                }
-                                                else if(s3.value == 'week')
-                                                {
-                                                    var optionArray = ['select...|Select...','one week|One Week','two weeks|Two Weeks','three weeks|Three Weeks','four weeks|Four Weeks','five weeks|Five Weeks'];
-                                                }
-                                                else if(s3.value == 'month')
-                                                {
-                                                    var optionArray = ['select...|Select...','one month|One Month','two months|Two Months','three months|Three Months','four months|Four Months'];
-                                                }
-                                                for (var option in optionArray)
-                                                {
-                                                  var pair = optionArray[option].split("|");
-                                                  var newoption = document.createElement("option");
-                                                  newoption.value = pair[0];
-                                                  newoption.innerHTML = pair[1];
-                                                  s4.options.add(newoption);
-                                                }
-                                            }
-                                            
-                                      </script> 
 
                     <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
