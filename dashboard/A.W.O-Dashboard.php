@@ -381,7 +381,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:50px;">
                   
-                  <a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" class="form-control" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
+                <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-Profile.php';" alt="avatar" style="width:40px;height:40px;" class="rounded-circle img-responsive">&nbsp&nbsp<a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;height:40px;width:900px;background-color:#e9ecef;font-size:16px;height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1remfont-weight: 400;line-height: 1.5;color: #495057;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
                     <div class="clearfix"></div>
 
                 </div>
