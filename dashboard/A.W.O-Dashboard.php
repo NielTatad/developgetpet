@@ -405,7 +405,7 @@ if($query->rowCount()>0)
                   <div class="x_content" style="text-align:center;">
 
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND userID != '$ID' ORDER BY petID DESC LIMIT 3";
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);

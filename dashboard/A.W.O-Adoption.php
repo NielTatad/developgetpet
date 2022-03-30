@@ -866,15 +866,6 @@ if(isset($_POST['Adopt']))
 
         </div>
 
-        <div class="ln_solid">
-        <br>
-        <div class="form-group" style="text-align: center">
-        <div class="col-md-6 offset-md-3">
-               <button id="adopt" name ="Adopt" type="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:50px;font-size:18px;" disabled>Adopt Now!</button>
-        </div>
-        </div>
-        </div>
-
         </form>
       </div>
     </div>

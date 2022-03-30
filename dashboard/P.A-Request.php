@@ -546,7 +546,7 @@ if($query->rowCount()>0)
                         
  <!-- View My Request Code -->
 <?php
-            $sql="SELECT * from request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Cancelled' ORDER BY petID DESC";
+            $sql="SELECT * from request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' AND requestStatus != 'Cancelled' ORDER BY petID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);

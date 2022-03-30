@@ -642,7 +642,7 @@ if($query->rowCount()>0)
    {
     $petID=($_POST['petID']);
 
-    $query="update postpet set postStatus ='Deleted' where petID=:petID";
+    $query="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
     $query= $dbh->prepare($query);
     $query->bindValue('petID',$petID);
     $query->execute();

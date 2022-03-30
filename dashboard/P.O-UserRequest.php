@@ -669,7 +669,7 @@ if($query->rowCount()>0)
         </div>
         <!-- /page content -->
 
-<?php
+        <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
 ?>
@@ -840,7 +840,7 @@ if(isset($_POST['AcceptRequest']))
   $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
   $query3->execute();
 
-  $sql4="INSERT INTO history(requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,adoptionRequest)VALUES(:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
+  $sql4="INSERT INTO history(requestID,masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,adoptionStatus)VALUES(:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
   $query4=$dbh->prepare($sql4);
   $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
   $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
