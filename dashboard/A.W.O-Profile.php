@@ -566,9 +566,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
-                                              
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h3></ul>
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->userAddress);?></h3></ul>
+                                    
                                               <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petStatus);?></h3></li>
@@ -586,6 +584,8 @@ if($query->rowCount()>0)
                       {
                         ?>
                       
+                      <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h3></ul>
+                      <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($userid->Address);?></h3></ul>
                       <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->orgName);?> </label><br>
                       <?php $cnt1=$cnt1+1;}} ?>
                       <li><h3 hidden class="card-title"><?php echo ( $userid->orgName);?></h3></li>
@@ -698,6 +698,7 @@ if($query->rowCount()>0)
     petType=:Type,
     petName=:PetName,
     petBreed=:Breed,
+    petSex=:Gender,
     petAge=:Age,
     petColor=:Color,
     petWeight=:Weight,
@@ -710,6 +711,7 @@ if($query->rowCount()>0)
     $query->bindParam(':Type',$Type,PDO::PARAM_STR);
     $query->bindParam(':PetName',$PetName,PDO::PARAM_STR);
     $query->bindParam(':Breed',$Breed,PDO::PARAM_STR);
+    $query->bindParam(':Gender',$Gender,PDO::PARAM_STR);
     $query->bindParam(':Age',$Age,PDO::PARAM_STR);
     $query->bindParam(':Color',$Color,PDO::PARAM_STR);
     $query->bindParam(':Weight',$Weight,PDO::PARAM_STR);

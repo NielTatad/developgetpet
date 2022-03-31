@@ -559,7 +559,7 @@ if($query->rowCount()>0)
             <div class="col-nd-4">
               <div class="card" style="border-radius:10px;border-width:2px;">                 
                   <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                  <h3>Adoption Request</h3>
+                  <h3><?php echo ($result->requestTitle);?></h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <li><h3 hidden class="card-title"><?php echo ($result->requestID);?></h3></li>
                       <?php $user_id = $result->userID;

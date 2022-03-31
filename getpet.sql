@@ -75,15 +75,15 @@ INSERT INTO `animalwelfareorganization` (`orgID`, `orgName`, `orgContactNo`, `or
 -- Table structure for table `blog`
 --
 
-CREATE TABLE `blog` (
-  `blogID` int(50) NOT NULL,
+CREATE TABLE `post` (
+  `postID` int(50) NOT NULL,
   `userID` varchar(50) NOT NULL,
-  `Name` varchar(50) NOT NULL,
+  `userName` varchar(50) NOT NULL,
   `userEmail` varchar(50) NOT NULL,
-  `blogTitle` varchar(50) NOT NULL,
-  `blogContent` text NOT NULL,
-  `blogPicture` varchar(255) NOT NULL,
-  `blogStatus` varchar(50) NOT NULL,
+  `postTitle` varchar(50) NOT NULL,
+  `postContent` text NOT NULL,
+  `postPicture` varchar(255) NOT NULL,
+  `postStatus` varchar(50) NOT NULL,
   `postDate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -128,7 +128,7 @@ CREATE TABLE `history` (
   `petBreed` varchar(50) NOT NULL,
   `requestDate` varchar(50) NOT NULL,
   `approvalDate` varchar(50) NOT NULL,
-  `adoptionRequest` text NOT NULL
+  `adoptionStatus` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -277,7 +277,7 @@ INSERT INTO `petowner` (`ownerID`, `ownerFirstname`, `ownerLastname`, `ownerCont
 CREATE TABLE `postpet` (
   `petID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
+  `userName` varchar(50) NOT NULL,
   `userEmail` varchar(50) NOT NULL,
   `userAddress` varchar(50) NOT NULL,
   `userContactNo` varchar(11) NOT NULL,

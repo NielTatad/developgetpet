@@ -838,21 +838,6 @@ if(isset($_POST['Adopt']))
         </div>
         </div>
 
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea name="Reason" id="Reason" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" required = "required" placeholder="Write your reason to adopt..." onkeyup="request()"></textarea>
-        </div>
-        </div>
-        <script>
-          function request() {
-          if(document.getElementById("Reason").value==="") { 
-                    document.getElementById('adopt').disabled = true; 
-                } else { 
-                    document.getElementById('adopt').disabled = false;
-                }
-            }
-        </script>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden type="text" name="UserID" value="<?php echo ($result->orgID);?>"  required = "required" class="form-control">
 
@@ -864,7 +849,7 @@ if(isset($_POST['Adopt']))
 
               <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->orgContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
 
-        </div>
+        </div><br><br>
 
         </form>
       </div>

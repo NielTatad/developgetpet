@@ -184,22 +184,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <div class="clearfix"></div>
 
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <!--<div class="profile_pic">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
-              </div>-->
-              <div class="profile_info">
-                <!--<span>Welcome,</span>
-                <h2><?php echo ($result->orgManager);?></h2>-->
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
+           
+					<!-- menu profile quick info -->
+          <div class="profile clearfix">
+                    <!--<div class="profile_pic">
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
+                    </div>
+                    <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    </div>
+                    <!-- /menu profile quick info -->
 
+					<br />
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				 <!-- sidebar menu -->
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                 <li>
@@ -227,8 +229,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
             <!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+				<!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
               <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -240,10 +242,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               </a>
             </div>
             <!-- /menu footer buttons -->
-          </div>
-        </div>
+				</div>
+			</div>
 
-     <!-- top navigation -->
+	   <!-- top navigation -->
      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
@@ -478,7 +480,7 @@ if($query->rowCount()>0)
                   <div class="x_content" style="text-align:center;">
 
                   <?php
-                        $sql="SELECT * from blog ORDER BY blogID DESC LIMIT 3";
+                        $sql="SELECT * from post ORDER BY postID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -493,16 +495,16 @@ if($query->rowCount()>0)
                                       <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                             
                                             
-                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
                                         
                                             <div class="field item form-group">  
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
                                             </div>
                                             </div>                                
                                             <div class="field item form-group">                                        
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
                                             </div>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
@@ -661,7 +663,7 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-  <!-- Modalcreate -->
+  <!-- Modal Create Post -->
   <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -692,25 +694,7 @@ if($query->rowCount()>0)
                       <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
                       <label>Create Tips</label>
 
-                      <!-- Post Pet Code -->
-<?php 
-$ID=$_SESSION['orgID'];
-
-$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-     ?>
-<p></p>
-<?php
-?>
-<?php }} ?>
+<!-- Post Tips Code -->
 
 <?php
 date_default_timezone_set("Asia/Manila");
@@ -727,7 +711,7 @@ $Email=($_POST['Email']);
 $Title=($_POST['Title']);
 $Content=($_POST['Content']);
 
-$sql="INSERT INTO blog(userID,Name,userEmail,blogTitle,blogContent,blogStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Tips','$date')";
+$sql="INSERT INTO post(userID,userName,userEmail,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Tips','$date')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -741,7 +725,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 }
 ?>
-<!-- //Post Pet Code -->
+<!-- //Post Tips Code -->
 
                       <form class="" action="" method="post" novalidate enctype="multipart/form-data">
 
@@ -784,25 +768,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       </div>
                       <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
                       <label>Create an Advice</label>
-<?php 
-$ID=$_SESSION['orgID'];
 
-$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-     ?>
-<p></p>
-<?php
-?>
-<?php }} ?>
-
+<!-- Post Advice Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -818,7 +785,7 @@ $Email=($_POST['Email']);
 $Title=($_POST['Title']);
 $Content=($_POST['Content']);
 
-$sql="INSERT INTO blog(userID,Name,userEmail,blogTitle,blogContent,blogStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Advice','$date')";
+$sql="INSERT INTO post(userID,userName,userEmail,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Advice','$date')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -832,7 +799,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 }
 ?>
-<!-- //Post Pet Code -->
+<!-- //Post Advice Code -->
 
                       <form class="" action="" method="post" novalidate enctype="multipart/form-data">
 
@@ -882,7 +849,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         </div>
                       </div>
                     </div>
-  <!-- //Modalcreate -->    
+  <!-- /Modal Create Post -->    
 
         <!-- footer content -->
         <footer>

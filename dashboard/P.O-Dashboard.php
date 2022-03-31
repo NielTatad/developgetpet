@@ -484,7 +484,7 @@ if($query->rowCount()>0)
                   <div class="x_content" style="text-align:center;">
 
                   <?php
-                        $sql="SELECT * from blog ORDER BY blogID DESC LIMIT 3";
+                        $sql="SELECT * from post ORDER BY postID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -499,16 +499,16 @@ if($query->rowCount()>0)
                                       <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                             
                                             
-                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
                                         
                                             <div class="field item form-group">  
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
                                             </div>
                                             </div>                                
                                             <div class="field item form-group">                                        
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
                                             </div>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
@@ -637,13 +637,13 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-  <!-- Modalcreate -->
+  <!-- Modal Create Post -->
   <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Create Post here</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Create Post</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -668,26 +668,7 @@ if($query->rowCount()>0)
                       <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
                       <label>Create Tips</label>
 
-                      <!-- Post Pet Code -->
-<?php 
-$ID=$_SESSION['ownerID'];
-
-$sql = "SELECT * from petowner where ownerID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-     ?>
-<p></p>
-<?php
-?>
-<?php }} ?>
-
+<!-- Post Tips Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -703,7 +684,7 @@ $Email=($_POST['Email']);
 $Title=($_POST['Title']);
 $Content=($_POST['Content']);
 
-$sql="INSERT INTO blog(userID,Name,userEmail,blogTitle,blogContent,blogStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Tips','$date')";
+$sql="INSERT INTO post(userID,userName,userEmail,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Tips','$date')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -717,7 +698,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 }
 ?>
-<!-- //Post Pet Code -->
+<!-- //Post Tips Code -->
 
                       <form class="" action="" method="post" novalidate enctype="multipart/form-data">
 
@@ -737,19 +718,19 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          <span class="section"></span>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
                                          </div>
                                         
                                                  <div class="col-md-6 offset-md-3">
@@ -760,25 +741,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       </div>
                       <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
                       <label>Create an Advice</label>
-<?php 
-$ID=$_SESSION['ownerID'];
 
-$sql = "SELECT * from petowner where ownerID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-     ?>
-<p></p>
-<?php
-?>
-<?php }} ?>
-
+<!-- Post Advice Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -794,7 +758,7 @@ $Email=($_POST['Email']);
 $Title=($_POST['Title']);
 $Content=($_POST['Content']);
 
-$sql="INSERT INTO blog(userID,Name,userEmail,blogTitle,blogContent,blogStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Advice','$date')";
+$sql="INSERT INTO post(userID,userName,userEmail,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Advice','$date')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -808,7 +772,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 }
 ?>
-<!-- //Post Pet Code -->
+<!-- //Post Advice Code -->
 
                       <form class="" action="" method="post" novalidate enctype="multipart/form-data">
 
@@ -828,19 +792,19 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <span class="section"></span>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
                                          </div>                   
  
                                          <div class="col-md-6 offset-md-3">
@@ -858,7 +822,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         </div>
                       </div>
                     </div>
-  <!-- //Modalcreate -->
+  <!-- //Modal Create Post -->
 
         <!-- footer content -->
         <footer>

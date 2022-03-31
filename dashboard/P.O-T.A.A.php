@@ -456,7 +456,7 @@ if($query->rowCount()>0)
                       <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
                       
                       <?php
-                        $sql="SELECT * from blog WHERE blogStatus='Tips' ORDER BY blogID DESC";
+                        $sql="SELECT * from post WHERE postStatus='Tips' ORDER BY postID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -471,16 +471,16 @@ if($query->rowCount()>0)
                                       <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                             
                                             
-                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
                                         
                                             <div class="field item form-group">  
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
                                             </div>
                                             </div>                                
                                             <div class="field item form-group">                                        
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
                                             </div>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
@@ -516,7 +516,7 @@ if($query->rowCount()>0)
                       </div>
                       <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
                       <?php
-                        $sql="SELECT * from blog WHERE blogStatus='Advice' ORDER BY blogID DESC";
+                        $sql="SELECT * from post WHERE postStatus='Advice' ORDER BY postID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -531,16 +531,16 @@ if($query->rowCount()>0)
                                       <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                             
                                             
-                                            <h3 hidden class="card-title"><?php echo ($result->blogID);?></h3>
+                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
                                         
                                             <div class="field item form-group">  
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogTitle);?></textarea>
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
                                             </div>
                                             </div>                                
                                             <div class="field item form-group">                                        
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->blogContent);?></textarea>
+                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
                                             </div>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
