@@ -192,7 +192,126 @@ if($query->rowCount()>0)
 
                     <!-- /page content -->
 
-        <!-- /page content -->
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                  <div class="x_title">
+                    <h2>Posted Pet</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                  </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" style="text-align:center;">
+                                  
+                  <!-- View Pet Post for Adotion Code -->
+                  <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="adoption-tab" data-toggle="tab" href="#adoption1" role="tab" aria-controls="Adoption" aria-selected="true">Pet Adoption Tab</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="shorttermcare-tab" data-toggle="tab" href="#shorttermcare1" role="tab" aria-controls="Shorttermcare" aria-selected="false">Short-Term Care Tab</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="adoption1" role="tabpanel" aria-labelledby="adoption-tab">
+                      
+                      <?php
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                              foreach($results as $result)
+                            {
+                              ?>   
+                                    <div class="col-nd-4">
+                                        <div class="card" style="border-radius:10px;border-width:2px;">                                           
+                                          <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+          
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;float:left;">
+                                              <div class="fa-hover col-md-3 col-sm-4"><i type="button" class="fa fa-ellipsis-v"  data-toggle="dropdown" style="margin-right:-550px;"></i>
+                                              <div class="dropdown-menu">
+                                              <button class="btn btn-round btn-success deletebtn" style="background-color:#00cdc1;"><i class="fa fa-trash"></i></button>
+                                              </div> 
+                                              </div>
+                                              <ul style="list-style:none;margin-left:-50px;"><br>
+                                              <h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
+                                              <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petBreed);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petSex);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petAge);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petColor);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petWeight);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->vaccinationStatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
+                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
+                                              
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->petStatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
+                                              <?php $user_id = $result->userID;
+
+                                              $sql1="SELECT * from register WHERE userID='$user_id'";
+                                              $query1=$dbh->prepare($sql1);
+                                              $query1->execute();
+                                              $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt1=1;
+                                              if($query1->rowCount()>0)
+                                              {
+                                                foreach($userids as $userid)
+                                              {
+                                                ?>
+                                              
+                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h3></ul>
+                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($userid->Address);?></h3></ul>
+                                              <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                              <?php $cnt1=$cnt1+1;}} ?>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
+                                              <li><label style=""><?php echo ($result->postDate);?></label><br></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
+                                              <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
+                                              </ul>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <br>
+                                      <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+
+                      </div>
+                      <div class="tab-pane fade" id="shorttermcare1" role="tabpanel" aria-labelledby="shorttermcare-tab">
+                      <!-- View Pet Post for Short-Term Care Code -->
+                          Code for Short-Term Care
+                      <!-- View Pet Post for Short-Term Care Code -->
+                      </div>
+                      
+                    </div>
+         <!-- //View Pet Post for Adotion Code -->                                        
+                           
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- /page content -->
   
   <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -225,381 +344,247 @@ if($query->rowCount()>0)
 </div>
 	<!-- //ModalProfile -->
 
-  <!-- Modal Total Sign-in Today -->
-  
-  <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <!-- Modal Pet Information -->
+  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document" >
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-
-      <div class="clearfix"></div>
-
-<div class="col-md-12 col-sm-12  ">
-  <div class="x_panel">
-    <div class="x_title">
-      <h2>Sign-in Today</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+          function cleartext() {
+          document.getElementById("Reason").value="";
+          document.getElementById('adopt').disabled = true;
+            }
+        </script>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
         
-      </ul>
-      <div class="clearfix"></div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="pet_id" name="PetID" required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_name" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Type<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_type" name="Type" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Breed<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_breed" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_sex" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_age" name="Age" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_color" name="Color" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_weight" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="vaccination_status" name="Vaccination" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="deworming_status" name="Deworming" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <textarea disabled="yes" id="pet_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
+        </div>
+        </div>
+
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
+				</div>
+
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="pet_picture" name="Picture"  required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="user_id" name ="MasterID" required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="post_by" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="post_date" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="user_email" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="user_address" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="user_contactno" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <textarea name="Reason" id="Reason" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" required = "required" placeholder="Write your reason to adopt..." onkeyup="request()"></textarea>
+        </div>
+        </div>
+        <script>
+          function request() {
+          if(document.getElementById("Reason").value==="") { 
+                    document.getElementById('adopt').disabled = true; 
+                } else { 
+                    document.getElementById('adopt').disabled = false;
+                }
+            }
+        </script>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" name="UserID" value="<?php echo ($result->ownerID);?>"  required = "required" class="form-control">
+
+              <input hidden readonly type="text" class="form-control" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" style="background-color:#fff;width:400px;" required="required"/>
+
+              <input hidden readonly type="text" class="form-control" name="Email" value="<?php echo ($result->ownerEmail);?>" style="background-color:#fff;width:400px;" required="required"/>
+
+              <input hidden readonly type="text" class="form-control" name="Address" value="<?php echo ($result->ownerAddress);?>" style="background-color:#fff;width:400px;" required="required"/>
+
+              <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->ownerContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
+
+        </div>
+
+        <div class="ln_solid">
+        <br>
+        <div class="form-group" style="text-align: center">
+        <div class="col-md-6 offset-md-3">
+               <button id="adopt" name ="Adopt" type="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:50px;font-size:18px;" disabled>Adopt Now!</button>
+        </div>
+        </div>
+        </div>
+
+        </form>
+      </div>
     </div>
+  </div>
+</div>
+	<!-- //Modal Pet Information -->
 
-                            <div class="x_content">
-                            <div class="table-responsive">
-                            <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            <tr class="headings">
-              
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
-                            <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                            </tr>
-                            </thead>
 
-                            <tbody>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
-            
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <!-- Delete Post Code -->
+<?php
+   if(isset($_POST['Delete']))
+   {
+    $petID=($_POST['petID']);
+
+    $query="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
+    $query= $dbh->prepare($query);
+    $query->bindValue('petID',$petID);
+    $query->execute();
+
+    echo '<script>alert("Post Deleted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/ManageAdoption&Shorttermcare.php'</script>";
+   }
+?>
+<!-- //Delete Post Code -->
+
+  <!-- Modal Delete Post -->
+  <div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Post</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+          <form method="post">
+            <div style="text-align: center" class="wrap-input100 validate-input">
+                  <p>Are you sure, you want to delete this post?</p>
+            </div><br>
+            <div style="text-align: center" class="wrap-input100 validate-input">
+                  <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
             </div>
+            <div style="text-align: center" class="form-group">
+            <div class="col-md-6 offset-md-3">
+                  <button name="Delete" id="CancelRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+                  <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+            </div>
+            </div>
+          </form>
           </div>
         </div>
       </div>
-	<!-- Modal Total Sign-in Today -->
-
-  <!-- Modal Total Pet Adopters -->
-  
-  <div class="modal fade" id="petadopter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document" >
-    <div class="modal-content">
-      <div class="modal-header text-center">
-
-      <div class="clearfix"></div>
-
-<div class="col-md-12 col-sm-12  ">
-  <div class="x_panel">
-    <div class="x_title">
-      <h2>Total Pet Adopters</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
-        
-      </ul>
-      <div class="clearfix"></div>
     </div>
-
-                            <div class="x_content">
-                            <div class="table-responsive">
-                            <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            <tr class="headings">
-              
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
-                            <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
-            
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-	<!-- Modal Total Pet Adopters -->
-
-  <!-- Modal Total Pet Owners -->
-  
-  <div class="modal fade" id="petowner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document" >
-    <div class="modal-content">
-      <div class="modal-header text-center">
-
-      <div class="clearfix"></div>
-
-<div class="col-md-12 col-sm-12  ">
-  <div class="x_panel">
-    <div class="x_title">
-      <h2>Total Pet Owners</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
-        
-      </ul>
-      <div class="clearfix"></div>
-    </div>
-
-                            <div class="x_content">
-                            <div class="table-responsive">
-                            <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            <tr class="headings">
-              
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
-                            <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
-            
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-	<!-- Modal Total Pet Owners -->
-
-  <!-- Modal Total Animal Welfare Organization -->
-  
-  <div class="modal fade" id="AWO" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document" >
-    <div class="modal-content">
-      <div class="modal-header text-center">
-
-      <div class="clearfix"></div>
-
-<div class="col-md-12 col-sm-12  ">
-  <div class="x_panel">
-    <div class="x_title">
-      <h2>Total Animal Welfare Organization</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
-        
-      </ul>
-      <div class="clearfix"></div>
-    </div>
-
-                            <div class="x_content">
-                            <div class="table-responsive">
-                            <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            <tr class="headings">
-              
-                            <th class="column-title">Date</th>
-                            <th class="column-title">Name</th>
-                            <th class="column-title">Role</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000040</td>
-                                <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-                                
-                                <td class=" ">121000039</td>
-                                <td class=" ">May 23, 2014 11:30:12 PM</td>
-                                <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">John Blank L</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="even pointer">
-                                
-                                <td class=" ">121000038</td>
-                                <td class=" ">May 24, 2014 10:55:33 PM</td>
-                                <td class=" ">121000203 <i class="success fa fa-long-arrow-up"></i>
-                                </td>
-                                <td class=" ">Mike Smith</td>
-                                
-                                </td>
-                              </tr>
-                              <tr class="odd pointer">
-              
-                              <td class=" ">121000037</td>
-                              <td class=" ">May 24, 2014 10:52:44 PM</td>
-                              <td class=" ">121000204</td>
-                              <td class=" ">Mike Smith <i class="success fa fa-long-arrow-up"></i></td>
-              
-                              </td>
-                              </tr>
-            
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-	<!-- Modal Total Animal Welfare Organization -->
+      <!-- //Modal Delete Post -->
 
         <!-- footer content -->
         <footer>
@@ -641,6 +626,6 @@ if($query->rowCount()>0)
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/custom.min.js"></script>    
   </body>
 </html>
