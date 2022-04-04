@@ -643,7 +643,7 @@ if($query->rowCount()>0)
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Create Post</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Create Post here</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -669,6 +669,7 @@ if($query->rowCount()>0)
                       <label>Create Tips</label>
 
 <!-- Post Tips Code -->
+
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -694,7 +695,7 @@ $query->bindParam(':Content',$Content,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
 
 }
 ?>
@@ -718,19 +719,19 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          <span class="section"></span>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
                                          </div>
                                         
                                                  <div class="col-md-6 offset-md-3">
@@ -768,7 +769,7 @@ $query->bindParam(':Content',$Content,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
 
 }
 ?>
@@ -792,19 +793,19 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <span class="section"></span>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
                                              </div>
  
                                          </div>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
                                          </div>                   
  
                                          <div class="col-md-6 offset-md-3">
@@ -815,14 +816,16 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       </div>
                       <div class="tab-pane fade" id="articles1" role="tabpanel" aria-labelledby="articles-tab">
                       <label>Create Articles</label>
+
                       
-                                  </div>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-  <!-- //Modal Create Post -->
+                      
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal Create Post -->   
 
         <!-- footer content -->
         <footer>
