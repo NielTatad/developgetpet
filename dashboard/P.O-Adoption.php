@@ -442,7 +442,7 @@ if($query->rowCount()>0)
                    </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content" style="text-align:center;">
+                  <div class="x_content" style="text-align:center;overflow:auto;height:750px;">
                                   
                   <!-- View Pet Post for Adotion Code -->
                   <?php
@@ -457,12 +457,17 @@ if($query->rowCount()>0)
                             {
                               ?>   
                                     <div class="col-nd-4">
-                                        <div class="card" style="border-radius:10px;border-width:2px;">
+                                        <div class="card" style="border-radius:10px;border-width:2px;width:550px;margin: 0 auto;float: none; margin-bottom: 10px;">
                                         
                                           <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;float:left;">
+                                          
+                                          <a style="float:left;margin-left:5px;margin-top:10px;"><?php echo($result->userName);?>&nbsp<i class="fa fa-paw"></i></a>
+                                          <p id="description" style="font-size:16px;margin-top:50px;float:left;"><?php echo ($result->petDescription);?></p>
+                                          
+                                          <br>
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
-                                              <h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2>
+                                              
                                               <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petType);?></h3></li>
@@ -475,7 +480,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ($result->dewormingStatus);?></h3></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->petDescription);?></textarea></li>
                                               
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h3></ul>
+                                              
                                               <li><h3 hidden class="card-title"><?php echo ($result->petDescription);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petStatus);?></h3></li>
@@ -492,15 +497,15 @@ if($query->rowCount()>0)
                                                 foreach($userids as $userid)
                                               {
                                                 ?>
-                                              <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($userid->Address);?></h3></ul>
-                                              <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                              
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
-                                              <li><label style=""><?php echo ($result->postDate);?></label><br></li>
+                                              <li><label hidden class="card-title"><?php echo ($result->postDate);?></label><br></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
-                                              <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;height:30px;width:150px;font-size:14px;padding-top: 5px;">View More Info</button><br>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-10px;">View More Info</button>
+                                              <br>
 
                                               <?php
                                               $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->petID'");
@@ -537,10 +542,10 @@ if($query->rowCount()>0)
                                                 foreach($pictures as $picture)
                                               {
                                                 ?>
+                                                <br>
+                                               <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
                                               
-                                               <h4><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
-                                              
-                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:250px;height: auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea><br>
+                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea><br>
                                                 
                                                 <p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>
 
@@ -561,7 +566,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                               <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
-                                              <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:250px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
+                                              <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:450px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
                                               <div class="clearfix"></div>
                                               <?php $cnt4=$cnt4+1;}} ?>
 
