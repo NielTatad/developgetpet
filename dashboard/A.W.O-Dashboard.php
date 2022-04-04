@@ -383,12 +383,12 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:50px;">
                   
-                  <a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" class="form-control" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
+                <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Profile.php';" alt="avatar" style="width:40px;height:40px;" class="rounded-circle img-responsive">&nbsp&nbsp<a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;height:40px;width:900px;background-color:#e9ecef;font-size:16px;height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1remfont-weight: 400;line-height: 1.5;color: #495057;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
                     <div class="clearfix"></div>
 
                 </div>
               </div>
-            </div>  
+            </div>
 
             <!-- New Post For Adoption Code -->
             <div class="clearfix"></div>
@@ -407,7 +407,7 @@ if($query->rowCount()>0)
                   <div class="x_content" style="text-align:center;">
 
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' ORDER BY petID DESC LIMIT 3";
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -669,7 +669,7 @@ if($query->rowCount()>0)
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Create Post here</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Create Post</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -759,10 +759,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                              <div class="col-md-6 col-sm-6">
                                                  <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
                                          </div>
-                                        
+                                                 <div style="text-align: center" class="form-group">
                                                  <div class="col-md-6 offset-md-3">
                                                      <button name ="Posttips" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                      <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                 </div>
                                                  </div>                                                   
                                      </form>
                       </div>
@@ -833,10 +834,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                              <div class="col-md-6 col-sm-6">
                                                  <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
                                          </div>                   
- 
+
+                                         <div style="text-align: center" class="form-group">
                                          <div class="col-md-6 offset-md-3">
-                                                     <button name ="Postadvice" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                     <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                 <button name ="Postadvice" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                 <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                         </div>
                                          </div>   
                                      </form>
                       </div>

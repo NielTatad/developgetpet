@@ -388,7 +388,7 @@ if($query->rowCount()>0)
                 <div class="x_panel" style="border-radius:50px;">
                   
                 <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-Profile.php';" alt="avatar" style="width:40px;height:40px;" class="rounded-circle img-responsive">&nbsp&nbsp<a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;height:40px;width:900px;background-color:#e9ecef;font-size:16px;height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1remfont-weight: 400;line-height: 1.5;color: #495057;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
-                    <div class="clearfix"></div>
+                <div class="clearfix"></div>
 
                 </div>
               </div>
@@ -410,7 +410,7 @@ if($query->rowCount()>0)
                   <div class="x_content" style="text-align:center;">
 
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND userID != '$ID' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -732,10 +732,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                              <div class="col-md-6 col-sm-6">
                                                  <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
                                          </div>
-                                        
+                                                 <div style="text-align: center" class="form-group">
                                                  <div class="col-md-6 offset-md-3">
                                                      <button name ="Posttips" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                      <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                 </div>
                                                  </div>                                                   
                                      </form>
                       </div>
@@ -806,10 +807,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                              <div class="col-md-6 col-sm-6">
                                                  <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
                                          </div>                   
- 
+                                         
+                                         <div style="text-align: center" class="form-group">
                                          <div class="col-md-6 offset-md-3">
                                                      <button name ="Postadvice" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                      <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                         </div>
                                          </div>   
                                      </form>
                       </div>

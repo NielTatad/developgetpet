@@ -725,13 +725,13 @@ if(isset($_POST['DeclineRequest']))
     $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
     $query2->execute();
   
-    $sql3="INSERT INTO notification(activityID,notificationTitle,UserID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Disapproved Adoption Request','$ID',:userID,'Disapproved your adoption request','$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Disapproved Adoption Request','$ID',:userID,'Disapproved your adoption request','$date','Unread')";
     $query3=$dbh->prepare($sql3);
     $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
     $query3->execute();
   
-    $sql4="INSERT INTO history(Title,requestID,masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
     $query4=$dbh->prepare($sql4);
     $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
@@ -784,13 +784,13 @@ if(isset($_POST['DeclineRequest']))
     $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
     $query2->execute();
   
-    $sql3="INSERT INTO notification(activityID,notificationTitle,UserID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Disapproved Adoption Request','$ID',:userID,'Disapproved your adoption request','$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Disapproved Adoption Request','$ID',:userID,'Disapproved your adoption request','$date','Unread')";
     $query3=$dbh->prepare($sql3);
     $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
     $query3->execute();
   
-    $sql4="INSERT INTO history(Title,requestID,masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-term care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-term care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
     $query4=$dbh->prepare($sql4);
     $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
@@ -875,67 +875,149 @@ if(isset($_POST['DeclineRequest']))
 </div>
 	<!-- //Modal Decline User Request -->
 
+<!-- Accept User Request Code-->
+<?php
+$sql="SELECT * from request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' ORDER BY requestID DESC";
+$query=$dbh->prepare($sql);
+$query->execute();
+$results=$query->fetchALL(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+    foreach($results as $result)
+  {
+    ?>
+          
+<?php
+date_default_timezone_set("Asia/Manila");
+$title = ($result->requestTitle);
+$date = date('m/d/Y h:i A', time());
+?>  
 <?php
 if(isset($_POST['AcceptRequest']))
 {
-  $requestID=($_POST['requestID']);
-  $userID=($_POST['userID']);
-  $userName=($_POST['userName']);
-  $userEmail=($_POST['userEmail']);
-  $userAddress=($_POST['userAddress']);
-  $userContactNo=($_POST['userContactNo']);
-  $petID=($_POST['petID']);
-  $petType=($_POST['petType']);
-  $petName=($_POST['petName']);
-  $petBreed=($_POST['petBreed']);
-  $requestDate=($_POST['requestDate']);
-
-  $sql="update request set
-  approvalDate='$date', requestStatus='Approved'
-  where requestID=:requestID";
-  $query=$dbh->prepare($sql); 
-  $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-  $query->execute();
-
-  $sql1="update postpet set
-  petStatus='Adopted'
-  where petID=:petID";
-  $query1=$dbh->prepare($sql1); 
-  $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-  $query1->execute();
-
-  $sql2="update notification set
-  notificationStatus='Read'
-  where activityID=:requestID";
-  $query2=$dbh->prepare($sql2); 
-  $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-  $query2->execute();
-
-  $sql3="INSERT INTO notification(activityID,notificationTitle,UserID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Approved Adoption Request','$ID',:userID,'Approved your adoption request','$date','Unread')";
-  $query3=$dbh->prepare($sql3);
-  $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-  $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
-  $query3->execute();
-
-  $sql4="INSERT INTO history(requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES(:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
-  $query4=$dbh->prepare($sql4);
-  $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-  $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
-  $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
-  $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
-  $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
-  $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
-  $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
-  $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
-  $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
-  $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
-  $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
-  $query4->execute();
-
-  echo '<script>alert("User Request Accepted Successfully!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-UserRequest.php'</script>";
+  if($title == 'Adoption Request')
+  {
+    $requestID=($_POST['requestID']);
+    $userID=($_POST['userID']);
+    $userName=($_POST['userName']);
+    $userEmail=($_POST['userEmail']);
+    $userAddress=($_POST['userAddress']);
+    $userContactNo=($_POST['userContactNo']);
+    $petID=($_POST['petID']);
+    $petType=($_POST['petType']);
+    $petName=($_POST['petName']);
+    $petBreed=($_POST['petBreed']);
+    $requestDate=($_POST['requestDate']);
+  
+    $sql="update request set
+    approvalDate='$date', requestStatus='Approved'
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query->execute();
+  
+    $sql1="update postpet set
+    petStatus='Adopted'
+    where petID=:petID";
+    $query1=$dbh->prepare($sql1); 
+    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
+    $query1->execute();
+  
+    $sql2="update notification set
+    notificationStatus='Read'
+    where activityID=:requestID";
+    $query2=$dbh->prepare($sql2); 
+    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query2->execute();
+  
+    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Approved Adoption Request','$ID',:userID,'Approved your adoption request','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query3->execute();
+  
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
+    $query4=$dbh->prepare($sql4);
+    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
+    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
+    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
+    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
+    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
+    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
+    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
+    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
+    $query4->execute();
+  
+    echo '<script>alert("User Request Accepted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-UserRequest.php'</script>";
+  }
+  else
+  {
+    $requestID=($_POST['requestID']);
+    $userID=($_POST['userID']);
+    $userName=($_POST['userName']);
+    $userEmail=($_POST['userEmail']);
+    $userAddress=($_POST['userAddress']);
+    $userContactNo=($_POST['userContactNo']);
+    $petID=($_POST['petID']);
+    $petType=($_POST['petType']);
+    $petName=($_POST['petName']);
+    $petBreed=($_POST['petBreed']);
+    $requestDate=($_POST['requestDate']);
+  
+    $sql="update request set
+    approvalDate='$date', requestStatus='Approved'
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query->execute();
+  
+    $sql1="update postpet set
+    petStatus='Adopted'
+    where petID=:petID";
+    $query1=$dbh->prepare($sql1); 
+    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
+    $query1->execute();
+  
+    $sql2="update notification set
+    notificationStatus='Read'
+    where activityID=:requestID";
+    $query2=$dbh->prepare($sql2); 
+    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query2->execute();
+  
+    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Approved Adoption Request','$ID',:userID,'Approved your adoption request','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query3->execute();
+  
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-term care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
+    $query4=$dbh->prepare($sql4);
+    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
+    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
+    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
+    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
+    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
+    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
+    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
+    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
+    $query4->execute();
+  
+    echo '<script>alert("User Request Accepted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-UserRequest.php'</script>";
+  }
 }
 ?>
+<?php $cnt=$cnt+1;}}?>
+<!-- //Accept User Request Code -->
 
   <!-- Modal Accept User Request -->
 <div class="modal fade" id="AcceptRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

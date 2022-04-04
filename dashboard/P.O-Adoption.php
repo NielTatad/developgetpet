@@ -208,6 +208,11 @@ if($query->rowCount()>0)
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+  <style>
+    .view-all-comment:hover {
+    text-decoration: underline;
+}
+  </style>
 </head>
 
 <body class="nav-md">
@@ -456,7 +461,7 @@ if($query->rowCount()>0)
                                         
                                           <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                               <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;float:left;">
-                                              <ul style="list-style:none;margin-left:-50px;"><br>
+                                              <ul style="list-style:none;margin-left:-50px;">
                                               <h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
@@ -489,13 +494,77 @@ if($query->rowCount()>0)
                                                 ?>
                                               <ul style="margin-right:5px;"><h3 class="card-title" style="font-size:15px;"><?php echo ($userid->Address);?></h3></ul>
                                               <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                              <?php $cnt1=$cnt1+1;}} ?>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
                                               <li><label style=""><?php echo ($result->postDate);?></label><br></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
-                                              <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:100px;">View More</button>
+                                              <?php $cnt1=$cnt1+1;}} ?>
+                                              <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;height:30px;width:150px;font-size:14px;padding-top: 5px;">View More Info</button><br>
+
+                                              <?php
+                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->petID'");
+                                              $count->execute();
+
+                                              $commentno=$count->fetchColumn();
+
+                                              ?>
+                                              
+                                              <?php
+                                              $postid = $result->petID;
+
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Adoption' ORDER BY commentID DESC LIMIT 1";
+                                              $query2=$dbh->prepare($sql2);
+                                              $query2->execute();
+                                              $comments=$query2->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt2=1;
+                                              if($query2->rowCount()>0)
+                                              {
+                                                foreach($comments as $comment)
+                                              {
+                                                ?>
+
+                                              <?php
+                                              $uid = $comment->userID;
+
+                                              $sql3="SELECT * from register WHERE userID ='$uid'";
+                                              $query3=$dbh->prepare($sql3);
+                                              $query3->execute();
+                                              $pictures=$query3->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt3=1;
+                                              if($query3->rowCount()>0)
+                                              {
+                                                foreach($pictures as $picture)
+                                              {
+                                                ?>
+                                              
+                                               <h4><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+                                              
+                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:250px;height: auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea><br>
+                                                
+                                                <p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>
+
+                                              <?php $cnt2=$cnt2+1;}} ?>
+                                              <?php $cnt3=$cnt3+1;}} ?>
+                                              
+                                              
+                                              <?php
+
+                                              $sql4="SELECT * from register WHERE userID='$ID'";
+                                              $query4=$dbh->prepare($sql4);
+                                              $query4->execute();
+                                              $userIDs=$query4->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt4=1;
+                                              if($query4->rowCount()>0)
+                                              {
+                                                foreach($userIDs as $userID)
+                                              {
+                                                ?>
+                                              <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
+                                              <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:250px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
+                                              <div class="clearfix"></div>
+                                              <?php $cnt4=$cnt4+1;}} ?>
+
                                               </ul>
                                             </div>
                                           </div>
@@ -518,6 +587,7 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
+        
 
   <!-- Search By ID Code -->
 <script>
@@ -916,6 +986,110 @@ if(isset($_POST['Adopt']))
 </div>
 	<!-- //Modal Pet Information -->
 
+<!-- Comment Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['btnComment']))
+{
+  $masterid=($_POST['masterid']);
+
+  if($masterid == $ID)
+  {
+    $petid=($_POST['petid']);
+    $masterid=($_POST['masterid']);
+    $Comment=($_POST['Comment']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Adoption')";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':petid',$petid,PDO::PARAM_STR);
+    $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
+    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query->execute();
+
+    echo '<script>alert("Your Comment Posted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+  
+  }
+
+  else
+  {
+    $petid=($_POST['petid']);
+    $masterid=($_POST['masterid']);
+    $Comment=($_POST['Comment']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Adoption')";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':petid',$petid,PDO::PARAM_STR);
+    $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
+    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query->execute();
+
+    $sql2="SELECT commentID FROM comment ORDER BY commentID DESC";
+    $query2=$dbh->prepare($sql2);
+    $query2->execute();
+
+    $commentID=$query2->fetchColumn();
+
+    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
+    $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query3->execute();
+
+    echo '<script>alert("Your Comment Posted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+  }
+  
+}
+?>
+<!-- //Comment Code -->
+
+  <!-- Modal Comment -->
+<div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Comment Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="comment()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+          function comment() {
+          document.getElementById("comment").value="";
+            }
+        </script>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petid" name="petid" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->ownerID);?>" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
+				</div><br>
+
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Comment -->
+
 			<!-- footer content -->
 			<footer>
       <p class="tweet-p1">
@@ -970,6 +1144,32 @@ if(isset($_POST['Adopt']))
         });
     </script>
 
+<script>
+        $(document).ready(function () {
+
+            $('.commentbtn').on('click', function () {
+
+                $('#Comment').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#petid').val(data[0]);
+                $('#masterid').val(data[14]);
+            });
+        });
+    </script>
+
+  <script type="text/javascript">
+  $(".comment-count").filter(function(){
+  return $(this).text().trim() === "0";
+  }).hide();
+  </script>
 
 	<!-- Javascript functions	-->
 	<script>

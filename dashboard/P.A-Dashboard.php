@@ -388,7 +388,7 @@ if($query->rowCount()>0)
                 <div class="x_panel" style="border-radius:50px;">
                   
                   <a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" class="form-control" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
-                    <div class="clearfix"></div>
+                  <div class="clearfix"></div>
 
                 </div>
               </div>
@@ -410,7 +410,7 @@ if($query->rowCount()>0)
                   <div class="x_content" style="text-align:center;">
 
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND userID != '$ID' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
