@@ -428,8 +428,21 @@ if($query->rowCount()>0)
                                         
                                           <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                           
-                                          <a style="float:left;margin-left:5px;margin-top:10px;"><?php echo($result->userName);?>&nbsp<i class="fa fa-paw"></i></a>
-                                          <p id="description" style="font-size:16px;margin-top:50px;float:left;"><?php echo ($result->petDescription);?></p>
+                                          <?php $user_id = $result->userID;
+
+                                          $sql1="SELECT * from register WHERE userID='$user_id'";
+                                          $query1=$dbh->prepare($sql1);
+                                          $query1->execute();
+                                          $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                          $cnt1=1;
+                                          if($query1->rowCount()>0)
+                                          {
+                                            foreach($userids as $userid)
+                                          {
+                                            ?>
+                                            
+                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->postDate);?></textarea>
+                                          <p id="description" style="font-size:16px;margin-top:10px;float:left;padding-left: 10px;"><?php echo ($result->petDescription);?></p>
                                           
                                           <br>
                                               <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
@@ -452,18 +465,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petStatus);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
-                                              <?php $user_id = $result->userID;
-
-                                              $sql1="SELECT * from register WHERE userID='$user_id'";
-                                              $query1=$dbh->prepare($sql1);
-                                              $query1->execute();
-                                              $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                              $cnt1=1;
-                                              if($query1->rowCount()>0)
-                                              {
-                                                foreach($userids as $userid)
-                                              {
-                                                ?>
+                                            
                                               
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
                                               <li><label hidden class="card-title"><?php echo ($result->postDate);?></label><br></li>
@@ -512,7 +514,8 @@ if($query->rowCount()>0)
                                                 <br>
                                                <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
                                               
-                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea><br>
+                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v"></i><br>
+                                                <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
                                                 
                                                 <!--<p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>-->
 

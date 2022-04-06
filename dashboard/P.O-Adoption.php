@@ -549,20 +549,49 @@ if($query->rowCount()>0)
                                               
                                                 <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v"></i><br>
                                                 <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
-                                                <p class="view-all-comment" id="view_all" style="margin-top:-10px;margin-bottom:8px;"> View all comments</p>
+                                                
+                                                <!--<p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>-->
 
-                                              <?php $cnt2=$cnt2+1;}} ?>
-                                              <?php $cnt3=$cnt3+1;}} ?>
-                                              
-                                              
+                                                <!-- start view all comment -->
+                                          <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">                  
+                                            <div class="panel">
+                                              <a class="view-all-comment" role="tab" id="view_all" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
+                                              <p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>
+                                              </a>
                                               <?php
-
-                                              $sql4="SELECT * from register WHERE userID='$ID'";
+                                              $postid = $result->petID;
+                                              $sql4="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Adoption' ORDER BY commentID DESC";
                                               $query4=$dbh->prepare($sql4);
                                               $query4->execute();
-                                              $userIDs=$query4->fetchALL(PDO::FETCH_OBJ);
+                                              $comments=$query4->fetchALL(PDO::FETCH_OBJ);
                                               $cnt4=1;
                                               if($query4->rowCount()>0)
+                                              {
+                                                foreach($comments as $comment)
+                                              {
+                                                ?>
+                                            <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                              <div class="panel-body">
+                                              <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>
+                                              <?php $cnt4=$cnt4+1;}} ?>
+                                              <br>
+                                              </div>
+                                            </div>
+                                          </div>                  
+                                        </div>
+                                        <!-- end of view all comment -->
+                                        <?php $cnt2=$cnt2+1;}} ?>
+                                        <?php $cnt3=$cnt3+1;}} ?>
+                                        
+                                                
+                                              <?php
+
+                                              $sql5="SELECT * from register WHERE userID='$ID'";
+                                              $query5=$dbh->prepare($sql5);
+                                              $query5->execute();
+                                              $userIDs=$query5->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt5=1;
+                                              if($query5->rowCount()>0)
                                               {
                                                 foreach($userIDs as $userID)
                                               {
@@ -570,7 +599,7 @@ if($query->rowCount()>0)
                                               <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
                                               <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:450px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
                                               <div class="clearfix"></div>
-                                              <?php $cnt4=$cnt4+1;}} ?>
+                                              <?php $cnt5=$cnt5+1;}} ?>
 
                                               </ul>
                                             </div>
@@ -586,7 +615,6 @@ if($query->rowCount()>0)
                         }
                         ?>
                      <!-- //View Pet Post for Adotion Code -->                                        
-                                       
                   </div>
                 </div>
               </div>
