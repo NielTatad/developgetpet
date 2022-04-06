@@ -205,12 +205,6 @@ if($query->rowCount()>0)
 	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  <!-- bootstrap-progressbar -->
-  <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-  <!-- PNotify -->
-  <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-  <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-  <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
@@ -467,8 +461,21 @@ if($query->rowCount()>0)
                                         
                                           <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                           
-                                          <a style="float:left;margin-left:5px;margin-top:10px;"><?php echo($result->userName);?>&nbsp<i class="fa fa-paw"></i></a>
-                                          <p id="description" style="font-size:16px;margin-top:50px;float:left;"><?php echo ($result->petDescription);?></p>
+                                          <?php $user_id = $result->userID;
+
+                                          $sql1="SELECT * from register WHERE userID='$user_id'";
+                                          $query1=$dbh->prepare($sql1);
+                                          $query1->execute();
+                                          $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                          $cnt1=1;
+                                          if($query1->rowCount()>0)
+                                          {
+                                            foreach($userids as $userid)
+                                          {
+                                            ?>
+                                            
+                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->postDate);?></textarea>
+                                          <p id="description" style="font-size:16px;margin-top:10px;float:left;padding-left: 10px;"><?php echo ($result->petDescription);?></p>
                                           
                                           <br>
                                               <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
@@ -491,18 +498,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ($result->petPicture);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->petStatus);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
-                                              <?php $user_id = $result->userID;
-
-                                              $sql1="SELECT * from register WHERE userID='$user_id'";
-                                              $query1=$dbh->prepare($sql1);
-                                              $query1->execute();
-                                              $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                              $cnt1=1;
-                                              if($query1->rowCount()>0)
-                                              {
-                                                foreach($userids as $userid)
-                                              {
-                                                ?>
+                                            
                                               
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
                                               <li><label hidden class="card-title"><?php echo ($result->postDate);?></label><br></li>
@@ -551,52 +547,22 @@ if($query->rowCount()>0)
                                                 <br>
                                                <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
                                               
-                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea><br>
+                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v"></i><br>
+                                                <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
+                                                <p class="view-all-comment" id="view_all" style="margin-top:-10px;margin-bottom:8px;"> View all comments</p>
 
-                                                
-                                                
-                                               <!--<p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>-->
-
-                                                <!-- start view all comment -->
-                                          <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">                  
-                                            <div class="panel">
-                                              <a class="view-all-comment" role="tab" id="view_all" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
-                                              <p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>
-                                              </a>
+                                              <?php $cnt2=$cnt2+1;}} ?>
+                                              <?php $cnt3=$cnt3+1;}} ?>
+                                              
+                                              
                                               <?php
-                                              $postid = $result->petID;
-                                              $sql4="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Adoption' ORDER BY commentID DESC";
+
+                                              $sql4="SELECT * from register WHERE userID='$ID'";
                                               $query4=$dbh->prepare($sql4);
                                               $query4->execute();
-                                              $comments=$query4->fetchALL(PDO::FETCH_OBJ);
+                                              $userIDs=$query4->fetchALL(PDO::FETCH_OBJ);
                                               $cnt4=1;
                                               if($query4->rowCount()>0)
-                                              {
-                                                foreach($comments as $comment)
-                                              {
-                                                ?>
-                                            <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                              <div class="panel-body">
-                                              <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>
-                                              <?php $cnt4=$cnt4+1;}} ?>
-                                              <br>
-                                              </div>
-                                            </div>
-                                          </div>                  
-                                        </div>
-                                        <!-- end of view all comment -->
-                                        <?php $cnt2=$cnt2+1;}} ?>
-                                        <?php $cnt3=$cnt3+1;}} ?>
-                                        
-                                                
-                                              <?php
-
-                                              $sql5="SELECT * from register WHERE userID='$ID'";
-                                              $query5=$dbh->prepare($sql5);
-                                              $query5->execute();
-                                              $userIDs=$query5->fetchALL(PDO::FETCH_OBJ);
-                                              $cnt5=1;
-                                              if($query5->rowCount()>0)
                                               {
                                                 foreach($userIDs as $userID)
                                               {
@@ -604,7 +570,7 @@ if($query->rowCount()>0)
                                               <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
                                               <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:450px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
                                               <div class="clearfix"></div>
-                                              <?php $cnt5=$cnt5+1;}} ?>
+                                              <?php $cnt4=$cnt4+1;}} ?>
 
                                               </ul>
                                             </div>
@@ -620,6 +586,7 @@ if($query->rowCount()>0)
                         }
                         ?>
                      <!-- //View Pet Post for Adotion Code -->                                        
+                                       
                   </div>
                 </div>
               </div>
@@ -630,7 +597,7 @@ if($query->rowCount()>0)
         
 
   <!-- Search By ID Code -->
-  <script>
+<script>
 <?php 
 $ID=$_SESSION['ownerID'];
 $sql = "SELECT * from petowner where ownerID=:ID";
@@ -1203,7 +1170,7 @@ if(isset($_POST['btnComment']))
                 $('#masterid').val(data[14]);
             });
         });
-</script>
+    </script>
 
   <script type="text/javascript">
   $(".comment-count").filter(function(){
@@ -1211,6 +1178,26 @@ if(isset($_POST['btnComment']))
   }).hide();
   </script>
 
+	<!-- Javascript functions	-->
+	<script>
+		function hideshow(){
+			var password = document.getElementById("password1");
+			var slash = document.getElementById("slash");
+			var eye = document.getElementById("eye");
+			
+			if(password.type === 'password'){
+				password.type = "text";
+				slash.style.display = "block";
+				eye.style.display = "none";
+			}
+			else{
+				password.type = "password";
+				slash.style.display = "none";
+				eye.style.display = "block";
+			}
+
+		}
+	</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
@@ -1273,12 +1260,6 @@ if(isset($_POST['btnComment']))
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
-  <!-- bootstrap-progressbar -->
-  <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-  <!-- PNotify -->
-  <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-  <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-  <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
   
 
