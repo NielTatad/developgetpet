@@ -96,7 +96,7 @@ th {
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/admin.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+              <a href="http://localhost/developgetpet/dashboard/Admin-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -121,41 +121,48 @@ th {
 					<ul class="nav side-menu">
 
                             <li>
-                            <li><a href="http://localhost/developgetpet/dashboard/admin.php" style="font-size:15px;">Dashboard</a>
+                            <li><a href="http://localhost/developgetpet/dashboard/Admin-Dashboard.php" style="font-size:15px;">Dashboard</a>
                             </li>
 
                             <li>
-                            <li><a href="http://localhost/developgetpet/dashboard/ManageAdoption&Shorttermcare.php" style="font-size:15px;">Manage Pet Adoption & <br> Short Term-Care</a>
+                            <li><a href="http://localhost/developgetpet/dashboard/Admin-Petinformation.php" style="font-size:15px;">Pet Information</a>
                             </li>
+
+                            <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                  <li><a href="#">Pet Adoption</a></li>
+                                  <li><a href="#">Short-Term Care</a></li>
+                                </ul>
+                              </li>
 
 
                                 <li><a style="font-size:15px;">Manage Donation & Fundraising Activities<span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="#">Donation</a></li>
-										<li><a href="#">Fundraising Activities</a></li>
-									</ul>
-								</li>
+                                <ul class="nav child_menu">
+                                  <li><a href="#">Donation</a></li>
+                                  <li><a href="#">Fundraising Activities</a></li>
+                                </ul>
+                              </li>
 
                                 <li><a style="font-size:15px;">Manage Tips, Advice & Articles<span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="#">Tips</a></li>
-										<li><a href="#">Advice</a></li>
-                                        <li><a href="#">Articles</a></li>
-									</ul>
-								</li>
+                                <ul class="nav child_menu">
+                                  <li><a href="#">Tips</a></li>
+                                  <li><a href="#">Advice</a></li>
+                                  <li><a href="#">Articles</a></li>
+                                </ul>
+                              </li>
 
                                 <li><a style="font-size:15px;">History<span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu">
-										<li><a href="#">Adoption</a></li>
-										<li><a href="#">Short Term-Care</a></li>
-									</ul>
-								</li>
+                                <ul class="nav child_menu">
+                                  <li><a href="#">Adoption</a></li>
+                                  <li><a href="#">Short Term-Care</a></li>
+                                </ul>
+                              </li>
                                 
                                 <li>
                                 <li><a href="#" style="font-size:15px;">Report</a>
                                 </li>
 
-                    </ul>		
+        </ul>		
 				</div>
 		    </div>
 					<!-- /sidebar menu -->
