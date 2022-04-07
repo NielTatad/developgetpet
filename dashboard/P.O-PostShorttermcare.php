@@ -198,6 +198,13 @@ if($query->rowCount()>0)
 	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- bootstrap-datetimepicker -->
+  <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+  <!-- Ion.RangeSlider -->
+  <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
+  <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+  <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+  <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
@@ -683,6 +690,32 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 										</div>
 
                     <div class="field item form-group">
+                                        <label class='col-form-label col-md-3 col-sm-3  label-align'>
+                                        Select Date</label>
+                                        <div class="col-md-6 col-sm-6">
+                            <div class='input-group date' id='myDatepicker2'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field item form-group">
+                                        <label class='col-form-label col-md-3 col-sm-3  label-align'>
+                                        Return Date</label>
+                                        <div class="col-md-6 col-sm-6">
+                            <div class='input-group date' id='myDatepicker2'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
 											<div class="col-md-6 col-sm-6">
 												<textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
@@ -713,7 +746,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-PostShorttermcare.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                 </div>
                                             </div>
                                         </div>
