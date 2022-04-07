@@ -414,7 +414,7 @@ if($query->rowCount()>0)
                    </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content" style="text-align:center;overflow:auto;height:750px;">
+                  <div class="x_content" style="text-align:center;">
                                   
                   <!-- View Pet Post for Adotion Code -->
                   <?php
