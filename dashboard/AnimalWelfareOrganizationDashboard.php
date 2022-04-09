@@ -255,7 +255,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Tips, Advice & Articles</a>
+                    <li><a href="#">Pet Care Tips</a>
                     </li>
                  
               </div>

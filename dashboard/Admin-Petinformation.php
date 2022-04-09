@@ -153,7 +153,7 @@ th {
 									</ul>
 								</li>
 
-                                <li><a style="font-size:15px;">Manage Tips, Advice & Articles<span class="fa fa-chevron-down"></span></a>
+                                <li><a style="font-size:15px;">Manage Pet Care Tips<span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="#">Tips</a></li>
 										<li><a href="#">Advice</a></li>
