@@ -388,7 +388,7 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
-<p></p>
+
 <?php
 ?>
 <?php }} ?>
