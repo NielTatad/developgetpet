@@ -128,6 +128,10 @@ th {
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Petinformation.php" style="font-size:15px;">Pet Information</a>
                             </li>
 
+                            <li>
+                            <li><a href="http://localhost/developgetpet/dashboard/Admin-Userinformation.php" style="font-size:15px;">User Information</a>
+                            </li>
+
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                   <li><a href="#">Pet Adoption</a></li>

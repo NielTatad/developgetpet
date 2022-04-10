@@ -156,65 +156,38 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <style>
-  .Img-icons i {
-            position: absolute;
-        }
-          
-        .Img-icons {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-          
-        .camera {
-            padding: 194px;
-            min-width: 300px;
-            width: 44%;
-        }
-        
-        .circle {
-            padding: 180px;
-            min-width: 300px;
-            color:white;
-            border-color: #F5F5F5;
-            color: #F5F5F5;
-            width: 44%;
-        }
-          
-        .Img-field {
-            width: 100%;
-            padding: 100px;
-            text-align: center;
-        }
-  </style>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GETPET</title>
+	<title>GETPET</title>
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- PNotify -->
-    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
-    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
-    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+	<!-- Custom Theme Style -->
+	<link href="../build/css/custom.min.css" rel="stylesheet">
+</head>
 
-  <body class="nav-md" onLoad="window.scroll(0, 550)">
+<body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -225,20 +198,22 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <div class="clearfix"></div>
 
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-            
-              <!--<div class="profile_info" style="margin-left:60px;">
-                
-                <h2>Welcome, <br><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
-              </div>-->
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                    <!--<div class="profile_pic">
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;border:5px;">
+                    </div>
+                    <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    </div>
+                    <!-- /menu profile quick info -->
 
-            <br />
+					<br />
 
-            <!-- sidebar menu -->
+				 <!-- sidebar menu -->
          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
@@ -255,7 +230,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Donation.php">Donation</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Postdonation.php">Donation</a>
                     </li>
 
                     <li>
@@ -272,7 +247,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
             <!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
+				<!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -285,10 +260,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               </a>
             </div>
             <!-- /menu footer buttons -->
-          </div>
-        </div>
+				</div>
+			</div>
 
-           <!-- top navigation -->
+		   <!-- top navigation -->
        <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
@@ -383,7 +358,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
           </div>
         <!-- /top navigation -->
-
+        
 <?php 
 $sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
@@ -401,149 +376,222 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-              <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
-              </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:10px;border-width:2px;">
-                  <div class="x_title">
-                    <h2>My Profile</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="x_content" style="text-align:center;">
-                  
-                  <?php
-                        $sql="SELECT * from petadopter WHERE adopterID='$ID'";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                        <div class="col-nd-4">
-                            <div class="card">
-                              <div class="card-body">
-                                  
-                                  <div style="max-width:400px;margin:auto">
-                                        <div class="Img-icons">
-                                        <i class="fa fa-circle circle fa-4x" data-toggle="modal" href="#ProfilePicture"></i>
-                                        <i class="fa fa-camera camera fa-2x" data-toggle="modal" href="#ProfilePicture"></i>
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> class="rounded-circle img-responsive" id="Modalprofile" alt="Post Images" style="height:250px;width:250px;border-style: solid;border-color: #F5F5F5;border-width: 6px;">
-                                        </div>
-                                  </div>                            
-                                  <h2 class="card-title"><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
-                                  
-                          </div>
+			<!-- page content -->
+			<div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                        <br>
+                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
                         </div>
-                      </div>
-                      <br>
-                      <?php $cnt=$cnt+1;}} ?>
-                      
-                     <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
-                      <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.A-Posts.php" role="tab" aria-controls="post" aria-selected="true">Posts</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" id="about-tab" data-toggle="tab" href="#post1" role="tab" role="tab" aria-controls="about" aria-selected="false">About</a>
-                      </li>
-                      <?php
-                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Cancelled' AND requestStatus != 'Approved'");
-                      $query->execute();
 
-                      $myrequest=$query->fetchColumn();
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                      ?>
-                      <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.A-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
-                        <script type="text/javascript">
-                        var myrequest = <?php echo ($myrequest);?>;
-                        if (myrequest === 0){
-                          document.getElementById("myrequest").style.display = "none";
-                        }
-                        </script>
-                      </li>
-                      <?php
-                      $query1=$dbh->prepare("SELECT COUNT(masterID) FROM request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved'");
-                      $query1->execute();
+<!-- Post Donation Code -->
+<?php 
+$ID=$_SESSION['adopterID'];
 
-                      $user_request=$query1->fetchColumn();
+$sql = "SELECT * from petadopter where adopterID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
 
-                      ?>
-                      <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.A-UserRequest.php" role="tab" aria-controls="user_request" aria-selected="false">User Request <span class="badge bg-green" id="user_request" value=""><?php echo ($user_request);?></a>
-                        <script type="text/javascript">
-                        var user_request = <?php echo ($user_request);?>;
-                        if (user_request === 0){
-                          document.getElementById("user_request").style.display = "none";
-                        }
-                        </script>
-                      </li>
-                      <?php
-                      $query=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID'");
-                      $query->execute();
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
 
-                      $adoption=$query->fetchColumn();
+<?php
+if(isset($_POST['Post']))
+{
 
-                      ?>
-                      <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.A-History.php" role="tab" aria-controls="user_request" aria-selected="false">History <span class="badge bg-green" id="adoption" value=""><?php echo ($adoption);?></span></a>
-                        <script type="text/javascript">
-                        var adoption = <?php echo ($adoption);?>;
-                        if (adoption === 0){
-                          document.getElementById("adoption").style.display = "none";
-                        }
-                        </script>
-                      </li>
-                      <?php
-                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus = 'Cancelled'");
-                      $query->execute();
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Address=($_POST['Address']);
+$ContactNo=($_POST['ContactNo']);
+$Title=($_POST['Title']);
+$Description=($_POST['Description']);
+$Bank=($_POST['Bank']);
+$Pin=($_POST['Pin']);
+$Amount=($_POST['Amount']);
+$Picture = $_FILES["Picture"]["name"];
+$tmp_dir = $_FILES["Picture"]["tmp_name"];
 
-                      $cancelled=$query->fetchColumn();
+move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-                      ?>
-                      <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.A-CancelledRequest.php" role="tab" aria-controls="user_request" aria-selected="false">Cancelled <span class="badge bg-green" id="cancelled" value=""><?php echo ($cancelled);?></span></a>
-                        <script type="text/javascript">
-                        var cancelled = <?php echo ($cancelled);?>;
-                        if (cancelled === 0){
-                          document.getElementById("cancelled").style.display = "none";
-                        }
-                        </script>
-                      </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
-<!-- Search By ID Code -->
+$sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charTitle,charDescription,charPicture,charBank,charPinnumber,charAmount,charPostdate,charCharitystatus,charPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Address',$Address,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+$query->bindParam(':Title',$Title,PDO::PARAM_STR);
+$query->bindParam(':Description',$Description,PDO::PARAM_STR);
+$query->bindParam(':Bank',$Bank,PDO::PARAM_STR);
+$query->bindParam(':Pin',$Pin,PDO::PARAM_STR);
+$query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
+$query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Posted successfully, Please wait for the admin approval thank you!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Donation.php'</script>";
+
+}
+?>
+<!-- //Post Donation Code -->
+
+                    <!-- Back Button -->
+                    <a href="http://localhost/developgetpet/dashboard/P.A-Donation.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12  ">
+                        <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                        <div class="x_title">
+                        <h2>Create Post for Donation</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                        </li>          
+                        </ul>
+                        <div class="clearfix"></div>
+                        </div>
+
+                                <div class="x_content">
+                                <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+                                         
+                                        <span class="section"></span>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->adopterID);?>" type="hidden"/>
+                                            </div>
+
+                                        </div>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>" type="hidden"/>
+                                            </div>
+
+                                        </div>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Email" class='email' value="<?php echo ($result->adopterEmail);?>" type="hidden"/></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Address" value="<?php echo ($result->adopterAddress);?>" type="hidden"/></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='number' name="ContactNo" value="<?php echo ($result->adopterContactNo);?>" type="hidden"></div>
+                                        </div>
+
+                                        
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="petname" class="form-control" name="Title" placeholder="Title..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="Reason..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
+                                          </div>
+                                        </div>                                    
+                                      
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Photo</label>
+                                        
+                                        <div style="text-align: center" class="wrap-input100 validate-input">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+                                        </div>
+                               
+                                        <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Select Bank<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="form-control" required="required" name="Bank">
+                                          <option>SELECT...</option>
+                                            <option>BDO</option>
+                                            <option>Union Bank</option>
+                                            <option>BPI</option>
+                                            <option>LANDBANK</option>
+                                            <option>GCASH</option>
+                                          </select>
+                                        </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Account<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="pin" class="form-control" name="Pin" placeholder="Pin..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="Amount..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
+
+                                        <div class="field item form-group">
+                                        <label class='col-form-label col-md-3 col-sm-3  label-align'>
+                                        Date</label>
+                                        <div class="col-md-6 col-sm-6">
+                                        <div class='input-group date' id='myDatepicker4'>
+                                        <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
+                                        <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="ln_solid">
+                                            <br>
+                                            <div class="form-group">
+                                                <div class="col-md-6 offset-md-3">
+                                                    <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-Postdonation.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<!-- /page content -->
+
 <script>
 <?php 
 $ID=$_SESSION['adopterID'];
@@ -558,96 +606,18 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
-<p></p>
-<?php
-?>
-<?php }} ?>
-</script>
-  <!-- //Search By ID Code -->
-                                    <form class="" action="" method="post" novalidate enctype="multipart/form-data">
-                                         
-                                        <br>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->adopterFirstname);?> <?php echo ( $result->adopterLastname);?>" style="background-color:#fff;width:400px;"/>
-                                            </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->adopterAddress);?>" style="background-color:#fff;width:400px;"/>
-                                            </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->adopterEmail);?>" style="background-color:#fff;width:400px;"/>
-                                            </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->adopterContactNo);?>" style="background-color:#fff;width:400px;"/>
-                                            </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Role<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input disabled type="text" class="form-control"  value="<?php echo ( $result->Role);?>" style="background-color:#fff;width:400px;"/>
-                                            </div>
-                                        </div>
-                                        <br><br>
-                                    </form>      
-                      </div>
-                      <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
-                      <div class="x_content">
-
-                                </div>
-                      </div>
-                      <div class="tab-pane fade" id="request1" role="tabpanel" aria-labelledby="request-tab">
-                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk 
-                      </div>
-                    </div>     
-                    
-
-                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /page content -->
-
-
-        <script>
-<?php
-$ID=$_SESSION['adopterID'];           
-$sql = "SELECT * from petadopter where adopterID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-     ?>
-<p></p>
 <?php
 ?>
 <?php }} ?>
 </script>
 
-<!-- ModalProfile -->
-<div class="modal fade" id="ProfilePicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            <!-- ModalProfile -->
+  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Update Profile Picture</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -660,22 +630,21 @@ if($query->rowCount()>0)
         <div style="text-align: center" class="wrap-input100 validate-input">
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
-        <script>
-        document.getElementById("Picture").onchange = function() {
-            if(this.value) {
-                document.getElementById("profile").disabled = false; 
-            }  
-        }
-        </script>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->adopterID);?>" required = "required" class="form-control" id="success">
-				</div><br>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="profile" id="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
-              <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
-         </div>
-        </div>
+				</div>
+        <div style="text-align: center">
+						  <button  class="login100-form-btn" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
+							 <a style="color:White"> Update Profile </a>
+						 </button>
+				</div>
+        <div style="text-align: center">
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterContactNo);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterAddress);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterEmail);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
+        </div><br>
       </form>
       </div>
     </div>
@@ -736,7 +705,7 @@ if($query->rowCount()>0)
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->adopterPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
-						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
+						<button  class="login100-form-btn" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
 							<a style="color:White"> Update </a>
 						</button>
 				</div><br>
@@ -747,48 +716,102 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-        <!-- footer content -->
-        <footer>
-        <p class="tweet-p1">
-		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
-		<!--<a href="#">http://ax.by/zzzz</a>-->
-		</p>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
-    </div>
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-    
 
-    <div id="custom_notifications" class="custom-notifications dsp_none">
-      <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-      </ul>
-      <div class="clearfix"></div>
-      <div id="notif-group" class="tabbed_notifications"></div>
-    </div>
+	<!-- Javascript functions	-->
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
-    <!-- PNotify -->
-    <script src="../vendors/pnotify/dist/pnotify.js"></script>
-    <script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
-    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
+	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="../vendors/iCheck/icheck.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="../vendors/moment/min/moment.min.js"></script>
+	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="../vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="../vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="../vendors/starrr/dist/starrr.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-  </body>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+
+     <!-- Initialize datetimepicker -->
+    <script  type="text/javascript">
+   $(function () {
+                $('#myDatepicker').datetimepicker();
+            });
+    
+    $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    
+    $('#myDatepicker3').datetimepicker({
+        format: 'hh:mm A'
+    });
+    
+    $('#myDatepicker4').datetimepicker({
+        ignoreReadonly: true,
+        allowInputToggle: true
+    });
+
+    $('#datetimepicker6').datetimepicker();
+    
+    $('#datetimepicker7').datetimepicker({
+        useCurrent: false
+    });
+    
+    $("#datetimepicker6").on("dp.change", function(e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    
+    $("#datetimepicker7").on("dp.change", function(e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+</script>
+
+</body>
 </html>

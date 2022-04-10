@@ -255,7 +255,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="#">Donation</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Donation.php">Donation</a>
                     </li>
 
                     <li>

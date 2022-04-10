@@ -8,15 +8,17 @@ $Lastname=($_POST['Lastname']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
+$Birthdate=date('Y-m-d', strtotime($_POST['Birthdate']));
 $Username=($_POST['Username']);
 $Password=($_POST['Password']);
-$sql="INSERT INTO register(userFirstname,userLastname,contactNo,Address,Image,Email,Username,Password,Role,registerDate)VALUES(:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter',Now())";
+$sql="INSERT INTO register(userFirstname,userLastname,contactNo,Address,Image,Email,Birthdate,Username,Password,Role,registerDate)VALUES(:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Birthdate,:Username,:Password,'Pet Adopter',Now())";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
 $query->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
 $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Birthdate',$Birthdate,PDO::PARAM_STR);
 $query->bindParam(':Username',$Username,PDO::PARAM_STR);
 $query->bindParam(':Password',$Password,PDO::PARAM_STR);
 $query->execute();
@@ -32,15 +34,17 @@ $Lastname=($_POST['Lastname']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
+$Birthdate=date('Y-m-d', strtotime($_POST['Birthdate']));
 $Username=($_POST['Username']);
 $Password=($_POST['Password']);
-$sql1="INSERT INTO petadopter(adopterID,adopterFirstname,adopterLastname,adopterContactNo,adopterAddress,adopterPicture,adopterEmail,adopterUsername,adopterPassword,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
+$sql1="INSERT INTO petadopter(adopterID,adopterFirstname,adopterLastname,adopterContactNo,adopterAddress,adopterPicture,adopterEmail,adopterBirthdate,adopterUsername,adopterPassword,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,Birthdate,:Username,:Password,'Pet Adopter')";
 $query1=$dbh->prepare($sql1);
 $query1->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
 $query1->bindParam(':Lastname',$Lastname,PDO::PARAM_STR); 
 $query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query1->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query1->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Birthdate',$Birthdate,PDO::PARAM_STR);
 $query1->bindParam(':Username',$Username,PDO::PARAM_STR);
 $query1->bindParam(':Password',$Password,PDO::PARAM_STR);
 $query1->execute();
@@ -50,15 +54,17 @@ $Lastname=($_POST['Lastname']);
 $ContactNo=($_POST['ContactNo']);
 $Address=($_POST['Address']);
 $Email=($_POST['Email']);
+$Birthdate=date('Y-m-d', strtotime($_POST['Birthdate']));
 $Username=($_POST['Username']);
 $Password=($_POST['Password']);
-$sql3="INSERT INTO login(userID,userFirstname,userLastname,contactNo,Address,Image,Email,Username,Password,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
+$sql3="INSERT INTO login(userID,userFirstname,userLastname,contactNo,Address,Image,Email,Birthdate,Username,Password,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Birthdate,:Username,:Password,'Pet Adopter')";
 $query3=$dbh->prepare($sql3); 
 $query3->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
 $query3->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
 $query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query3->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query3->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query3->bindParam(':Birthdate',$Birthdate,PDO::PARAM_STR);
 $query3->bindParam(':Username',$Username,PDO::PARAM_STR);
 $query3->bindParam(':Password',$Password,PDO::PARAM_STR);
 $query3->execute();
@@ -131,6 +137,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 					<div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Email" required="required" placeholder="Email">
 					</div><br>
+          <div style="text-align: center" class="wrap-input100 validate-input">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="date" name="Birthdate" required="required" placeholder="BirthDate">
+					</div><br>                                
                     <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Username" required="required" placeholder="Username">
 					</div><br>

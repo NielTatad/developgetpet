@@ -208,6 +208,11 @@ if($query->rowCount()>0)
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+  <style>
+    .view-all-comment:hover {
+    text-decoration: underline;
+}
+  </style>
 </head>
 
 <body class="nav-md">
@@ -420,7 +425,7 @@ if($query->rowCount()>0)
             </div>
 
             <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/P.O-PostShorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+            <a href="http://localhost/developgetpet/dashboard/P.O-Postdonation.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Create Post</button></a>
 
             <!-- /page content -->
 
@@ -430,7 +435,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Available Pet For Short-Term Care</h2>
+                  <h2>Donation Post</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -439,10 +444,171 @@ if($query->rowCount()>0)
                   </div>
                   <div class="x_content" style="text-align:center;">
                                   
-                  <!-- View Pet Post for Short-term Care Code -->
-                    Code for Short-term Care
-                     <!-- //View Pet Post for Short-term Care Code -->                                        
-                                       
+                  <!-- View Pet Post for Adotion Code -->
+                  <?php
+                        $sql="SELECT * from charity WHERE charCharitystatus='Unaccepted' AND charPoststatus='Donation' AND charPoststatus!='Deleted' ORDER BY charityID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                              foreach($results as $result)
+                            {
+                              ?>   
+                                    <div class="col-nd-4">
+                                        <div class="card" style="border-radius:10px;border-width:2px;width:550px;margin: 0 auto;float: none; margin-bottom: 10px;">
+                                        
+                                          <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                          
+                                          <?php $user_id = $result->userID;
+
+                                          $sql1="SELECT * from register WHERE userID='$user_id'";
+                                          $query1=$dbh->prepare($sql1);
+                                          $query1->execute();
+                                          $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                          $cnt1=1;
+                                          if($query1->rowCount()>0)
+                                          {
+                                            foreach($userids as $userid)
+                                          {
+                                            ?>
+                                            
+                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->charPostdate);?></textarea>
+                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charDescription);?></p>
+                                                                                      
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <ul style="list-style:none;margin-left:-50px;">
+                                              
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
+                                              <li><h2 hidden class="card-title"><?php echo ($result->charTitle);?></h2></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charBank);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charAmount);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charPinnumber);?></h3></li>
+                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charDescription);?></textarea></li>
+                                              
+                                              
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charDescription);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charPicture);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charCharitystatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
+                                            
+                                              
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
+                                              <li><label hidden class="card-title"><?php echo ($result->charPostdate);?></label><br></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
+                                              <?php $cnt1=$cnt1+1;}} ?>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-10px;">View More Info</button>
+                                              <br>
+
+                                              <?php
+                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->charityID'");
+                                              $count->execute();
+
+                                              $commentno=$count->fetchColumn();
+
+                                              ?>
+                                              
+                                              <?php
+                                              $postid = $result->charityID;
+
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Donation' ORDER BY commentID DESC LIMIT 1";
+                                              $query2=$dbh->prepare($sql2);
+                                              $query2->execute();
+                                              $comments=$query2->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt2=1;
+                                              if($query2->rowCount()>0)
+                                              {
+                                                foreach($comments as $comment)
+                                              {
+                                                ?>
+
+                                              <?php
+                                              $uid = $comment->userID;
+
+                                              $sql3="SELECT * from register WHERE userID ='$uid'";
+                                              $query3=$dbh->prepare($sql3);
+                                              $query3->execute();
+                                              $pictures=$query3->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt3=1;
+                                              if($query3->rowCount()>0)
+                                              {
+                                                foreach($pictures as $picture)
+                                              {
+                                                ?>
+                                                <br>
+                                               <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+                                              
+                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?><?php echo ( $picture->orgName);?><?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v"></i><br>
+                                                <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
+                                                
+                                                <!--<p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>-->
+
+                                                <!-- start view all comment -->
+                                          <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">                  
+                                            <div class="panel">
+                                              <a class="view-all-comment" role="tab" id="view_all" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
+                                              <p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>
+                                              </a>
+                                              <?php
+                                              $postid = $result->charityID;
+                                              $sql4="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Donation' ORDER BY commentID DESC";
+                                              $query4=$dbh->prepare($sql4);
+                                              $query4->execute();
+                                              $comments=$query4->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt4=1;
+                                              if($query4->rowCount()>0)
+                                              {
+                                                foreach($comments as $comment)
+                                              {
+                                                ?>
+                                            <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                              <div class="panel-body">
+                                              <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?><?php echo ( $picture->orgName);?><?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>
+                                              <?php $cnt4=$cnt4+1;}} ?>
+                                              <br>
+                                              </div>
+                                            </div>
+                                          </div>                  
+                                        </div>
+                                        <!-- end of view all comment -->
+                                        <?php $cnt2=$cnt2+1;}} ?>
+                                        <?php $cnt3=$cnt3+1;}} ?>
+                                        
+                                                
+                                              <?php
+
+                                              $sql5="SELECT * from register WHERE userID='$ID'";
+                                              $query5=$dbh->prepare($sql5);
+                                              $query5->execute();
+                                              $userIDs=$query5->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt5=1;
+                                              if($query5->rowCount()>0)
+                                              {
+                                                foreach($userIDs as $userID)
+                                              {
+                                                ?>
+                                              <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
+                                              <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:450px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
+                                              <div class="clearfix"></div>
+                                              <?php $cnt5=$cnt5+1;}} ?>
+
+                                              </ul>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <br>
+                                      <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+                     <!-- //View Pet Post for Adotion Code -->                                        
                   </div>
                 </div>
               </div>
@@ -450,6 +616,7 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
+        
 
   <!-- Search By ID Code -->
 <script>
@@ -466,7 +633,7 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
-<p></p>
+
 <?php
 ?>
 <?php }} ?>
@@ -578,85 +745,7 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-  <!-- Adoption Request Code -->
-<?php
-date_default_timezone_set("Asia/Manila");
-$date = date('m/d/Y h:i A', time());
-?>
-
-<?php
-if(isset($_POST['Adopt']))
-{
-  
-  $MasterID=($_POST['MasterID']);
-
-  if($MasterID == $ID){
-
-  echo '<script>alert("Opps! You cannot adopt your own post pet")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
-
-  }
-  else{
-  
-  $MasterID=($_POST['MasterID']);
-  $UserID=($_POST['UserID']);
-  $Name=($_POST['Name']);
-  $Email=($_POST['Email']);
-  $Address=($_POST['Address']);
-  $ContactNo=($_POST['ContactNo']);
-  $PetID=($_POST['PetID']);
-  $Type=($_POST['Type']);
-  $PetName=($_POST['PetName']);
-  $Breed=($_POST['Breed']);
-  $Description=($_POST['Description']);
-  $Reason=($_POST['Reason']);
-
-  $sql="INSERT INTO request(masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,petDescription,requestReason,requestDate)VALUES(:MasterID,:UserID,:Name,:Email,:Address,:ContactNo,:PetID,:Type,:PetName,:Breed,:Description,:Reason,'$date')";
-  $query=$dbh->prepare($sql);
-  $query->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
-  $query->bindParam(':UserID',$UserID,PDO::PARAM_STR);
-  $query->bindParam(':Name',$Name,PDO::PARAM_STR);
-  $query->bindParam(':Email',$Email,PDO::PARAM_STR);
-  $query->bindParam(':Address',$Address,PDO::PARAM_STR);
-  $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-  $query->bindParam(':PetID',$PetID,PDO::PARAM_STR);
-  $query->bindParam(':Type',$Type,PDO::PARAM_STR);
-  $query->bindParam(':PetName',$PetName,PDO::PARAM_STR);
-  $query->bindParam(':Breed',$Breed,PDO::PARAM_STR);
-  $query->bindParam(':Description',$Description,PDO::PARAM_STR);
-  $query->bindParam(':Reason',$Reason,PDO::PARAM_STR);
-  $query->execute();
-
-  $sql1="update postpet set
-  petStatus='Not available'
-  where petID=:PetID";
-  $query1=$dbh->prepare($sql1); 
-  $query1->bindParam(':PetID',$PetID,PDO::PARAM_STR); 
-  $query1->execute();
-
-  $sql2="SELECT requestID FROM request ORDER BY requestID DESC";
-  $query2=$dbh->prepare($sql2);
-  $query2->execute();
-
-  $ID=$query2->fetchColumn();
-
-  $sql3="INSERT INTO notification(activityID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES('$ID','Adoption Request',:MasterID,:UserID,:Reason,'$date','Unread')";
-  $query3=$dbh->prepare($sql3);
-  $query3->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
-  $query3->bindParam(':UserID',$UserID,PDO::PARAM_STR);
-  $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
-  $query3->execute();
-
-  echo '<script>alert("Just Wait for the Owner Accept Your Adoption Request!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Request.php'</script>";
-
-  }
-
-}
-?>
-  <!-- //Adoption Request Code -->
-
-  <!-- Modal Pet Information -->
+  <!-- Modal Donation Information -->
   <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -677,76 +766,41 @@ if(isset($_POST['Adopt']))
       <form method="post">
         
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="pet_id" name="PetID" required = "required" class="form-control">
+					    <input hidden type="text" id="char_id" name="CharityID" required = "required" class="form-control">
 				</div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_name" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_title" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Type<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_type" name="Type" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_bank" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Breed<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_breed" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_sex" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_age" name="Age" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_color" name="Color" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_weight" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="vaccination_status" name="Vaccination" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="deworming_status" name="Deworming" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_pin" name="Age" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-        <textarea disabled="yes" id="pet_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
+        <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
         </div>
         </div>
 
@@ -755,13 +809,13 @@ if(isset($_POST['Adopt']))
 				</div>
 
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="pet_picture" name="Picture"  required = "required" class="form-control">
+					    <input hidden type="text" id="char_picture" name="Picture"  required = "required" class="form-control">
 				</div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
@@ -804,49 +858,131 @@ if(isset($_POST['Adopt']))
         </div>
         </div>
 
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea name="Reason" id="Reason" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" required = "required" placeholder="Write your reason to adopt..." onkeyup="request()"></textarea>
-        </div>
-        </div>
-        <script>
-          function request() {
-          if(document.getElementById("Reason").value==="") { 
-                    document.getElementById('adopt').disabled = true; 
-                } else { 
-                    document.getElementById('adopt').disabled = false;
-                }
-            }
-        </script>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" name="UserID" value="<?php echo ($result->ownerID);?>"  required = "required" class="form-control">
+					    <input hidden type="text" name="UserID" value="<?php echo ($result->adopterID);?>"  required = "required" class="form-control">
 
-              <input hidden readonly type="text" class="form-control" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="Name" value="<?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>" style="background-color:#fff;width:400px;" required="required"/>
 
-              <input hidden readonly type="text" class="form-control" name="Email" value="<?php echo ($result->ownerEmail);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="Email" value="<?php echo ($result->adopterEmail);?>" style="background-color:#fff;width:400px;" required="required"/>
 
-              <input hidden readonly type="text" class="form-control" name="Address" value="<?php echo ($result->ownerAddress);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="Address" value="<?php echo ($result->adopterAddress);?>" style="background-color:#fff;width:400px;" required="required"/>
 
-              <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->ownerContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
+              <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->adopterContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
 
         </div>
 
-        <div class="ln_solid">
-        <br>
-        <div class="form-group" style="text-align: center">
-        <div class="col-md-6 offset-md-3">
-               <button id="adopt" name ="Adopt" type="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:50px;font-size:18px;" disabled>Adopt Now!</button>
-        </div>
-        </div>
-        </div>
+
 
         </form>
       </div>
     </div>
   </div>
 </div>
-	<!-- //Modal Pet Information -->
+	<!-- //Modal Donation Information -->
+
+<!-- Comment Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['btnComment']))
+{
+  $masterid=($_POST['masterid']);
+
+  if($masterid == $ID)
+  {
+    $charityid=($_POST['charityid']);
+    $masterid=($_POST['masterid']);
+    $Comment=($_POST['Comment']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:charityid,:masterid,'$ID',:Comment,'$date','Donation')";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':charityid',$charityid,PDO::PARAM_STR);
+    $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
+    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query->execute();
+
+    echo '<script>alert("Your Comment Posted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Donation.php'</script>";
+  
+  }
+
+  else
+  {
+    $charityid=($_POST['charityid']);
+    $masterid=($_POST['masterid']);
+    $Comment=($_POST['Comment']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:charityid,:masterid,'$ID',:Comment,'$date','Donation')";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':charityid',$charityid,PDO::PARAM_STR);
+    $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
+    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query->execute();
+
+    $sql2="SELECT commentID FROM comment ORDER BY commentID DESC";
+    $query2=$dbh->prepare($sql2);
+    $query2->execute();
+
+    $commentID=$query2->fetchColumn();
+
+    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
+    $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query3->execute();
+
+    echo '<script>alert("Your Comment Posted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Donation.php'</script>";
+  }
+  
+}
+?>
+<!-- //Comment Code -->
+
+  <!-- Modal Comment -->
+  <div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Comment Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="comment()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+          function comment() {
+          document.getElementById("comment").value="";
+            }
+        </script>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="charityid" name="charityid" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->ownerID);?>" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
+				</div><br>
+
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Comment -->
 
 			<!-- footer content -->
 			<footer>
@@ -878,51 +1014,45 @@ if(isset($_POST['Adopt']))
 
                 console.log(data);
 
-                $('#pet_id').val(data[0]);
-                $('#pet_name').val(data[1]);
-                $('#pet_type').val(data[2]);
-                $('#pet_breed').val(data[3]);
-                $('#pet_sex').val(data[4]);
-                $('#pet_age').val(data[5]);
-                $('#pet_color').val(data[6]);
-                $('#pet_weight').val(data[7]);
-                $('#vaccination_status').val(data[8]);
-                $('#deworming_status').val(data[9]);
-                $('#pet_description').val(data[10]);
-                $('#des').val(data[11]);
-                $('#pet_picture').val(data[12]);
-                $('#pet_status').val(data[13]);
-                $('#user_id').val(data[14]);
-                $('#post_by').val(data[15]);
-                $('#post_date').val(data[16]);
-                $('#user_email').val(data[17]);
-                $('#user_address').val(data[18]);
-                $('#user_contactno').val(data[19]);
+                $('#char_id').val(data[0]);
+                $('#char_title').val(data[1]);
+                $('#char_bank').val(data[2]);
+                $('#char_amount').val(data[3]);
+                $('#char_pin').val(data[4]);
+                $('#char_description').val(data[5]);
+                $('#des').val(data[6]);
+                $('#char_picture').val(data[7]);
+                $('#char_status').val(data[8]);
+                $('#user_id').val(data[9]);
+                $('#post_by').val(data[10]);
+                $('#post_date').val(data[11]);
+                $('#user_email').val(data[12]);
+                $('#user_address').val(data[13]);
+                $('#user_contactno').val(data[14]);
             });
         });
     </script>
 
+<script>
+        $(document).ready(function () {
 
-	<!-- Javascript functions	-->
-	<script>
-		function hideshow(){
-			var password = document.getElementById("password1");
-			var slash = document.getElementById("slash");
-			var eye = document.getElementById("eye");
-			
-			if(password.type === 'password'){
-				password.type = "text";
-				slash.style.display = "block";
-				eye.style.display = "none";
-			}
-			else{
-				password.type = "password";
-				slash.style.display = "none";
-				eye.style.display = "block";
-			}
+            $('.commentbtn').on('click', function () {
 
-		}
-	</script>
+                $('#Comment').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#charityid').val(data[0]);
+                $('#masterid').val(data[9]);
+            });
+        });
+</script> 
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
