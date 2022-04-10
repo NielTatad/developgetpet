@@ -383,17 +383,6 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:50px;">
-                  
-                  <a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" class="form-control" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
-                  <div class="clearfix"></div>
-
-                </div>
-              </div>
-            </div>
-
             <!-- New Post For Adoption Code -->
             <div class="clearfix"></div>
             <div class="row">
