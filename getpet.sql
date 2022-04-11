@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2022 at 04:22 PM
+-- Generation Time: Apr 11, 2022 at 12:10 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -128,7 +128,25 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`commentID`, `postID`, `masterID`, `userID`, `commentContent`, `commentDate`, `commentStatus`) VALUES
 (40, 12, 16, 15, 'yow', '04/10/2022 10:14 PM', 'Donation'),
-(41, 12, 16, 16, 'test', '04/10/2022 10:14 PM', 'Donation');
+(41, 12, 16, 16, 'test', '04/10/2022 10:14 PM', 'Donation'),
+(42, 10, 14, 15, 'test', '04/10/2022 10:23 PM', 'Donation'),
+(43, 10, 14, 14, 'we', '04/10/2022 10:24 PM', 'Donation'),
+(44, 10, 14, 16, 'sd', '04/10/2022 10:26 PM', 'Donation'),
+(45, 23, 68, 16, 'check this\r\n', '04/10/2022 10:27 PM', 'Adoption'),
+(46, 23, 68, 68, 'where', '04/10/2022 10:27 PM', 'Adoption'),
+(47, 31, 0, 14, 'asd', '04/10/2022 11:09 PM', 'Adoption'),
+(48, 31, 0, 14, 'asd', '04/10/2022 11:10 PM', 'Tips'),
+(49, 31, 0, 14, 'asd', '04/10/2022 11:15 PM', 'Tips'),
+(50, 31, 15, 14, 'test', '04/10/2022 11:16 PM', 'Tips'),
+(51, 24, 15, 14, 'test', '04/11/2022 12:24 AM', 'Tips'),
+(52, 24, 15, 14, 'test', '04/11/2022 12:24 AM', 'Advice'),
+(53, 31, 15, 15, 'a', '04/11/2022 12:27 AM', 'Tips'),
+(54, 31, 15, 15, 'a', '04/11/2022 12:27 AM', 'Advice'),
+(55, 24, 15, 15, 'G', '04/11/2022 12:28 AM', 'Tips'),
+(56, 24, 15, 15, 'G', '04/11/2022 12:28 AM', 'Advice'),
+(57, 22, 16, 15, 'V', '04/11/2022 12:29 AM', 'Tips'),
+(58, 22, 16, 15, 'V', '04/11/2022 12:29 AM', 'Advice'),
+(59, 23, 68, 15, 'he', '04/11/2022 10:32 AM', 'Adoption');
 
 -- --------------------------------------------------------
 
@@ -193,13 +211,13 @@ INSERT INTO `login` (`userID`, `userFirstname`, `orgName`, `userLastname`, `cont
 (6, 'Gen', '', 'Navarro', '09060913468', 'Cordova, Cebu', 'Genesis.jpg', 'gen@gmail.com', 'gen17', '', 'Pet Owner', '2022-03-30'),
 (11, '', 'Getpet', '', '12423534654', 'Consolacion', 'logo.png', 'getpet@gmail.com', 'getpet2022', 'getpet123', 'Animal Welfare Organization', '2022-03-17'),
 (14, 'pet', '', 'adopter', '2147483647', 'petadopters', 't3.jpg', 'pet@gmail.com', 'pet', '', 'Pet Adopter', '2022-04-10'),
-(15, 'pets', '', 'owner', '31235423532', 'petowner', 't4.jpg', 'petowner@gmail.com', 'owner', '', 'Pet Owner', '2022-04-10'),
-(16, '', 'PAWS', '', '2147483647', 'tokyo', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization', '2022-04-10'),
+(15, 'pets', '', 'owner', '31235423532', 'petowner', 't4.jpg', 'petowner@gmail.com', 'owner', '', 'Pet Owner', '2022-04-11'),
+(16, '', 'PAWS', '', '2147483647', 'tokyo', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization', '2022-04-11'),
 (17, '', 'Sagop', '', '2147483647', 'Mandaue City', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'sagop@gmail.com', 'sagop2018', 'sagop123', 'Animal Welfare Organization', '2022-02-01'),
 (52, 'bars', '', 'Tatad', '2147483647', '0', 't3.jpg', '0', 'A', '', 'Pet Adopter', '2022-03-18'),
 (53, 'JUAN', '', 'TAMAD', '09723124124', 'Mandaue', 't1.jpg', 'juan@gmail.com', 'JUAN', '', 'Pet Adopter', '2022-03-17'),
 (67, 'John', '', 'Jalosjos', '09876214354', 'Lapu-lapu', 'default_profile.png', 'john@gmail.com', 'john22', 'john123', 'Pet Owner', '2022-03-15'),
-(68, 'ann', '', 'cagong', '09231231231', 'lapulapu', 'adopter.jpg', 'ann@gmail.com', 'ann', '123', 'Pet Owner', '2022-04-05'),
+(68, 'ann', '', 'cagong', '09231231231', 'lapulapu', 'adopter.jpg', 'ann@gmail.com', 'ann', '123', 'Pet Owner', '2022-04-11'),
 (69, 'ann2', '', 'cagong2', '23213123123', 'Cansaga district 5 Consolacion Cebu', '3.jpg', 'ann2@gmail.com', 'ann2', 'ann', 'Pet Adopter', '2022-04-05'),
 (70, 'Niel', '', 'Tatad', '09231212903', 'Cansaga district 5 Consolacion Cebu', 'default_profile.png', 'asd', 'asdaasd', 'asdas', 'Pet Adopter', '0000-00-00');
 
@@ -225,7 +243,19 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`notificationID`, `activityID`, `notificationTitle`, `masterID`, `userID`, `notificationDescription`, `notificationDate`, `notificationStatus`) VALUES
-(63, 40, 'Comment on Your Post', 16, 15, 'yow', '04/10/2022 10:14 PM', 'Unread');
+(63, 40, 'Comment on Your Post', 16, 15, 'yow', '04/10/2022 10:14 PM', 'Unread'),
+(64, 42, 'Comment on Your Post', 14, 15, 'test', '04/10/2022 10:23 PM', 'Unread'),
+(65, 44, 'Comment on Your Post', 14, 16, 'sd', '04/10/2022 10:26 PM', 'Unread'),
+(66, 45, 'Comment on Your Post', 68, 16, 'check this\r\n', '04/10/2022 10:27 PM', 'Unread'),
+(67, 47, 'Comment on Your Post', 0, 14, 'asd', '04/10/2022 11:09 PM', 'Unread'),
+(68, 48, 'Comment on Your Post', 0, 14, 'asd', '04/10/2022 11:10 PM', 'Unread'),
+(69, 49, 'Comment on Your Post', 0, 14, 'asd', '04/10/2022 11:15 PM', 'Unread'),
+(70, 50, 'Comment on Your Post', 15, 14, 'test', '04/10/2022 11:16 PM', 'Unread'),
+(71, 51, 'Comment on Your Post', 15, 14, 'test', '04/11/2022 12:24 AM', 'Unread'),
+(72, 52, 'Comment on Your Post', 15, 14, 'test', '04/11/2022 12:24 AM', 'Unread'),
+(73, 57, 'Comment on Your Post', 16, 15, 'V', '04/11/2022 12:29 AM', 'Unread'),
+(74, 58, 'Comment on Your Post', 16, 15, 'V', '04/11/2022 12:29 AM', 'Unread'),
+(75, 59, 'Comment on Your Post', 68, 15, 'he', '04/11/2022 10:32 AM', 'Unread');
 
 -- --------------------------------------------------------
 
@@ -545,7 +575,7 @@ ALTER TABLE `charity`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `history`
@@ -557,7 +587,7 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notificationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `notificationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `post`
