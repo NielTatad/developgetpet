@@ -680,20 +680,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                      <div style="text-align: center" class="wrap-input100 validate-input">
                       <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
                      </div>
- 
-                     <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Date</label>
-                                         <div class="col-md-6 col-sm-6">
-                                         <div class='input-group date' id='myDatepicker4'>
-                                         <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-calendar"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>
- 
+
                                          <div class="ln_solid">
                                              <br>
                                              <div class="form-group">

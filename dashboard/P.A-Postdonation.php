@@ -441,7 +441,7 @@ $tmp_dir = $_FILES["Picture"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-$sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charTitle,charDescription,charPicture,charBank,charPinnumber,charAmount,charPostdate,charCharitystatus,charPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
+$sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityBank,charityPinnumber,charityAmount,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -560,19 +560,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                                 <input type="text" id="amount" class="form-control" name="Amount" placeholder="Amount..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                             </div>
                                       </div>
-
-                                        <div class="field item form-group">
-                                        <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                        Date</label>
-                                        <div class="col-md-6 col-sm-6">
-                                        <div class='input-group date' id='myDatepicker4'>
-                                        <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
-                                        <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                        </div>
-                                        </div>
-                                        </div>
 
                                         <div class="ln_solid">
                                             <br>

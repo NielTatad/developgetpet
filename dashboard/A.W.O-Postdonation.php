@@ -433,7 +433,7 @@ if(isset($_POST['Post']))
     
     move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
     
-    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charTitle,charDescription,charPicture,charBank,charPinnumber,charAmount,charPostdate,charCharitystatus,charPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
+    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityBank,charityPinnumber,charityAmount,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
     $query=$dbh->prepare($sql); 
     $query->bindParam(':ID',$ID,PDO::PARAM_STR);
     $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -552,19 +552,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                                 <input type="text" id="amount" class="form-control" name="Amount" placeholder="Amount..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                             </div>
                                       </div>
-
-                                        <div class="field item form-group">
-                                        <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                        Date</label>
-                                        <div class="col-md-6 col-sm-6">
-                                        <div class='input-group date' id='myDatepicker4'>
-                                        <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
-                                        <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                        </div>
-                                        </div>
-                                        </div>
 
                                         <div class="ln_solid">
                                             <br>
@@ -719,27 +706,6 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-
-	<!-- Javascript functions	-->
-	<script>
-		function hideshow(){
-			var password = document.getElementById("password1");
-			var slash = document.getElementById("slash");
-			var eye = document.getElementById("eye");
-			
-			if(password.type === 'password'){
-				password.type = "text";
-				slash.style.display = "block";
-				eye.style.display = "none";
-			}
-			else{
-				password.type = "password";
-				slash.style.display = "none";
-				eye.style.display = "block";
-			}
-
-		}
-	</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.

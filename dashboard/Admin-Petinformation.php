@@ -132,6 +132,10 @@ th {
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Userinformation.php" style="font-size:15px;">User Information</a>
                             </li>
 
+                            <li>
+                            <li><a href="http://localhost/developgetpet/dashboard/Admin-Userrequest.php" style="font-size:15px;">User Request</a>
+                            </li>
+
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                   <li><a href="#">Pet Adoption</a></li>
@@ -318,18 +322,18 @@ th {
                                 <td class="a-center ">
                                   <input type="checkbox" class="flat" name="table_records">
                                 </td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petName);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petType);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petBreed);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petAge);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petColor);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petWeight);?></td>
-                                <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->vaccinationStatus);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->dewormingStatus);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petStatus);?></td>
-                                <td style="text-align:center" class=" "><?php echo htmlentities($result->postStatus);?></td>
+                                <td style="text-align:center" class=" " name="#pet_id"><?php echo htmlentities($result->petID);?></td>
+                                <td style="text-align:center" class=" " name="#pet_name"><?php echo htmlentities($result->petName);?></td>
+                                <td style="text-align:center" class=" " name="#pet_type"><?php echo htmlentities($result->petType);?></td>
+                                <td style="text-align:center" class=" " name="#pet_breed"><?php echo htmlentities($result->petBreed);?></td>
+                                <td style="text-align:center" class=" " name="#pet_age"><?php echo htmlentities($result->petAge);?></td>
+                                <td style="text-align:center" class=" " name="#pet_color"><?php echo htmlentities($result->petColor);?></td>
+                                <td style="text-align:center" class=" " name="#pet_weight"><?php echo htmlentities($result->petWeight);?></td>
+                                <td style="text-align:center" class=" " name="#pet_picture"><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
+                                <td style="text-align:center" class=" " name="#vaccination_status"><?php echo htmlentities($result->vaccinationStatus);?></td>
+                                <td style="text-align:center" class=" " name="#deworming_status"><?php echo htmlentities($result->dewormingStatus);?></td>
+                                <td style="text-align:center" class=" " name="#pet_petstatus"><?php echo htmlentities($result->petStatus);?></td>
+                                <td style="text-align:center" class=" " name="#pet_poststatus"><?php echo htmlentities($result->postStatus);?></td>
                                 <td style="text-align:center;" class="last"><a data-toggle="modal" data-target="#DeletePost"><i class="fa fa-trash-o deletebtn" style="height:50px;"></i></a>
                                 </td>
                               </tr>
@@ -482,13 +486,45 @@ th {
     <script>
         $(document).ready(function () {
 
+            $('.editbtn').on('click', function () {
+
+                $('#EditPost').modal('show');
+
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#pet_id').val(data[0]);
+                $('#pet_name').val(data[1]);
+                $('#pet_type').val(data[2]);
+                $('#pet_breed').val(data[3]);
+                $('#pet_sex').val(data[4]);
+                $('#pet_age').val(data[5]);
+                $('#pet_color').val(data[6]);
+                $('#pet_weight').val(data[7]);
+                $('#pet_pictre').val(data[8]);
+                $('#vaccination_status').val(data[9]);
+                $('#deworming_status').val(data[10]);
+                $('#pet_pettstatus').val(data[11]);
+                $('#pet_poststatus').val(data[12]);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
             $('.deletebtn').on('click', function () {
 
                 $('#DeletePost').modal('show');
 
-                $tr = $(this).closest('ul');
+                $tr = $(this).closest('tr');
 
-                var data = $tr.children("li").map(function () {
+                var data = $tr.children("td").map(function () {
                     return $(this).text();
                 }).get();
 

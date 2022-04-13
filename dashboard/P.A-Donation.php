@@ -418,7 +418,7 @@ if($query->rowCount()>0)
                                   
                   <!-- View Pet Post for Adotion Code -->
                   <?php
-                        $sql="SELECT * from charity WHERE charCharitystatus='Unaccepted' AND charPoststatus='Donation' AND charPoststatus!='Deleted' ORDER BY charityID DESC";
+                        $sql="SELECT * from charity WHERE charityStatus='Accepted' AND charityPoststatus='Donation' AND charityPoststatus!='Deleted' ORDER BY charityID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -446,28 +446,28 @@ if($query->rowCount()>0)
                                           {
                                             ?>
                                             
-                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->charPostdate);?></textarea>
-                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left"><?php echo ($result->charDescription);?></p>
+                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->charityPostdate);?></textarea>
+                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left"><?php echo ($result->charityDescription);?></p>
                                           
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
-                                              <li><h2 hidden class="card-title"><?php echo ($result->charTitle);?></h2></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charBank);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charAmount);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charPinnumber);?></h3></li>
-                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charDescription);?></textarea></li>
+                                              <li><h2 hidden class="card-title"><?php echo ($result->charityTitle);?></h2></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityBank);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityAmount);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityPinnumber);?></h3></li>
+                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charityDescription);?></textarea></li>
                                               
                                               
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charDescription);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charPicture);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charCharitystatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityDescription);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityPicture);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityStatus);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
                                             
                                               
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
-                                              <li><label hidden class="card-title"><?php echo ($result->charPostdate);?></label><br></li>
+                                              <li><label hidden class="card-title"><?php echo ($result->charityPostdate);?></label><br></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
