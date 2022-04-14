@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Apr 14, 2022 at 04:48 PM
+=======
+-- Generation Time: Apr 14, 2022 at 08:37 AM
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -129,10 +133,33 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`commentID`, `postID`, `masterID`, `userID`, `commentContent`, `commentDate`, `commentStatus`) VALUES
+<<<<<<< HEAD
 (72, 0, 16, 16, 'ds', '04/14/2022 09:45 PM', 'Event'),
 (73, 42, 16, 16, 'we', '04/14/2022 09:47 PM', 'Event'),
 (74, 23, 68, 16, 'test', '04/14/2022 10:45 PM', 'Adoption'),
 (75, 23, 68, 68, 'yow', '04/14/2022 10:45 PM', 'Adoption');
+=======
+(40, 12, 16, 15, 'yow', '04/10/2022 10:14 PM', 'Donation'),
+(41, 12, 16, 16, 'test', '04/10/2022 10:14 PM', 'Donation'),
+(42, 10, 14, 15, 'test', '04/10/2022 10:23 PM', 'Donation'),
+(43, 10, 14, 14, 'we', '04/10/2022 10:24 PM', 'Donation'),
+(44, 10, 14, 16, 'sd', '04/10/2022 10:26 PM', 'Donation'),
+(45, 23, 68, 16, 'check this\r\n', '04/10/2022 10:27 PM', 'Adoption'),
+(46, 23, 68, 68, 'where', '04/10/2022 10:27 PM', 'Adoption'),
+(47, 31, 0, 14, 'asd', '04/10/2022 11:09 PM', 'Adoption'),
+(48, 31, 0, 14, 'asd', '04/10/2022 11:10 PM', 'Tips'),
+(49, 31, 0, 14, 'asd', '04/10/2022 11:15 PM', 'Tips'),
+(50, 31, 15, 14, 'test', '04/10/2022 11:16 PM', 'Tips'),
+(51, 24, 15, 14, 'test', '04/11/2022 12:24 AM', 'Tips'),
+(52, 24, 15, 14, 'test', '04/11/2022 12:24 AM', 'Advice'),
+(53, 31, 15, 15, 'a', '04/11/2022 12:27 AM', 'Tips'),
+(54, 31, 15, 15, 'a', '04/11/2022 12:27 AM', 'Advice'),
+(55, 24, 15, 15, 'G', '04/11/2022 12:28 AM', 'Tips'),
+(56, 24, 15, 15, 'G', '04/11/2022 12:28 AM', 'Advice'),
+(57, 22, 16, 15, 'V', '04/11/2022 12:29 AM', 'Tips'),
+(58, 22, 16, 15, 'V', '04/11/2022 12:29 AM', 'Advice'),
+(59, 23, 68, 15, 'he', '04/11/2022 10:32 AM', 'Adoption');
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 
 -- --------------------------------------------------------
 
@@ -195,7 +222,11 @@ INSERT INTO `login` (`userID`, `userFirstname`, `orgName`, `userLastname`, `cont
 (52, 'bars', '', 'Tatad', '2147483647', '0', 't3.jpg', '0', 'A', '', 'Pet Adopter', '2022-03-18'),
 (53, 'JUAN', '', 'TAMAD', '09723124124', 'Mandaue', 't1.jpg', 'juan@gmail.com', 'JUAN', '', 'Pet Adopter', '2022-03-17'),
 (67, 'John', '', 'Jalosjos', '09876214354', 'Lapu-lapu', 'default_profile.png', 'john@gmail.com', 'john22', 'john123', 'Pet Owner', '2022-03-15'),
+<<<<<<< HEAD
 (68, 'ann', '', 'cagong', '09231231231', 'lapulapu', 'adopter.jpg', 'ann@gmail.com', 'ann', '123', 'Pet Owner', '2022-04-14'),
+=======
+(68, 'ann', '', 'cagong', '09231231231', 'lapulapu', 'adopter.jpg', 'ann@gmail.com', 'ann', '123', 'Pet Owner', '2022-04-11'),
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 (69, 'ann2', '', 'cagong2', '23213123123', 'Cansaga district 5 Consolacion Cebu', '3.jpg', 'ann2@gmail.com', 'ann2', 'ann', 'Pet Adopter', '2022-04-05'),
 (70, 'Niel', '', 'Tatad', '09231212903', 'Cansaga district 5 Consolacion Cebu', 'default_profile.png', 'asd', 'asdaasd', 'asdas', 'Pet Adopter', '0000-00-00');
 
@@ -221,9 +252,25 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`notificationID`, `activityID`, `notificationTitle`, `masterID`, `userID`, `notificationDescription`, `notificationDate`, `notificationStatus`) VALUES
+<<<<<<< HEAD
 (91, 72, 'Comment on Your Post', 16, 16, 'ds', '04/14/2022 09:45 PM', 'Unread'),
 (92, 73, 'Comment on Your Post', 16, 16, 'we', '04/14/2022 09:47 PM', 'Unread'),
 (93, 74, 'Comment on Your Post', 68, 16, 'test', '04/14/2022 10:45 PM', 'Unread');
+=======
+(63, 40, 'Comment on Your Post', 16, 15, 'yow', '04/10/2022 10:14 PM', 'Unread'),
+(64, 42, 'Comment on Your Post', 14, 15, 'test', '04/10/2022 10:23 PM', 'Unread'),
+(65, 44, 'Comment on Your Post', 14, 16, 'sd', '04/10/2022 10:26 PM', 'Unread'),
+(66, 45, 'Comment on Your Post', 68, 16, 'check this\r\n', '04/10/2022 10:27 PM', 'Unread'),
+(67, 47, 'Comment on Your Post', 0, 14, 'asd', '04/10/2022 11:09 PM', 'Unread'),
+(68, 48, 'Comment on Your Post', 0, 14, 'asd', '04/10/2022 11:10 PM', 'Unread'),
+(69, 49, 'Comment on Your Post', 0, 14, 'asd', '04/10/2022 11:15 PM', 'Unread'),
+(70, 50, 'Comment on Your Post', 15, 14, 'test', '04/10/2022 11:16 PM', 'Unread'),
+(71, 51, 'Comment on Your Post', 15, 14, 'test', '04/11/2022 12:24 AM', 'Unread'),
+(72, 52, 'Comment on Your Post', 15, 14, 'test', '04/11/2022 12:24 AM', 'Unread'),
+(73, 57, 'Comment on Your Post', 16, 15, 'V', '04/11/2022 12:29 AM', 'Unread'),
+(74, 58, 'Comment on Your Post', 16, 15, 'V', '04/11/2022 12:29 AM', 'Unread'),
+(75, 59, 'Comment on Your Post', 68, 15, 'he', '04/11/2022 10:32 AM', 'Unread');
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 
 -- --------------------------------------------------------
 
@@ -313,7 +360,11 @@ CREATE TABLE `post` (
 -- Dumping data for table `post`
 --
 
+<<<<<<< HEAD
 INSERT INTO `post` (`postsID`, `userID`, `Name`, `userEmail`, `userContactNo`, `postTitle`, `postContent`, `postLocation`, `postTime`, `postEventdate`, `postPicture`, `postStatus`, `postDate`) VALUES
+=======
+INSERT INTO `post` (`postID`, `userID`, `Name`, `userEmail`, `userContactNo`, `postTitle`, `postContent`, `postLocation`, `postTime`, `postEventdate`, `postPicture`, `postStatus`, `postDate`) VALUES
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 (19, 16, 'PAWS', 'paws@gmail.com', '', 'advicepaws', 'advicepaseqqwd', '', '00:00:00.000000', '', '', 'Advice', '03/25/2022 05:55 PM'),
 (22, 16, 'PAWS', 'paws@gmail.com', '', 'advice sa iro', 'dapat ligoan', '', '00:00:00.000000', '', '', 'Advice', '03/25/2022 07:26 PM'),
 (24, 15, 'pet owner', 'petowner@gmail.com', '', 'tatad', 'tatadaca', '', '00:00:00.000000', '', '', 'Advice', '03/25/2022 08:11 PM'),
@@ -324,7 +375,11 @@ INSERT INTO `post` (`postsID`, `userID`, `Name`, `userEmail`, `userContactNo`, `
 (29, 16, 'PAWS', 'paws@gmail.com', '', 'new', '• asdasdasd\r\n• asdasd\r\n• asda\r\n• sdasd', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:30 PM'),
 (30, 16, 'PAWS', 'paws@gmail.com', '', 'PET OWNER SIDE', '• ASDASD\r\n• ASDA\r\n• SDAS\r\n• DAS\r\n• DASDWE32123\r\n• ASD', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:38 PM'),
 (31, 15, 'pets owner', 'petowner@gmail.com', '', 'PO', '• ASDA\r\n• SDAS\r\n• DAS\r\n• DA\r\n• SDA\r\n• E 213E', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:39 PM'),
+<<<<<<< HEAD
 (42, 16, 'PAWS', 'paws@gmail.com', '2147483647', 'Free deworm', 'Free deworming for all pets', 'Cansaga Consolacion', '07:36 PM', '2022-04-25', 'dogcat.jpg', 'Event', '04/14/2022 07:36 PM');
+=======
+(41, 16, 'PAWS', 'paws@gmail.com', '2147483647', 'Free Deworming', 'We will have a free deworming for all Dogs and Cats and we will give a free pet foods.', 'Cansaga Consolacion', '04:30 PM', '2022-04-19', 'dogcat.jpg', 'Event', '04/14/2022 02:09 PM');
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 
 -- --------------------------------------------------------
 
@@ -548,7 +603,11 @@ ALTER TABLE `charity`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
+<<<<<<< HEAD
   MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+=======
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 
 --
 -- AUTO_INCREMENT for table `history`
@@ -560,13 +619,21 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
+<<<<<<< HEAD
   MODIFY `notificationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+=======
+  MODIFY `notificationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
+<<<<<<< HEAD
   MODIFY `postsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+=======
+  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+>>>>>>> Tatad/newbranch/frontendchanges/donation
 
 --
 -- AUTO_INCREMENT for table `postpet`
