@@ -422,7 +422,7 @@ if($query->rowCount()>0)
                                   
                   <!-- View Post for Events Code -->
                   <?php
-                        $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postID DESC";
+                        $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postsID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -460,12 +460,13 @@ if($query->rowCount()>0)
                                             <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
-                                              <li><h3 hidden class="card-title"><?php echo ($result->postID);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->postsID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->postTitle);?></h2></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->postContent);?></textarea></li>
                                               
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->postContent);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->postPicture);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->postStatus);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
                                             
@@ -480,7 +481,7 @@ if($query->rowCount()>0)
                                               <br>
 
                                               <?php
-                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postID'");
+                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postsID'");
                                               $count->execute();
 
                                               $commentno=$count->fetchColumn();
@@ -488,7 +489,7 @@ if($query->rowCount()>0)
                                               ?>
                                               
                                               <?php
-                                              $postid = $result->postID;
+                                              $postid = $result->postsID;
 
                                               $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC LIMIT 1";
                                               $query2=$dbh->prepare($sql2);
@@ -529,8 +530,8 @@ if($query->rowCount()>0)
                                               <p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>
                                               </a>
                                               <?php
-                                              $postid = $result->postID;
-                                              $sql4="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Tips' ORDER BY commentID DESC";
+                                              $postid = $result->postsID;
+                                              $sql4="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC";
                                               $query4=$dbh->prepare($sql4);
                                               $query4->execute();
                                               $comments=$query4->fetchALL(PDO::FETCH_OBJ);
@@ -584,7 +585,7 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>     
-                     <!-- //View Post for Events Code -->                                        
+                     <!-- //View Post for Events Code -->                                         
                   </div>
                 </div>
               </div>
@@ -614,7 +615,6 @@ if($query->rowCount()>0)
 <?php }} ?>
 </script>
 <!-- //Search By ID Code -->
-
 
   <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -721,141 +721,6 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-  <!-- Modal Donation Information -->
-  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-          function cleartext() {
-          document.getElementById("Reason").value="";
-          document.getElementById('adopt').disabled = true;
-            }
-        </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_id" name="CharityID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_title" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_bank" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_pin" name="Age" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
-        </div>
-        </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
-				</div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_picture" name="Picture"  required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="user_id" name ="MasterID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_by" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_date" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_email" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_address" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_contactno" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" name="UserID" value="<?php echo ($result->adopterID);?>"  required = "required" class="form-control">
-
-              <input hidden readonly type="text" class="form-control" name="Name" value="<?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>" style="background-color:#fff;width:400px;" required="required"/>
-
-              <input hidden readonly type="text" class="form-control" name="Email" value="<?php echo ($result->adopterEmail);?>" style="background-color:#fff;width:400px;" required="required"/>
-
-              <input hidden readonly type="text" class="form-control" name="Address" value="<?php echo ($result->adopterAddress);?>" style="background-color:#fff;width:400px;" required="required"/>
-
-              <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->adopterContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
-
-        </div>
-
-
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Donation Information -->
-
 <!-- Comment Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
@@ -864,35 +729,35 @@ $date = date('m/d/Y h:i A', time());
 <?php
 if(isset($_POST['btnComment']))
 {
-  $masterid=($_POST['masterid']);
+  $postsid=($_POST['postsid']);
 
   if($masterid == $ID)
   {
-    $charityid=($_POST['charityid']);
+    $postid=($_POST['postsid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:charityid,:masterid,'$ID',:Comment,'$date','Donation')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
     $query=$dbh->prepare($sql);
-    $query->bindParam(':charityid',$charityid,PDO::PARAM_STR);
+    $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Donation.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Events.php'</script>";
   
   }
 
   else
   {
-    $charityid=($_POST['charityid']);
+    $postsid=($_POST['postsid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:charityid,:masterid,'$ID',:Comment,'$date','Donation')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
     $query=$dbh->prepare($sql);
-    $query->bindParam(':charityid',$charityid,PDO::PARAM_STR);
+    $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
@@ -910,7 +775,7 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Donation.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Events.php'</script>";
   }
   
 }
@@ -918,7 +783,7 @@ if(isset($_POST['btnComment']))
 <!-- //Comment Code -->
 
   <!-- Modal Comment -->
-<div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -936,13 +801,13 @@ if(isset($_POST['btnComment']))
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="charityid" name="charityid" required = "required" class="form-control" id="success">
+					    <input hidden id="postsid" name="postsid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userid" value="<?php echo ($result->adopterID);?>" required = "required" class="form-control" id="success">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
@@ -958,7 +823,7 @@ if(isset($_POST['btnComment']))
     </div>
   </div>
 </div>
-	<!-- //Modal Comment -->  
+	<!-- //Modal Comment --> 
 
 			<!-- footer content -->
 			<footer>
@@ -990,21 +855,18 @@ if(isset($_POST['btnComment']))
 
                 console.log(data);
 
-                $('#char_id').val(data[0]);
-                $('#char_title').val(data[1]);
-                $('#char_bank').val(data[2]);
-                $('#char_amount').val(data[3]);
-                $('#char_pin').val(data[4]);
-                $('#char_description').val(data[5]);
-                $('#des').val(data[6]);
-                $('#char_picture').val(data[7]);
-                $('#char_status').val(data[8]);
-                $('#user_id').val(data[9]);
-                $('#post_by').val(data[10]);
-                $('#post_date').val(data[11]);
-                $('#user_email').val(data[12]);
-                $('#user_address').val(data[13]);
-                $('#user_contactno').val(data[14]);
+                $('#post_id').val(data[0]);
+                $('#post_title').val(data[1]);
+                $('#post_content').val(data[2]);
+                $('#des').val(data[3]);
+                $('#post_picture').val(data[4]);
+                $('#post_status').val(data[5]);
+                $('#post_id').val(data[6]);
+                $('#post_by').val(data[7]);
+                $('#post_date').val(data[8]);
+                $('#post_email').val(data[9]);
+                $('#post_address').val(data[10]);
+                $('#post_contactno').val(data[11]);
             });
         });
     </script>
@@ -1024,8 +886,8 @@ if(isset($_POST['btnComment']))
 
                 console.log(data);
 
-                $('#charityid').val(data[0]);
-                $('#masterid').val(data[9]);
+                $('#postsid').val(data[0]);
+                $('#masterid').val(data[6]);
             });
         });
 </script>

@@ -416,8 +416,8 @@ if($query->rowCount()>0)
       <div class="x_content" style="text-align:center;">
       
        <!-- View Post for Events Code -->
-                      <?php
-                        $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postID DESC";
+       <?php
+                        $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postsID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -451,18 +451,17 @@ if($query->rowCount()>0)
                                             <br>Time:&nbsp&nbsp&nbsp<?php echo ($result->postTime);?></p>
                                             <br>
                                             <p id="description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postContent);?></p> 
-                                                                                       
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
-                                            
 
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
-                                              <li><h3 hidden class="card-title"><?php echo ($result->postID);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->postsID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->postTitle);?></h2></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->postContent);?></textarea></li>
                                               
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->postContent);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->postPicture);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->postStatus);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
                                             
@@ -477,7 +476,7 @@ if($query->rowCount()>0)
                                               <br>
 
                                               <?php
-                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postID'");
+                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postsID'");
                                               $count->execute();
 
                                               $commentno=$count->fetchColumn();
@@ -485,7 +484,7 @@ if($query->rowCount()>0)
                                               ?>
                                               
                                               <?php
-                                              $postid = $result->postID;
+                                              $postid = $result->postsID;
 
                                               $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC LIMIT 1";
                                               $query2=$dbh->prepare($sql2);
@@ -514,7 +513,7 @@ if($query->rowCount()>0)
                                                 <br>
                                                <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
                                               
-                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v"></i><br>
+                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?><?php echo ( $picture->orgName);?><?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v"></i><br>
                                                 <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
                                                 
                                                 <!--<p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>-->
@@ -526,8 +525,8 @@ if($query->rowCount()>0)
                                               <p class="view-all-comment" id="view_all" style="margin-top:5px;margin-bottom:8px;"> View all comments</p>
                                               </a>
                                               <?php
-                                              $postid = $result->postID;
-                                              $sql4="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Tips' ORDER BY commentID DESC";
+                                              $postid = $result->postsID;
+                                              $sql4="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC";
                                               $query4=$dbh->prepare($sql4);
                                               $query4->execute();
                                               $comments=$query4->fetchALL(PDO::FETCH_OBJ);
@@ -539,7 +538,7 @@ if($query->rowCount()>0)
                                                 ?>
                                             <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                               <div class="panel-body">
-                                              <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>
+                                              <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?><?php echo ( $picture->orgName);?><?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>
                                               <?php $cnt4=$cnt4+1;}} ?>
                                               <br>
                                               </div>
@@ -581,8 +580,7 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>     
-                     <!-- //View Post for Events Code -->
-          
+                     <!-- //View Post for Events Code --> 
             </div>
          </div>
        </div>
@@ -712,7 +710,7 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-<!-- Comment Tips Code -->
+<!-- Comment Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -720,35 +718,35 @@ $date = date('m/d/Y h:i A', time());
 <?php
 if(isset($_POST['btnComment']))
 {
-  $masterid=($_POST['masterid']);
+  $postsid=($_POST['postsid']);
 
   if($masterid == $ID)
   {
-    $postid=($_POST['postid']);
+    $postid=($_POST['postsid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postid,:masterid,'$ID',:Comment,'$date','Tips')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
     $query=$dbh->prepare($sql);
-    $query->bindParam(':postid',$postid,PDO::PARAM_STR);
+    $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
   
   }
 
   else
   {
-    $postid=($_POST['postid']);
+    $postsid=($_POST['postsid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postid,:masterid,'$ID',:Comment,'$date','Tips')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
     $query=$dbh->prepare($sql);
-    $query->bindParam(':postid',$postid,PDO::PARAM_STR);
+    $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
@@ -766,76 +764,15 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
   }
   
 }
 ?>
-<!-- //Comment Tips Code -->
-
-<!-- Comment Advice Code -->
-<?php
-date_default_timezone_set("Asia/Manila");
-$date = date('m/d/Y h:i A', time());
-?>  
-<?php
-if(isset($_POST['btnComment']))
-{
-  $masterid=($_POST['masterid']);
-
-  if($masterid == $ID)
-  {
-    $postid=($_POST['postid']);
-    $masterid=($_POST['masterid']);
-    $Comment=($_POST['Comment']);
-    
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postid,:masterid,'$ID',:Comment,'$date','Advice')";
-    $query=$dbh->prepare($sql);
-    $query->bindParam(':postid',$postid,PDO::PARAM_STR);
-    $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
-    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
-    $query->execute();
-
-    echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
-  
-  }
-
-  else
-  {
-    $postid=($_POST['postid']);
-    $masterid=($_POST['masterid']);
-    $Comment=($_POST['Comment']);
-    
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postid,:masterid,'$ID',:Comment,'$date','Advice')";
-    $query=$dbh->prepare($sql);
-    $query->bindParam(':postid',$postid,PDO::PARAM_STR);
-    $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
-    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
-    $query->execute();
-
-    $sql2="SELECT commentID FROM comment ORDER BY commentID DESC";
-    $query2=$dbh->prepare($sql2);
-    $query2->execute();
-
-    $commentID=$query2->fetchColumn();
-
-    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
-    $query3=$dbh->prepare($sql3);
-    $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
-    $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
-    $query3->execute();
-
-    echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
-  }
-  
-}
-?>
-<!-- //Comment Advice Code -->
+<!-- //Comment Code -->
 
   <!-- Modal Comment -->
-<div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -853,13 +790,13 @@ if(isset($_POST['btnComment']))
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="postid" name="postid" required = "required" class="form-control" id="success">
+					    <input hidden id="postsid" name="postsid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userid" value="<?php echo ($result->adopterID);?>" required = "required" class="form-control" id="success">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
@@ -875,7 +812,7 @@ if(isset($_POST['btnComment']))
     </div>
   </div>
 </div>
-<!-- //Modal Comment -->  
+	<!-- //Modal Comment -->  
 
 			<!-- footer content -->
 			<footer>
@@ -911,18 +848,19 @@ if(isset($_POST['btnComment']))
                 $('#post_title').val(data[1]);
                 $('#post_content').val(data[2]);
                 $('#des').val(data[3]);
-                $('#post_status').val(data[4]);
-                $('#user_id').val(data[5]);
-                $('#post_by').val(data[6]);
-                $('#post_date').val(data[7]);
-                $('#user_email').val(data[8]);
-                $('#user_address').val(data[9]);
-                $('#user_contactno').val(data[10]);
+                $('#post_picture').val(data[4]);
+                $('#post_status').val(data[5]);
+                $('#post_id').val(data[6]);
+                $('#post_by').val(data[7]);
+                $('#post_date').val(data[8]);
+                $('#post_email').val(data[9]);
+                $('#post_address').val(data[10]);
+                $('#post_contactno').val(data[11]);
             });
         });
     </script>
 
-    <script>
+<script>
         $(document).ready(function () {
 
             $('.commentbtn').on('click', function () {
@@ -937,11 +875,12 @@ if(isset($_POST['btnComment']))
 
                 console.log(data);
 
-                $('#postid').val(data[0]);
-                $('#masterid').val(data[5]);
+                $('#postsid').val(data[0]);
+                $('#masterid').val(data[6]);
             });
         });
-    </script>
+</script>
+
 
   <script type="text/javascript">
   $(".comment-count").filter(function(){
