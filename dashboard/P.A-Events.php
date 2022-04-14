@@ -451,9 +451,9 @@ if($query->rowCount()>0)
                                             ?>
                                             
                                             <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->postDate);?></textarea>
-                                            <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postTitle);?></p>
 
-                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Location: <?php echo ($result->postLocation);?><br>Time: <?php echo ($result->postTime);?></p>
+                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">What:&nbsp&nbsp&nbsp<?php echo ($result->postTitle);?><br>When:&nbsp&nbsp<?php echo ($result->postEventdate);?><br>Where:&nbsp<?php echo ($result->postLocation);?>
+                                            <br>Time:&nbsp&nbsp&nbsp<?php echo ($result->postTime);?></p>
                                             <br>
                                             <p id="description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postContent);?></p> 
 

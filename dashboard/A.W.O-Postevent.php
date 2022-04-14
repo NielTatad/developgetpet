@@ -162,27 +162,27 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 	<title>GETPET</title>
 
-	<!-- Bootstrap -->
-	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<!-- Font Awesome -->
-	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<!-- NProgress -->
-	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-	<!-- iCheck -->
-	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	<!-- bootstrap-wysiwyg -->
-	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-	<!-- Select2 -->
-	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
-	<!-- Switchery -->
-	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
-	<!-- starrr -->
-	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
-	<!-- bootstrap-daterangepicker -->
-	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- Ion.RangeSlider -->
+    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- Bootstrap Colorpicker -->
+    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
 
-	<!-- Custom Theme Style -->
-	<link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -430,12 +430,13 @@ if(isset($_POST['Post']))
     $Content=($_POST['Content']);
     $Location=($_POST['Location']);
     $Time=($_POST['Time']);
+    $Date=($_POST['Date']);
     $Picture = $_FILES["Picture"]["name"];
     $tmp_dir = $_FILES["Picture"]["tmp_name"];
     
     move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
     
-    $sql="INSERT INTO post(userID,Name,userEmail,userContactNo,postTitle,postContent,postLocation,postTime,postPicture,postStatus,postDate)VALUES(:ID,:Name,:Email,:ContactNo,:Title,:Content,:Location,:Time,:Picture,'Event','$date')";
+    $sql="INSERT INTO post(userID,Name,userEmail,userContactNo,postTitle,postContent,postLocation,postTime,postEventdate,postPicture,postStatus,postDate)VALUES(:ID,:Name,:Email,:ContactNo,:Title,:Content,:Location,:Time,:Date,:Picture,'Event','$date')";
     $query=$dbh->prepare($sql); 
     $query->bindParam(':ID',$ID,PDO::PARAM_STR);
     $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -445,6 +446,7 @@ if(isset($_POST['Post']))
     $query->bindParam(':Content',$Content,PDO::PARAM_STR);
     $query->bindParam(':Location',$Location,PDO::PARAM_STR);
     $query->bindParam(':Time',$Time,PDO::PARAM_STR);
+    $query->bindParam(':Date',$Date,PDO::PARAM_STR);
     $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
     $query->execute();
 
@@ -514,10 +516,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                           </div>
                                         </div>                                    
                                       
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Photo</label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" style="margin-top:-5px;">Upload Photo</label>
                                         
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:-445px" placeholder="Upload Picture">
                                         </div>
                                
                                         <div class="field item form-group">
@@ -534,13 +536,19 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          Time</label>
                                          <div class="col-md-6 col-sm-6" class="form-group">
                                          <div class='input-group date' id='myDatepicker3'>
-                                         <input required="required" type='text' id="time" name="Time" class="form-control"/>
+                                         <input required="required" type='text' id="time" name="Time" class="form-control" class="input-group-addon" onkeypress="return onlyNumberKey(event)"/>
                                          <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-calendar"></span>
+                                         <span class="glyphicon glyphicon-time" style="margin-top:4px;"></span>
                                          </span>
                                          </div>
                                          </div>
-                                         </div>
+                                         </div>                                        
+
+                                         <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Event Date<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='date' type="date" name="Date" required='required'></div>
+                                        </div>
 
                                         <div class="ln_solid">
                                             <br>
@@ -682,13 +690,14 @@ if($query->rowCount()>0)
   <!-- //ModalSettings -->
 
 			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
+      <footer>
+        <p class="tweet-p1">
+		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		<!--<a href="#">http://ax.by/zzzz</a>-->
+		</p>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
 		</div>
 	</div>
 
@@ -730,34 +739,6 @@ if($query->rowCount()>0)
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
-	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<!-- iCheck -->
-	<script src="../vendors/iCheck/icheck.min.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script src="../vendors/moment/min/moment.min.js"></script>
-	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- bootstrap-wysiwyg -->
-	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
-	<!-- jQuery Tags Input -->
-	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-	<!-- Switchery -->
-	<script src="../vendors/switchery/dist/switchery.min.js"></script>
-	<!-- Select2 -->
-	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
-	<!-- Parsley -->
-	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
-	<!-- Autosize -->
-	<script src="../vendors/autosize/dist/autosize.min.js"></script>
-	<!-- jQuery autocomplete -->
-	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-	<!-- starrr -->
-	<script src="../vendors/starrr/dist/starrr.js"></script>
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
-
     <!-- bootstrap-daterangepicker -->
     <script src="../vendors/moment/min/moment.min.js"></script>
     <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -767,11 +748,20 @@ if($query->rowCount()>0)
     <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
     <!-- Bootstrap Colorpicker -->
     <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <!-- jquery.inputmask -->
+    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- jQuery Knob -->
+    <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- Cropper -->
+    <script src="../vendors/cropper/dist/cropper.min.js"></script>
 
-     <!-- Initialize datetimepicker -->
-    <script  type="text/javascript">
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <!-- Initialize datetimepicker -->
+<script  type="text/javascript">
    $(function () {
-                $('#myDatepicker').datetimepicker();
+    $('#myDatepicker').datetimepicker();
             });
     
     $('#myDatepicker2').datetimepicker({
@@ -800,6 +790,17 @@ if($query->rowCount()>0)
     $("#datetimepicker7").on("dp.change", function(e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
+</script>
+
+<script>
+  function onlyNumberKey(evt) {
+                                                    
+  // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+          return false;
+          return true;
+  }
 </script>
 
 </body>
