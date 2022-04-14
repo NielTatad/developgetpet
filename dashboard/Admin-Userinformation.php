@@ -18,48 +18,6 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
-
-
-<?php
-
-$query=$dbh->prepare("SELECT COUNT(ownerID) FROM petowner");
-$query->execute();
-
-$pet_owner=$query->fetchColumn();
-
-?>
-
-<?php
-$query=$dbh->prepare("SELECT COUNT(adopterID) FROM petadopter");
-$query->execute();
-
-$pet_adopter=$query->fetchColumn();
-
-?>
-
-<?php
-$query=$dbh->prepare("SELECT COUNT(orgID) FROM animalwelfareorganization");
-$query->execute();
-
-$animal_welfare_organization=$query->fetchColumn();
-
-?>
-
-<?php
-$query=$dbh->prepare("SELECT COUNT(*) FROM register ");
-$query->execute();
-
-$Registered=$query->fetchColumn();
-
-?>
-
-<?php
-$query=$dbh->prepare("SELECT COUNT(*) FROM login WHERE (loginDate) = (CURDATE())");
-$query->execute();
-
-$Date=$query->fetchColumn();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -265,7 +223,7 @@ th {
       <div class="col-md-12 col-sm-12">
         <div class="x_panel" style="border-radius:10px;border-width:2px;">
           <div class="x_title">
-            <h2>Manage Pet Information</h2>
+            <h2>Manage User Information</h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -273,77 +231,56 @@ th {
             <div class="clearfix"></div>
           </div>
           <div class="x_content" style="text-align:center;">
-      
-                  <div class="row">
-                  <div class="col-sm-12">
-                  <div class="card-box table-responsive">
-					
-                  <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                            <tr class="headings">
-
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
-                            <th style="text-align:center" class="column-title">Pet ID</th>
-                            <th style="text-align:center" class="column-title">Name</th>
-                            <th style="text-align:center" class="column-title">Type</th>
-                            <th style="text-align:center" class="column-title">Breed</th>
-                            <th style="text-align:center" class="column-title">Age</th>
-                            <th style="text-align:center" class="column-title">Color</th>
-                            <th style="text-align:center" class="column-title">Weight</th>
-                            <th style="text-align:center" class="column-title">Picture</th>
-                            <th style="text-align:center" class="column-title">Vaccination Status</th>
-                            <th style="text-align:center" class="column-title">Deworming Status</th>
-                            <th style="text-align:center" class="column-title">Pet Status</th>
-                            <th style="text-align:center" class="column-title">Post Status</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th>
-                            <th class="bulk-actions" colspan="12">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Data to be Deleted (<span class="action-cnt"> </span>)</a>
-                            </th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <?php
-                            $sql="SELECT * from postpet";
-                            $query=$dbh->prepare($sql);
-                            $query->execute();
-                            $results=$query->fetchALL(PDO::FETCH_OBJ);
-                            $cnt=1;
-                            if($query->rowCount()>0)
-                            {
-                             foreach($results as $result)
-                            {
-                             ?>
-                              <tr class="even pointer">
-
-                                <td class="a-center ">
-                                  <input type="checkbox" class="flat" name="table_records">
-                                </td>
-                                <td style="text-align:center" class=" " name="#pet_id"><?php echo htmlentities($result->petID);?></td>
-                                <td style="text-align:center" class=" " name="#pet_name"><?php echo htmlentities($result->petName);?></td>
-                                <td style="text-align:center" class=" " name="#pet_type"><?php echo htmlentities($result->petType);?></td>
-                                <td style="text-align:center" class=" " name="#pet_breed"><?php echo htmlentities($result->petBreed);?></td>
-                                <td style="text-align:center" class=" " name="#pet_age"><?php echo htmlentities($result->petAge);?></td>
-                                <td style="text-align:center" class=" " name="#pet_color"><?php echo htmlentities($result->petColor);?></td>
-                                <td style="text-align:center" class=" " name="#pet_weight"><?php echo htmlentities($result->petWeight);?></td>
-                                <td style="text-align:center" class=" " name="#pet_picture"><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
-                                <td style="text-align:center" class=" " name="#vaccination_status"><?php echo htmlentities($result->vaccinationStatus);?></td>
-                                <td style="text-align:center" class=" " name="#deworming_status"><?php echo htmlentities($result->dewormingStatus);?></td>
-                                <td style="text-align:center" class=" " name="#pet_petstatus"><?php echo htmlentities($result->petStatus);?></td>
-                                <td style="text-align:center" class=" " name="#pet_poststatus"><?php echo htmlentities($result->postStatus);?></td>
-                                <td style="text-align:center;" class="last"><a data-toggle="modal" data-target="#DeletePost"><i class="fa fa-trash-o deletebtn" style="height:50px;"></i></a>
-                                </td>
-                              </tr>
-                            <?php $cnt=$cnt+1;}}?>
-                         </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div> 
             
+          <?php
+                        $sql="SELECT * from register";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                    <div class="col-md-4 col-sm-4  profile_details">
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i><?php echo ( $result->Role);?></i></h4>
+                            <div class="left col-md-7 col-sm-7">
+                              <h2><?php echo ( $result->userFirstname);?> <?php echo ( $result->userLastname);?> <?php echo ( $result->orgName);?></h2>
+                              <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"></i> Address: <?php echo ( $result->Address);?></li>
+                                <li><i class="fa fa-phone"></i> Phone #: <?php echo ( $result->contactNo);?></li>
+                              </ul>
+                            </div>
+                            <div class="right col-md-5 col-sm-5 text-center">
+                              <img <?php echo"<img src = '/developgetpet/web/images/$result->Image'";?> alt="" class="img-circle img-fluid">
+                            </div>
+                          </div>
+                          <div class=" profile-bottom text-center">
+                            <div class=" col-sm-6 emphasis">
+                              <p class="ratings">
+                                <a>4.0</a>
+                                <a href="#"><span class="fa fa-star"></span></a>
+                                <a href="#"><span class="fa fa-star"></span></a>
+                                <a href="#"><span class="fa fa-star"></span></a>
+                                <a href="#"><span class="fa fa-star"></span></a>
+                                <a href="#"><span class="fa fa-star-o"></span></a>
+                              </p>
+                            </div>
+                            <div class=" col-sm-6 emphasis">
+                              <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>
+                              <button type="button" class="btn btn-primary btn-sm">
+                                <i class="fa fa-user"> </i> View Profile
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <?php $cnt=$cnt+1;}} ?>
           </div>
         </div>
       </div>
@@ -461,86 +398,8 @@ th {
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
 
-    <!-- Datatables -->
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.editbtn').on('click', function () {
-
-                $('#EditPost').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#pet_id').val(data[0]);
-                $('#pet_name').val(data[1]);
-                $('#pet_type').val(data[2]);
-                $('#pet_breed').val(data[3]);
-                $('#pet_sex').val(data[4]);
-                $('#pet_age').val(data[5]);
-                $('#pet_color').val(data[6]);
-                $('#pet_weight').val(data[7]);
-                $('#pet_pictre').val(data[8]);
-                $('#vaccination_status').val(data[9]);
-                $('#deworming_status').val(data[10]);
-                $('#pet_pettstatus').val(data[11]);
-                $('#pet_poststatus').val(data[12]);
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.deletebtn').on('click', function () {
-
-                $('#DeletePost').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#pet_id').val(data[0]);
-            });
-        });
-    </script>
-
-    <div id="custom_notifications" class="custom-notifications dsp_none">
-      <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-      </ul>
-      <div class="clearfix"></div>
-      <div id="notif-group" class="tabbed_notifications"></div>
-    </div>
 
   </body>
 </html>

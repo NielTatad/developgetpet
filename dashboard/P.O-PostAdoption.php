@@ -246,11 +246,15 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Donation</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Donation.php">Donation</a>
                     </li>
 
                     <li>
                     <li><a href="#">Fundraising activities</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Events.php">Events</a>
                     </li>
 
                     <li>
@@ -343,9 +347,10 @@ if($query->rowCount()>0)
                               foreach($userids as $userid)
                             {
                               ?>
-                           
+
+    
                         <a class ="dropdown-item">
-                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -634,30 +639,30 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         </div>
 
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:150px" placeholder="0" value="1"/>
-                                            <div class="col-md-6 col-sm-6">
-                                              <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:200px">
-                                              <option value="kg">Kilogram</option>
-                                              <option value="lb">Pound</option>
-                                          </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <script>
-                                        function weightFunction() {
-                                        var weight = document.getElementById('weight').value;
-                                        var kgpd = document.getElementById('kgpd').value;
-                                        var petweight = weight +" "+ kgpd;
-                                        document.getElementById('petweight').value = petweight;
-                                        }
-                                        </script>
-
-                                        <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input readonly type="text" id="petweight" name="Weight" style="width:360px;background-color:#fff;" value = "1 kg"class="form-control"/>
-                                            </div>
-                                        </div>
+                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:215px" placeholder="0" value="1"/>
+                                             <div class="col-md-6 col-sm-6">
+                                               <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:231px">
+                                               <option value="kg">Kilogram</option>
+                                               <option value="lb">Pound</option>
+                                           </select>
+                                             </div>
+                                         </div>
+                                         
+                                         <script>
+                                         function weightFunction() {
+                                         var weight = document.getElementById('weight').value;
+                                         var kgpd = document.getElementById('kgpd').value;
+                                         var petweight = weight +" "+ kgpd;
+                                         document.getElementById('petweight').value = petweight;
+                                         }
+                                         </script>
+ 
+                                         <div hidden class="field item form-group">
+                                         <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input readonly type="text" id="petweight" name="Weight" style="width:360px;background-color:#fff;" value = "1 kg"class="form-control"/>
+                                             </div>
+                                         </div>
 
 
                     <div class="field item form-group">
@@ -845,6 +850,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
 
 	<!-- Javascript functions	-->
 	<script>

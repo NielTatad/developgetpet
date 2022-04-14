@@ -262,11 +262,15 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Donation</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Donation.php">Donation</a>
                     </li>
 
                     <li>
                     <li><a href="#">Fundraising activities</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Events.php">Events</a>
                     </li>
 
                     <li>
@@ -718,7 +722,7 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
-<p></p>
+
 <?php
 ?>
 <?php }} ?>

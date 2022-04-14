@@ -246,11 +246,15 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Donation</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Donation.php">Donation</a>
                     </li>
 
                     <li>
                     <li><a href="#">Fundraising activities</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Events.php">Events</a>
                     </li>
 
                     <li>
@@ -343,9 +347,10 @@ if($query->rowCount()>0)
                               foreach($userids as $userid)
                             {
                               ?>
-                           
+
+    
                         <a class ="dropdown-item">
-                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -454,13 +459,15 @@ $Color=($_POST['Color']);
 $Weight=($_POST['Weight']);
 $Vaccination=($_POST['Vaccination']);
 $Deworming=($_POST['Deworming']);
+$selectedRange=($_POST['selectedRange']);
+$totalDays=($_POST['totalDays']);
 $Description=($_POST['Description']);
 $Picture = $_FILES["Picture"]["name"];
 $tmp_dir = $_FILES["Picture"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-$sql="INSERT INTO postpet(userID,Name,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Shorttermcare')";
+$sql="INSERT INTO postpet(userID,userName,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,selectedRange,totalDays,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:selectedRange,:totalDays,:Description,:Picture,'$date','Available','Short-term care')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -477,11 +484,13 @@ $query->bindParam(':Weight',$Weight,PDO::PARAM_STR);
 $query->bindParam(':Vaccination',$Vaccination,PDO::PARAM_STR);
 $query->bindParam(':Deworming',$Deworming,PDO::PARAM_STR);
 $query->bindParam(':Description',$Description,PDO::PARAM_STR);
+$query->bindParam(':selectedRange',$selectedRange,PDO::PARAM_STR);
+$query->bindParam(':totalDays',$totalDays,PDO::PARAM_STR);
 $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
 
 }
 ?>
@@ -505,7 +514,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="clearfix"></div>
                         </div>
 
-                        <div class="x_content">
+                                <div class="x_content">
                                     <form class="" action="" method="post" novalidate enctype="multipart/form-data">
                                          
                                         <span class="section"></span>
@@ -634,30 +643,30 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         </div>
 
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:150px" placeholder="0" value="1"/>
-                                            <div class="col-md-6 col-sm-6">
-                                              <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:200px">
-                                              <option value="kg">Kilogram</option>
-                                              <option value="lb">Pound</option>
-                                          </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <script>
-                                        function weightFunction() {
-                                        var weight = document.getElementById('weight').value;
-                                        var kgpd = document.getElementById('kgpd').value;
-                                        var petweight = weight +" "+ kgpd;
-                                        document.getElementById('petweight').value = petweight;
-                                        }
-                                        </script>
-
-                                        <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input readonly type="text" id="petweight" name="Weight" style="width:360px;background-color:#fff;" value = "1 kg"class="form-control"/>
-                                            </div>
-                                        </div>
+                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:215px" placeholder="0" value="1"/>
+                                             <div class="col-md-6 col-sm-6">
+                                               <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:231px">
+                                               <option value="kg">Kilogram</option>
+                                               <option value="lb">Pound</option>
+                                           </select>
+                                             </div>
+                                         </div>
+                                         
+                                         <script>
+                                         function weightFunction() {
+                                         var weight = document.getElementById('weight').value;
+                                         var kgpd = document.getElementById('kgpd').value;
+                                         var petweight = weight +" "+ kgpd;
+                                         document.getElementById('petweight').value = petweight;
+                                         }
+                                         </script>
+ 
+                                         <div hidden class="field item form-group">
+                                         <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input readonly type="text" id="petweight" name="Weight" style="width:360px;background-color:#fff;" value = "1 kg"class="form-control"/>
+                                             </div>
+                                         </div>
 
 
                     <div class="field item form-group">
@@ -681,6 +690,44 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 												</select>
 											</div>
 										</div>
+
+                    <div class="field item form-group">
+											<label class="col-form-label col-md-3 col-sm-3  label-align">Select Range<span class="required"></span></label>
+											<div class="col-md-6 col-sm-6">
+												<select class="form-control" onChange="jsFunction" required="required" id="totalDays" name="totalDays">
+													<option value="0">Select Range Days for Short-term care...</option>
+													<option value="1">1 Day</option>
+                          <option value="2">2 Days</option>
+                          <option value="3">3 Days</option>
+                          <option value="4">4 Days</option>
+                          <option value="5">5 Days</option>
+                          <option value="6">6 Days</option>
+                          <option value="7">1 Week</option>
+                          <option value="14">2 Weeks</option>
+                          <option value="21">3 Weeks</option>
+                          <option value="30">1 Month</option>
+                          <option value="60">2 Months</option>
+                          <option value="90">3 Months</option>
+                          <option value="120">4 Months</option>
+                          <option value="150">5 Months</option>
+                          <option value="180">6 Months</option>
+												</select>
+											</div>
+										</div>
+
+                    <script>
+                      var myselect = document.getElementById("totalDays");
+                      myselect.onchange = function(){
+                      document.getElementById("selectedRange").value = myselect.options[myselect.selectedIndex].text;
+                      };
+                    </script>
+
+                    <div hidden class="field item form-group">
+                      <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input readonly id="selectedRange" name="selectedRange" style="background-color:#fff;" class="form-control"/>
+                        </div>
+                    </div>
 
                     <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
@@ -713,7 +760,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-PostShorttermcare.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -845,6 +892,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
 
 	<!-- Javascript functions	-->
 	<script>

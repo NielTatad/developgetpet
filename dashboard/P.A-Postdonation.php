@@ -156,26 +156,38 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GETPET</title>
+	<title>GETPET</title>
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+	<!-- Custom Theme Style -->
+	<link href="../build/css/custom.min.css" rel="stylesheet">
+</head>
 
-  <body class="nav-md">
+<body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -186,21 +198,23 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <div class="clearfix"></div>
 
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-            
-              <!--<div class="profile_info" style="margin-left:60px;">
-                
-                <h2>Welcome, <br><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
-              </div>-->
-              <div class="clearfix"></div>
-            </div>
-            <!-- /menu profile quick info -->
+					<!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                    <!--<div class="profile_pic">
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;border:5px;">
+                    </div>
+                    <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    </div>
+                    <!-- /menu profile quick info -->
 
-            <br />
+					<br />
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				 <!-- sidebar menu -->
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
@@ -216,7 +230,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Donation.php">Donation</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Postdonation.php">Donation</a>
                     </li>
 
                     <li>
@@ -237,7 +251,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
             <!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
+				<!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -250,11 +264,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               </a>
             </div>
             <!-- /menu footer buttons -->
-          </div>
-        </div>
+				</div>
+			</div>
 
-         <!-- top navigation -->
-         <div class="top_nav">
+		   <!-- top navigation -->
+       <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -276,7 +290,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read'");
                   $query->execute();
 
                   $request=$query->fetchColumn();
@@ -318,10 +332,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                               foreach($userids as $userid)
                             {
                               ?>
-
-    
+                           
                         <a class ="dropdown-item">
-                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -337,7 +350,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <a href="http://localhost/developgetpet/dashboard/P.A-Requestnotification.php">See All Alerts</a>
+                            <a>See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -349,7 +362,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
           </div>
         <!-- /top navigation -->
-
+        
 <?php 
 $sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
@@ -367,188 +380,212 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-              <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
-              </div>
+			<!-- page content -->
+			<div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                        <br>
+                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
+                        </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- New Post For Adoption Code -->
-            <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:10px;border-width:2px;">
-                  <div class="x_title">
-                    <h2>New Post For Adoption</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content" style="text-align:center;">
-
-                  <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-md-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:180px;">
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petStatus);?></h2></h2>                                
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
-
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
-                                    </div>
-                                  </div><br>
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
                                 </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
+                            </div>
+                        </div>
+                    </div>
 
-                        </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php"><h2 style="text-align:center;">
-                        <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- //New Post For Adoption Code -->
-            
-            <!-- New Post For Tips Advice & Articles Code -->
-            <div class="clearfix"></div>
+<!-- Post Donation Code -->
+<?php 
+$ID=$_SESSION['adopterID'];
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12">
-                <div class="x_panel" style="border-radius:10px;border-width:2px;">
-                  <div class="x_title">
-                    <h2>New Post For Tips Advice & Articles</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
-                    </ul>
+$sql = "SELECT * from petadopter where adopterID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Post']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Address=($_POST['Address']);
+$ContactNo=($_POST['ContactNo']);
+$Title=($_POST['Title']);
+$Description=($_POST['Description']);
+$Bank=($_POST['Bank']);
+$Pin=($_POST['Pin']);
+$Amount=($_POST['Amount']);
+$Picture = $_FILES["Picture"]["name"];
+$tmp_dir = $_FILES["Picture"]["tmp_name"];
+
+move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
+
+$sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityBank,charityPinnumber,charityAmount,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Address',$Address,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+$query->bindParam(':Title',$Title,PDO::PARAM_STR);
+$query->bindParam(':Description',$Description,PDO::PARAM_STR);
+$query->bindParam(':Bank',$Bank,PDO::PARAM_STR);
+$query->bindParam(':Pin',$Pin,PDO::PARAM_STR);
+$query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
+$query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Posted successfully, Please wait for the admin approval thank you!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Donation.php'</script>";
+
+}
+?>
+<!-- //Post Donation Code -->
+
+                    <!-- Back Button -->
+                    <a href="http://localhost/developgetpet/dashboard/P.A-Donation.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
+
                     <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content" style="text-align:center;">
 
-                  <?php
-                        $sql="SELECT * from post ORDER BY postID DESC LIMIT 3";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-nd-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12  ">
+                        <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                        <div class="x_title">
+                        <h2>Create Post for Donation</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                        </li>          
+                        </ul>
+                        <div class="clearfix"></div>
+                        </div>
+
+                                <div class="x_content">
+                                <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+                                         
+                                        <span class="section"></span>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->adopterID);?>" type="hidden"/>
+                                            </div>
+
+                                        </div>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>" type="hidden"/>
+                                            </div>
+
+                                        </div>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Email" class='email' value="<?php echo ($result->adopterEmail);?>" type="hidden"/></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Address" value="<?php echo ($result->adopterAddress);?>" type="hidden"/></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='number' name="ContactNo" value="<?php echo ($result->adopterContactNo);?>" type="hidden"></div>
+                                        </div>
+
                                         
-                                            <div class="field item form-group">  
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="petname" class="form-control" name="Title" placeholder="Title..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
                                             </div>
-                                            </div>                                
-                                            <div class="field item form-group">                                        
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
+                                        </div>
 
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
-                                    </div>
-                                  </div><br>
+                                        <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="Reason..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
+                                          </div>
+                                        </div>                                    
+                                      
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Photo</label>
+                                        
+                                        <div style="text-align: center" class="wrap-input100 validate-input">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+                                        </div>
+                               
+                                        <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Select Bank<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="form-control" required="required" name="Bank">
+                                          <option>SELECT...</option>
+                                            <option>BDO</option>
+                                            <option>Union Bank</option>
+                                            <option>BPI</option>
+                                            <option>LANDBANK</option>
+                                            <option>GCASH</option>
+                                          </select>
+                                        </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Account<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="pin" class="form-control" name="Pin" placeholder="Pin..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="Amount..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
+
+                                        <div class="ln_solid">
+                                            <br>
+                                            <div class="form-group">
+                                                <div class="col-md-6 offset-md-3">
+                                                    <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-Postdonation.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
-
-                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.A-T.A.A.php"><h2 style="text-align:center;">
-                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Read More!</button></h2></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>            
-            <!-- New Post For Tips Advice & Articles Code -->             
-
-          </div>
-        </div>
-        <!-- /page content -->
+            </div>
+			<!-- /page content -->
 
 <script>
-<?php
-$ID=$_SESSION['adopterID'];           
+<?php 
+$ID=$_SESSION['adopterID'];
 $sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
@@ -564,9 +601,8 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
-        
 
-        <!-- ModalProfile -->
+            <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -589,7 +625,7 @@ if($query->rowCount()>0)
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->adopterID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center">
-						  <button class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
+						  <button  class="login100-form-btn" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
 							 <a style="color:White"> Update Profile </a>
 						 </button>
 				</div>
@@ -660,7 +696,7 @@ if($query->rowCount()>0)
 						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->adopterPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
-						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
+						<button  class="login100-form-btn" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
 							<a style="color:White"> Update </a>
 						</button>
 				</div><br>
@@ -671,38 +707,102 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-        <!-- footer content -->
-        <footer>
-        <p class="tweet-p1">
-		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
-		<!--<a href="#">http://ax.by/zzzz</a>-->
-		</p>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
-    </div>
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
 
-    <script type="text/javascript">
-    $(".unread").filter(function(){
-    return $(this).text().trim() === "Read";
-    }).hide();
-    </script>
+	<!-- Javascript functions	-->
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="../vendors/iCheck/icheck.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="../vendors/moment/min/moment.min.js"></script>
+	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="../vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="../vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="../vendors/starrr/dist/starrr.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+
+     <!-- Initialize datetimepicker -->
+    <script  type="text/javascript">
+   $(function () {
+                $('#myDatepicker').datetimepicker();
+            });
     
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-  </body>
+    $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    
+    $('#myDatepicker3').datetimepicker({
+        format: 'hh:mm A'
+    });
+    
+    $('#myDatepicker4').datetimepicker({
+        ignoreReadonly: true,
+        allowInputToggle: true
+    });
+
+    $('#datetimepicker6').datetimepicker();
+    
+    $('#datetimepicker7').datetimepicker({
+        useCurrent: false
+    });
+    
+    $("#datetimepicker6").on("dp.change", function(e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    
+    $("#datetimepicker7").on("dp.change", function(e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+</script>
+
+</body>
 </html>
