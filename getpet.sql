@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2022 at 12:10 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Apr 14, 2022 at 08:37 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,28 +83,30 @@ CREATE TABLE `charity` (
   `userEmail` varchar(50) NOT NULL,
   `userAddress` varchar(50) NOT NULL,
   `userContactNo` varchar(50) NOT NULL,
-  `charTitle` varchar(100) NOT NULL,
-  `charDescription` varchar(1000) NOT NULL,
-  `charPicture` varchar(225) NOT NULL,
-  `charBank` varchar(50) NOT NULL,
-  `charPinnumber` varchar(50) NOT NULL,
-  `charAmount` varchar(50) NOT NULL,
-  `charStartdate` varchar(50) NOT NULL,
-  `charEnddate` varchar(50) NOT NULL,
-  `charPostdate` varchar(50) NOT NULL,
-  `charCharitystatus` text NOT NULL,
-  `charPoststatus` text NOT NULL
+  `charityTitle` varchar(100) NOT NULL,
+  `charityDescription` varchar(1000) NOT NULL,
+  `charityPicture` varchar(225) NOT NULL,
+  `charityBank` varchar(50) NOT NULL,
+  `charityPinnumber` varchar(50) NOT NULL,
+  `charityAmount` varchar(50) NOT NULL,
+  `charityStartdate` varchar(50) NOT NULL,
+  `charityEnddate` varchar(50) NOT NULL,
+  `charityPostdate` varchar(50) NOT NULL,
+  `charityStatus` text NOT NULL,
+  `charityPoststatus` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `charity`
 --
 
-INSERT INTO `charity` (`charityID`, `userID`, `userName`, `userEmail`, `userAddress`, `userContactNo`, `charTitle`, `charDescription`, `charPicture`, `charBank`, `charPinnumber`, `charAmount`, `charStartdate`, `charEnddate`, `charPostdate`, `charCharitystatus`, `charPoststatus`) VALUES
+INSERT INTO `charity` (`charityID`, `userID`, `userName`, `userEmail`, `userAddress`, `userContactNo`, `charityTitle`, `charityDescription`, `charityPicture`, `charityBank`, `charityPinnumber`, `charityAmount`, `charityStartdate`, `charityEnddate`, `charityPostdate`, `charityStatus`, `charityPoststatus`) VALUES
 (8, 15, 'pets owner', 'petowner@gmail.com', 'petowner', '31235423532', 'esseet', 'We need some help for my pet that having a surgery tommorrow morning im asking a little bit money to save my dog through this disaster.', 'c6.jpg', 'BDO', '2354421123', '8777', '', '', '04/09/2022 10:47 PM', 'Unaccepted', 'Donation'),
 (9, 15, 'pets owner', 'petowner@gmail.com', 'petowner', '31235423532', 'Need money', 'need ko money kay para sa akong iro please help me mga ka pet lovers i hope naa moy maitabang.', 'bossing.jpg', 'Union Bank', '21153232312', '2465', '', '', '04/10/2022 05:07 PM', 'Unaccepted', 'Donation'),
 (10, 14, 'pet adopter', 'pet@gmail.com', 'petadopters', '2147483647', 'test PA', 'ASDASDKLA DKASKLFCSKLDCKA KCKASDCKLASKLCA KLSKLRF QWKJERKJQWEFKLWSDKFQWKE FKQWE DKLSDFC', 'c1.jpg', 'Union Bank', '4523412312', '23', '', '', '04/10/2022 07:06 PM', 'Unaccepted', 'Donation'),
-(12, 16, 'PAWS', 'paws@gmail.com', 'tokyo', '2147483647', 'Test', 'sagip mi mga lods asasdasdasdasd wow magic', 'domestic-shorthair-cat.jpg', 'BDO', '21153232312', '565', '', '', '04/10/2022 10:05 PM', 'Unaccepted', 'Donation');
+(12, 16, 'PAWS', 'paws@gmail.com', 'tokyo', '2147483647', 'Test', 'sagip mi mga lods asasdasdasdasd wow magic', 'domestic-shorthair-cat.jpg', 'BDO', '21153232312', '565', '', '', '04/10/2022 10:05 PM', 'Accepted', 'Donation'),
+(13, 16, 'PAWS', 'paws@gmail.com', 'tokyo', '2147483647', 'remove date picker', 'removing now', '1.jpg', 'Union Bank', '21153232312', '1234', '', '', '04/13/2022 07:02 PM', 'Unaccepted', 'Donation'),
+(14, 14, 'pet adopter', 'pet@gmail.com', 'petadopters', '2147483647', 'TESTASDAS', 'TESTWWWWWW', 'bg.jpg', 'BDO', '4523412312', '7676', '', '', '04/13/2022 07:07 PM', 'Unaccepted', 'Donation');
 
 -- --------------------------------------------------------
 
@@ -210,9 +212,9 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`userID`, `userFirstname`, `orgName`, `userLastname`, `contactNo`, `Address`, `Image`, `Email`, `Username`, `Password`, `Role`, `loginDate`) VALUES
 (6, 'Gen', '', 'Navarro', '09060913468', 'Cordova, Cebu', 'Genesis.jpg', 'gen@gmail.com', 'gen17', '', 'Pet Owner', '2022-03-30'),
 (11, '', 'Getpet', '', '12423534654', 'Consolacion', 'logo.png', 'getpet@gmail.com', 'getpet2022', 'getpet123', 'Animal Welfare Organization', '2022-03-17'),
-(14, 'pet', '', 'adopter', '2147483647', 'petadopters', 't3.jpg', 'pet@gmail.com', 'pet', '', 'Pet Adopter', '2022-04-10'),
-(15, 'pets', '', 'owner', '31235423532', 'petowner', 't4.jpg', 'petowner@gmail.com', 'owner', '', 'Pet Owner', '2022-04-11'),
-(16, '', 'PAWS', '', '2147483647', 'tokyo', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization', '2022-04-11'),
+(14, 'pet', '', 'adopter', '2147483647', 'petadopters', 't3.jpg', 'pet@gmail.com', 'pet', '', 'Pet Adopter', '2022-04-14'),
+(15, 'pets', '', 'owner', '31235423532', 'petowner', 't4.jpg', 'petowner@gmail.com', 'owner', '', 'Pet Owner', '2022-04-14'),
+(16, '', 'PAWS', '', '2147483647', 'tokyo', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'paws@gmail.com', 'paws', '123', 'Animal Welfare Organization', '2022-04-14'),
 (17, '', 'Sagop', '', '2147483647', 'Mandaue City', '????\\0JFIF\\0\\0H\\0H\\0\\0??@ICC_PROFILE\\0\\0\\00ADBE\\0\\0mntrRGB XYZ ?\\0\\0\\0\\03\\0;acspAPPL\\0\\0\\0\\0none\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0??\\0\\0\\0\\0\\0?-ADBE\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0', 'sagop@gmail.com', 'sagop2018', 'sagop123', 'Animal Welfare Organization', '2022-02-01'),
 (52, 'bars', '', 'Tatad', '2147483647', '0', 't3.jpg', '0', 'A', '', 'Pet Adopter', '2022-03-18'),
 (53, 'JUAN', '', 'TAMAD', '09723124124', 'Mandaue', 't1.jpg', 'juan@gmail.com', 'JUAN', '', 'Pet Adopter', '2022-03-17'),
@@ -330,8 +332,12 @@ CREATE TABLE `post` (
   `userID` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `userEmail` varchar(50) NOT NULL,
+  `userContactNo` varchar(50) NOT NULL,
   `postTitle` varchar(50) NOT NULL,
   `postContent` text NOT NULL,
+  `postLocation` varchar(100) NOT NULL,
+  `postTime` varchar(50) NOT NULL,
+  `postEventdate` varchar(50) NOT NULL,
   `postPicture` varchar(255) NOT NULL,
   `postStatus` varchar(50) NOT NULL,
   `postDate` varchar(50) NOT NULL
@@ -341,17 +347,18 @@ CREATE TABLE `post` (
 -- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`postID`, `userID`, `Name`, `userEmail`, `postTitle`, `postContent`, `postPicture`, `postStatus`, `postDate`) VALUES
-(19, 16, 'PAWS', 'paws@gmail.com', 'advicepaws', 'advicepaseqqwd', '', 'Advice', '03/25/2022 05:55 PM'),
-(22, 16, 'PAWS', 'paws@gmail.com', 'advice sa iro', 'dapat ligoan', '', 'Advice', '03/25/2022 07:26 PM'),
-(24, 15, 'pet owner', 'petowner@gmail.com', 'tatad', 'tatadaca', '', 'Advice', '03/25/2022 08:11 PM'),
-(25, 15, 'pet owner', 'petowner@gmail.com', 'bulltetin', '• asdasd\r\n• asdasda\r\n• sdasdas\r\n• dasdasdasd\r\n• asdasdas\r\n• asd', '', 'Tips', '03/28/2022 08:34 AM'),
-(26, 15, 'pet owner', 'petowner@gmail.com', 'sddfsd', '• asdasdasda\r\n• dasda\r\n• sdasd\r\n• asdas\r\n• das', '', 'Tips', '03/28/2022 08:35 AM'),
-(27, 15, 'pet owner', 'petowner@gmail.com', 'wr3234', '• asda\r\n• sda2we\r\n• 1', '', 'Tips', '03/28/2022 08:35 AM'),
-(28, 15, 'pet owner', 'petowner@gmail.com', 'how to dog', '• asdasdasd\r\n• asdasdas\r\n• dasdas\r\n• dasdasd\r\n• asdasd\r\n• asdasd\r\n• asd', '', 'Tips', '03/28/2022 11:14 AM'),
-(29, 16, 'PAWS', 'paws@gmail.com', 'new', '• asdasdasd\r\n• asdasd\r\n• asda\r\n• sdasd', '', 'Tips', '03/28/2022 08:30 PM'),
-(30, 16, 'PAWS', 'paws@gmail.com', 'PET OWNER SIDE', '• ASDASD\r\n• ASDA\r\n• SDAS\r\n• DAS\r\n• DASDWE32123\r\n• ASD', '', 'Tips', '03/28/2022 08:38 PM'),
-(31, 15, 'pets owner', 'petowner@gmail.com', 'PO', '• ASDA\r\n• SDAS\r\n• DAS\r\n• DA\r\n• SDA\r\n• E 213E', '', 'Tips', '03/28/2022 08:39 PM');
+INSERT INTO `post` (`postID`, `userID`, `Name`, `userEmail`, `userContactNo`, `postTitle`, `postContent`, `postLocation`, `postTime`, `postEventdate`, `postPicture`, `postStatus`, `postDate`) VALUES
+(19, 16, 'PAWS', 'paws@gmail.com', '', 'advicepaws', 'advicepaseqqwd', '', '00:00:00.000000', '', '', 'Advice', '03/25/2022 05:55 PM'),
+(22, 16, 'PAWS', 'paws@gmail.com', '', 'advice sa iro', 'dapat ligoan', '', '00:00:00.000000', '', '', 'Advice', '03/25/2022 07:26 PM'),
+(24, 15, 'pet owner', 'petowner@gmail.com', '', 'tatad', 'tatadaca', '', '00:00:00.000000', '', '', 'Advice', '03/25/2022 08:11 PM'),
+(25, 15, 'pet owner', 'petowner@gmail.com', '', 'bulltetin', '• asdasd\r\n• asdasda\r\n• sdasdas\r\n• dasdasdasd\r\n• asdasdas\r\n• asd', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:34 AM'),
+(26, 15, 'pet owner', 'petowner@gmail.com', '', 'sddfsd', '• asdasdasda\r\n• dasda\r\n• sdasd\r\n• asdas\r\n• das', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:35 AM'),
+(27, 15, 'pet owner', 'petowner@gmail.com', '', 'wr3234', '• asda\r\n• sda2we\r\n• 1', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:35 AM'),
+(28, 15, 'pet owner', 'petowner@gmail.com', '', 'how to dog', '• asdasdasd\r\n• asdasdas\r\n• dasdas\r\n• dasdasd\r\n• asdasd\r\n• asdasd\r\n• asd', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 11:14 AM'),
+(29, 16, 'PAWS', 'paws@gmail.com', '', 'new', '• asdasdasd\r\n• asdasd\r\n• asda\r\n• sdasd', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:30 PM'),
+(30, 16, 'PAWS', 'paws@gmail.com', '', 'PET OWNER SIDE', '• ASDASD\r\n• ASDA\r\n• SDAS\r\n• DAS\r\n• DASDWE32123\r\n• ASD', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:38 PM'),
+(31, 15, 'pets owner', 'petowner@gmail.com', '', 'PO', '• ASDA\r\n• SDAS\r\n• DAS\r\n• DA\r\n• SDA\r\n• E 213E', '', '00:00:00.000000', '', '', 'Tips', '03/28/2022 08:39 PM'),
+(41, 16, 'PAWS', 'paws@gmail.com', '2147483647', 'Free Deworming', 'We will have a free deworming for all Dogs and Cats and we will give a free pet foods.', 'Cansaga Consolacion', '04:30 PM', '2022-04-19', 'dogcat.jpg', 'Event', '04/14/2022 02:09 PM');
 
 -- --------------------------------------------------------
 
@@ -391,7 +398,7 @@ CREATE TABLE `postpet` (
 INSERT INTO `postpet` (`petID`, `userID`, `userName`, `userEmail`, `userAddress`, `userContactNo`, `petType`, `petName`, `petBreed`, `petSex`, `petAge`, `petColor`, `petWeight`, `vaccinationStatus`, `dewormingStatus`, `selectedRange`, `totalDays`, `petDescription`, `petPicture`, `postDate`, `petStatus`, `postStatus`) VALUES
 (20, 15, 'pets owner', 'petowner@gmail.com', 'petowner', '31235423532', 'Dog', 'Cloudy', 'Border collie', 'Female', '2 month', 'whitish', '1 kg', 'Vaccinated', 'Not deworm', '', 0, 'This pet is an loveable pet it can be your companion in your life.', '3.jpg', '04/04/2022 09:51 PM', 'Available', 'Adoption'),
 (21, 14, 'pet adopter', 'pet@gmail.com', 'petadopters', '2147483647', 'Cat', 'dak', 'Brazilian Shorthair', 'Female', '3 month', 'Gray ', '4 kg', 'Vaccinated', 'Not deworm', '', 0, 'Adopt me i need some companion in my life please adopt me i can be your bestfriend', '4.jpg', '04/04/2022 09:58:30 PM', 'Available', 'Adoption'),
-(22, 15, 'pets owner', 'petowner@gmail.com', 'petowner', '31235423532', 'Cat', 'sdyzvfcvf', 'Brazilian Shorthair', 'Female', '3 month', 'fedf', '3 kg', 'Vaccinated', 'Not deworm', '', 0, 'Im a great pet i can be your bestpal in your life i can be your guard at night i need some owner to ', '1.jpg', '04/05/2022 01:40 PM', 'Available', 'Adoption'),
+(22, 15, 'pets owner', 'petowner@gmail.com', 'petowner', '31235423532', 'Cat', 'sdyz', 'Brazilian Shorthair', 'Female', '3 month', 'fedf', '3 kg', 'Vaccinated', 'Not deworm', '', 0, 'Im a great pet i can be your bestpal in your life i can be your guard at night i need some owner to ', '1.jpg', '04/05/2022 01:40 PM', 'Not available', 'Deleted'),
 (23, 68, 'ann cagong', 'ann@gmail.com', 'lapulapu', '09231231231', 'Cat', 'ann', 'Bombay', 'Female', '3 year', 'Brown', '4 kg', 'Vaccinated', 'Deworm', '', 0, 'kinsay ganahan mo adopt ani', '2.jpg', '04/05/2022 03:23 PM', 'Available', 'Adoption');
 
 -- --------------------------------------------------------
@@ -569,7 +576,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `charity`
 --
 ALTER TABLE `charity`
-  MODIFY `charityID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `charityID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -593,7 +600,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `postpet`
