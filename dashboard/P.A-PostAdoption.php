@@ -267,8 +267,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				</div>
 			</div>
 
-		   <!-- top navigation -->
-       <div class="top_nav">
+		  <!-- top navigation -->
+      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -290,7 +290,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read'");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
                   $query->execute();
 
                   $request=$query->fetchColumn();
@@ -332,9 +332,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                               foreach($userids as $userid)
                             {
                               ?>
-                           
+
+    
                         <a class ="dropdown-item">
-                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -350,7 +351,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <a>See All Alerts</a>
+                            <a href="http://localhost/developgetpet/dashboard/P.A-Requestnotification.php">See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -624,9 +625,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          </div>
  
                                          <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:150px" placeholder="0" value="1"/>
+                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:215px" placeholder="0" value="1"/>
                                              <div class="col-md-6 col-sm-6">
-                                               <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:200px">
+                                               <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:231px">
                                                <option value="kg">Kilogram</option>
                                                <option value="lb">Pound</option>
                                            </select>
@@ -642,7 +643,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          }
                                          </script>
  
-                                         <div class="field item form-group">
+                                         <div hidden class="field item form-group">
                                          <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
                                              <div class="col-md-6 col-sm-6">
                                                  <input readonly type="text" id="petweight" name="Weight" style="width:360px;background-color:#fff;" value = "1 kg"class="form-control"/>
@@ -684,13 +685,26 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                      <div style="text-align: center" class="wrap-input100 validate-input">
                       <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
                      </div>
-
+ 
+                     <div class="field item form-group">
+                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
+                                         Date</label>
+                                         <div class="col-md-6 col-sm-6">
+                                         <div class='input-group date' id='myDatepicker4'>
+                                         <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
+                                         <span class="input-group-addon">
+                                         <span class="glyphicon glyphicon-calendar"></span>
+                                         </span>
+                                         </div>
+                                         </div>
+                                         </div>
+ 
                                          <div class="ln_solid">
                                              <br>
                                              <div class="form-group">
                                                  <div class="col-md-6 offset-md-3">
                                                      <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                     <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                     <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                  </div>
                                              </div>
                                          </div>
@@ -717,6 +731,7 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
+<p></p>
 <?php
 ?>
 <?php }} ?>
@@ -841,6 +856,12 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
 
 	<!-- Javascript functions	-->
 	<script>

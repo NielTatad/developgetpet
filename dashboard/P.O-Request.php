@@ -292,8 +292,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           </div>
         </div>
 
-         <!-- top navigation -->
-      <div class="top_nav">
+        <!-- top navigation -->
+        <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -357,9 +357,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                               foreach($userids as $userid)
                             {
                               ?>
-                           
+
+    
                         <a class ="dropdown-item">
-                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -751,7 +752,6 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
-
 <?php
 ?>
 <?php }} ?>
@@ -764,32 +764,25 @@ if($query->rowCount()>0)
     <div class="modal-content">
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Update Profile Picture</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" id="selected_profile_close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body mx-3">
+      <div class="modal-body mx-3"> 
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> id ="profile_picture" alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
-        <script>
-        document.getElementById("Picture").onchange = function() {
-            if(this.value) {
-                document.getElementById("profile").disabled = false; 
-            }  
-        }
-        </script>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div><br>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
               <button name="profile" id="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
-              <button type='reset' class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+              <button type='reset' id="selected_profile_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
          </div>
         </div>
       </form>
@@ -878,6 +871,40 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+
+    <script type="text/javascript">
+  $("#selected_profile_cancel").click(function () {
+   
+    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
+    Picture.value = "";
+    document.getElementById("profile").disabled = true;
+});
+  </script>
+
+    <script type="text/javascript">
+  $("#selected_profile_close").click(function () {
+   
+    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
+    Picture.value = "";
+    document.getElementById("profile").disabled = true;
+});
+  </script>
+
+<script>
+      Picture.onchange = evt => {
+  const [file] = Picture.files
+  if (file) {
+    profile_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("profile").disabled = false;
+}
+    </script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
 
     <script>
         $(document).ready(function () {

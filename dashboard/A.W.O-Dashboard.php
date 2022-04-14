@@ -272,7 +272,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read'");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
                   $query->execute();
 
                   $request=$query->fetchColumn();
@@ -314,9 +314,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                               foreach($userids as $userid)
                             {
                               ?>
-                           
+
+    
                         <a class ="dropdown-item">
-                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -332,7 +333,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <a>See All Alerts</a>
+                            <a href="http://localhost/developgetpet/dashboard/A.W.O-Requestnotification.php">See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -566,7 +567,6 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
-
 <?php
 ?>
 <?php }} ?>
@@ -682,24 +682,23 @@ if($query->rowCount()>0)
       <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       
                       <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#tips1" role="tab" aria-controls="home" aria-selected="true">Post Tips</a>
+                        <a class="nav-link active" id="post-tips-tab" data-toggle="tab" href="#post_tips" role="tab" aria-controls="post-tips-tab" aria-selected="true">Post Tips</a>
                       </li>
 
                       <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#advice1" role="tab" aria-controls="profile" aria-selected="false">Post Advice</a>
+                        <a class="nav-link" id="post-advice-tab" data-toggle="tab" href="#post_advice" role="tab" aria-controls="post-advice-tab" aria-selected="false">Post Advice</a>
                       </li>
 
                       <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#articles1" role="tab" aria-controls="contact" aria-selected="false">Post Articles</a>
+                        <a class="nav-link" id="post-articles-tab" data-toggle="tab" href="#post_articles" role="tab" aria-controls="post-articles-tab" aria-selected="false">Post Articles</a>
                       </li>
                     </ul>
 
                     <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="tips1" role="tabpanel" aria-labelledby="tips-tab">
+                      <div class="tab-pane fade show active" id="post_tips" role="tabpanel" aria-labelledby="post-tips-tab">
                       <label>Create Tips</label>
 
 <!-- Post Tips Code -->
-
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -736,13 +735,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" placeholder="Tips Titles...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                                                 <textarea required="required" class="form-control" id="Title" name="Title" placeholder="Tips Titles...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
                     </div>
                     </div>
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
+                                                 <textarea required="required" class="form-control" id="tips_content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
                     </div>
                     </div>
                                          
@@ -765,13 +764,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          </div>
                                                  <div style="text-align: center" class="form-group">
                                                  <div class="col-md-6 offset-md-3">
-                                                     <button name ="Posttips" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                     <button disabled name ="Posttips" type='submit' id="Posttips" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                      <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                  </div>
                                                  </div>                                                   
                                      </form>
                       </div>
-                      <div class="tab-pane fade" id="advice1" role="tabpanel" aria-labelledby="advice-tab">
+                      <div class="tab-pane fade" id="post_advice" role="tabpanel" aria-labelledby="post-advice-tab">
                       <label>Create an Advice</label>
 
 <!-- Post Advice Code -->
@@ -817,7 +816,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
+                                                 <textarea required="required" class="form-control" id="advice_content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
                     </div>
                     </div>
                                          
@@ -838,16 +837,16 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                              <div class="col-md-6 col-sm-6">
                                                  <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
                                          </div>                   
-
+                                         
                                          <div style="text-align: center" class="form-group">
                                          <div class="col-md-6 offset-md-3">
-                                                 <button name ="Postadvice" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                 <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                     <button disabled name ="Postadvice" type='submit' id="Postadvice" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                     <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                          </div>
                                          </div>   
                                      </form>
                       </div>
-                      <div class="tab-pane fade" id="articles1" role="tabpanel" aria-labelledby="articles-tab">
+                      <div class="tab-pane fade" id="post_articles" role="tabpanel" aria-labelledby="pos-articles-tab">
                       <label>Create Articles</label>
                       
                                   </div>
@@ -856,7 +855,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         </div>
                       </div>
                     </div>
-  <!-- /Modal Create Post -->    
+  <!-- //Modal Create Post -->  
 
         <!-- footer content -->
         <footer>
@@ -869,6 +868,28 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         <!-- /footer content -->
       </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../vendors/validator/multifield.js"></script>
+    <script src="../vendors/validator/validator.js"></script>
+    
+    <script>
+     $( "#tips_content" ).keyup(function() {
+  $("#Posttips").prop("disabled", !this.value);
+});
+    </script>
+
+<script>
+     $( "#advice_content" ).keyup(function() {
+  $("#Postadvice").prop("disabled", !this.value);
+});
+    </script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
