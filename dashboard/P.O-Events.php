@@ -762,7 +762,7 @@ if(isset($_POST['btnComment']))
 
   if($masterid == $ID)
   {
-    $postid=($_POST['postsid']);
+    $postsid=($_POST['postsid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
