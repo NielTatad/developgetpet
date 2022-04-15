@@ -494,7 +494,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-25px;">View Info</button>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-25px;">View Info</button><button type="button" class="btn btn-success adoptbtn" id="adoptbtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;"><i hidden><?php echo ( $result->userID);?></i> Adopt Me</button>
                                               <br>
 
                                               <?php
@@ -533,7 +533,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                                 <br>
-                                               <h4 style="margin-top:-42px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+                                               <h4 style="margin-top:-55px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
 
                                                <div class="comment-Div">
 
@@ -639,7 +639,7 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>
-                     <!-- //View Pet Post for Adotion Code -->                                         
+                     <!-- //View Pet Post for Adotion Code -->                                
                                        
                   </div>
                 </div>
@@ -1489,7 +1489,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 });
     </script>
 
- <script>
+    <script>
      $( "#edit_comment" ).keyup(function() {
   $("#btnEditComment").prop("disabled", !this.value);
 });
@@ -1535,6 +1535,45 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
       this.style.height = (this.scrollHeight+10)+'px';
     });
     });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.adoptbtn').on('click', function () {
+
+                $('#AdoptModal').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#pet_id').val(data[0]);
+                $('#pet_name').val(data[1]);
+                $('#pet_type').val(data[2]);
+                $('#pet_breed').val(data[3]);
+                $('#pet_sex').val(data[4]);
+                $('#pet_age').val(data[5]);
+                $('#pet_color').val(data[6]);
+                $('#pet_weight').val(data[7]);
+                $('#vaccination_status').val(data[8]);
+                $('#deworming_status').val(data[9]);
+                $('#pet_description').val(data[10]);
+                $('#des').val(data[11]);
+                $('#pet_picture').val(data[12]);
+                $('#pet_status').val(data[13]);
+                $('#user_id').val(data[14]);
+                $('#post_by').val(data[15]);
+                $('#post_date').val(data[16]);
+                $('#user_email').val(data[17]);
+                $('#user_address').val(data[18]);
+                $('#user_contactno').val(data[19]);
+            });
+        });
     </script>
 
 <script>
@@ -1807,10 +1846,5 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
-
-  
-
-     
-
 </body>
 </html>

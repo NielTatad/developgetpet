@@ -763,7 +763,7 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-  <!-- Adoption Request Code -->
+<!-- Adoption Request Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
