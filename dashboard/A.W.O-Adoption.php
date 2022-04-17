@@ -181,6 +181,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
   <style>
@@ -236,7 +238,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="#">Fundraising activities</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php">Fundraising activities</a>
                     </li>
 
                     <li>
@@ -970,7 +972,7 @@ if(isset($_POST['btnComment']))
 
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button disabled name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
+              <button name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
          </div>
         </div>
       </form>
@@ -1482,36 +1484,43 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script>
+<script type="text/javascript">
+    $('#comment').emojioneArea({
+       pickerPosition: 'right'
+   });
+</script>
+
+<script>
      $( "#comment" ).keyup(function() {
   $("#btnComment").prop("disabled", !this.value);
 });
-    </script>
+</script>
 
-    <script>
+<script>
      $( "#edit_comment" ).keyup(function() {
   $("#btnEditComment").prop("disabled", !this.value);
 });
-    </script>
+</script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
   $("#selected_picture_cancel").click(function () {
   
     PostPicture.value = "";
     document.getElementById("btnChangePostPicture").disabled = true;
 });
-  </script>
+</script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
   $("#selected_picture_close").click(function () {
 
     PostPicture.value = "";
     document.getElementById("btnChangePostPicture").disabled = true;
 });
-  </script>
+</script>
 
-    <script>
+<script>
       PostPicture.onchange = evt => {
   const [file] = PostPicture.files
   if (file) {
@@ -1519,25 +1528,25 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   }
   document.getElementById("btnChangePostPicture").disabled = false;
 }
-    </script>
+</script>
     
-    <script>
+<script>
    $(window).on("load", function () {
     console.log("load");
     $("div#view_more_comment_Div").hide();
     });
-    </script>
+</script>
 
-    <script>
+<script>
      $(function () {
     $("textarea.txtgrow").each(function () {
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight+10)+'px';
     });
     });
-    </script>
+</script>
 
-    <script>
+<script>
         $(document).ready(function () {
 
             $('.adoptbtn').on('click', function () {
@@ -1574,7 +1583,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#user_contactno').val(data[19]);
             });
         });
-    </script>
+</script>
 
 <script>
         $(document).ready(function () {
@@ -1605,7 +1614,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#petstatus').val(data[13]);
             });
         });
-    </script>
+</script>
 
 <script>
         $(document).ready(function () {
@@ -1626,7 +1635,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#masterid').val(data[14]);
             });
         });
-    </script>
+</script>
 
 <script type="text/javascript">
   $(".Ppost").click(function () {
@@ -1637,7 +1646,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $('#picture_file').val( picture_file );
     document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
   });
-  </script>
+</script>
 
 <script type="text/javascript">
   $(".Epost").click(function () {
@@ -1665,7 +1674,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $("#deworming_status2").val( deworming_status2 );
     $("#pet_description2").val( pet_description2 );
   });
-  </script>
+</script>
 
 <script type="text/javascript">
   $(".Dpost").click(function () {
@@ -1673,7 +1682,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $('#DeletePost').modal('show');
     $("#pet_id1").val( pet_id1 );
   });
-  </script>
+</script>
 
 <script type="text/javascript">
   $(".Ecomment").click(function () {
@@ -1683,21 +1692,21 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $("#commentid").val( commentid );
     $('#EditComment').modal('show');
   });
-  </script>
+</script>
 
- <script type="text/javascript">
+<script type="text/javascript">
   $(".Dcomment").click(function () {
     var comment_id = $(this).attr('data-comment-id');
     $("#comment_id").val( comment_id );
     $('#DeleteComment').modal('show');
   });
-  </script>
+</script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
   $(".menu").filter(function(){
   return $(this).text().trim() != "<?php echo $ID?>";
   }).hide();
-  </script>
+</script>
 
   <script type="text/javascript">
   $(".adoptbtn").filter(function(){

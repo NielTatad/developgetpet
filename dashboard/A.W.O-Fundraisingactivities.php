@@ -162,26 +162,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 	<title>GETPET</title>
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- bootstrap-datetimepicker -->
-    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <!-- Ion.RangeSlider -->
-    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
-    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
-    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
-    <!-- Bootstrap Colorpicker -->
-    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-
-    <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- Bootstrap -->
+	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
@@ -397,29 +395,29 @@ if($query->rowCount()>0)
               </div>
             </div>
 
+            <!-- Post Button -->
+            <a href="http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Create Post</button></a>
 
-            <a href="http://localhost/developgetpet/dashboard/A.W.O-Postevent.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Create an Event</button></a>
+            <!-- /page content -->
 
+            <div class="clearfix"></div>
 
-<!-- /page content -->
-<div class="clearfix"></div>
-
-<div class="row">
-  <div class="col-md-12 col-sm-12">
-    <div class="x_panel" style="border-radius:10px;border-width:2px;">
-      <div class="x_title">
-        <h2>Events</h2>
-        <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-          </li>
-       </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content" style="text-align:center;">
-      
-       <!-- View Pet Post for Adotion Code -->
-       <?php
-                        $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postsID DESC";
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                  <div class="x_title">
+                  <h2>Donation Post</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                   </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" style="text-align:center;">
+                                  
+                  <!-- View Pet Post for Adotion Code -->
+                  <?php
+                        $sql="SELECT * from charity WHERE charityStatus='Accepted' AND charityPoststatus='Fundraising' AND charityPoststatus!='Deleted' ORDER BY charityID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -447,49 +445,48 @@ if($query->rowCount()>0)
                                           {
                                             ?>
                                             
-                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->postDate);?></textarea><i class="fa fa-ellipsis-h menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($result->userID);?></i>
+                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->charityPostdate);?></textarea><i class="fa fa-ellipsis-h menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($result->userID);?></i>
                                             </i>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <button class="dropdown-item Epost" data-post-id="<?php echo ($result->postsID);?>" data-post-title="<?php echo ($result->postTitle);?>" data-post-content="<?php echo ($result->postContent);?>" data-post-date="<?php echo ($result->postEventdate);?>" data-post-location="<?php echo ($result->postLocation);?>"data-post-time="<?php echo ($result->postTime);?>"><i hidden><?php echo ($result->userID);?></i>Edit</button>
+                                              <button class="dropdown-item Epost" data-charity-id="<?php echo ($result->charityID);?>" data-charity-title="<?php echo ($result->charityTitle);?>" data-charity-description="<?php echo ($result->charityDescription);?>" data-charity-bank="<?php echo ($result->charityBank);?>" data-charity-pinnumber="<?php echo ($result->charityPinnumber);?>" data-charity-amount="<?php echo ($result->charityAmount);?>"><i hidden><?php echo ($result->userID);?></i>Edit</button>
 
-                                              <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postsID);?>"><i hidden><?php echo ($result->userID);?></i>Delete</button>
-
-                                              <button class="dropdown-item Ppost" data-post-id="<?php echo ($result->postsID);?>" data-post-picture="<?php echo ($result->postPicture);?>"><i hidden><?php echo ($result->userID);?></i>Change Picture</button>
+                                              <button class="dropdown-item Dpost" data-charity-id="<?php echo ($result->charityID);?>"><i hidden><?php echo ($result->userID);?></i>Delete</button>
+                                              <button class="dropdown-item Ppost" data-charity-id="<?php echo ($result->charityID);?>" data-charity-picture="<?php echo ($result->charityPicture);?>"><i hidden><?php echo ($result->userID);?></i>Change Picture</button>
                                             </div>
                                             <br>
 
-                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">What:&nbsp&nbsp&nbsp<?php echo ($result->postTitle);?><br>When:&nbsp&nbsp<?php echo ($result->postEventdate);?><br>Where:&nbsp<?php echo ($result->postLocation);?>
-                                            <br>Time:&nbsp&nbsp&nbsp<?php echo ($result->postTime);?></p>
-                                            <br>
-
-                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postContent);?></p>
+                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                             <br>
                                                                                       
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
-                                              <li><h3 hidden class="card-title"><?php echo ($result->postsID);?></h3></li>
-                                              <li><h2 hidden class="card-title"><?php echo ($result->postTitle);?></h2></li>
-                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->postContent);?></textarea></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
+                                              <li><h2 hidden class="card-title"><?php echo ($result->charityTitle);?></h2></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityBank);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityAmount);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityPinnumber);?></h3></li>
+                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charityDescription);?></textarea></li>
                                               
                                               
-                                              <li><h3 hidden class="card-title"><?php echo ($result->postContent);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->postPicture);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->postStatus);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityDescription);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityPicture);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityStatus);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
                                             
                                               
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></h3></li>
-                                              <li><label hidden class="card-title"><?php echo ($result->postDate);?></label><br></li>
+                                              <li><label hidden class="card-title"><?php echo ($result->charityPostdate);?></label><br></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-10px;">View More Info</button>
                                               <br>
 
                                               <?php
-                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postsID'");
+                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->charityID'");
                                               $count->execute();
 
                                               $commentno=$count->fetchColumn();
@@ -497,9 +494,9 @@ if($query->rowCount()>0)
                                               ?>
                                               
                                               <?php
-                                              $postid = $result->postsID;
+                                              $postid = $result->charityID;
 
-                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC LIMIT 1";
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Fundraising' ORDER BY commentID DESC LIMIT 1";
                                               $query2=$dbh->prepare($sql2);
                                               $query2->execute();
                                               $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -553,9 +550,9 @@ if($query->rowCount()>0)
                                               <div class="view-more-comment-Div" id="view_more_comment_Div">
 
                                               <?php
-                                              $postid = $result->postsID;
+                                              $postid = $result->charityID;
 
-                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC";
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Fundraising' ORDER BY commentID DESC";
                                               $query2=$dbh->prepare($sql2);
                                               $query2->execute();
                                               $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -631,13 +628,13 @@ if($query->rowCount()>0)
                         }
                         ?>
                      <!-- //View Pet Post for Adotion Code -->                                     
+                  </div>
+                </div>
+              </div>
             </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
-<!-- /page content -->
+          </div>
+        </div>
+        <!-- /page content -->
 
 <script>
 <?php 
@@ -760,6 +757,74 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
+  <!-- Modal Donation Information -->
+  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="char_id" name="CharityID" required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_title" name="Title" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_bank" name="Bank" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_pin" name="Number" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Donation Information -->
+
 <!-- Comment Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
@@ -768,35 +833,35 @@ $date = date('m/d/Y h:i A', time());
 <?php
 if(isset($_POST['btnComment']))
 {
-  $postsid=($_POST['postsid']);
+  $masterid=($_POST['masterid']);
 
   if($masterid == $ID)
   {
-    $postsid=($_POST['postsid']);
+    $charityid=($_POST['charityid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:charityid,:masterid,'$ID',:Comment,'$date','Fundraising')";
     $query=$dbh->prepare($sql);
-    $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
+    $query->bindParam(':charityid',$charityid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
   
   }
 
   else
   {
-    $postsid=($_POST['postsid']);
+    $charityid=($_POST['charityid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:charityid,:masterid,'$ID',:Comment,'$date','Fundraising')";
     $query=$dbh->prepare($sql);
-    $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
+    $query->bindParam(':charityid',$charityid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
@@ -814,7 +879,7 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
   }
   
 }
@@ -834,19 +899,20 @@ if(isset($_POST['btnComment']))
         <script>
           function comment() {
           document.getElementById("comment").value="";
+          document.getElementById("btnComment").disabled = true;
             }
         </script>
       </div>
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="postsid" name="postsid" required = "required" class="form-control" id="success">
+					    <input hidden id="charityid" name="charityid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userid" value="<?php echo ($result->ownerID);?>" required = "required" class="form-control" id="success">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->orgID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
@@ -854,7 +920,7 @@ if(isset($_POST['btnComment']))
 
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
+              <button disabled name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
          </div>
         </div>
       </form>
@@ -862,7 +928,7 @@ if(isset($_POST['btnComment']))
     </div>
   </div>
 </div>
-	<!-- //Modal Comment -->  
+	<!-- //Modal Comment -->
 
   <!-- Edit Comment Code -->
   <?php
@@ -884,7 +950,7 @@ if(isset($_POST['btnComment']))
       $query1->execute();
 
       echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
     }
   ?>
 <!-- //Edit Comment Code --> 
@@ -944,7 +1010,7 @@ if(isset($_POST['btnComment']))
     $query1->execute();
     
     echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
   }
   ?>
 <!-- //Delete Comment Code -->
@@ -985,15 +1051,15 @@ if(isset($_POST['btnComment']))
   <?php
    if(isset($_POST['Delete']))
    {
-    $postsID=($_POST['postsID']);
+    $charityID=($_POST['charityID']);
 
-    $query="update post set postStatus='Not available', postStatus ='Deleted' where postsID=:postsID";
+    $query="update charity set charityStatus='Not available', charityPoststatus ='Deleted' where charityID=:charityID";
     $query= $dbh->prepare($query);
-    $query->bindValue(':postsID',$postsID);
+    $query->bindValue(':charityID',$charityID);
     $query->execute();
 
     echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
    }
 ?>
 <!-- //Delete Post Code -->
@@ -1015,7 +1081,7 @@ if(isset($_POST['btnComment']))
 					    <p>Are you sure, you want to delete your post?</p>
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="post_id1" name="postsID" required = "required" class="form-control" id="success">
+					    <input hidden id="charity_id1" name="charityID" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
@@ -1034,32 +1100,32 @@ if(isset($_POST['btnComment']))
   <?php
    if(isset($_POST['Edit']))
    {
-    $postsID=($_POST['postsID']);
+    $charityID=($_POST['charityID']);
     $Title=($_POST['Title']);
-    $Content=($_POST['Content']);
-    $Location=($_POST['Location']);
-    $Time=($_POST['Time']);
-    $Eventdate=($_POST['Eventdate']);
+    $Description=($_POST['Description']);
+    $Bank=($_POST['Bank']);
+    $Pinnumber=($_POST['Pinnumber']);
+    $Amount=($_POST['Amount']);
 
-    $sql="update post set
-    postTitle=:Title,
-    postContent=:Content,
-    postLocation=:Location,
-    postTime=:Time,
-    postEventdate=:Eventdate
-    where postsID=:postsID";
+    $sql="update charity set
+    charityTitle=:Title,
+    charityDescription=:Description,
+    charityBank=:Bank,
+    charityPinnumber=:Pinnumber,
+    charityAmount=:Amount
+    where charityID=:charityID";
 
     $query=$dbh->prepare($sql); 
-    $query->bindParam(':postsID',$postsID,PDO::PARAM_STR);
+    $query->bindParam(':charityID',$charityID,PDO::PARAM_STR);
     $query->bindParam(':Title',$Title,PDO::PARAM_STR);
-    $query->bindParam(':Content',$Content,PDO::PARAM_STR);
-    $query->bindParam(':Location',$Location,PDO::PARAM_STR);
-    $query->bindParam(':Time',$Time,PDO::PARAM_STR);
-    $query->bindParam(':Eventdate',$Eventdate,PDO::PARAM_STR);
+    $query->bindParam(':Description',$Description,PDO::PARAM_STR);
+    $query->bindParam(':Bank',$Bank,PDO::PARAM_STR);
+    $query->bindParam(':Pinnumber',$Pinnumber,PDO::PARAM_STR);
+    $query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
     $query->execute();
   
     echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
   }
 ?>
 <!-- //Edit Post Code -->
@@ -1084,59 +1150,53 @@ if(isset($_POST['btnComment']))
       <form method="post">
         
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="post_id2" name="postsID" required = "required" class="form-control">
+					    <input hidden type="text" id="charity_id2" name="charityID" required = "required" class="form-control">
 				</div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input type="text" class="form-control" id="post_title2" name="Title" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+               <input type="text" class="form-control" id="charity_title2" name="Title" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Content<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-        <textarea id="post_content2" name="Content" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
+        <textarea id="charity_description2" name="Description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank</label>
+        <div class="col-md-6 col-sm-6">
+               <input read only type="text" class="form-control" id="charity_bank2" name="Bank" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pin Number</label>
+        <div class="col-md-6 col-sm-6">
+               <input read only type="text" class="form-control" id="charity_pinnumber2" name="Pinnumber" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount</label>
+        <div class="col-md-6 col-sm-6">
+               <input read only type="text" class="form-control" id="charity_amount2" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <script>
           function edit() {
-          if(document.getElementById("post_content2").value==="") { 
+          if(document.getElementById("charity_description2").value==="") { 
                     document.getElementById('Edit').disabled = true; 
                 } else { 
                     document.getElementById('Edit').disabled = false;
                 }
             }
         </script>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Location</label>
-        <div class="col-md-6 col-sm-6">
-               <input read only type="text" class="form-control" id="post_location2" name="Location" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Time</label>
-                                         <div class="col-md-6 col-sm-6" class="form-group">
-                                         <div class='input-group date' id='myDatepicker3' >
-                                         <input required="required" type='text' id="post_time2" name="Time" class="form-control" class="input-group-addon" onkeypress="return onlyNumberKey(event)"/>
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-time" style="margin-top:4px;"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>
-
-        <div class="field item form-group">
-          <label class="col-form-label col-md-3 col-sm-3  label-align">Event Date<span class="required"></span></label>
-          <div class="col-md-6 col-sm-6">
-            <input class="form-control" class='date' type="date" id="post_date2" name="Date" required='required'>
-          </div>
-        </div>
        
         <div class="ln_solid">
         <br>
@@ -1158,20 +1218,20 @@ if(isset($_POST['btnComment']))
   <?php
 if(isset($_POST['btnChangePostPicture']))
 {
-$postsID=$_POST['postsID'];
+$charityID=$_POST['charityID'];
 $PostPicture=$_POST['PostPicture'];
 
-$sql="update post set 
-postsID=:PostPicture
-where postsID=:postsID";
+$sql="update charity set 
+charityPicture=:PostPicture
+where charityID=:charityID";
 
 $query=$dbh->prepare($sql);
-$query->bindParam(':postsID',$postsID,PDO::PARAM_STR);  
+$query->bindParam(':charityID',$charityID,PDO::PARAM_STR);  
 $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
 }
 ?>
 <!-- //Change Post Picture Code -->
@@ -1196,7 +1256,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <input type="file" onchange="readURL(this);" name="PostPicture" id="PostPicture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden name="postsID" id="post_id3" class="form-control" id="success">
+					    <input hidden name="charityID" id="charity_id3" class="form-control" id="success">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="picture_file" class="form-control" id="success">
@@ -1212,7 +1272,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     </div>
   </div>
 </div>
-<!-- //Modal Change Post Picture -->  
+<!-- //Modal Change Post Picture -->
 
 			<!-- footer content -->
 			<footer>
@@ -1228,13 +1288,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script type="text/javascript">
-    $('#comment').emojioneArea({
-       pickerPosition: 'right'
-   });
-</script> 
 
 <script>
      $( "#comment" ).keyup(function() {
@@ -1244,8 +1297,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 <script>
      $( "#edit_comment" ).keyup(function() {
-      $("#btnEditComment").prop("disabled", !this.value);
-    });
+  $("#btnEditComment").prop("disabled", !this.value);
+});
 </script>
 
 <script type="text/javascript">
@@ -1305,18 +1358,14 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                 console.log(data);
 
-                $('#post_id').val(data[0]);
-                $('#post_title').val(data[1]);
-                $('#post_content').val(data[2]);
-                $('#des').val(data[3]);
-                $('#post_picture').val(data[4]);
-                $('#post_status').val(data[5]);
-                $('#post_id').val(data[6]);
-                $('#post_by').val(data[7]);
-                $('#post_date').val(data[8]);
-                $('#post_email').val(data[9]);
-                $('#post_address').val(data[10]);
-                $('#post_contactno').val(data[11]);
+                $('#char_id').val(data[0]);
+                $('#char_title').val(data[1]);
+                $('#char_bank').val(data[2]);
+                $('#char_amount').val(data[3]);
+                $('#char_pin').val(data[4]);
+                $('#char_description').val(data[5]);
+                $('#char_status').val(data[8]);
+                
             });
         });
     </script>
@@ -1336,18 +1385,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                 console.log(data);
 
-                $('#postsid').val(data[0]);
-                $('#masterid').val(data[6]);
+                $('#charityid').val(data[0]);
+                $('#masterid').val(data[9]);
             });
         });
 </script>
 
 <script type="text/javascript">
   $(".Ppost").click(function () {
-    var post_id3 = $(this).attr('data-post-id');
+    var charity_id3 = $(this).attr('data-charity-id');
     $('#ChangePostPicture').modal('show');
-    $("#post_id3").val( post_id3 );
-    var picture_file = $(this).attr('data-post-picture');
+    $("#charity_id3").val( charity_id3 );
+    var picture_file = $(this).attr('data-charity-picture');
     $('#picture_file').val( picture_file );
     document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
   });
@@ -1355,35 +1404,27 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 <script type="text/javascript">
     $(".Epost").click(function () {
-    var post_id2 = $(this).attr('data-post-id');
-    var post_title2 = $(this).attr('data-post-title');
-    var post_content2 = $(this).attr('data-post-content');
-    var post_location2 = $(this).attr('data-post-location');
-    var post_time2 = $(this).attr('data-post-time');
-    var post_date2 = $(this).attr('data-post-date');
+    var charity_id2 = $(this).attr('data-charity-id');
+    var charity_title2 = $(this).attr('data-charity-title');
+    var charity_description2 = $(this).attr('data-charity-description');
+    var charity_bank2 = $(this).attr('data-charity-bank');
+    var charity_pinnumber2 = $(this).attr('data-charity-pinnumber');
+    var charity_amount2 = $(this).attr('data-charity-amount');
     $('#EditPost').modal('show');
-    $("#post_id2").val( post_id2 );
-    $("#post_title2").val( post_title2 );
-    $("#post_content2").val( post_content2 );
-    $("#post_location2").val( post_location2 );
-    $("#post_time2").val( post_time2 );
-    $("#post_date2").val( post_date2 );
-    $('.clockpicker').clockpicker();
+    $("#charity_id2").val( charity_id2 );
+    $("#charity_title2").val( charity_title2 );
+    $("#charity_description2").val( charity_description2 );
+    $("#charity_bank2").val( charity_bank2 );
+    $("#charity_pinnumber2").val( charity_pinnumber2 );
+    $("#charity_amount2").val( charity_amount2 );
   });
-</script>
-
-<script>
-     var input = $('#time');
-    input.clockpicker({
-    autoclose: true
-    });
 </script>
 
 <script type="text/javascript">
   $(".Dpost").click(function () {
-    var post_id1 = $(this).attr('data-post-id');
+    var charity_id1 = $(this).attr('data-charity-id');
     $('#DeletePost').modal('show');
-    $("#post_id1").val( post_id1 );
+    $("#charity_id1").val( charity_id1 );
   });
 </script>
 
@@ -1431,11 +1472,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </script>
 -->
 
-  <script type="text/javascript">
+<script type="text/javascript">
   $(".comment-count").filter(function(){
   return $(this).text().trim() === "0";
   }).hide();
-  </script>
+</script>
 
 <script type="text/javascript">
   $(".count-more-comment").filter(function(){
@@ -1470,7 +1511,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   $(".unread").filter(function(){
   return $(this).text().trim() === "Read";
   }).hide();
-</script>  
+</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
@@ -1498,51 +1539,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
     </script>
 
-<!-- Initialize datetimepicker -->
-<script  type="text/javascript">
-   $(function () {
-    $('#myDatepicker').datetimepicker();
-            });
-    
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-    
-    $('#myDatepicker3').datetimepicker({
-        format: 'hh:mm A'
-    });
-    
-    $('#myDatepicker4').datetimepicker({
-        ignoreReadonly: true,
-        allowInputToggle: true
-    });
-
-    $('#datetimepicker6').datetimepicker();
-    
-    $('#datetimepicker7').datetimepicker({
-        useCurrent: false
-    });
-    
-    $("#datetimepicker6").on("dp.change", function(e) {
-        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-    });
-    
-    $("#datetimepicker7").on("dp.change", function(e) {
-        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-    });
-</script>
-
-<script>
-  function onlyNumberKey(evt) {
-                                                    
-  // Only ASCII character in that range allowed
-      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-          return false;
-          return true;
-  }
-</script>
-
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -1551,28 +1547,32 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!-- bootstrap-datetimepicker -->    
-    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <!-- Ion.RangeSlider -->
-    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
-    <!-- Bootstrap Colorpicker -->
-    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-    <!-- jquery.inputmask -->
-    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <!-- jQuery Knob -->
-    <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
-    <!-- Cropper -->
-    <script src="../vendors/cropper/dist/cropper.min.js"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-
-  
-
-     
-
+    <!-- bootstrap-progressbar -->
+	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="../vendors/iCheck/icheck.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="../vendors/moment/min/moment.min.js"></script>
+	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="../vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="../vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="../vendors/starrr/dist/starrr.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
 </body>
 </html>

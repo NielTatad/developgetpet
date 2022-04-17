@@ -181,8 +181,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -226,7 +224,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Donation.php">Donation</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Postdonation.php">Donation</a>
                     </li>
 
                     <li>
@@ -285,7 +283,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                   </li>
                   <?php
-                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read'");
                   $query->execute();
 
                   $request=$query->fetchColumn();
@@ -327,10 +325,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                               foreach($userids as $userid)
                             {
                               ?>
-
-    
+                           
                         <a class ="dropdown-item">
-                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                          <span><b><?php echo ($result->notificationTitle);?></b></span><br>
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -346,7 +343,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <a href="http://localhost/developgetpet/dashboard/A.W.O-Requestnotification.php">See All Alerts</a>
+                            <a>See All Alerts</a>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -425,55 +422,45 @@ $date = date('m/d/Y h:i A', time());
 if(isset($_POST['Post']))
 {
 
-$ID=($_POST['ID']);
-$Name=($_POST['Name']);
-$Email=($_POST['Email']);
-$Address=($_POST['Address']);
-$ContactNo=($_POST['ContactNo']);
-$Type=($_POST['Type']);
-$Petname=($_POST['Petname']);
-$Breed=($_POST['Breed']);
-$Gender=($_POST['Gender']);
-$Age=($_POST['Age']);
-$Color=($_POST['Color']);
-$Weight=($_POST['Weight']);
-$Vaccination=($_POST['Vaccination']);
-$Deworming=($_POST['Deworming']);
-$Description=($_POST['Description']);
-$Picture = $_FILES["Picture"]["name"];
-$tmp_dir = $_FILES["Picture"]["tmp_name"];
-
-move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
-
-$sql="INSERT INTO postpet(userID,userName,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Adoption')";
-$query=$dbh->prepare($sql); 
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->bindParam(':Name',$Name,PDO::PARAM_STR);
-$query->bindParam(':Email',$Email,PDO::PARAM_STR);
-$query->bindParam(':Address',$Address,PDO::PARAM_STR);
-$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-$query->bindParam(':Type',$Type,PDO::PARAM_STR);
-$query->bindParam(':Petname',$Petname,PDO::PARAM_STR);
-$query->bindParam(':Breed',$Breed,PDO::PARAM_STR);
-$query->bindParam(':Gender',$Gender,PDO::PARAM_STR);
-$query->bindParam(':Age',$Age,PDO::PARAM_STR);
-$query->bindParam(':Color',$Color,PDO::PARAM_STR);
-$query->bindParam(':Weight',$Weight,PDO::PARAM_STR);
-$query->bindParam(':Vaccination',$Vaccination,PDO::PARAM_STR);
-$query->bindParam(':Deworming',$Deworming,PDO::PARAM_STR);
-$query->bindParam(':Description',$Description,PDO::PARAM_STR);
-$query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
-$query->execute();
+    $ID=($_POST['ID']);
+    $Name=($_POST['Name']);
+    $Email=($_POST['Email']);
+    $Address=($_POST['Address']);
+    $ContactNo=($_POST['ContactNo']);
+    $Title=($_POST['Title']);
+    $Description=($_POST['Description']);
+    $Bank=($_POST['Bank']);
+    $Pin=($_POST['Pin']);
+    $Amount=($_POST['Amount']);
+    $Picture = $_FILES["Picture"]["name"];
+    $tmp_dir = $_FILES["Picture"]["tmp_name"];
+    
+    move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
+    
+    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityBank,charityPinnumber,charityAmount,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':ID',$ID,PDO::PARAM_STR);
+    $query->bindParam(':Name',$Name,PDO::PARAM_STR);
+    $query->bindParam(':Email',$Email,PDO::PARAM_STR);
+    $query->bindParam(':Address',$Address,PDO::PARAM_STR);
+    $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+    $query->bindParam(':Title',$Title,PDO::PARAM_STR);
+    $query->bindParam(':Description',$Description,PDO::PARAM_STR);
+    $query->bindParam(':Bank',$Bank,PDO::PARAM_STR);
+    $query->bindParam(':Pin',$Pin,PDO::PARAM_STR);
+    $query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
+    $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+    $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Adoption.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php'</script>";
 
 }
 ?>
 
 
                     <!-- Back Button -->
-                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
+                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
 
                     <div class="clearfix"></div>
 
@@ -482,7 +469,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
-                        <h2>Post Pet For Adoption</h2>
+                        <h2>Create Post for Fund-raising Activities</h2>
                         <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                         </li>          
@@ -493,216 +480,93 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                 <div class="x_content">
                                 <form class="" action="" method="post" novalidate enctype="multipart/form-data">
                                          
-                                         <span class="section"></span>
-                                         <div class="field item form-group">
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
-                                             </div>
- 
-                                         </div>
-                                         <div class="field item form-group">
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
-                                             </div>
- 
-                                         </div>
-                                         <div class="field item form-group">
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
-                                         </div>
- 
-                                         <div class="field item form-group">
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Address" value="<?php echo ($result->orgAddress);?>" type="hidden"/></div>
-                                         </div>
- 
-                                         <div class="field item form-group">
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" class='number' name="ContactNo" value="<?php echo ($result->orgContactNo);?>" type="hidden"></div>
-                                         </div>
- 
-                                         <div class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select<span class="required"></span></label>
-                                         <div class="col-md-6 col-sm-6">
-                                           <select class="form-control" name="Type" id="slct1" required="required" onchange="populate(this.id,'slct2')">
-                                             <option value="">Type of pet...</option>
-                                             <option value="Dog">DOG</option>
-                                             <option value="Cat">CAT</option>
-                                           </select>
-                                         </div>
-                                       </div>
- 
-                                       <div class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Breed</label>
-                                         <div class="col-md-6 col-sm-6">
-                                           <select class="select2_group form-control" name="Breed" required="required" id="slct2"></select>
-                                         </div>
-                                       </div>
- 
-                                       <script>
- 
-                                             function populate(s1,s2)
-                                             {
-                                                 var s1 = document.getElementById(s1);
-                                                 var s2 = document.getElementById(s2);
- 
-                                                 s2.innerHTML = "";
- 
-                                                 if(s1. value == "Dog")
-                                                 {
-                                                    var optionArray = ['Affenpinscher|Affenpinscher', 'Afghan hound|Afghan hound', 'Airedale terrier|Airedale terrier','Akita|Akita','Alaskan Malamute|Alaskan Malamute','American Staffordshire terrier|American Staffordshire terrier','American water spaniel|American water spaniel','Askal|Askal','Australian cattle dog|Australian cattle dog','Australian shepherd|Australian shepherd','Australian terrier|Australian terrier','Basenji|Basenji','Basset hound|Basset hound','Beagle|Beagle','Bearded collie|Bearded collie','Bedlington terrier|Bedlington terrier','Bernese mountain dog|Bernese mountain dog','Bichon frise|Bichon frise','Black and tan coonhound|Black and tan coonhound','Bloodhound|Bloodhound','Border collie|Border collie','Border terrier|Border terrier','Borzoi|Borzoi','Boston terrier|Boston terrier','Bouvier Des Flandres|Bouvier Des Flandres','Boxer|Boxer','Briard|Briard','Brittany|Brittany','Brussels griffon|Brussels griffon','Bull terrier|Bull terrier','Bulldog|Bulldog','Bullmastiff|Bullmastiff','Cairn terrier|Cairn terrier','Canaan dog|Canaan dog','Chesapeake Bay retriever|Chesapeake Bay retriever','Chihuahua|Chihuahua','Chinese crested|Chinese shar-pei','Chow chow|Chow chow','Clumber spaniel|Clumber spaniel','Cocker spaniel|Cocker spaniel','Collie|Collie','Curly-coated retriever|Curly-coated retriever','Dachshund|Dachshund','Dalmatian|Dalmatian','Doberman pinscher|Doberman pinscher','English cocker spaniel|English cocker spaniel','English setter|English setter','English springer spaniel|English springer spaniel','English toy spaniel|English toy spaniel','Eskimo dog|Eskimo dog','Finnish spitz|Finnish spitz','Flat-coated retriever|Flat-coated retriever','Fox terrier|Fox terrier','Foxhound|Foxhound','French bulldog|German shepherd','German shorthaired pointer|German shorthaired pointer','German wirehaired pointer|German wirehaired pointer','Golden retriever|Golden retriever','Gordon setter|Gordon setter','Great Dane|Great Dane','Greyhound|Greyhound','Irish setter|Irish setter','Irish water spaniel|Irish water spaniel','Irish wolfhound|Irish wolfhound','Jack Russell terrier|Jack Russell terrier','Japanese spaniel|Japanese spaniel','Keeshond|Keeshond','Kerry blue terrier|Kerry blue terrier','Komondor|Komondor','Kuvasz|Kuvasz','Labrador retriever|Labrador retriever','Lakeland terrier|Lakeland terrier','Lhasa apso|Lhasa apso','Maltese|Maltese','Manchester terrier|Manchester terrier','Mastiff|Mastiff','Mexican hairless|Mexican hairless','Newfoundland|Newfoundland','Norwegian elkhound|Norwegian elkhound','Otterhound|Otterhound','Papillon|Papillon','Pekingese|Pekingese','Pointer|Pointer','Pomeranian|Pomeranian','Poodle|Poodle','Pug|Pug','Puli|Puli','Rhodesian ridgeback|Rhodesian ridgeback','Rottweiler|Rottweiler','Saint Bernard|Saint Bernard','Saluki|Saluki','Samoyed|Samoyed','Schipperke|Schipperke','Schnauzer|Schnauzer','Scottish deerhound|Scottish deerhound','Scottish terrier|Scottish terrier','Sealyham terrier|Sealyham terrier','Shetland sheepdog|Shetland sheepdog','Shih tzu|Shih tzu','Siberian husky|Siberian husky','Silky terrier|Silky terrier','Skye terrier|Skye terrier','Staffordshire bull terrier|Staffordshire bull terrier','Soft-coated wheaten terrier|Soft-coated wheaten terrier','Sussex spaniel|Sussex spaniel','Spitz|Spitz','Tibetan terrier|Tibetan terrier','Vizsla|Vizsla','Weimaraner|Weimaraner','Welsh terrier|Welsh terrier','West Highland white terrier|West Highland white terrier','Whippet|Whippet'];
-                                                 }
-                                                 else if(s1.value == 'Cat')
-                                                 {
-                                                  var optionArray = ['American Shorthair|American Shorthair','Abyssinian|Abyssinian','American Curl|American Curl','American Bobtail|American Bobtail','American Wirehair|American Wirehair','Aegean|Aegean','Australian Mist|Australian Mist','American Polydactyl|American Polydactyl','Arabian Mau|Arabian Mau','Asian cat|Asian cat','Asian Semi-longhair|Asian Semi-longhair','British Shorthair|British Shorthair','Bengal|Bengal','Burmese|Burmese','Birman|Birman','Balinese|Balinese','Bombay|Bombay','Burmilla|Burmilla','Bambino|Bambino','Brazilian Shorthair|Brazilian Shorthair','British Longhair|British Longhair','Cornish Rex|Cornish Rex','Colorpoint Shorthair|Colorpoint Shorthair','Chartreux|Chartreux','California Spangled|California Spangled','Cymric|Cymric','Chantilly-Tiffany|Chantilly-Tiffany','Chausie|Chausie','Cheetoh|Cheetoh','Cyprus|Cyprus','Devon Rex|Devon Rex','Domestic shorthair cat|Domestic shorthair cat','Donskoy|Donskoy','Dwelf|Dwelf','Exotic Shorthair|Exotic Shorthair','Egyptian Mau|Egyptian Mau','European Burmese|European Burmese','Elf cat|Elf cat','Havana Brown|Havana Brown','Himalayan|Himalayan','Japanese Bobtail|Japanese Bobtail','Javanese|Javanese','Khao Manee|Khao Manee','Korat|Korat','Lykoi|Lykoi','LaPerm|LaPerm','Maine Coon|Maine Coon','Manx|Manx','Munchkin|Munchkin','Minskin|Minskin','Norwegian Forest Cat|Norwegian Forest Cat','Nebelung|Nebelung','Napoleon cat|Napoleon cat','Oriental|Oriental','Ocicat|Ocicat','Persian|Persian','Pixie-bob|Pixie-bob','Peterbald|Peterbald','Puspin|Puspin','Ragdoll|Ragdoll','Russian Blue|Russian Blue','Ragamuffin|Ragamuffin','Sphynx|Sphynx','Scottish Fold|Scottish Fold','Siamese|Siamese','Siberian|Siberian','Selkirk Rex|Selkirk Rex','Somali|Somali','Singapura|Singapura','Savannah|Savannah','Snowshoe|Snowshoe','Sokoke|Sokoke','Serengeti cat|Serengeti cat','Tonkinese|Tonkinese','Turkish Angora|Turkish Angora','Turkish Van|Turkish Van','Toyger|Toyger','Thai cat|Thai cat','Ukrainian Levkoy|Ukrainian Levkoy','York Chocolate|York Chocolate'];
-                                                 }
-                                                 for (var option in optionArray)
-                                                 {
-                                                   var pair = optionArray[option].split("|");
-                                                   var newoption = document.createElement("option");
-                                                   newoption.value = pair[0];
-                                                   newoption.innerHTML = pair[1];
-                                                   s2.options.add(newoption);
-                                                 }
-                                             }
-                                             
-                                       </script>
- 
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Name<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input type="text" id="petname" class="form-control" name="Petname" placeholder="Pet Name..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
-                                             </div>
-                                         </div>
- 
-                                         <div class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
-                                         <div class="col-md-6 col-sm-6">
-                                           <select class="form-control" required="required" name="Gender">
-                                             <option>Male</option>
-                                             <option>Female</option>
-                                           </select>
-                                         </div>
-                                       </div>
- 
-                                       <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Age</label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:215px" placeholder="0" value="1"/>
-                                             <div class="col-md-6 col-sm-6">
-                                               <select class="form-control" onclick="ageFunction()"  id ="mnyr" style="width:231px">
-                                               <option value="month">Month</option>
-                                               <option value="year">Year</option>
-                                           </select>
-                                             </div>
-                                         </div>
-                                         
-                                         <script>
-                                         function ageFunction() {
-                                         var age = document.getElementById('age').value;
-                                         var mnyr = document.getElementById('mnyr').value;
-                                         var petage = age +" "+ mnyr;
-                                         document.getElementById('petage').value = petage;
-                                         }
-                                         </script>
- 
-                                         <div hidden  class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input readonly type="text" id="petage" name="Age" value ="1 month" style="width:360px;background-color:#fff;" class="form-control"/>
-                                             </div>
-                                         </div>
- 
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Color<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input type="text" id="petcolor" class="form-control" name="Color" placeholder="Pet Color..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
-                                             </div>
-                                         </div>
- 
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:215px" placeholder="0" value="1"/>
-                                             <div class="col-md-6 col-sm-6">
-                                               <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:231px">
-                                               <option value="kg">Kilogram</option>
-                                               <option value="lb">Pound</option>
-                                           </select>
-                                             </div>
-                                         </div>
-                                         
-                                         <script>
-                                         function weightFunction() {
-                                         var weight = document.getElementById('weight').value;
-                                         var kgpd = document.getElementById('kgpd').value;
-                                         var petweight = weight +" "+ kgpd;
-                                         document.getElementById('petweight').value = petweight;
-                                         }
-                                         </script>
- 
-                                         <div hidden class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input readonly type="text" id="petweight" name="Weight" style="width:360px;background-color:#fff;" value = "1 kg"class="form-control"/>
-                                             </div>
-                                         </div>
- 
- 
-                     <div class="field item form-group">
-                       <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
-                       <div class="col-md-6 col-sm-6">
-                         <select class="form-control" id="vax" name="Vaccination">
-                           <option>Vaccination Status...</option>
-                           <option>Vaccinated</option>
-                           <option>Not vaccinated</option>
-                         </select>
-                       </div>
-                     </div>
- 
-                     <div class="field item form-group">
-                       <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
-                       <div class="col-md-6 col-sm-6">
-                         <select class="form-control" required="required" id="deworm" name="Deworming">
-                           <option>Deworming Status...</option>
-                           <option>Deworm</option>
-                           <option>Not deworm</option>
-                         </select>
-                       </div>
-                     </div>
- 
-                     <div class="field item form-group">
-                       <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
-                       <div class="col-md-6 col-sm-6">
-                         <textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
-                       </div>
-                     </div>
- 
-                     <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo</label>
-                     
-                     <div style="text-align: center" class="wrap-input100 validate-input">
-                      <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
-                     </div>
- 
-                     <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Date</label>
-                                         <div class="col-md-6 col-sm-6">
-                                         <div class='input-group date' id='myDatepicker4'>
-                                         <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-calendar"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>
- 
-                                         <div class="ln_solid">
-                                             <br>
-                                             <div class="form-group">
-                                                 <div class="col-md-6 offset-md-3">
-                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success btndescription" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                     <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     </form>
+                                        <span class="section"></span>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
+                                            </div>
+
+                                        </div>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>" type="hidden"/>
+                                            </div>
+
+                                        </div>
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>" type="hidden"/></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Address" value="<?php echo ($result->orgAddress);?>" type="hidden"/></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='number' name="ContactNo" value="<?php echo ($result->orgContactNo);?>" type="hidden"></div>
+                                        </div>
+
+                                        
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="petname" class="form-control" name="Title" placeholder="Title..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="Reason..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
+                                          </div>
+                                        </div>                                    
+                                      
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Photo</label>
+                                        
+                                        <div style="text-align: center" class="wrap-input100 validate-input">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+                                        </div>
+                               
+                                        <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Select Bank<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="form-control" required="required" name="Bank">
+                                          <option>SELECT...</option>
+                                            <option>BDO</option>
+                                            <option>Union Bank</option>
+                                            <option>BPI</option>
+                                            <option>LANDBANK</option>
+                                            <option>GCASH</option>
+                                          </select>
+                                        </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Account<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="pin" class="form-control" name="Pin" placeholder="Pin..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="Amount..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
+
+                                        <div class="ln_solid">
+                                            <br>
+                                            <div class="form-group">
+                                                <div class="col-md-6 offset-md-3">
+                                                    <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Postdonation.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -725,6 +589,7 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
+
 <?php
 ?>
 <?php }} ?>
@@ -845,40 +710,6 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script type="text/javascript">
-    $('#description').emojioneArea({
-       pickerPosition: 'right'
-   });
-</script>
-
-  <script type="text/javascript">
-  $(".unread").filter(function(){
-  return $(this).text().trim() === "Read";
-  }).hide();
-  </script>
-
-	<!-- Javascript functions	-->
-	<script>
-		function hideshow(){
-			var password = document.getElementById("password1");
-			var slash = document.getElementById("slash");
-			var eye = document.getElementById("eye");
-			
-			if(password.type === 'password'){
-				password.type = "text";
-				slash.style.display = "block";
-				eye.style.display = "none";
-			}
-			else{
-				password.type = "password";
-				slash.style.display = "none";
-				eye.style.display = "block";
-			}
-
-		}
-	</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
