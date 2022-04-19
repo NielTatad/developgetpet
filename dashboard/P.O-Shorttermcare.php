@@ -478,7 +478,7 @@ if($query->rowCount()>0)
                                                 </i>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <button class="dropdown-item Epost" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-gender="<?php echo ($result->petSex);?>" data-pet-age="<?php echo ($result->petAge);?>" data-pet-color="<?php echo ($result->petColor);?>" data-pet-weight="<?php echo ($result->petWeight);?>" data-vaccination-status="<?php echo ($result->vaccinationStatus);?>"  data-deworming-status="<?php echo ($result->dewormingStatus);?>"  data-pet-description="<?php echo ($result->petDescription);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
+                                              <button class="dropdown-item Epost" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-gender="<?php echo ($result->petSex);?>" data-pet-age="<?php echo ($result->petAge);?>" data-pet-color="<?php echo ($result->petColor);?>" data-pet-weight="<?php echo ($result->petWeight);?>" data-vaccination-status="<?php echo ($result->vaccinationStatus);?>"  data-deworming-status="<?php echo ($result->dewormingStatus);?>" data-total-days="<?php echo ($result->totalDays);?>" data-selected-range="<?php echo ($result->selectedRange);?>" data-pet-description="<?php echo ($result->petDescription);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
 
                                               <button class="dropdown-item Dpost" data-pet-id="<?php echo ($result->petID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
                                               <button class="dropdown-item Ppost" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture</button>
@@ -754,14 +754,14 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-  <!-- Adoption Request Code -->
+  <!-- Short-Term Care Request Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
 ?>
 
 <?php
-if(isset($_POST['Short-Term_Care']))
+if(isset($_POST['Short-Term-Care']))
 {
   
   $MasterID=($_POST['MasterID']);
@@ -787,7 +787,7 @@ if(isset($_POST['Short-Term_Care']))
   $Description=($_POST['Description']);
   $Reason=($_POST['Reason']);
 
-  $sql="INSERT INTO request(requestTitle,masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,petDescription,requestReason,requestDate)VALUES('Adoption Request',:MasterID,:UserID,:Name,:Email,:Address,:ContactNo,:PetID,:Type,:PetName,:Breed,:Description,:Reason,'$date')";
+  $sql="INSERT INTO request(requestTitle,masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,petDescription,requestReason,requestDate)VALUES('Short-Term Care',:MasterID,:UserID,:Name,:Email,:Address,:ContactNo,:PetID,:Type,:PetName,:Breed,:Description,:Reason,'$date')";
   $query=$dbh->prepare($sql);
   $query->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
   $query->bindParam(':UserID',$UserID,PDO::PARAM_STR);
@@ -816,21 +816,21 @@ if(isset($_POST['Short-Term_Care']))
 
   $ID=$query2->fetchColumn();
 
-  $sql3="INSERT INTO notification(activityID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES('$ID','Adoption Request',:MasterID,:UserID,:Reason,'$date','Unread')";
+  $sql3="INSERT INTO notification(activityID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES('$ID','Short-Term Care Request',:MasterID,:UserID,:Reason,'$date','Unread')";
   $query3=$dbh->prepare($sql3);
   $query3->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
   $query3->bindParam(':UserID',$UserID,PDO::PARAM_STR);
   $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
   $query3->execute();
 
-  echo '<script>alert("Just Wait for the Owner Accept Your Adoption Request!")</script>';
+  echo '<script>alert("Just Wait for the Owner Accept Your Short-Term Care Request!")</script>';
   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Request.php'</script>";
 
   }
 
 }
 ?>
-  <!-- //Adoption Request Code -->
+  <!-- //Short-Term Care Request Code -->
 
   <!-- Modal Short-Term Care -->
   <div class="modal fade" id="STCModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -1168,7 +1168,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
   
   }
 
@@ -1198,7 +1198,7 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
   }
   
 }
@@ -1269,7 +1269,7 @@ if(isset($_POST['btnComment']))
       $query1->execute();
 
       echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
     }
   ?>
   <!-- //Edit Comment Code -->
@@ -1329,7 +1329,7 @@ if(isset($_POST['btnComment']))
     $query1->execute();
     
     echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
   }
   ?>
 	<!-- //Delete Comment Code -->
@@ -1378,7 +1378,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
 
     echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
    }
 ?>
 <!-- //Delete Post Code -->
@@ -1429,6 +1429,8 @@ if(isset($_POST['btnComment']))
     $Weight=($_POST['Weight']);
     $Vaccination=($_POST['Vaccination']);
     $Deworming=($_POST['Deworming']);
+    $selectedRange=($_POST['selectedRange']);
+    $totalDays=($_POST['totalDays']);
     $Description=($_POST['Description']);
 
     $sql="update postpet set
@@ -1441,6 +1443,8 @@ if(isset($_POST['btnComment']))
     petWeight=:Weight,
     vaccinationStatus=:Vaccination,
     dewormingStatus=:Deworming,
+    selectedRange=:selectedRange,
+    totalDays=:totalDays,
     petDescription=:Description
     where petID=:petID";
     $query=$dbh->prepare($sql); 
@@ -1454,11 +1458,13 @@ if(isset($_POST['btnComment']))
     $query->bindParam(':Weight',$Weight,PDO::PARAM_STR);
     $query->bindParam(':Vaccination',$Vaccination,PDO::PARAM_STR);
     $query->bindParam(':Deworming',$Deworming,PDO::PARAM_STR);
+    $query->bindParam(':selectedRange',$selectedRange,PDO::PARAM_STR);
+    $query->bindParam(':totalDays',$totalDays,PDO::PARAM_STR);
     $query->bindParam(':Description',$Description,PDO::PARAM_STR);
     $query->execute();
   
     echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
   }
 ?>
 <!-- //Edit Post Code -->
@@ -1645,6 +1651,44 @@ if(isset($_POST['btnComment']))
 			  </div>
 
         <div class="field item form-group">
+											<label class="col-form-label col-md-3 col-sm-3  label-align">Select Range<span class="required"></span></label>
+											<div class="col-md-6 col-sm-6">
+												<select class="form-control" onChange="jsFunction" required="required" id="totalDays" name="totalDays" style="width:400px">
+													<option value="0">Select Range Days for Short-term care...</option>
+													<option value="1">1 Day</option>
+                          <option value="2">2 Days</option>
+                          <option value="3">3 Days</option>
+                          <option value="4">4 Days</option>
+                          <option value="5">5 Days</option>
+                          <option value="6">6 Days</option>
+                          <option value="7">1 Week</option>
+                          <option value="14">2 Weeks</option>
+                          <option value="21">3 Weeks</option>
+                          <option value="30">1 Month</option>
+                          <option value="60">2 Months</option>
+                          <option value="90">3 Months</option>
+                          <option value="120">4 Months</option>
+                          <option value="150">5 Months</option>
+                          <option value="180">6 Months</option>
+												</select>
+											</div>
+										</div>
+
+                    <script>
+                      var myselect = document.getElementById("totalDays");
+                      myselect.onchange = function(){
+                      document.getElementById("selectedRange").value = myselect.options[myselect.selectedIndex].text;
+                      };  
+                    </script>
+
+                    <div hidden class="field item form-group">
+                      <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input readonly id="selectedRange" name="selectedRange" style="background-color:#fff;" class="form-control"/>
+                        </div>
+                    </div>
+
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea id="pet_description2" name="Description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
@@ -1694,7 +1738,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture Code -->
@@ -1936,6 +1980,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     var pet_weight2 = $(this).attr('data-pet-weight');
     var vaccination_status2 = $(this).attr('data-vaccination-status');
     var deworming_status2 = $(this).attr('data-deworming-status');
+    var totalDays = $(this).attr('data-total-days');
+    var selectedRange = $(this).attr('data-selected-range');
     var pet_description2 = $(this).attr('data-pet-description');
     $('#EditPost').modal('show');
     $("#pet_id2").val( pet_id2 );
@@ -1948,6 +1994,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $("#pet_weight2").val( pet_weight2 );
     $("#vaccination_status2").val( vaccination_status2 );
     $("#deworming_status2").val( deworming_status2 );
+    $("#totalDays").val( totalDays );
+    $("#selectedRange").val( selectedRange );
     $("#pet_description2").val( pet_description2 );
   });
   </script>

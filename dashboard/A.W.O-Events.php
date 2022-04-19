@@ -183,6 +183,17 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+<<<<<<< Updated upstream
+=======
+  <style>
+    .view-more-comment:hover {
+    text-decoration: underline;
+}
+    .hide-more-comment:hover {
+    text-decoration: underline;
+}
+  </style>
+>>>>>>> Stashed changes
 </head>
 
 <body class="nav-md">
@@ -260,8 +271,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				</div>
 			</div>
 
+<<<<<<< Updated upstream
 	   <!-- top navigation -->
      <div class="top_nav">
+=======
+	  <!-- top navigation -->
+    <div class="top_nav">
+>>>>>>> Stashed changes
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -283,7 +299,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
                   </li>
                   <?php
+<<<<<<< Updated upstream
                   $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read'");
+=======
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM notification WHERE masterID='$ID' AND notificationStatus != 'Read' ");
+>>>>>>> Stashed changes
                   $query->execute();
 
                   $request=$query->fetchColumn();
@@ -325,9 +345,16 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                               foreach($userids as $userid)
                             {
                               ?>
+<<<<<<< Updated upstream
                            
                         <a class ="dropdown-item">
                           <span><b><?php echo ($result->notificationTitle);?></b></span><br>
+=======
+
+    
+                        <a class ="dropdown-item">
+                          <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+>>>>>>> Stashed changes
                           <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
@@ -343,7 +370,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
+<<<<<<< Updated upstream
                             <a>See All Alerts</a>
+=======
+                            <a href="http://localhost/developgetpet/dashboard/A.W.O-Requestnotification.php">See All Alerts</a>
+>>>>>>> Stashed changes
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -417,7 +448,11 @@ if($query->rowCount()>0)
       
        <!-- View Post for Events Code -->
        <?php
+<<<<<<< Updated upstream
                         $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postsID DESC";
+=======
+                        $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postID DESC";
+>>>>>>> Stashed changes
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -445,7 +480,19 @@ if($query->rowCount()>0)
                                           {
                                             ?>
                                             
+<<<<<<< Updated upstream
                                             <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->postDate);?></textarea>
+=======
+                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;<?php echo ($result->postDate);?></textarea> <i class="fa fa-ellipsis-h menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($result->userID);?></i>
+                                                </i>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                              <button class="dropdown-item Epost" data-post-id="<?php echo ($result->postID);?>" data-post-title="<?php echo ($result->postTitle);?>" data-post-content="<?php echo ($result->postContent);?>" data-post-location="<?php echo ($result->postLocation);?>" data-post-time="<?php echo ($result->postTime);?>" data-post-date="<?php echo ($result->postEventdate);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
+
+                                              <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
+                                              <button class="dropdown-item Ppost" data-post-id="<?php echo ($result->postID);?>" data-post-picture="<?php echo ($result->postPicture);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture</button>
+                                            </div><br>
+>>>>>>> Stashed changes
 
                                             <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">What:&nbsp&nbsp&nbsp<?php echo ($result->postTitle);?><br>When:&nbsp&nbsp<?php echo ($result->postEventdate);?><br>Where:&nbsp<?php echo ($result->postLocation);?>
                                             <br>Time:&nbsp&nbsp&nbsp<?php echo ($result->postTime);?></p>
@@ -455,7 +502,11 @@ if($query->rowCount()>0)
                                             <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
+<<<<<<< Updated upstream
                                               <li><h3 hidden class="card-title"><?php echo ($result->postsID);?></h3></li>
+=======
+                                              <li><h3 hidden class="card-title"><?php echo ($result->postID);?></h3></li>
+>>>>>>> Stashed changes
                                               <li><h2 hidden class="card-title"><?php echo ($result->postTitle);?></h2></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->postContent);?></textarea></li>
                                               
@@ -476,7 +527,11 @@ if($query->rowCount()>0)
                                               <br>
 
                                               <?php
+<<<<<<< Updated upstream
                                               $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postsID'");
+=======
+                                              $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postID'");
+>>>>>>> Stashed changes
                                               $count->execute();
 
                                               $commentno=$count->fetchColumn();
@@ -484,7 +539,11 @@ if($query->rowCount()>0)
                                               ?>
                                               
                                               <?php
+<<<<<<< Updated upstream
                                               $postid = $result->postsID;
+=======
+                                              $postid = $result->postID;
+>>>>>>> Stashed changes
 
                                               $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC LIMIT 1";
                                               $query2=$dbh->prepare($sql2);
@@ -511,6 +570,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                                 <br>
+<<<<<<< Updated upstream
                                                <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count"><?php echo ($commentno);?></span> Comment</h4>
                                               
                                                 <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?><?php echo ( $picture->orgName);?><?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v"></i><br>
@@ -532,10 +592,50 @@ if($query->rowCount()>0)
                                               $comments=$query4->fetchALL(PDO::FETCH_OBJ);
                                               $cnt4=1;
                                               if($query4->rowCount()>0)
+=======
+                                               <h4 style="margin-top:-45px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+
+                                               <div class="comment-Div">
+
+                                                <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" class="txtgrow" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 10px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->orgName);?><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v option" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($comment->userID);?></i>
+                                                </i>
+
+                                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
+                                                    <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
+                                                  </div><br>
+                                            
+                                                <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
+                                                
+                                                <?php
+                                                $count_more_comment = $commentno-1;
+                                                ?>
+                                                <p class="view-more-comment" id="view_more" style="margin-top:-10px;margin-bottom:8px;"><span class="count-more-comment" id="count-more-comment">View <?php echo $count_more_comment?> more comment</span></p>  
+
+                                              </div>
+
+                                              
+                                                
+                                              <?php $cnt2=$cnt2+1;}} ?>
+                                              <?php $cnt3=$cnt3+1;}} ?>
+
+                                              <div class="view-more-comment-Div" id="view_more_comment_Div">
+
+                                              <?php
+                                              $postid = $result->postID;
+
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Event' ORDER BY commentID DESC";
+                                              $query2=$dbh->prepare($sql2);
+                                              $query2->execute();
+                                              $comments=$query2->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt2=1;
+                                              if($query2->rowCount()>0)
+>>>>>>> Stashed changes
                                               {
                                                 foreach($comments as $comment)
                                               {
                                                 ?>
+<<<<<<< Updated upstream
                                             <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                               <div class="panel-body">
                                               <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 4px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->userFirstname);?><?php echo ( $picture->orgName);?><?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>
@@ -558,6 +658,51 @@ if($query->rowCount()>0)
                                               $userIDs=$query5->fetchALL(PDO::FETCH_OBJ);
                                               $cnt5=1;
                                               if($query5->rowCount()>0)
+=======
+
+                                              <?php
+                                              $uid = $comment->userID;
+
+                                              $sql3="SELECT * from register WHERE userID ='$uid'";
+                                              $query3=$dbh->prepare($sql3);
+                                              $query3->execute();
+                                              $pictures=$query3->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt3=1;
+                                              if($query3->rowCount()>0)
+                                              {
+                                                foreach($pictures as $picture)
+                                              {
+                                                ?>
+                                                <br>
+                                                
+                                                <label style="margin-top:-30px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" class="txtgrow" style="width:450px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 10px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->orgName);?><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v option" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($comment->userID);?></i></i>
+
+                                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
+                                                    <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
+                                                  </div><br>
+                                                
+                                                <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
+
+                                              <?php $cnt2=$cnt2+1;}} ?>
+                                              <?php $cnt3=$cnt3+1;}} ?>
+
+                                              <?php
+                                                $hide_more_comment = $commentno-1;
+                                              ?>
+                                              <p class="hide-more-comment" id="hide_more" style="margin-top:-10px;margin-bottom:8px;"> Hide <?php echo $hide_more_comment?> comment</p>
+
+                                              </div>
+                                              
+                                              <?php
+
+                                              $sql4="SELECT * from register WHERE userID='$ID'";
+                                              $query4=$dbh->prepare($sql4);
+                                              $query4->execute();
+                                              $userIDs=$query4->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt4=1;
+                                              if($query4->rowCount()>0)
+>>>>>>> Stashed changes
                                               {
                                                 foreach($userIDs as $userID)
                                               {
@@ -565,7 +710,11 @@ if($query->rowCount()>0)
                                               <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
                                               <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:450px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
                                               <div class="clearfix"></div>
+<<<<<<< Updated upstream
                                               <?php $cnt5=$cnt5+1;}} ?>
+=======
+                                              <?php $cnt4=$cnt4+1;}} ?>
+>>>>>>> Stashed changes
 
                                               </ul>
                                             </div>
@@ -580,7 +729,11 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>     
+<<<<<<< Updated upstream
                      <!-- //View Post for Events Code --> 
+=======
+                     <!-- //View Post for Events Code -->     
+>>>>>>> Stashed changes
             </div>
          </div>
        </div>
@@ -608,6 +761,7 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
+<<<<<<< Updated upstream
 
   <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -649,6 +803,8 @@ if($query->rowCount()>0)
   </div>
 </div>
 	<!-- //ModalProfile -->
+=======
+>>>>>>> Stashed changes
   
   <!-- ModalSettings -->
   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -718,6 +874,7 @@ $date = date('m/d/Y h:i A', time());
 <?php
 if(isset($_POST['btnComment']))
 {
+<<<<<<< Updated upstream
   $postsid=($_POST['postsid']);
 
   if($masterid == $ID)
@@ -729,6 +886,19 @@ if(isset($_POST['btnComment']))
     $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
     $query=$dbh->prepare($sql);
     $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
+=======
+  $masterid=($_POST['masterid']);
+
+  if($masterid == $ID)
+  {
+    $petid=($_POST['petid']);
+    $masterid=($_POST['masterid']);
+    $Comment=($_POST['Comment']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Event')";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':petid',$petid,PDO::PARAM_STR);
+>>>>>>> Stashed changes
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
@@ -740,6 +910,7 @@ if(isset($_POST['btnComment']))
 
   else
   {
+<<<<<<< Updated upstream
     $postsid=($_POST['postsid']);
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
@@ -747,6 +918,15 @@ if(isset($_POST['btnComment']))
     $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postsid,:masterid,'$ID',:Comment,'$date','Event')";
     $query=$dbh->prepare($sql);
     $query->bindParam(':postsid',$postsid,PDO::PARAM_STR);
+=======
+    $petid=($_POST['petid']);
+    $masterid=($_POST['masterid']);
+    $Comment=($_POST['Comment']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Event')";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':petid',$petid,PDO::PARAM_STR);
+>>>>>>> Stashed changes
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query->execute();
@@ -772,7 +952,11 @@ if(isset($_POST['btnComment']))
 <!-- //Comment Code -->
 
   <!-- Modal Comment -->
+<<<<<<< Updated upstream
   <div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+=======
+<div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+>>>>>>> Stashed changes
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -784,13 +968,21 @@ if(isset($_POST['btnComment']))
         <script>
           function comment() {
           document.getElementById("comment").value="";
+<<<<<<< Updated upstream
+=======
+          document.getElementById("btnComment").disabled = true;
+>>>>>>> Stashed changes
             }
         </script>
       </div>
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
+<<<<<<< Updated upstream
 					    <input hidden id="postsid" name="postsid" required = "required" class="form-control" id="success">
+=======
+					    <input hidden id="petid" name="petid" required = "required" class="form-control" id="success">
+>>>>>>> Stashed changes
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
@@ -804,7 +996,10 @@ if(isset($_POST['btnComment']))
 
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
+<<<<<<< Updated upstream
               <button name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
+=======
+              <button disabled name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
          </div>
         </div>
       </form>
@@ -812,7 +1007,375 @@ if(isset($_POST['btnComment']))
     </div>
   </div>
 </div>
+	<!-- //Modal Comment -->
+
+  <!-- Edit Comment Code -->
+  <?php
+    if(isset($_POST['btnEditComment']))
+    {
+      $commentContent=($_POST['commentContent']);
+      $commentID=($_POST['commentID']);
+
+      $query="update comment set commentContent=:commentContent where commentID=:commentID";
+      $query= $dbh->prepare($query);
+      $query->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
+      $query->bindParam(':commentID',$commentID,PDO::PARAM_STR);
+      $query->execute();
+
+      $query1="update notification set notificationDescription=:commentContent where activityID=:commentID";
+      $query1= $dbh->prepare($query1);
+      $query1->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
+      $query1->bindParam(':commentID',$commentID,PDO::PARAM_STR);
+      $query1->execute();
+
+      echo '<script>alert("Your Comment Updated Successfully!")</script>';
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+    }
+  ?>
+  <!-- //Edit Comment Code -->
+
+  <!-- Modal Edit Comment -->
+<div class="modal fade" id="EditComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Comment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="editcomment()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+          function editcomment() {
+          document.getElementById("edit_comment").value="";
+          document.getElementById("btnEditComment").disabled = false;
+            }
+        </script>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="commentid" name="commentID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <textarea id="edit_comment" name="commentContent" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
+				</div><br>
+
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button id="btnEditComment" name="btnEditComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
+>>>>>>> Stashed changes
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<<<<<<< Updated upstream
 	<!-- //Modal Comment -->  
+=======
+	<!-- //Modal Edit Comment -->
+
+  <!-- Delete Comment Code -->
+  <?php
+  if(isset($_POST['btnDeleteComment']))
+  {
+    $commentID=($_POST['commentID']);
+    
+    $query="Delete from comment where commentID=:commentID";
+    $query = $dbh->prepare($query);
+    $query->bindValue('commentID',$commentID);
+    $query->execute();
+
+    $query1="Delete from notification where activityID=:commentID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('commentID',$commentID);
+    $query1->execute();
+    
+    echo '<script>alert("Comment Deleted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+  }
+  ?>
+	<!-- //Delete Comment Code -->
+
+  <!-- Modal Delete Comment -->
+  <div class="modal fade" id="DeleteComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Comment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to delete this comment?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="comment_id" name="commentID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnDeleteComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="btnCancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Delete Comment -->
+
+  <!-- Delete Post Code -->
+<?php
+   if(isset($_POST['Delete']))
+   {
+    $postID=($_POST['postID']);
+
+    $query="update post set postStatus ='Deleted' where postID=:postID";
+    $query= $dbh->prepare($query);
+    $query->bindValue('postID',$postID);
+    $query->execute();
+
+    echo '<script>alert("Post Deleted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+   }
+?>
+<!-- //Delete Post Code -->
+
+  <!-- Modal Delete Post -->
+<div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to delete your post?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="post_id1" name="postID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="Delete" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Delete Post -->
+
+  <!-- Edit Post Code -->
+<?php
+   if(isset($_POST['btnEditPost']))
+   {
+    $postID=($_POST['postID']);
+    $Title=($_POST['Title']);
+    $Content=($_POST['Content']);
+    $Location=($_POST['Location']);
+    $Time=($_POST['Time']);
+    $Date=($_POST['Date']);
+
+    $sql="update post set
+    postTitle=:Title,
+    postContent=:Content,
+    postLocation=:Location,
+    postTime=:Time,
+    postEventdate=:Date
+    where postID=:postID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':postID',$postID,PDO::PARAM_STR);
+    $query->bindParam(':Title',$Title,PDO::PARAM_STR);
+    $query->bindParam(':Content',$Content,PDO::PARAM_STR);
+    $query->bindParam(':Location',$Location,PDO::PARAM_STR);
+    $query->bindParam(':Time',$Time,PDO::PARAM_STR);
+    $query->bindParam(':Date',$Date,PDO::PARAM_STR);
+    $query->execute();
+  
+    echo '<script>alert("Post Updated Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+  }
+?>
+<!-- //Edit Post Code -->
+
+  <!-- Modal Edit Post -->
+<div class="modal fade" id="EditPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="enableButton()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+        function enableButton() {
+            document.getElementById("btnEditPost").disabled = false;
+        }
+      </script>
+      </div>
+      <div class="modal-body mx-3">
+        <form method="post">
+                                         
+                                        <span class="section"></span>
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>"/>
+                                            </div>
+
+                                        </div>
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>"/>
+                                            </div>
+
+                                        </div>
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>"/></div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='number' name="ContactNo" value="<?php echo ($result->orgContactNo);?>"></div>
+                                        </div>
+
+                                        <div hidden style="text-align: center" class="wrap-input100 validate-input">
+                                        <input name="postID" id="post_id2" class="form-control" id="success">
+                                        </div><br>
+                                        
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="title" class="form-control" name="Title" placeholder="Title..." required="required"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="content" required="required" class="form-control" name="Content" placeholder="Description..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
+                                          </div>
+                                        </div>                                    
+                               
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Location<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="location" class="form-control" name="Location" placeholder="Location..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
+                                         Time</label>
+                                         <div class="col-md-6 col-sm-6" class="form-group">
+                                         <div class='input-group date' id='myDatepicker3'>
+                                         <input required="required" type='text' id="time" name="Time" class="form-control" class="input-group-addon" onkeypress="return onlyNumberKey(event)"/>
+                                         <span class="input-group-addon">
+                                         <span class="glyphicon glyphicon-time" style="margin-top:4px;"></span>
+                                         </span>
+                                         </div>
+                                         </div>
+                                         </div>                                               
+
+                                         <div style="text-align: center" class="form-group">
+                                         <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Event Date<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='date' type="date" id='date' name="Date" required='required'></div>
+                                         </div>
+                                         </div>
+
+                                        <div class="ln_solid">
+                                            <br>
+                                            <div style="text-align: center" class="form-group">
+                                            <div class="col-md-6 offset-md-3">
+                                                <button name ="btnEditPost" type='submit' id="btnEditPost" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Events.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                            </div>
+                                            </div>  
+                                        </div>
+                                    </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Edit Post -->
+
+  <!-- Change Post Picture Code -->
+  <?php
+if(isset($_POST['btnChangePostPicture']))
+{
+$postID=$_POST['postID'];
+$PostPicture=$_POST['PostPicture'];
+
+$sql="update post set 
+postPicture=:PostPicture
+where postID=:postID";
+
+$query=$dbh->prepare($sql);
+$query->bindParam(':postID',$postID,PDO::PARAM_STR);  
+$query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+}
+?>
+	<!-- //Change Post Picture Code -->
+
+  <!-- Modal Change Post Picture -->
+<div class="modal fade" id="ChangePostPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Change Post Picture</h4>
+        <button type="button" id="selected_picture_close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div class="modal-header">
+              <img id="post_picture" src="/developgetpet/web/images/" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" >
+        </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <input type="file" onchange="readURL(this);" name="PostPicture" id="PostPicture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden name="postID" id="post_id3" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="picture_file" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnChangePostPicture" id="btnChangePostPicture" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
+              <button type='reset' id="selected_picture_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Change Post Picture -->
+>>>>>>> Stashed changes
 
 			<!-- footer content -->
 			<footer>
@@ -830,6 +1393,108 @@ if(isset($_POST['btnComment']))
     <script src="../vendors/validator/validator.js"></script>
 
     <script>
+<<<<<<< Updated upstream
+=======
+     $( "#content" ).keyup(function() {
+  $("#btnEditPost").prop("disabled", !this.value);
+});
+    </script>
+
+    <script>
+     $( "#comment" ).keyup(function() {
+  $("#btnComment").prop("disabled", !this.value);
+});
+    </script>
+
+    <script>
+     $( "#edit_comment" ).keyup(function() {
+  $("#btnEditComment").prop("disabled", !this.value);
+});
+    </script>
+
+    <script type="text/javascript">
+  $("#selected_picture_cancel").click(function () {
+  
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+    <script type="text/javascript">
+  $("#selected_picture_close").click(function () {
+
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+    <script>
+      PostPicture.onchange = evt => {
+  const [file] = PostPicture.files
+  if (file) {
+    post_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("btnChangePostPicture").disabled = false;
+}
+    </script>
+    
+    <script>
+   $(window).on("load", function () {
+    console.log("load");
+    $("div#view_more_comment_Div").hide();
+    });
+    </script>
+
+    <script>
+     $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.adoptbtn').on('click', function () {
+
+                $('#AdoptModal').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#pet_id').val(data[0]);
+                $('#pet_name').val(data[1]);
+                $('#pet_type').val(data[2]);
+                $('#pet_breed').val(data[3]);
+                $('#pet_sex').val(data[4]);
+                $('#pet_age').val(data[5]);
+                $('#pet_color').val(data[6]);
+                $('#pet_weight').val(data[7]);
+                $('#vaccination_status').val(data[8]);
+                $('#deworming_status').val(data[9]);
+                $('#pet_description').val(data[10]);
+                $('#des').val(data[11]);
+                $('#pet_picture').val(data[12]);
+                $('#pet_status').val(data[13]);
+                $('#user_id').val(data[14]);
+                $('#post_by').val(data[15]);
+                $('#post_date').val(data[16]);
+                $('#user_email').val(data[17]);
+                $('#user_address').val(data[18]);
+                $('#user_contactno').val(data[19]);
+            });
+        });
+    </script>
+
+<script>
+>>>>>>> Stashed changes
         $(document).ready(function () {
 
             $('.viewbtn').on('click', function () {
@@ -844,6 +1509,7 @@ if(isset($_POST['btnComment']))
 
                 console.log(data);
 
+<<<<<<< Updated upstream
                 $('#post_id').val(data[0]);
                 $('#post_title').val(data[1]);
                 $('#post_content').val(data[2]);
@@ -856,6 +1522,20 @@ if(isset($_POST['btnComment']))
                 $('#post_email').val(data[9]);
                 $('#post_address').val(data[10]);
                 $('#post_contactno').val(data[11]);
+=======
+                $('#petid').val(data[0]);
+                $('#petname').val(data[1]);
+                $('#pettype').val(data[2]);
+                $('#petbreed').val(data[3]);
+                $('#petsex').val(data[4]);
+                $('#petage').val(data[5]);
+                $('#petcolor').val(data[6]);
+                $('#petweight').val(data[7]);
+                $('#vaccinationstatus').val(data[8]);
+                $('#dewormingstatus').val(data[9]);
+                $('#petdescription').val(data[10]);
+                $('#petstatus').val(data[13]);
+>>>>>>> Stashed changes
             });
         });
     </script>
@@ -875,12 +1555,105 @@ if(isset($_POST['btnComment']))
 
                 console.log(data);
 
+<<<<<<< Updated upstream
                 $('#postsid').val(data[0]);
                 $('#masterid').val(data[6]);
             });
         });
 </script>
 
+=======
+                $('#petid').val(data[0]);
+                $('#masterid').val(data[6]);
+            });
+        });
+    </script>
+
+<script type="text/javascript">
+  $(".Ppost").click(function () {
+    var post_id3 = $(this).attr('data-post-id');
+    $('#ChangePostPicture').modal('show');
+    $("#post_id3").val( post_id3 );
+    var picture_file = $(this).attr('data-post-picture');
+    $('#picture_file').val( picture_file );
+    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Epost").click(function () {
+    var post_id2 = $(this).attr('data-post-id');
+    var title = $(this).attr('data-post-title');
+    var content = $(this).attr('data-post-content');
+    var location = $(this).attr('data-post-location');
+    var time = $(this).attr('data-post-time');
+    var date = $(this).attr('data-post-date');
+    $('#EditPost').modal('show');
+    $("#post_id2").val( post_id2 );
+    $("#title").val( title );
+    $("#content").val( content );
+    $("#location").val( location );
+    $("#time").val( time );
+    $("#date").val( date );
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Dpost").click(function () {
+    var post_id1 = $(this).attr('data-post-id');
+    $('#DeletePost').modal('show');
+    $("#post_id1").val( post_id1 );
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Ecomment").click(function () {
+    var commentid = $(this).attr('data-comment-id');
+    var edit_comment = $(this).attr('data-comment-content');
+    $("#edit_comment").val( edit_comment );
+    $("#commentid").val( commentid );
+    $('#EditComment').modal('show');
+  });
+  </script>
+
+ <script type="text/javascript">
+  $(".Dcomment").click(function () {
+    var comment_id = $(this).attr('data-comment-id');
+    $("#comment_id").val( comment_id );
+    $('#DeleteComment').modal('show');
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(".menu").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?>";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".adoptbtn").filter(function(){
+  return $(this).text().trim() == "<?php echo $ID?> Adopt Me";
+  }).css('visibility', 'hidden');
+  </script>
+
+  <script type="text/javascript">
+  $(".option").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?>";
+  }).css('visibility', 'hidden');
+  </script>
+
+  <script type="text/javascript">
+  $(".Epost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Edit";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".Dpost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Delete";
+  }).hide();
+  </script>
+>>>>>>> Stashed changes
 
   <script type="text/javascript">
   $(".comment-count").filter(function(){
@@ -888,6 +1661,44 @@ if(isset($_POST['btnComment']))
   }).hide();
   </script>
 
+<<<<<<< Updated upstream
+=======
+  <script type="text/javascript">
+  $(".count-more-comment").filter(function(){
+  return $(this).text().trim() === "View 0 more comment";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $('p.view-more-comment').click(function() {
+      $('.view-more-comment-Div').show(); // To hide all other contents
+      $('.comment-Div').hide();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide -1 comment";
+  }).hide();
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide 0 comment";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $('p.hide-more-comment').click(function() {
+      $('.view-more-comment-Div').hide(); // To hide all other contents
+      $('.comment-Div').show();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(".unread").filter(function(){
+  return $(this).text().trim() === "Read";
+  }).hide();
+  </script>
+
+>>>>>>> Stashed changes
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
         // A "<form>" element is optionally passed as an argument, but is not a must
@@ -929,6 +1740,11 @@ if(isset($_POST['btnComment']))
 	<!-- bootstrap-daterangepicker -->
 	<script src="../vendors/moment/min/moment.min.js"></script>
 	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<<<<<<< Updated upstream
+=======
+  <!-- bootstrap-datetimepicker -->    
+  <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+>>>>>>> Stashed changes
 	<!-- bootstrap-wysiwyg -->
 	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
 	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
@@ -950,6 +1766,54 @@ if(isset($_POST['btnComment']))
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 
+<<<<<<< Updated upstream
+=======
+   <!-- Initialize datetimepicker -->
+<script  type="text/javascript">
+   $(function () {
+    $('#myDatepicker').datetimepicker();
+            });
+    
+    $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    
+    $('#myDatepicker3').datetimepicker({
+        format: 'hh:mm A'
+    });
+    
+    $('#myDatepicker4').datetimepicker({
+        ignoreReadonly: true,
+        allowInputToggle: true
+    });
+
+    $('#datetimepicker6').datetimepicker();
+    
+    $('#datetimepicker7').datetimepicker({
+        useCurrent: false
+    });
+    
+    $("#datetimepicker6").on("dp.change", function(e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    
+    $("#datetimepicker7").on("dp.change", function(e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+</script>
+
+<script>
+  function onlyNumberKey(evt) {
+                                                    
+  // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+          return false;
+          return true;
+  }
+</script>
+
+>>>>>>> Stashed changes
   
 
      

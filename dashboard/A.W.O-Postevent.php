@@ -553,10 +553,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <div class="ln_solid">
                                             <br>
                                             <div class="form-group">
+<<<<<<< Updated upstream
+=======
+                                                <div style="text-align: center" class="form-group">
+>>>>>>> Stashed changes
                                                 <div class="col-md-6 offset-md-3">
                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
                                                     <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Postevent.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                 </div>
+<<<<<<< Updated upstream
+=======
+                                                </div>
+>>>>>>> Stashed changes
                                             </div>
                                         </div>
                                     </form>

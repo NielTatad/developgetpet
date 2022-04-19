@@ -479,7 +479,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>New Post Tips Advice & Articles</h2>
+                    <h2>New Post For Pet Care Tips</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                       </li>      
