@@ -815,7 +815,7 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Events.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Events.php'</script>";
   }
   
 }
