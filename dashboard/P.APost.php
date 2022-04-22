@@ -258,15 +258,11 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="#">Short-term Care</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Donation.php">Donation</a>
-                    </li>
-
-                    <li>
-                    <li><a href="#">Fundraising activities</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Fundraisingactivities.php">Fundraising activities</a>
                     </li>
 
                     <li>

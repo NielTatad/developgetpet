@@ -238,11 +238,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Donation.php">Donation</a>
-                    </li>
-
-                    <li>
-                    <li><a href="#">Fundraising activities</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Fundraisingactivities.php">Fundraising activities</a>
                     </li>
 
                     <li>

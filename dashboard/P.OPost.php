@@ -262,11 +262,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Donation.php">Donation</a>
-                    </li>
-
-                    <li>
-                    <li><a href="#">Fundraising activities</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php">Fundraising activities</a>
                     </li>
 
                     <li>
