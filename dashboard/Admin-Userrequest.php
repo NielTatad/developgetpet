@@ -276,7 +276,7 @@ th {
                   
             <!-- View Unaccepted Post for Donation User Request Code -->
             <?php
-                        $sql="SELECT * from charity WHERE charityStatus='Unaccepted' AND charityPoststatus='Donation' AND charityPoststatus!='Deleted' ORDER BY charityID DESC";
+                        $sql="SELECT * from charity WHERE charityStatus='Unaccepted' AND charityPoststatus='Fundraising' AND charityPoststatus!='Deleted' ORDER BY charityID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
