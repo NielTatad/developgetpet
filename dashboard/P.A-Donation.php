@@ -542,7 +542,6 @@ if($query->rowCount()>0)
                                                     <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
                                                     <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
                                                   </div><br>
-
                                                 <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
                                                 
                                                 <?php
@@ -607,7 +606,6 @@ if($query->rowCount()>0)
                                               <p class="hide-more-comment" id="hide_more" style="margin-top:-10px;margin-bottom:8px;"> Hide <?php echo $hide_more_comment?> comment</p>
 
                                               </div>
-
                                               <?php
 
                                               $sql4="SELECT * from register WHERE userID='$ID'";
@@ -754,28 +752,28 @@ if($query->rowCount()>0)
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_title" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_title" name="Title" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_bank" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_bank" name="Bank" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_pin" name="Age" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_pin" name="Number" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
@@ -785,14 +783,6 @@ if($query->rowCount()>0)
         <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
         </div>
         </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
-				</div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_picture" name="Picture"  required = "required" class="form-control">
-				</div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
@@ -908,7 +898,7 @@ if(isset($_POST['btnComment']))
 <!-- //Comment Code -->
 
   <!-- Modal Comment -->
-<div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -1307,6 +1297,60 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
 
+<script>
+     $( "#comment" ).keyup(function() {
+  $("#btnComment").prop("disabled", !this.value);
+});
+</script>
+
+<script>
+     $( "#edit_comment" ).keyup(function() {
+  $("#btnEditComment").prop("disabled", !this.value);
+});
+</script>
+
+<script type="text/javascript">
+  $("#selected_picture_cancel").click(function () {
+  
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+<script type="text/javascript">
+  $("#selected_picture_close").click(function () {
+
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+</script>
+
+<script>
+      PostPicture.onchange = evt => {
+  const [file] = PostPicture.files
+  if (file) {
+    post_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("btnChangePostPicture").disabled = false;
+}
+</script>
+
+<script>
+   $(window).on("load", function () {
+    console.log("load");
+    $("div#view_more_comment_Div").hide();
+    });
+</script>
+
+<script>
+    $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+</script>
+
     <script>
      $( "#comment" ).keyup(function() {
   $("#btnComment").prop("disabled", !this.value);
@@ -1541,6 +1585,41 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   return $(this).text().trim() === "Read";
   }).hide();
   </script>
+
+<script type="text/javascript">
+  $(".count-more-comment").filter(function(){
+  return $(this).text().trim() === "View 0 more comment";
+  }).hide();
+</script>
+
+<script type="text/javascript">
+  $('p.view-more-comment').click(function() {
+      $('.view-more-comment-Div').show(); // To hide all other contents
+      $('.comment-Div').hide();
+  });
+</script>
+
+<script type="text/javascript">
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide -1 comment";
+  }).hide();
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide 0 comment";
+  }).hide();
+</script>
+
+<script type="text/javascript">
+  $('p.hide-more-comment').click(function() {
+      $('.view-more-comment-Div').hide(); // To hide all other contents
+      $('.comment-Div').show();
+  });
+</script>
+
+<script type="text/javascript">
+  $(".unread").filter(function(){
+  return $(this).text().trim() === "Read";
+  }).hide();
+</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.

@@ -181,6 +181,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
   <style>
@@ -236,7 +238,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="#">Fundraising activities</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php">Fundraising activities</a>
                     </li>
 
                     <li>
@@ -464,6 +466,7 @@ if($query->rowCount()>0)
                                               <button class="dropdown-item Ppost" data-post-id="<?php echo ($result->charityID);?>" data-post-picture="<?php echo ($result->charityPicture);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture</button>
                                             </div><br>
                                             <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
+                                            <br>
                                                                                       
                                               <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
@@ -538,7 +541,7 @@ if($query->rowCount()>0)
                                                     <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
                                                     <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
                                                   </div><br>
-
+                                            
                                                 <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
                                                 
                                                 <?php
@@ -546,29 +549,28 @@ if($query->rowCount()>0)
                                                 ?>
                                                 <p class="view-more-comment" id="view_more" style="margin-top:-10px;margin-bottom:8px;"><span class="count-more-comment" id="count-more-comment">View <?php echo $count_more_comment?> more comment</span></p>  
 
-                                                </div>
+                                              </div>
 
+                                              
+                                                
+                                              <?php $cnt2=$cnt2+1;}} ?>
+                                              <?php $cnt3=$cnt3+1;}} ?>
 
-                                                
-                                                <?php $cnt2=$cnt2+1;}} ?>
-                                                <?php $cnt3=$cnt3+1;}} ?>
-                                        
-                                                
-                                                <div class="view-more-comment-Div" id="view_more_comment_Div">
+                                              <div class="view-more-comment-Div" id="view_more_comment_Div">
 
                                               <?php
-                                            $postid = $result->charityID;
+                                              $postid = $result->charityID;
 
-                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Donation' ORDER BY commentID DESC";
-                                            $query2=$dbh->prepare($sql2);
-                                            $query2->execute();
-                                            $comments=$query2->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt2=1;
-                                            if($query2->rowCount()>0)
-                                            {
-                                              foreach($comments as $comment)
-                                            {
-                                              ?>
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Donation' ORDER BY commentID DESC";
+                                              $query2=$dbh->prepare($sql2);
+                                              $query2->execute();
+                                              $comments=$query2->fetchALL(PDO::FETCH_OBJ);
+                                              $cnt2=1;
+                                              if($query2->rowCount()>0)
+                                              {
+                                                foreach($comments as $comment)
+                                              {
+                                                ?>
 
                                               <?php
                                               $uid = $comment->userID;
@@ -603,7 +605,7 @@ if($query->rowCount()>0)
                                               <p class="hide-more-comment" id="hide_more" style="margin-top:-10px;margin-bottom:8px;"> Hide <?php echo $hide_more_comment?> comment</p>
 
                                               </div>
-
+                                              
                                               <?php
 
                                               $sql4="SELECT * from register WHERE userID='$ID'";
@@ -634,7 +636,7 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>
-                     <!-- //View Post for donation Code -->                                        
+                     <!-- //View Pet Post for Adotion Code -->                                     
                   </div>
                 </div>
               </div>
@@ -744,28 +746,28 @@ if($query->rowCount()>0)
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_title" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_title" name="Title" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_bank" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_bank" name="Bank" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_pin" name="Age" style="background-color:#fff;width:400px;" required="required"/>
+               <input readonly type="text" class="form-control" id="char_pin" name="Number" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
@@ -775,14 +777,6 @@ if($query->rowCount()>0)
         <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
         </div>
         </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
-				</div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_picture" name="Picture"  required = "required" class="form-control">
-				</div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
@@ -927,7 +921,7 @@ if(isset($_POST['btnComment']))
 					    <input hidden id="userid" name="userid" value="<?php echo ($result->orgID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-              <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
+              <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize:none;font-size:16px;"></textarea>
 				</div><br>
 
         <div style="text-align: center" class="form-group">
@@ -965,10 +959,10 @@ if(isset($_POST['btnComment']))
       echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Donation.php'</script>";
     }
   ?>
-  <!-- //Edit Comment Code -->
+<!-- //Edit Comment Code --> 
 
-  <!-- Modal Edit Comment -->
-<div class="modal fade" id="EditComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<!-- Modal Edit Comment -->
+  <div class="modal fade" id="EditComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -1003,9 +997,9 @@ if(isset($_POST['btnComment']))
     </div>
   </div>
 </div>
-	<!-- //Modal Edit Comment -->
+<!-- //Modal Edit Comment -->
 
-  <!-- Delete Comment Code -->
+<!-- Delete Comment Code -->
   <?php
   if(isset($_POST['btnDeleteComment']))
   {
@@ -1013,7 +1007,7 @@ if(isset($_POST['btnComment']))
     
     $query="Delete from comment where commentID=:commentID";
     $query = $dbh->prepare($query);
-    $query->bindValue('commentID',$commentID);
+    $query->bindValue(':commentID',$commentID);
     $query->execute();
 
     $query1="Delete from notification where activityID=:commentID";
@@ -1025,9 +1019,9 @@ if(isset($_POST['btnComment']))
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Donation.php'</script>";
   }
   ?>
-	<!-- //Delete Comment Code -->
+<!-- //Delete Comment Code -->
 
-  <!-- Modal Delete Comment -->
+<!-- Modal Delete Comment -->
   <div class="modal fade" id="DeleteComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -1293,6 +1287,155 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 	<!-- //Modal Change Post Picture -->
   
+    echo '<script>alert("Post Updated Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Donation.php'</script>";
+  }
+?>
+<!-- //Edit Post Code -->
+
+<!-- Modal Edit Post -->
+ <div class="modal fade" id="EditPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="enableButton()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+        function enableButton() {
+            document.getElementById("Edit").disabled = false;
+        }
+      </script>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="charity_id2" name="charityID" required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input type="text" class="form-control" id="charity_title2" name="Title" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <textarea id="charity_description2" name="Description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank</label>
+        <div class="col-md-6 col-sm-6">
+               <input read only type="text" class="form-control" id="charity_bank2" name="Bank" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pin Number</label>
+        <div class="col-md-6 col-sm-6">
+               <input read only type="text" class="form-control" id="charity_pinnumber2" name="Pinnumber" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount</label>
+        <div class="col-md-6 col-sm-6">
+               <input read only type="text" class="form-control" id="charity_amount2" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <script>
+          function edit() {
+          if(document.getElementById("charity_description2").value==="") { 
+                    document.getElementById('Edit').disabled = true; 
+                } else { 
+                    document.getElementById('Edit').disabled = false;
+                }
+            }
+        </script>
+       
+        <div class="ln_solid">
+        <br>
+        <div class="form-group" style="text-align: center">
+        <div class="col-md-6 offset-md-3">
+               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Update</button>
+        </div>
+        </div>
+        </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //Modal Edit Post -->
+
+<!-- Change Post Picture Code -->
+  <?php
+if(isset($_POST['btnChangePostPicture']))
+{
+$charityID=$_POST['charityID'];
+$PostPicture=$_POST['PostPicture'];
+
+$sql="update charity set 
+charityPicture=:PostPicture
+where charityID=:charityID";
+
+$query=$dbh->prepare($sql);
+$query->bindParam(':charityID',$charityID,PDO::PARAM_STR);  
+$query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Donation.php'</script>";
+}
+?>
+<!-- //Change Post Picture Code -->
+
+<!-- Modal Change Post Picture -->
+  <div class="modal fade" id="ChangePostPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Change Post Picture</h4>
+        <button type="button" id="selected_picture_close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div class="modal-header">
+              <img id="post_picture" src="/developgetpet/web/images/" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" >
+        </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <input type="file" onchange="readURL(this);" name="PostPicture" id="PostPicture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden name="charityID" id="charity_id3" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="picture_file" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnChangePostPicture" id="btnChangePostPicture" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
+              <button type='reset' id="selected_picture_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //Modal Change Post Picture -->
 
 			<!-- footer content -->
 			<footer>
@@ -1308,6 +1451,75 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+    $('#comment').emojioneArea({
+       pickerPosition: 'right'
+   });
+</script> 
+
+<!--
+<script type="text/javascript">
+    $('#edit_comment').emojioneArea({
+       pickerPosition: 'right'
+   });
+</script> 
+-->
+
+<script>
+     $( "#comment" ).keyup(function() {
+  $("#btnComment").prop("disabled", !this.value);
+});
+</script>
+
+<script>
+     $( "#edit_comment" ).keyup(function() {
+      $("#btnEditComment").prop("disabled", !this.value);
+    });
+</script>
+
+<script type="text/javascript">
+  $("#selected_picture_cancel").click(function () {
+  
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+<script type="text/javascript">
+  $("#selected_picture_close").click(function () {
+
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+</script>
+
+<script>
+      PostPicture.onchange = evt => {
+  const [file] = PostPicture.files
+  if (file) {
+    post_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("btnChangePostPicture").disabled = false;
+}
+</script>
+
+<script>
+   $(window).on("load", function () {
+    console.log("load");
+    $("div#view_more_comment_Div").hide();
+    });
+</script>
+
+<script>
+    $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+</script>
 
     <script>
      $( "#comment" ).keyup(function() {
@@ -1384,15 +1596,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#char_amount').val(data[3]);
                 $('#char_pin').val(data[4]);
                 $('#char_description').val(data[5]);
-                $('#des').val(data[6]);
-                $('#char_picture').val(data[7]);
                 $('#char_status').val(data[8]);
-                $('#user_id').val(data[9]);
-                $('#post_by').val(data[10]);
-                $('#post_date').val(data[11]);
-                $('#user_email').val(data[12]);
-                $('#user_address').val(data[13]);
-                $('#user_contactno').val(data[14]);
+                
             });
         });
     </script>
@@ -1417,6 +1622,87 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             });
         });
 </script>
+
+<script type="text/javascript">
+  $(".Ppost").click(function () {
+    var charity_id3 = $(this).attr('data-charity-id');
+    $('#ChangePostPicture').modal('show');
+    $("#charity_id3").val( charity_id3 );
+    var picture_file = $(this).attr('data-charity-picture');
+    $('#picture_file').val( picture_file );
+    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
+  });
+</script>
+
+<script type="text/javascript">
+    $(".Epost").click(function () {
+    var charity_id2 = $(this).attr('data-charity-id');
+    var charity_title2 = $(this).attr('data-charity-title');
+    var charity_description2 = $(this).attr('data-charity-description');
+    var charity_bank2 = $(this).attr('data-charity-bank');
+    var charity_pinnumber2 = $(this).attr('data-charity-pinnumber');
+    var charity_amount2 = $(this).attr('data-charity-amount');
+    $('#EditPost').modal('show');
+    $("#charity_id2").val( charity_id2 );
+    $("#charity_title2").val( charity_title2 );
+    $("#charity_description2").val( charity_description2 );
+    $("#charity_bank2").val( charity_bank2 );
+    $("#charity_pinnumber2").val( charity_pinnumber2 );
+    $("#charity_amount2").val( charity_amount2 );
+  });
+</script>
+
+<script type="text/javascript">
+  $(".Dpost").click(function () {
+    var charity_id1 = $(this).attr('data-charity-id');
+    $('#DeletePost').modal('show');
+    $("#charity_id1").val( charity_id1 );
+  });
+</script>
+
+<script type="text/javascript">
+  $(".Ecomment").click(function () {
+    var commentid = $(this).attr('data-comment-id');
+    var edit_comment = $(this).attr('data-comment-content');
+    $("#edit_comment").val( edit_comment );
+    $("#commentid").val( commentid );
+    $('#EditComment').modal('show');
+  });
+</script>
+
+<script type="text/javascript">
+  $(".Dcomment").click(function () {
+    var comment_id = $(this).attr('data-comment-id');
+    $("#comment_id").val( comment_id );
+    $('#DeleteComment').modal('show');
+  });
+</script>
+
+<script type="text/javascript">
+  $(".menu").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?>";
+  }).hide();
+</script>
+
+<script type="text/javascript">
+  $(".option").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?>";
+  }).css('visibility', 'hidden');
+</script>
+
+<!--
+<script type="text/javascript">
+  $(".Epost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Edit";
+  }).hide();
+</script>
+
+<script type="text/javascript">
+  $(".Dpost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Delete";
+  }).hide();
+</script>
+-->
 
 <script type="text/javascript">
   $(".Ppost").click(function () {
@@ -1544,6 +1830,41 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   }).hide();
   </script>
 
+<script type="text/javascript">
+  $(".count-more-comment").filter(function(){
+  return $(this).text().trim() === "View 0 more comment";
+  }).hide();
+</script>
+
+<script type="text/javascript">
+  $('p.view-more-comment').click(function() {
+      $('.view-more-comment-Div').show(); // To hide all other contents
+      $('.comment-Div').hide();
+  });
+</script>
+
+<script type="text/javascript">
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide -1 comment";
+  }).hide();
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide 0 comment";
+  }).hide();
+</script>
+
+<script type="text/javascript">
+  $('p.hide-more-comment').click(function() {
+      $('.view-more-comment-Div').hide(); // To hide all other contents
+      $('.comment-Div').show();
+  });
+</script>
+
+<script type="text/javascript">
+  $(".unread").filter(function(){
+  return $(this).text().trim() === "Read";
+  }).hide();
+</script>
+
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
         // A "<form>" element is optionally passed as an argument, but is not a must
@@ -1605,10 +1926,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
-
-  
-
-     
 
 </body>
 </html>

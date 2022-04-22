@@ -162,29 +162,27 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 	<title>GETPET</title>
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- bootstrap-datetimepicker -->
-    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <!-- Ion.RangeSlider -->
-    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
-    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
-    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
-    <!-- Bootstrap Colorpicker -->
-    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+	<!-- Custom Theme Style -->
+	<link href="../build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -234,11 +232,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/A.W.O-Events.php">Events</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Events.php">Events</a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Pet Care Tips</a>
                     </li>
                  
               </div>
@@ -427,40 +425,42 @@ if(isset($_POST['Post']))
     $ID=($_POST['ID']);
     $Name=($_POST['Name']);
     $Email=($_POST['Email']);
+    $Address=($_POST['Address']);
     $ContactNo=($_POST['ContactNo']);
     $Title=($_POST['Title']);
-    $Content=($_POST['Content']);
-    $Location=($_POST['Location']);
-    $Time=($_POST['Time']);
-    $Date=($_POST['Date']);
+    $Description=($_POST['Description']);
+    $Bank=($_POST['Bank']);
+    $Pin=($_POST['Pin']);
+    $Amount=($_POST['Amount']);
     $Picture = $_FILES["Picture"]["name"];
     $tmp_dir = $_FILES["Picture"]["tmp_name"];
     
     move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
     
-    $sql="INSERT INTO post(userID,Name,userEmail,userContactNo,postTitle,postContent,postLocation,postTime,postEventdate,postPicture,postStatus,postDate)VALUES(:ID,:Name,:Email,:ContactNo,:Title,:Content,:Location,:Time,:Date,:Picture,'Event','$date')";
+    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityBank,charityPinnumber,charityAmount,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Donation')";
     $query=$dbh->prepare($sql); 
     $query->bindParam(':ID',$ID,PDO::PARAM_STR);
     $query->bindParam(':Name',$Name,PDO::PARAM_STR);
     $query->bindParam(':Email',$Email,PDO::PARAM_STR);
+    $query->bindParam(':Address',$Address,PDO::PARAM_STR);
     $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
     $query->bindParam(':Title',$Title,PDO::PARAM_STR);
-    $query->bindParam(':Content',$Content,PDO::PARAM_STR);
-    $query->bindParam(':Location',$Location,PDO::PARAM_STR);
-    $query->bindParam(':Time',$Time,PDO::PARAM_STR);
-    $query->bindParam(':Date',$Date,PDO::PARAM_STR);
+    $query->bindParam(':Description',$Description,PDO::PARAM_STR);
+    $query->bindParam(':Bank',$Bank,PDO::PARAM_STR);
+    $query->bindParam(':Pin',$Pin,PDO::PARAM_STR);
+    $query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
     $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
     $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php'</script>";
 
 }
 ?>
 
 
                     <!-- Back Button -->
-                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Events.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
+                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
 
                     <div class="clearfix"></div>
 
@@ -469,15 +469,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
-                        <h2>Post Event</h2>
-                        <ul class="nav navbar-right panel_toolbox">        
+                        <h2>Create Post for Fund-raising Activities</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                        </li>          
                         </ul>
                         <div class="clearfix"></div>
                         </div>
 
                                 <div class="x_content">
-                                <form class="" action="" method="post" novalidate enctype="multipart/form-data" style="margin-top:-30px;">
+                                <form class="" action="" method="post" novalidate enctype="multipart/form-data">
                                          
+                                        <span class="section"></span>
                                         <div class="field item form-group">
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>
@@ -497,6 +500,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                                         <div class="field item form-group">
                                             <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" name="Address" value="<?php echo ($result->orgAddress);?>" type="hidden"/></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" class='number' name="ContactNo" value="<?php echo ($result->orgContactNo);?>" type="hidden"></div>
                                         </div>
 
@@ -504,59 +512,57 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="title" class="form-control" name="Title" placeholder="Title..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                                <input type="text" id="petname" class="form-control" name="Title" placeholder="Title..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
                                             </div>
                                         </div>
 
                                         <div class="field item form-group">
                                           <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
                                           <div class="col-md-6 col-sm-6">
-                                            <textarea id="content" required="required" class="form-control" name="Content" placeholder="Description..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
+                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="Reason..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
                                           </div>
                                         </div>                                    
                                       
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align" style="margin-top:-5px;">Upload Photo</label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Photo</label>
                                         
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:-445px" placeholder="Upload Picture">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
                                         </div>
                                
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Location<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="location" class="form-control" name="Location" placeholder="Location..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
-                                            </div>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Select Bank<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                          <select class="form-control" required="required" name="Bank">
+                                          <option>SELECT...</option>
+                                            <option>BDO</option>
+                                            <option>Union Bank</option>
+                                            <option>BPI</option>
+                                            <option>LANDBANK</option>
+                                            <option>GCASH</option>
+                                          </select>
                                         </div>
-
-
+                                      </div>
 
                                       <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Time</label>
-                                         <div class="col-md-6 col-sm-6" class="form-group">
-                                         <div class='input-group date' id='myDatepicker3'>
-                                         <input required="required" type='text' id="time" name="Time" class="form-control" class="input-group-addon" onkeypress="return onlyNumberKey(event)"/>
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-time" style="margin-top:4px;"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>                                        
-
-                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Event Date<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Account<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='date' type="date" name="Date" required='required'></div>
-                                        </div>
+                                                <input type="text" id="pin" class="form-control" name="Pin" placeholder="Pin..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
+
+                                      <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="Amount..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                      </div>
 
                                         <div class="ln_solid">
                                             <br>
                                             <div class="form-group">
-                                                <div style="text-align: center" class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Postevent.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
-                                                </div>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Postdonation.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -691,27 +697,19 @@ if($query->rowCount()>0)
   <!-- //ModalSettings -->
 
 			<!-- footer content -->
-      <footer>
-        <p class="tweet-p1">
-		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
-		<!--<a href="#">http://ax.by/zzzz</a>-->
-		</p>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+			<footer>
+				<div class="pull-right">
+					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
 		</div>
 	</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script type="text/javascript">
-    $('#content').emojioneArea({
-       pickerPosition: 'right'
-   });
-</script>
 
     <script>
         // initialize a validator instance from the "FormValidator" constructor.
@@ -747,6 +745,34 @@ if($query->rowCount()>0)
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="../vendors/iCheck/icheck.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="../vendors/moment/min/moment.min.js"></script>
+	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="../vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="../vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="../vendors/starrr/dist/starrr.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
+
     <!-- bootstrap-daterangepicker -->
     <script src="../vendors/moment/min/moment.min.js"></script>
     <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -756,20 +782,11 @@ if($query->rowCount()>0)
     <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
     <!-- Bootstrap Colorpicker -->
     <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-    <!-- jquery.inputmask -->
-    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <!-- jQuery Knob -->
-    <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
-    <!-- Cropper -->
-    <script src="../vendors/cropper/dist/cropper.min.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-
-    <!-- Initialize datetimepicker -->
-<script  type="text/javascript">
+     <!-- Initialize datetimepicker -->
+    <script  type="text/javascript">
    $(function () {
-    $('#myDatepicker').datetimepicker();
+                $('#myDatepicker').datetimepicker();
             });
     
     $('#myDatepicker2').datetimepicker({
@@ -798,17 +815,6 @@ if($query->rowCount()>0)
     $("#datetimepicker7").on("dp.change", function(e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
-</script>
-
-<script>
-  function onlyNumberKey(evt) {
-                                                    
-  // Only ASCII character in that range allowed
-      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-          return false;
-          return true;
-  }
 </script>
 
 </body>
