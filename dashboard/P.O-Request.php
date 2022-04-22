@@ -267,7 +267,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
                     </li>
 
                   
@@ -669,9 +669,10 @@ if(isset($_POST['CancelRequest']))
   $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
   $query1->execute();
 
-  $sql3="INSERT INTO notification(activityID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,'Cancelled Adoption Request',:masterID,'$ID',:Reason,'$date','Unread')";
+  $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Cancelled Adoption Request',:masterID,'$ID',:Reason,'$date','Unread')";
   $query3=$dbh->prepare($sql3);
   $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+  $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
   $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
   $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
   $query3->execute();

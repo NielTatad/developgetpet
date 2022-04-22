@@ -232,11 +232,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Events.php">Events</a>
+                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/A.W.O-Events.php">Events</a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
                     </li>
                  
               </div>
@@ -467,18 +467,15 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
-                        <h2>Create Post for Event</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                        </li>          
+                        <h2>Post Event</h2>
+                        <ul class="nav navbar-right panel_toolbox">        
                         </ul>
                         <div class="clearfix"></div>
                         </div>
 
                                 <div class="x_content">
-                                <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+                                <form class="" action="" method="post" novalidate enctype="multipart/form-data" style="margin-top:-30px;">
                                          
-                                        <span class="section"></span>
                                         <div class="field item form-group">
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>" type="hidden"/>

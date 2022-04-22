@@ -244,7 +244,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
+                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
                     </li>
                  
               </div>
@@ -426,7 +426,7 @@ if($query->rowCount()>0)
   <div class="col-md-12 col-sm-12  ">
     <div class="x_panel" style="border-radius:10px;border-width:2px;">
       <div class="x_title">
-        <h2>Tips Advice & Articles</h2>
+        <h2>Tips, Advice & Articles</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -438,20 +438,25 @@ if($query->rowCount()>0)
        <!-- View Post for Tips Advice & Articles Code -->
                   <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="tips-tab" data-toggle="tab" href="#tips" role="tab" aria-controls="tips-tab" aria-selected="true">Tips Tab</a>
+                        <a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php" role="tab" aria-controls="tips-tab" aria-selected="true">Tips</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="advice-tab" data-toggle="tab" href="#advice" role="tab" aria-controls="advice-tab" aria-selected="false">Advice Tab</a>
+                        <a href="http://localhost/developgetpet/dashboard/A.W.O-Advice.php" role="tab" aria-controls="advice-tab" aria-selected="false">Advice</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles" role="tab" aria-controls="articles-tab" aria-selected="false">Articles Tab</a>
+                        <a class="nav-link active" href="http://localhost/developgetpet/dashboard/A.W.O-Articles.php" role="tab" aria-controls="articles-tab" aria-selected="false">Articles</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="tips" role="tabpanel" aria-labelledby="tips-tab">
-                      
+                      <div class="tab-pane fade" id="tips" role="tabpanel" aria-labelledby="tips-tab">
+
+                      </div>
+                      <div class="tab-pane fade" id="advice" role="tabpanel" aria-labelledby="advice-tab">
+      
+                      </div>
+                      <div class="tab-pane fade show active" id="articles" role="tabpanel" aria-labelledby="articles-tab">
                       <?php
-                        $sql="SELECT * from post WHERE postStatus='Tips' ORDER BY postID DESC";
+                        $sql="SELECT * from post WHERE postStatus='Articles' ORDER BY postID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -488,17 +493,20 @@ if($query->rowCount()>0)
                                               <button class="dropdown-item Epost" data-post-id="<?php echo ($result->postID);?>" data-post-title="<?php echo ($result->postTitle);?>" data-post-content="<?php echo ($result->postContent);?>" data-post-location="<?php echo ($result->postLocation);?>" data-post-time="<?php echo ($result->postTime);?>" data-post-date="<?php echo ($result->postEventdate);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
 
                                               <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
+                                              <button class="dropdown-item Ppost" data-post-id="<?php echo ($result->postID);?>" data-post-picture="<?php echo ($result->postPicture);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture</button>
                                             </div><br>
                                             <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
                                             <label style=""><?php echo ($result->postDate);?></label><br><br>
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;"><br>
+                                            <br>
                                             <div class="field item form-group">  
                                             <div class="col-md-6 col-sm-6">
-                                            <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
+                                            <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
                                             </div>
                                             </div>                                
                                             <div class="field item form-group">                                        
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
+                                                 <textarea required="required" class="form-control txtgrow" id="Content" name="Content" style="height:auto;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
                                             </div>
                                             <?php $cnt1=$cnt1+1;}} ?>
@@ -516,7 +524,7 @@ if($query->rowCount()>0)
                                             <?php
                                             $postid = $result->postID;
 
-                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Tips' ORDER BY commentID DESC LIMIT 1";
+                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Articles' ORDER BY commentID DESC LIMIT 1";
                                             $query2=$dbh->prepare($sql2);
                                             $query2->execute();
                                             $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -572,7 +580,7 @@ if($query->rowCount()>0)
                                             <?php
                                             $postid = $result->postID;
 
-                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Tips' ORDER BY commentID DESC";
+                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Articles' ORDER BY commentID DESC";
                                             $query2=$dbh->prepare($sql2);
                                             $query2->execute();
                                             $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -645,200 +653,6 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>
-
-                      </div>
-                      <div class="tab-pane fade" id="advice" role="tabpanel" aria-labelledby="advice-tab">
-                      <?php
-                        $sql="SELECT * from post WHERE postStatus='Advice' ORDER BY postID DESC";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-nd-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                       
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
-
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            <div class="field item form-group">  
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <div class="field item form-group">                                        
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
-                                            </div>
-                                            </div>         
-                                            <?php $cnt1=$cnt1+1;}} ?>
-
-                                            <br>
-
-                                            <?php
-                                            $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postID'");
-                                            $count->execute();
-
-                                            $commentno=$count->fetchColumn();
-
-                                            ?>
-
-                                            <?php
-                                            $postid = $result->postID;
-
-                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Advice' ORDER BY commentID DESC LIMIT 1";
-                                            $query2=$dbh->prepare($sql2);
-                                            $query2->execute();
-                                            $comments=$query2->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt2=1;
-                                            if($query2->rowCount()>0)
-                                            {
-                                              foreach($comments as $comment)
-                                            {
-                                              ?>
-
-                                            <?php
-                                            $uid = $comment->userID;
-
-                                            $sql3="SELECT * from register WHERE userID ='$uid'";
-                                            $query3=$dbh->prepare($sql3);
-                                            $query3->execute();
-                                            $pictures=$query3->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt3=1;
-                                            if($query3->rowCount()>0)
-                                            {
-                                              foreach($pictures as $picture)
-                                            {
-                                              ?>
-                                              <br>
-                                            <h4 style="margin-top:-40px;float:right;margin-right:25px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
-
-                                            <div class="comment-Div">
-
-                                              <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" class="txtgrow" style="width:750px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 10px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->orgName);?><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v option" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($comment->userID);?></i>
-                                              </i>
-
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
-                                                  <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
-                                                </div><br>
-
-                                              <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
-                                              
-                                              <?php
-                                              $count_more_comment = $commentno-1;
-                                              ?>
-                                              <p class="view-more-comment" id="view_more" style="margin-top:-10px;margin-bottom:8px;"><span class="count-more-comment" id="count-more-comment">View <?php echo $count_more_comment?> more comment</span></p>  
-
-                                            </div>
-
-
-                                              
-                                            <?php $cnt2=$cnt2+1;}} ?>
-                                            <?php $cnt3=$cnt3+1;}} ?>
-
-                                            <div class="view-more-comment-Div" id="view_more_comment_Div">
-
-                                            <?php
-                                            $postid = $result->postID;
-
-                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Advice' ORDER BY commentID DESC";
-                                            $query2=$dbh->prepare($sql2);
-                                            $query2->execute();
-                                            $comments=$query2->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt2=1;
-                                            if($query2->rowCount()>0)
-                                            {
-                                              foreach($comments as $comment)
-                                            {
-                                              ?>
-
-                                            <?php
-                                            $uid = $comment->userID;
-
-                                            $sql3="SELECT * from register WHERE userID ='$uid'";
-                                            $query3=$dbh->prepare($sql3);
-                                            $query3->execute();
-                                            $pictures=$query3->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt3=1;
-                                            if($query3->rowCount()>0)
-                                            {
-                                              foreach($pictures as $picture)
-                                            {
-                                              ?>
-                                              <br>
-                                              
-                                              <label style="margin-top:-30px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" class="txtgrow" style="width:750px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 10px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->orgName);?><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v option" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($comment->userID);?></i></i>
-
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
-                                                  <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
-                                                </div><br>
-                                              
-                                              <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
-
-                                            <?php $cnt2=$cnt2+1;}} ?>
-                                            <?php $cnt3=$cnt3+1;}} ?>
-
-                                            <?php
-                                              $hide_more_comment = $commentno-1;
-                                            ?>
-                                            <p class="hide-more-comment" id="hide_more" style="margin-top:-10px;margin-bottom:8px;"> Hide <?php echo $hide_more_comment?> comment</p>
-
-                                            </div>
-
-                                            <?php
-
-                                            $sql4="SELECT * from register WHERE userID='$ID'";
-                                            $query4=$dbh->prepare($sql4);
-                                            $query4->execute();
-                                            $userIDs=$query4->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt4=1;
-                                            if($query4->rowCount()>0)
-                                            {
-                                              foreach($userIDs as $userID)
-                                            {
-                                              ?>
-                                            <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
-                                            <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:750px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;" data-post-id="<?php echo ($result->postID);?>" data-master-id="<?php echo ($result->userID);?>" data-post-status="<?php echo ($result->postStatus);?>">Write a comment...</button>
-                                            <div class="clearfix"></div>
-                                            <?php $cnt4=$cnt4+1;}} ?>
-                                            
-                                    </div>
-                                  </div><br>
-                                </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
-                      </div>
-                      <div class="tab-pane fade" id="articles" role="tabpanel" aria-labelledby="articles-tab">
-                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk 
                       </div>
                     </div>
                   
@@ -988,7 +802,7 @@ if($query->rowCount()>0)
       <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       
                       <li class="nav-item">
-                        <a class="nav-link active" id="post-tips-tab" data-toggle="tab" href="#post_tips" role="tab" aria-controls="post-tips-tab" aria-selected="true">Post Tips</a>
+                        <a class="nav-link" id="post-tips-tab" data-toggle="tab" href="#post_tips" role="tab" aria-controls="post-tips-tab" aria-selected="true">Post Tips</a>
                       </li>
 
                       <li class="nav-item">
@@ -996,12 +810,12 @@ if($query->rowCount()>0)
                       </li>
 
                       <li class="nav-item">
-                        <a class="nav-link" id="post-articles-tab" data-toggle="tab" href="#post_articles" role="tab" aria-controls="post-articles-tab" aria-selected="false">Post Articles</a>
+                        <a class="nav-link active" id="post-articles-tab" data-toggle="tab" href="#post_articles" role="tab" aria-controls="post-articles-tab" aria-selected="false">Post Articles</a>
                       </li>
                     </ul>
 
                     <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="post_tips" role="tabpanel" aria-labelledby="post-tips-tab">
+                      <div class="tab-pane fade" id="post_tips" role="tabpanel" aria-labelledby="post-tips-tab">
                       <label>Create Tips</label>
 
 <!-- Post Tips Code -->
@@ -1017,20 +831,22 @@ if(isset($_POST['Posttips']))
 $ID=($_POST['ID']);
 $Name=($_POST['Name']);
 $Email=($_POST['Email']);
+$ContactNo=($_POST['ContactNo']);
 $Title=($_POST['Title']);
 $Content=($_POST['Content']);
 
-$sql="INSERT INTO post(userID,userName,userEmail,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Tips','$date')";
+$sql="INSERT INTO post(userID,userName,userEmail,userContactNo,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:ContactNo,:Title,:Content,'Tips','$date')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
 $query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Title',$Title,PDO::PARAM_STR);
 $query->bindParam(':Content',$Content,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Tips.php'</script>";
 
 }
 ?>
@@ -1041,32 +857,36 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Title" name="Title" placeholder="Tips Titles...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                                                 <textarea required="required" class="form-control" id="Title" name="Title" placeholder="Tips Title..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
                     </div>
                     </div>
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="tips_content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
+                                                 <textarea required="required" class="form-control" id="tips_content" name="Content" placeholder="Write a Tips..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
                     </div>
                     </div>
                                          
                                          <span class="section"></span>
-                                         <div class="field item form-group">
+                                         <div hidden class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>"/>
                                              </div>
  
                                          </div>
-                                         <div class="field item form-group">
+                                         <div hidden class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>"/>
                                              </div>
  
                                          </div>
-                                         <div class="field item form-group">
+                                         <div hidden class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>"/></div>
+                                         </div>
+                                         <div hidden class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->orgContactNo);?>"/></div>
                                          </div>
                                                  <div style="text-align: center" class="form-group">
                                                  <div class="col-md-6 offset-md-3">
@@ -1092,20 +912,22 @@ if(isset($_POST['Postadvice']))
 $ID=($_POST['ID']);
 $Name=($_POST['Name']);
 $Email=($_POST['Email']);
+$ContactNo=($_POST['ContactNo']);
 $Title=($_POST['Title']);
 $Content=($_POST['Content']);
 
-$sql="INSERT INTO post(userID,userName,userEmail,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:Title,:Content,'Advice','$date')";
+$sql="INSERT INTO post(userID,userName,userEmail,userContactNo,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:ContactNo,:Title,:Content,'Advice','$date')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
 $query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Title',$Title,PDO::PARAM_STR);
 $query->bindParam(':Content',$Content,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-T.A.A.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Advice.php'</script>";
 
 }
 ?>
@@ -1116,33 +938,37 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" placeholder="Advice Titles...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" placeholder="Advice Title..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
                     </div>
                     </div>
                       <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="advice_content" name="Content" placeholder="Write an Advice...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
+                                                 <textarea required="required" class="form-control" id="advice_content" name="Content" placeholder="Write an Advice..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
                     </div>
                     </div>
                                          
                                         <span class="section"></span>
-                                         <div class="field item form-group">
+                                        <div hidden class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>"/>
                                              </div>
  
                                          </div>
-                                         <div class="field item form-group">
+                                         <div hidden class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>" type="hidden"/>
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>"/>
                                              </div>
  
                                          </div>
-                                         <div class="field item form-group">
+                                         <div hidden class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
-                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->ownerEmail);?>" type="hidden"/></div>
-                                         </div>                   
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>"/></div>
+                                         </div>
+                                         <div hidden class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->orgContactNo);?>"/></div>
+                                         </div>                 
                                          
                                          <div style="text-align: center" class="form-group">
                                          <div class="col-md-6 offset-md-3">
@@ -1152,8 +978,97 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          </div>   
                                      </form>
                       </div>
-                      <div class="tab-pane fade" id="post_articles" role="tabpanel" aria-labelledby="pos-articles-tab">
-                      <label>Create Articles</label>
+                      <div class="tab-pane fade show active" id="post_articles" role="tabpanel" aria-labelledby="post-articles-tab">
+                      <label>Create an Articles</label>
+<!-- Post Articles Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Postarticle']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$ContactNo=($_POST['ContactNo']);
+$postPicture = $_FILES["postPicture"]["name"];
+$tmp_dir = $_FILES["postPicture"]["tmp_name"];
+move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$postPicture");
+$Title=($_POST['Title']);
+$Content=($_POST['Content']);
+
+$sql="INSERT INTO post(userID,userName,userEmail,userContactNo,postPicture,postTitle,postContent,postStatus,postDate)VALUES(:ID,:Name,:Email,:ContactNo,:postPicture,:Title,:Content,'Articles','$date')";
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+$query->bindParam(':postPicture',$postPicture,PDO::PARAM_STR);
+$query->bindParam(':Title',$Title,PDO::PARAM_STR);
+$query->bindParam(':Content',$Content,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Posted Successfully!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
+
+}
+?>
+<!-- //Post Articles Code -->
+
+                      <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+                        
+                      
+                      <label class="col-form-label col-md-3 col-sm-3  label-align" style="text-align:left;">Upload Photo</label>
+                                        
+                                                <div style="text-align: center" class="wrap-input100 validate-input">
+                                                <input type="file" name="postPicture" id="postPicture" style="width:250px;height:40px;border:none;margin-right:460px" placeholder="Upload Picture">
+                                                </div>
+
+                      <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" placeholder="Article Title..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                    </div>
+                    </div>
+                      <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="article_content" name="Content" placeholder="Write an Article..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
+                    </div>
+                    </div>
+                                         
+                                        <span class="section"></span>
+                                        <div hidden class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>"/>
+                                             </div>
+ 
+                                         </div>
+                                         <div hidden class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>"/>
+                                             </div>
+ 
+                                         </div>
+                                         <div hidden class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>"/></div>
+                                         </div>
+                                         <div hidden class="field item form-group">
+                                             <div class="col-md-6 col-sm-6">
+                                                 <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->orgContactNo);?>"/></div>
+                                         </div>                 
+                                         
+                                         <div style="text-align: center" class="form-group">
+                                         <div class="col-md-6 offset-md-3">
+                                                     <button disabled name ="Postarticle" type='submit' id="Postarticle" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                     <button type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                         </div>
+                                         </div>     
+                                     </form>
                       
                                   </div>
                               </div>
@@ -1189,7 +1104,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
   
   }
 
@@ -1214,14 +1129,15 @@ if(isset($_POST['btnComment']))
 
     $commentID=$query2->fetchColumn();
 
-    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterID,:Comment,'$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID',:postID,'Comment on Your Post','$ID',:masterID,:Comment,'$date','Unread')";
     $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':postID',$postID,PDO::PARAM_STR);
     $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
     $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
   }
   
 }
@@ -1248,20 +1164,20 @@ if(isset($_POST['btnComment']))
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input id="post_id" name="postID" required = "required" class="form-control" id="success">
-				</div>
+			  <input hidden id="post_id" name="postID" required = "required" class="form-control" id="success">
+		</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input id="master_id" name="masterID" required = "required" class="form-control" id="success">
-				</div>
+			  <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
+		</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input id="user_id" name="userID" value="<?php echo ($result->orgID);?>" required = "required" class="form-control" id="success">
-				</div>
+			  <input hidden id="user_id" name="userID" value="<?php echo ($result->orgID);?>" required = "required" class="form-control" id="success">
+		</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input id="post_status" name="postStatus" required = "required" class="form-control" id="success">
-				</div>
+			  <input hidden id="post_status" name="postStatus" required = "required" class="form-control" id="success">
+		</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
-				</div><br>
+		</div><br>
 
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
@@ -1295,7 +1211,7 @@ if(isset($_POST['btnComment']))
       $query1->execute();
 
       echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
     }
   ?>
   <!-- //Edit Comment Code -->
@@ -1355,7 +1271,7 @@ if(isset($_POST['btnComment']))
     $query1->execute();
     
     echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
   }
   ?>
 	<!-- //Delete Comment Code -->
@@ -1403,8 +1319,18 @@ if(isset($_POST['btnComment']))
     $query->bindValue('postID',$postID);
     $query->execute();
 
+    $query1="Delete from comment where postID=:postID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('postID',$postID);
+    $query1->execute();
+
+    $query2="Delete from notification where postID=:postID";
+    $query2 = $dbh->prepare($query2);
+    $query2->bindValue('postID',$postID);
+    $query2->execute();
+
     echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
    }
 ?>
 <!-- //Delete Post Code -->
@@ -1460,7 +1386,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
   
     echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
   }
 ?>
 <!-- //Edit Post Code -->
@@ -1491,23 +1417,22 @@ if(isset($_POST['btnComment']))
                                         <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="title" name="Title" placeholder="Tips Titles...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                                                 <textarea required="required" class="form-control" id="title" name="Title" placeholder="Article Title..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
                                              </div>
                                         </div>
                                        
                                         <div class="field item form-group">
                                              
                                              <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="content" name="Content" placeholder="Write a Tips...." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
+                                                 <textarea required="required" class="form-control" id="content" name="Content" placeholder="Write an Article..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;"></textarea>
                                              </div>
-                                        </div>                              
+                                        </div>      
 
                                         <div class="ln_solid">
                                             <br>
                                             <div style="text-align: center" class="form-group">
                                             <div class="col-md-6 offset-md-3">
-                                                <button name ="btnEditPost" type='submit' id="btnEditPost" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Postevent.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                <button name ="btnEditPost" type='submit' id="btnEditPost" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Save</button>
                                             </div>
                                             </div>  
                                         </div>
@@ -1517,6 +1442,66 @@ if(isset($_POST['btnComment']))
   </div>
 </div>
 	<!-- //Modal Edit Post -->
+
+   <!-- Change Post Picture Code -->
+   <?php
+if(isset($_POST['btnChangePostPicture']))
+{
+$postID=$_POST['postID'];
+$PostPicture=$_POST['PostPicture'];
+
+$sql="update post set 
+postPicture=:PostPicture
+where postID=:postID";
+
+$query=$dbh->prepare($sql);
+$query->bindParam(':postID',$postID,PDO::PARAM_STR);  
+$query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Articles.php'</script>";
+}
+?>
+	<!-- //Change Post Picture Code -->
+
+  <!-- Modal Change Post Picture -->
+<div class="modal fade" id="ChangePostPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Change Post Picture</h4>
+        <button type="button" id="selected_picture_close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div class="modal-header">
+              <img id="post_picture" src="/developgetpet/web/images/" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" >
+        </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <input type="file" onchange="readURL(this);" name="PostPicture" id="PostPicture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden name="postID" id="post_id3" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="picture_file" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnChangePostPicture" id="btnChangePostPicture" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
+              <button type='reset' id="selected_picture_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Change Post Picture -->
 
 			<!-- footer content -->
 			<footer>
@@ -1610,6 +1595,9 @@ if(isset($_POST['btnComment']))
     var post_id3 = $(this).attr('data-post-id');
     $('#ChangePostPicture').modal('show');
     $("#post_id3").val( post_id3 );
+    var picture_file = $(this).attr('data-post-picture');
+    $('#picture_file').val( picture_file );
+    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
   });
   </script>
 
@@ -1737,6 +1725,12 @@ if(isset($_POST['btnComment']))
 <script>
      $( "#advice_content" ).keyup(function() {
   $("#Postadvice").prop("disabled", !this.value);
+});
+    </script>
+
+<script>
+     $( "#article_content" ).keyup(function() {
+  $("#Postarticle").prop("disabled", !this.value);
 });
     </script>
 

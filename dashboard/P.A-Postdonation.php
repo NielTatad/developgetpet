@@ -230,7 +230,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Postdonation.php">Donation</a>
+                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/P.A-Donation.php">Donation</a>
                     </li>
 
                     <li>
@@ -259,20 +259,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php">
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-				</div>
-			</div>
-
-		   <!-- top navigation -->
-       <div class="top_nav">
-            <div class="nav_menu">
-                <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                </div>
                 <nav class="nav navbar-nav">
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">

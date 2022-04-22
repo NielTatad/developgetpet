@@ -208,6 +208,14 @@ if($query->rowCount()>0)
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+  <style>
+    .view-more-comment:hover {
+    text-decoration: underline;
+}
+    .hide-more-comment:hover {
+    text-decoration: underline;
+}
+  </style>
 </head>
 
 <body class="nav-md">
@@ -265,7 +273,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
                     </li>
 
                     </ul>
@@ -787,7 +795,7 @@ if(isset($_POST['Short-Term-Care']))
   $Description=($_POST['Description']);
   $Reason=($_POST['Reason']);
 
-  $sql="INSERT INTO request(requestTitle,masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,petDescription,requestReason,requestDate)VALUES('Short-Term Care',:MasterID,:UserID,:Name,:Email,:Address,:ContactNo,:PetID,:Type,:PetName,:Breed,:Description,:Reason,'$date')";
+  $sql="INSERT INTO request(requestTitle,masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,petDescription,requestReason,requestDate)VALUES('Short-Term Care Request',:MasterID,:UserID,:Name,:Email,:Address,:ContactNo,:PetID,:Type,:PetName,:Breed,:Description,:Reason,'$date')";
   $query=$dbh->prepare($sql);
   $query->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
   $query->bindParam(':UserID',$UserID,PDO::PARAM_STR);
@@ -856,77 +864,77 @@ if(isset($_POST['Short-Term-Care']))
 					    <input hidden type="text" id="pet_id" name="PetID" required = "required" class="form-control">
 				</div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_name" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Type<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_type" name="Type" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Breed<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_breed" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_sex" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_age" name="Age" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_color" name="Color" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_weight" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="vaccination_status" name="Vaccination" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="deworming_status" name="Deworming" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Selected Range<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="selected_range" name="selectedRange" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea disabled="yes" id="pet_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
@@ -941,7 +949,7 @@ if(isset($_POST['Short-Term-Care']))
 					    <input hidden type="text" id="pet_picture" name="Picture"  required = "required" class="form-control">
 				</div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
@@ -952,35 +960,35 @@ if(isset($_POST['Short-Term-Care']))
 					    <input hidden type="text" id="user_id" name ="MasterID" required = "required" class="form-control">
 				</div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="post_by" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="post_date" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="user_email" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="user_address" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div class="field item form-group">
+        <div hidden class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="user_contactno" style="background-color:#fff;width:400px;" required="required"/>
@@ -990,7 +998,7 @@ if(isset($_POST['Short-Term-Care']))
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Reason<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-        <textarea name="Reason" id="Reason" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" required = "required" placeholder="Write your reason to take care of this pet..." onkeyup="request()"></textarea>
+        <textarea name="Reason" id="Reason" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" required = "required" placeholder="Write your reason for short-term care..." onkeyup="request()"></textarea>
         </div>
         </div>
         <script>
@@ -1050,7 +1058,7 @@ if(isset($_POST['Short-Term-Care']))
 				</div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="petname" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
         </div>
@@ -1133,9 +1141,7 @@ if(isset($_POST['Short-Term-Care']))
         </div>
         </div>
 
-        <div class="ln_solid">
         <br><br>
-        </div>
 
         </form>
       </div>
@@ -1191,8 +1197,9 @@ if(isset($_POST['btnComment']))
 
     $commentID=$query2->fetchColumn();
 
-    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID',:petid,'Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
     $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query3->execute();
@@ -1377,6 +1384,16 @@ if(isset($_POST['btnComment']))
     $query->bindValue('petID',$petID);
     $query->execute();
 
+    $query1="Delete from comment where postID=:petID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('petID',$petID);
+    $query1->execute();
+
+    $query2="Delete from notification where postID=:petID";
+    $query2 = $dbh->prepare($query2);
+    $query2->bindValue('petID',$petID);
+    $query2->execute();
+
     echo '<script>alert("Post Deleted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
    }
@@ -1493,17 +1510,17 @@ if(isset($_POST['btnComment']))
 				</div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input type="text" class="form-control" id="pet_name2" name="PetName" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" name="Type" id="pet_type2" style="background-color:#fff;width:190px;" required="required"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Pet Type</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" name="Type" id="pet_type2" style="background-color:#fff;width:190px;" required="required"/>
         <div class="col-md-6 col-sm-6">
         <select class="form-control myselect" id="slct1" style="background-color:#fff;width:200px;"  onchange="populate(this.id,'slct2')" onclick="typeFunction()">
-          <option value="" selected="selected">Type of pet...</option>
+          <option value=""></option>
           <option value="Dog">DOG</option>
           <option value="Cat">CAT</option>
         </select>
@@ -1518,7 +1535,7 @@ if(isset($_POST['btnComment']))
         </script>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Breed</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" id="pet_breed2" name="Breed" style="background-color:#fff;width:190px;" required="required"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Pet Breed</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" id="pet_breed2" name="Breed" style="background-color:#fff;width:190px;" required="required"/>
         <div class="col-md-6 col-sm-6">
         <select class="select2_group form-control" id="slct2" onclick="breedFunction()" style="background-color:#fff;width:200px;"></select>
         </div>
@@ -1560,9 +1577,10 @@ if(isset($_POST['btnComment']))
           </script>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Gender<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <select class="form-control" style="background-color:#fff;width:400px;" required="required" required="required" name="Gender" id="pet_sex2">
+          <option></option>
           <option>Male</option>
           <option>Female</option>
         </select>
@@ -1570,16 +1588,17 @@ if(isset($_POST['btnComment']))
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Age</label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age</label>
         <div class="col-md-6 col-sm-6">
                <input read only type="text" class="form-control" id="pet_age2" name="Age" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:200px" placeholder="0" value="1"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:200px"/>
         <div class="col-md-6 col-sm-6">
                <select class="form-control" onclick="ageFunction()"  id ="mnyr" style="width:217px">
+               <option></option>
                <option value="month">Month</option>
                <option value="year">Year</option>
                </select>
@@ -1596,23 +1615,24 @@ if(isset($_POST['btnComment']))
         </script>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input type="text" class="form-control" id="pet_color2" name="Color" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_weight2" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:200px" placeholder="0" value="1"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:200px"/>
         <div class="col-md-6 col-sm-6">
              <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:217px">
+             <option></option>
              <option value="kg">Kilogram</option>
              <option value="lb">Pound</option>
              </select>
@@ -1632,7 +1652,7 @@ if(isset($_POST['btnComment']))
 				<label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
 				<div class="col-md-6 col-sm-6">
 				<select class="form-control" id="vaccination_status2" style="background-color:#fff;width:400px;" name="Vaccination">
-					<option>Vaccination Status...</option>
+					<option></option>
 					<option>Vaccinated</option>
 					<option>Not vaccinated</option>
 					</select>
@@ -1643,18 +1663,18 @@ if(isset($_POST['btnComment']))
 				<label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
 			  <div class="col-md-6 col-sm-6">
 				<select class="form-control" required="required" id="deworming_status2" style="background-color:#fff;width:400px;" name="Deworming">
-					<option>Deworming Status...</option>
-					<option>Deworm</option>
-					<option>Not deworm</option>
+					<option></option>
+					<option>Dewormed</option>
+					<option>Not dewormed</option>
 				</select>
 				</div>
 			  </div>
 
         <div class="field item form-group">
-											<label class="col-form-label col-md-3 col-sm-3  label-align">Select Range<span class="required"></span></label>
+											<label class="col-form-label col-md-3 col-sm-3  label-align">Time Period<span class="required"></span></label>
 											<div class="col-md-6 col-sm-6">
 												<select class="form-control" onChange="jsFunction" required="required" id="totalDays" name="totalDays" style="width:400px">
-													<option value="0">Select Range Days for Short-term care...</option>
+													<option></option>
 													<option value="1">1 Day</option>
                           <option value="2">2 Days</option>
                           <option value="3">3 Days</option>
@@ -1689,7 +1709,7 @@ if(isset($_POST['btnComment']))
                     </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Short-term care<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea id="pet_description2" name="Description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
         </div>
@@ -1709,7 +1729,7 @@ if(isset($_POST['btnComment']))
         <br>
         <div class="form-group" style="text-align: center">
         <div class="col-md-6 offset-md-3">
-               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Update</button>
+               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Save</button>
         </div>
         </div>
         </div>
@@ -1871,7 +1891,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             $('.stcbtn').on('click', function () {
 
-                $('#AdoptModal').modal('show');
+                $('#STCModal').modal('show');
 
                 $tr = $(this).closest('ul');
 

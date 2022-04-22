@@ -273,7 +273,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
                     </li>
 
                     </ul>
@@ -443,7 +443,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                  <h2>Donation Post</h2>
+                  <h2>Posted Events</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -796,8 +796,9 @@ if(isset($_POST['btnComment']))
 
     $commentID=$query2->fetchColumn();
 
-    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID',:petid,'Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
     $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query3->execute();

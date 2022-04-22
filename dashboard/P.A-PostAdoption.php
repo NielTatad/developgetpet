@@ -222,11 +222,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php">Pet Adoption</a>
+                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php">Pet Adoption</a>
                     </li>
 
                     <li>
-                    <li><a href="#">Short-term Care</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>
@@ -489,9 +489,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
                         <h2>Post Pet For Adoption</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                        </li>          
+                        <ul class="nav navbar-right panel_toolbox">      
                         </ul>
                         <div class="clearfix"></div>
                         </div>
@@ -499,7 +497,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                 <div class="x_content">
                                 <form class="" action="" method="post" novalidate enctype="multipart/form-data">
                                          
-                                         <span class="section"></span>
                                          <div class="field item form-group">
                                              <div class="col-md-6 col-sm-6">
                                                  <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->adopterID);?>" type="hidden"/>
@@ -528,10 +525,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          </div>
  
                                          <div class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select<span class="required"></span></label>
+                                         <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Pet Type<span class="required"></span></label>
                                          <div class="col-md-6 col-sm-6">
                                            <select class="form-control" name="Type" id="slct1" required="required" onchange="populate(this.id,'slct2')">
-                                             <option value="">Type of pet...</option>
+                                             <option value=""></option>
                                              <option value="Dog">DOG</option>
                                              <option value="Cat">CAT</option>
                                            </select>
@@ -539,7 +536,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                        </div>
  
                                        <div class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Breed</label>
+                                         <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Pet Breed</label>
                                          <div class="col-md-6 col-sm-6">
                                            <select class="select2_group form-control" name="Breed" required="required" id="slct2"></select>
                                          </div>
@@ -575,16 +572,17 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                        </script>
  
                                          <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Name<span class="required"></span></label>
+                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
                                              <div class="col-md-6 col-sm-6">
-                                                 <input type="text" id="petname" class="form-control" name="Petname" placeholder="Pet Name..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                                 <input type="text" id="petname" class="form-control" name="Petname" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
                                              </div>
                                          </div>
  
                                          <div class="field item form-group">
-                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
+                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Gender<span class="required"></span></label>
                                          <div class="col-md-6 col-sm-6">
                                            <select class="form-control" required="required" name="Gender">
+                                             <option></option>
                                              <option>Male</option>
                                              <option>Female</option>
                                            </select>
@@ -592,9 +590,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                        </div>
  
                                        <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Age</label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:215px" placeholder="0" value="1"/>
+                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age</label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:215px"/>
                                              <div class="col-md-6 col-sm-6">
                                                <select class="form-control" onclick="ageFunction()"  id ="mnyr" style="width:231px">
+                                               <option></option>
                                                <option value="month">Month</option>
                                                <option value="year">Year</option>
                                            </select>
@@ -613,21 +612,22 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                          <div hidden  class="field item form-group">
                                          <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
                                              <div class="col-md-6 col-sm-6">
-                                                 <input readonly type="text" id="petage" name="Age" value ="1 month" style="width:360px;background-color:#fff;" class="form-control"/>
+                                                 <input readonly type="text" id="petage" name="Age" style="width:360px;background-color:#fff;" class="form-control"/>
                                              </div>
                                          </div>
  
                                          <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Color<span class="required"></span></label>
+                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
                                              <div class="col-md-6 col-sm-6">
-                                                 <input type="text" id="petcolor" class="form-control" name="Color" placeholder="Pet Color..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                                 <input type="text" id="petcolor" class="form-control" name="Color" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
                                              </div>
                                          </div>
  
                                          <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:215px" placeholder="0" value="1"/>
+                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight</span></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:215px"/>
                                              <div class="col-md-6 col-sm-6">
                                                <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:231px">
+                                               <option></option>
                                                <option value="kg">Kilogram</option>
                                                <option value="lb">Pound</option>
                                            </select>
@@ -655,7 +655,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                        <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
                        <div class="col-md-6 col-sm-6">
                          <select class="form-control" id="vax" name="Vaccination">
-                           <option>Vaccination Status...</option>
+                           <option></option>
                            <option>Vaccinated</option>
                            <option>Not vaccinated</option>
                          </select>
@@ -666,17 +666,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                        <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
                        <div class="col-md-6 col-sm-6">
                          <select class="form-control" required="required" id="deworm" name="Deworming">
-                           <option>Deworming Status...</option>
-                           <option>Deworm</option>
-                           <option>Not deworm</option>
+                           <option></option>
+                           <option>Dewormed</option>
+                           <option>Not dewormed</option>
                          </select>
                        </div>
                      </div>
  
                      <div class="field item form-group">
-                       <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+                       <label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Adoption</label>
                        <div class="col-md-6 col-sm-6">
-                         <textarea id="description" required="required" class="form-control" name="Description" placeholder="Pet Description..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+                         <textarea id="description" required="required" class="form-control" name="Description"
+                         data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
                        </div>
                      </div>
  
@@ -686,27 +687,17 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                       <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
                      </div>
  
-                     <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Date</label>
-                                         <div class="col-md-6 col-sm-6">
-                                         <div class='input-group date' id='myDatepicker4'>
-                                         <input required="required" type='text' id="dates" class="form-control" readonly="readonly" />
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-calendar"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>
- 
                                          <div class="ln_solid">
                                              <br>
-                                             <div class="form-group">
-                                                 <div class="col-md-6 offset-md-3">
-                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                     <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
-                                                 </div>
-                                             </div>
+                                             <div style="text-align: center" class="form-group">
+                                              <div class="form-group">
+                                                <div class="col-md-6 offset-md-3">
+                                                    <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-PostAdoption.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                </div>
+                                              </div>
+                                              </div>
+                                              </div>
                                          </div>
                                      </form>
                                 </div>

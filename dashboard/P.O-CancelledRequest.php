@@ -267,7 +267,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
                     </li>
 
                   
@@ -553,7 +553,7 @@ if($query->rowCount()>0)
                         
 <!-- View Cancelled Request Code -->
 <?php
-            $sql="SELECT * from request WHERE userID='$ID' AND requestStatus = 'Cancelled' ORDER BY petID DESC";
+            $sql="SELECT * from request WHERE userID='$ID' AND requestStatus = 'Cancelled' ORDER BY requestID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);

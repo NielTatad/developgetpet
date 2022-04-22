@@ -246,7 +246,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Postdonation.php">Donation</a>
+                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/P.O-Donation.php">Donation</a>
                     </li>
 
                     <li>
@@ -258,7 +258,7 @@ if($query->rowCount()>0)
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
                     </li>
 
                     </ul>

@@ -286,13 +286,13 @@ th {
                               <input type="checkbox" id="check-all" class="flat">
                             </th>
                             <th style="text-align:center" class="column-title">Pet ID</th>
-                            <th style="text-align:center" class="column-title">Name</th>
-                            <th style="text-align:center" class="column-title">Type</th>
-                            <th style="text-align:center" class="column-title">Breed</th>
-                            <th style="text-align:center" class="column-title">Age</th>
-                            <th style="text-align:center" class="column-title">Color</th>
-                            <th style="text-align:center" class="column-title">Weight</th>
-                            <th style="text-align:center" class="column-title">Picture</th>
+                            <th style="text-align:center" class="column-title">Pet Name</th>
+                            <th style="text-align:center" class="column-title">Pet Type</th>
+                            <th style="text-align:center" class="column-title">Pet Breed</th>
+                            <th style="text-align:center" class="column-title">Pet Age</th>
+                            <th style="text-align:center" class="column-title">Pet Color</th>
+                            <th style="text-align:center" class="column-title">Pet Weight</th>
+                            <th style="text-align:center" class="column-title">Pet Photo</th>
                             <th style="text-align:center" class="column-title">Vaccination Status</th>
                             <th style="text-align:center" class="column-title">Deworming Status</th>
                             <th style="text-align:center" class="column-title">Pet Status</th>

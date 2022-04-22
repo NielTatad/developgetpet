@@ -244,7 +244,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
                     </li>
                  
               </div>
@@ -415,10 +415,8 @@ if($query->rowCount()>0)
   <div class="col-md-12 col-sm-12">
     <div class="x_panel" style="border-radius:10px;border-width:2px;">
       <div class="x_title">
-        <h2>Events</h2>
+        <h2>Posted Events</h2>
         <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-          </li>
        </ul>
         <div class="clearfix"></div>
       </div>
@@ -770,8 +768,9 @@ if(isset($_POST['btnComment']))
 
     $commentID=$query2->fetchColumn();
 
-    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID',:petid,'Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
     $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query3->execute();
@@ -956,6 +955,16 @@ if(isset($_POST['btnComment']))
     $query->bindValue('postID',$postID);
     $query->execute();
 
+    $query1="Delete from comment where postID=:postID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('postID',$postID);
+    $query1->execute();
+
+    $query2="Delete from notification where postID=:postID";
+    $query2 = $dbh->prepare($query2);
+    $query2->bindValue('postID',$postID);
+    $query2->execute();
+
     echo '<script>alert("Post Deleted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
    }
@@ -1119,8 +1128,7 @@ if(isset($_POST['btnComment']))
                                             <br>
                                             <div style="text-align: center" class="form-group">
                                             <div class="col-md-6 offset-md-3">
-                                                <button name ="btnEditPost" type='submit' id="btnEditPost" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Events.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                <button name ="btnEditPost" type='submit' id="btnEditPost" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Save</button>
                                             </div>
                                             </div>  
                                         </div>
