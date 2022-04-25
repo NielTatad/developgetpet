@@ -109,10 +109,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             <h5 style="text-align:center;margin-top:-14px;margin-left:-10px;">PET ADOPTER <strong>REGISTRATION</strong></h5>
 
             <div class="input-group">
-              <span class="input-group-text">Firstname</span>
+              <span class="input-group-text" style="float:right;">Firstname & Lastname</span>
               <input type="text" aria-label="First name" class="form-control" style="background-color:#f1f1f1;border-radius:5px;border:#00cdc1;font-family:Arial;">
-              <br>&nbsp&nbsp&nbsp
-              <span class="input-group-text">Lastname</span>
               <input type="text" aria-label="Last name" class="form-control" style="background-color:#f1f1f1;border-radius:5px;border:#00cdc1;font-family:Arial;">
             </div>
             <br>
