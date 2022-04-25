@@ -183,6 +183,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
   <style>
@@ -222,15 +224,20 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 					<br />
 
 				 <!-- sidebar menu -->
-         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
               <div class="menu_section">
-                <ul class="nav side-menu">
-                <li>
+                    <ul class="nav side-menu">
+
+                    <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet Adoption</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Short-term Care</a>
                     </li>
 
                     <li>
@@ -242,27 +249,34 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>
-                 
-              </div>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
+                    </li>                 
 
-            </div>
-            <!-- /sidebar menu -->
+                    </ul>
+					</div>
+					</div>
+					<!-- /sidebar menu -->
 
-				<!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
-              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
+					<!-- /menu footer buttons -->
+					<div class="sidebar-footer hidden-small">
+                    <a  data-toggle="modal" data-target="#Settings" title="Inbox" data-placement="top" title="Settings" style="cursor:pointer;">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                    </a>
+          </div>
+					<!-- /menu footer buttons -->
 				</div>
 			</div>
 
@@ -1733,9 +1747,6 @@ if(isset($_POST['btnComment']))
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 
-  
-
-     
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

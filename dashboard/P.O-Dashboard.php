@@ -171,6 +171,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -199,10 +201,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <br />
 
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
               <div class="menu_section">
-                <ul class="nav side-menu">
+                    <ul class="nav side-menu">
+
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
@@ -225,27 +228,33 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>
+                    </li>                 
 
-                  
-              </div>
+                    </ul>
+					</div>
+					</div>
+					<!-- /sidebar menu -->
 
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
+					<!-- /menu footer buttons -->
+					<div class="sidebar-footer hidden-small">
+                    <a  data-toggle="modal" data-target="#Settings" title="Inbox" data-placement="top" title="Settings" style="cursor:pointer;">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                    </a>
+          </div>
+					<!-- /menu footer buttons -->
           </div>
         </div>
 
@@ -399,7 +408,7 @@ if($query->rowCount()>0)
             <div class="clearfix"></div>
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                <div class="x_panel" style="border-radius:10px;border-width:2spx;">
                   <div class="x_title">
                     <h2>New Post For Adoption</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -496,12 +505,12 @@ if($query->rowCount()>0)
             {
                ?>
 
-                <div class="card">
-                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="...">
+                <div class="card" style="border-radius:10px;border-width:2px;box-shadow: 8px 8px 8px #888888;">
+                  <h2 class="card-title" style="text-align:left;"><?php echo ($result->postTitle);?></h2>
+                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="..." style="border-radius:10px;">
 
                   <div class="card-body">
-                    <h5 class="card-title"><?php echo ($result->postTitle);?></h5>
-                    <p class="card-text"><?php echo ($result->postContent);?></p>
+                    <p class="card-text" style="text-align:left;"><?php echo ($result->postContent);?></p>
                     <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
                     <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                     <?php $user_id = $result->userID;
@@ -961,19 +970,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     }).hide();
     </script>
 
-    <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-
-    <script>
+<script>
      let previousLength = 0;
 
       const handleInput = (event) => {
@@ -991,7 +988,21 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         
         previousLength = newLength;
       }
-    </script>
+</script>
 
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
