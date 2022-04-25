@@ -495,14 +495,16 @@ if($query->rowCount()>0)
               foreach($results as $result)
             {
                ?>
-                      <div class="col-nd-4">
-                        <div class="card" style="border-radius:10px;border-width:2px;">                 
-                          <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                
-                                
-                                <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
-                                <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                <?php $user_id = $result->userID;
+
+                <div class="card">
+                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="...">
+
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo ($result->postTitle);?></h5>
+                    <p class="card-text"><?php echo ($result->postContent);?></p>
+                    <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
+                    <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                    <?php $user_id = $result->userID;
 
                                 $sql1="SELECT * from register WHERE userID='$user_id'";
                                 $query1=$dbh->prepare($sql1);
@@ -516,24 +518,12 @@ if($query->rowCount()>0)
                                   ?>
                         
                                 <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                <label style=""><?php echo ($result->postDate);?></label><br>
-                                <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top postimage" onerror='this.style.display = "none"' alt="Post Images" style="height:300px;width:500px;border-radius:10px;margin-top:20px"><br>
-                                <br>
-                                <div class="field item form-group">  
-                                <div class="col-md-6 col-sm-6">
-                                <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
-                                </div>
-                                </div>                                
-                                <div class="field item form-group">                                        
-                                 <div class="col-md-6 col-sm-6">
-                                     <textarea required="required" class="form-control txtgrow" id="Content" name="Content" style="height:auto;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
-                                </div>
-                                </div>
-                                <?php $cnt1=$cnt1+1;}} ?>               
-                        </div>
-                      </div><br>
-                    </div>
-                  <?php $cnt=$cnt+1;
+                                <label style=""><?php echo ($result->postDate);?></label><br>      
+                                <?php $cnt1=$cnt1+1;}} ?>                
+                  </div>                  
+                </div>   
+                <br>   
+                <?php $cnt=$cnt+1;
                 }
             } 
             else
