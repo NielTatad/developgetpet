@@ -183,6 +183,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
   <style>
@@ -238,7 +240,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Fundraisingactivities.php">Fundraising activities</a>
+                    <li><a href="#">Fundraising activities</a>
                     </li>
 
                     <li>
@@ -247,7 +249,32 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-T.A.A.php">Pet Care Tips</a>
+                    </li>
+
+                  
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+					<!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php">
+              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+				</div>
+			</div>
+
 			  <!-- top navigation -->
+        <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -387,13 +414,19 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Available Pet For Adoption</h2>
+                  <div class="page-title">
+                  <div class="title_left">
+                  <h2>Available Pet For Adoption</h2> 
+                  </div>                 
+
+                    <!-- Post Button -->
+                    <a href="http://localhost/developgetpet/dashboard/P.A-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post Pet</button></a>
                     <ul class="nav navbar-right panel_toolbox">
                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-                                  
+                  <br>                
                   <!-- View Pet Post for Adotion Code -->
                   <?php
                         $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC";
@@ -638,6 +671,47 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
+
+  <!-- ModalProfile -->
+  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div class="modal-header">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+        </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="hidden" name="adopterID" value="<?php echo ( $result->adopterID);?>" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center">
+						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
+							 <a style="color:White"> Update Profile </a>
+						 </button>
+				</div>
+        <div style="text-align: center">
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterContactNo);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterAddress);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->adopterEmail);?></h6>
+             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
+        </div><br>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //ModalProfile -->
   
    <!-- ModalSettings -->
   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -805,70 +879,70 @@ if(isset($_POST['Adopt']))
 					    <input hidden type="text" id="pet_id" name="PetID" required = "required" class="form-control">
 				</div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_name" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Type<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_type" name="Type" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Breed<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_breed" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_sex" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_age" name="Age" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_color" name="Color" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_weight" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="vaccination_status" name="Vaccination" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="deworming_status" name="Deworming" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea disabled="yes" id="pet_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
@@ -883,7 +957,7 @@ if(isset($_POST['Adopt']))
 					    <input hidden type="text" id="pet_picture" name="Picture"  required = "required" class="form-control">
 				</div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
@@ -894,35 +968,35 @@ if(isset($_POST['Adopt']))
 					    <input hidden type="text" id="user_id" name ="MasterID" required = "required" class="form-control">
 				</div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="post_by" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="post_date" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="user_email" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="user_address" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
-        <div hidden class="field item form-group">
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="user_contactno" style="background-color:#fff;width:400px;" required="required"/>
@@ -992,49 +1066,49 @@ if(isset($_POST['Adopt']))
 				</div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="petname" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Type<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Type<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pettype" name="Type" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Breed<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Breed<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="petbreed" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Gender<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="petsex" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="petage" name="Age" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="petcolor" name="Color" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="petweight" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
         </div>
@@ -1055,7 +1129,7 @@ if(isset($_POST['Adopt']))
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Adoption<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea disabled="yes" id="petdescription" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
         </div>
@@ -1068,7 +1142,9 @@ if(isset($_POST['Adopt']))
         </div>
         </div>
 
+        <div class="ln_solid">
         <br><br>
+        </div>
 
         </form>
       </div>
@@ -1124,9 +1200,8 @@ if(isset($_POST['btnComment']))
 
     $commentID=$query2->fetchColumn();
 
-    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID',:petid,'Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
     $query3=$dbh->prepare($sql3);
-    $query3->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query3->execute();
@@ -1311,16 +1386,6 @@ if(isset($_POST['btnComment']))
     $query->bindValue('petID',$petID);
     $query->execute();
 
-    $query1="Delete from comment where postID=:petID";
-    $query1 = $dbh->prepare($query1);
-    $query1->bindValue('petID',$petID);
-    $query1->execute();
-
-    $query2="Delete from notification where postID=:petID";
-    $query2 = $dbh->prepare($query2);
-    $query2->bindValue('petID',$petID);
-    $query2->execute();
-
     echo '<script>alert("Post Deleted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Adoption.php'</script>";
    }
@@ -1431,17 +1496,17 @@ if(isset($_POST['btnComment']))
 				</div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input type="text" class="form-control" id="pet_name2" name="PetName" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Pet Type</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" name="Type" id="pet_type2" style="background-color:#fff;width:190px;" required="required"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" name="Type" id="pet_type2" style="background-color:#fff;width:190px;" required="required"/>
         <div class="col-md-6 col-sm-6">
         <select class="form-control myselect" id="slct1" style="background-color:#fff;width:200px;"  onchange="populate(this.id,'slct2')" onclick="typeFunction()">
-          <option value=""></option>
+          <option value="" selected="selected">Type of pet...</option>
           <option value="Dog">DOG</option>
           <option value="Cat">CAT</option>
         </select>
@@ -1456,7 +1521,7 @@ if(isset($_POST['btnComment']))
         </script>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Pet Breed</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" id="pet_breed2" name="Breed" style="background-color:#fff;width:190px;" required="required"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Breed</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" id="pet_breed2" name="Breed" style="background-color:#fff;width:190px;" required="required"/>
         <div class="col-md-6 col-sm-6">
         <select class="select2_group form-control" id="slct2" onclick="breedFunction()" style="background-color:#fff;width:200px;"></select>
         </div>
@@ -1498,10 +1563,9 @@ if(isset($_POST['btnComment']))
           </script>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Gender<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <select class="form-control" style="background-color:#fff;width:400px;" required="required" required="required" name="Gender" id="pet_sex2">
-          <option></option>
           <option>Male</option>
           <option>Female</option>
         </select>
@@ -1509,17 +1573,16 @@ if(isset($_POST['btnComment']))
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age</label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Age</label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_age2" name="Age" style="background-color:#fff;width:400px;" required="required"/>
+               <input read only type="text" class="form-control" id="pet_age2" name="Age" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:200px"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:200px" placeholder="0" value="1"/>
         <div class="col-md-6 col-sm-6">
                <select class="form-control" onclick="ageFunction()"  id ="mnyr" style="width:217px">
-               <option></option>
                <option value="month">Month</option>
                <option value="year">Year</option>
                </select>
@@ -1536,24 +1599,23 @@ if(isset($_POST['btnComment']))
         </script>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input type="text" class="form-control" id="pet_color2" name="Color" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="pet_weight2" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:200px"/>
+        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:200px" placeholder="0" value="1"/>
         <div class="col-md-6 col-sm-6">
              <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:217px">
-             <option></option>
              <option value="kg">Kilogram</option>
              <option value="lb">Pound</option>
              </select>
@@ -1573,7 +1635,7 @@ if(isset($_POST['btnComment']))
 				<label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
 				<div class="col-md-6 col-sm-6">
 				<select class="form-control" id="vaccination_status2" style="background-color:#fff;width:400px;" name="Vaccination">
-					<option></option>
+					<option>Vaccination Status...</option>
 					<option>Vaccinated</option>
 					<option>Not vaccinated</option>
 					</select>
@@ -1584,15 +1646,15 @@ if(isset($_POST['btnComment']))
 				<label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
 			  <div class="col-md-6 col-sm-6">
 				<select class="form-control" required="required" id="deworming_status2" style="background-color:#fff;width:400px;" name="Deworming">
-					<option></option>
-					<option>Dewormed</option>
-					<option>Not dewormed</option>
+					<option>Deworming Status...</option>
+					<option>Deworm</option>
+					<option>Not deworm</option>
 				</select>
 				</div>
 			  </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Adoption<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea id="pet_description2" name="Description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
         </div>
@@ -1612,7 +1674,7 @@ if(isset($_POST['btnComment']))
         <br>
         <div class="form-group" style="text-align: center">
         <div class="col-md-6 offset-md-3">
-               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Save</button>
+               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Update</button>
         </div>
         </div>
         </div>
@@ -2062,7 +2124,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   
 
      
