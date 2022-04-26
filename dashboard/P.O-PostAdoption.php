@@ -506,7 +506,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="x_title">
                       
                         <!-- Back Button -->
-                        <a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:#White;"> Return</i></button></a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:White;"> Return</i></button></a>
                         <!-- //Back Button -->
 
                    
