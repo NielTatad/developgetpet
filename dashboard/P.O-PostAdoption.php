@@ -407,7 +407,6 @@ if($query->rowCount()>0)
                     <div class="page-title">
                         <div class="title_left">
                         <br>
-                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
                         </div>
 
                         <div class="title_right">

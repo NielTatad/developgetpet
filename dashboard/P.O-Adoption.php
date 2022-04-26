@@ -423,7 +423,6 @@ if($query->rowCount()>0)
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -453,7 +452,7 @@ if($query->rowCount()>0)
                   </div>                 
 
                     <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/P.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post Pet</button></a>
+                    <a href="http://localhost/developgetpet/dashboard/P.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post Pet</button></a>
 
                     <ul class="nav navbar-right panel_toolbox">
                    </ul>

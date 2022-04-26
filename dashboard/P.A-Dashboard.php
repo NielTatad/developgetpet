@@ -171,6 +171,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -409,16 +411,20 @@ if($query->rowCount()>0)
                         {
                           foreach($results as $result)
                         {
-                           ?>
-                                  <div class="col-md-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:180px;">
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petStatus);?></h2></h2>                                
+                           ?> 
+                                  <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
+                                    <div class="col">
+                                      <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                          <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
+                                          <br><br>
+                                          <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
+                                          <br><br>
+                                          <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
+                                        </div>
+                                        <div class="card-footer">
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 
@@ -435,11 +441,12 @@ if($query->rowCount()>0)
                                             
                                             <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
                                             <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
+                                            <label style=""><?php echo ($result->postDate);?></label>
+                                        </div>
+                                      </div>
                                     </div>
-                                  </div><br>
-                                </div>
+                                  </div>
+                                  
                               <?php $cnt=$cnt+1;
                             }
                         } 
@@ -457,86 +464,80 @@ if($query->rowCount()>0)
             </div>
             <!-- //New Post For Adoption Code -->
             
-            <!-- New Post For Tips Advice & Articles Code -->
-            <div class="clearfix"></div>
+             <!-- New Post For Tips Advice & Articles Code -->
+           <div class="clearfix"></div>
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12">
-                <div class="x_panel" style="border-radius:10px;border-width:2px;">
-                  <div class="x_title">
-                    <h2>New Post For Pet Care Tips</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content" style="text-align:center;">
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="x_panel" style="border-radius:10px;border-width:2px;">
+      <div class="x_title">
+        <h2>New Post For Pet Care Tips</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+          </li>      
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" style="text-align:center;">
 
-                  <?php
-                        $sql="SELECT * from post ORDER BY postID DESC LIMIT 3";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-nd-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
-                                        
-                                            <div class="field item form-group">  
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <div class="field item form-group">                                        
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
+      <?php
+            $sql="SELECT * from post WHERE postStatus!='Deleted' ORDER BY postID DESC LIMIT 3";
+            $query=$dbh->prepare($sql);
+            $query->execute();
+            $results=$query->fetchALL(PDO::FETCH_OBJ);
+            $cnt=1;
+            if($query->rowCount()>0)
+            {
+              foreach($results as $result)
+            {
+               ?>
 
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
-                                    </div>
-                                  </div><br>
-                                </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
+                <div class="card" style="border-radius:10px;border-width:2px;box-shadow: 8px 8px 8px #888888;">
+                  <h2 class="card-title" style="text-align:left;">&nbsp&nbspTitle: <?php echo ($result->postTitle);?></h2>
+                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="..." style="border-radius:10px;">
 
-                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.A-T.A.A.php"><h2 style="text-align:center;">
-                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Read More!</button></h2></a>
+                  <div class="card-body">
+
+                <div class="mb-3">
+                  <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled style="border-radius:10px;height:200px;"><?php echo ($result->postContent);?></textarea>
                 </div>
-              </div>
-            </div>            
-            <!-- New Post For Tips Advice & Articles Code -->             
+                    <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
+                    <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                    <?php $user_id = $result->userID;
+
+                                $sql1="SELECT * from register WHERE userID='$user_id'";
+                                $query1=$dbh->prepare($sql1);
+                                $query1->execute();
+                                $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                $cnt1=1;
+                                if($query1->rowCount()>0)
+                                {
+                                  foreach($userids as $userid)
+                                {
+                                  ?>
+                        
+                                <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                <label style=""><?php echo ($result->postDate);?></label><br>      
+                                <?php $cnt1=$cnt1+1;}} ?>                
+                  </div>                  
+                </div>   
+                <br>   
+                <?php $cnt=$cnt+1;
+                }
+            } 
+            else
+            {
+              echo "There isn't any information displayed.";
+            }
+            ?>
+
+      </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.A-Tips.php"><h2 style="text-align:center;">
+      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Read More!</button></h2></a>
+    </div>
+  </div>
+</div>            
+<!-- New Post For Tips Advice & Articles Code -->             
 
           </div>
         </div>
@@ -700,5 +701,7 @@ if($query->rowCount()>0)
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>

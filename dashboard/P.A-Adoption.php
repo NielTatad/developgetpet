@@ -365,7 +365,6 @@ if($query->rowCount()>0)
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -379,9 +378,6 @@ if($query->rowCount()>0)
                 </div>
               </div>
             </div>
-
-            <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/P.A-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
 
             <!-- /page content -->
 

@@ -444,7 +444,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <input type="text" aria-label="Username" class="form-control" style="background-color:#f1f1f1;" name="Username" data-validate = "Valid username is required: ex@abc.xyz">
               &nbsp
               <span class="input-group-text" style="float:right;">Password</span>
-              <input type="password" aria-label="Password" class="form-control" style="background-color:#f1f1f1;" name="Password" data-validate="Password is required" maxlength="50">
+              <input type="password" aria-label="Password" class="form-control" style="background-color:#f1f1f1;" name="Password" data-validate="Password is required" min="8" max="50">
             </div>
             <br>             
 					<div style="text-align: center">

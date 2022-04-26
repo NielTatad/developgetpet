@@ -383,7 +383,6 @@ if($query->rowCount()>0)
                     <div class="page-title">
                         <div class="title_left">
                         <br>
-                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
                         </div>
 
                         <div class="title_right">
@@ -474,9 +473,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 ?>
 <!-- //Post Pet Code -->
 
-                    <!-- Back Button -->
-                    <a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
-
                     <div class="clearfix"></div>
 
                     <div class="row">
@@ -484,7 +480,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
-                        <h2>Post Pet For Adoption</h2>
+                        <!-- Back Button -->
+                        <a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:#White;"> Return</i></button></a>
+                        <!-- //Back Button -->
                         <ul class="nav navbar-right panel_toolbox">      
                         </ul>
                         <div class="clearfix"></div>

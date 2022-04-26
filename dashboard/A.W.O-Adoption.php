@@ -387,7 +387,6 @@ if($query->rowCount()>0)
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -400,10 +399,7 @@ if($query->rowCount()>0)
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/A.W.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+            </div>           
 
             <!-- /page content -->
 
@@ -413,13 +409,20 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Available Pet For Adoption</h2>
+                  <div class="page-title">
+                  <div class="title_left">
+                  <h2>Available Pet For Adoption</h2> 
+                  </div>                 
+
+                    <!-- Post Button -->
+                    <a href="http://localhost/developgetpet/dashboard/A.W.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post Pet</button></a>
+
                     <ul class="nav navbar-right panel_toolbox">
                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-                                  
+                  <br>                
                   <!-- View Pet Post for Adotion Code -->
                   <?php
                         $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC";

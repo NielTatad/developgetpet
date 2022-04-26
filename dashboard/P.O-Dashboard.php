@@ -429,16 +429,20 @@ if($query->rowCount()>0)
                         {
                           foreach($results as $result)
                         {
-                           ?>
-                                  <div class="col-md-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:180px;">
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petStatus);?></h2></h2>                                
+                           ?> 
+                                  <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
+                                    <div class="col">
+                                      <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                          <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
+                                          <br><br>
+                                          <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
+                                          <br><br>
+                                          <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
+                                        </div>
+                                        <div class="card-footer">
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 
@@ -455,11 +459,12 @@ if($query->rowCount()>0)
                                             
                                             <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
                                             <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
+                                            <label style=""><?php echo ($result->postDate);?></label>
+                                        </div>
+                                      </div>
                                     </div>
-                                  </div><br>
-                                </div>
+                                  </div>
+                                  
                               <?php $cnt=$cnt+1;
                             }
                         } 
@@ -477,8 +482,8 @@ if($query->rowCount()>0)
             </div>
             <!-- //New Post For Adoption Code -->
             
-           <!-- New Post For Tips Advice & Articles Code -->
-           <div class="clearfix"></div>
+          <!-- New Post For Tips Advice & Articles Code -->
+          <div class="clearfix"></div>
 
 <div class="row">
   <div class="col-md-12 col-sm-12">
@@ -506,11 +511,15 @@ if($query->rowCount()>0)
                ?>
 
                 <div class="card" style="border-radius:10px;border-width:2px;box-shadow: 8px 8px 8px #888888;">
-                  <h2 class="card-title" style="text-align:left;"><?php echo ($result->postTitle);?></h2>
+                  <h2 class="card-title" style="text-align:left;">&nbsp&nbspTitle: <?php echo ($result->postTitle);?></h2>
                   <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="..." style="border-radius:10px;">
 
                   <div class="card-body">
-                    <p class="card-text" style="text-align:left;"><?php echo ($result->postContent);?></p>
+
+                <div class="mb-3">
+                  <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled style="border-radius:10px;height:200px;"><?php echo ($result->postContent);?></textarea>
+                </div>
                     <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
                     <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                     <?php $user_id = $result->userID;

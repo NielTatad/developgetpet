@@ -506,13 +506,15 @@ if($query->rowCount()>0)
                                             <label style=""><?php echo ($result->postDate);?></label><br><br>
                                             <div class="field item form-group">  
                                             <div class="col-md-6 col-sm-6">
-                                            <textarea id="description" required="required" class="form-control" id="Title" name="Title"  style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
+                                            <!--<textarea id="description" required="required" class="form-control" id="Title" name="Title"  style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>-->
+                                            <h5 class="card-title" id="description" id="Title" name="Title" style="text-align:left;resize:none;">Title: <?php echo ($result->postTitle);?></h5>
                                             </div>
                                             </div>                                
-                                            <div class="field item form-group">                                        
-                                            <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control txtgrow" id="Content" name="Content" style="height:auto;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
-                                            </div>
+                                                                                   
+                                            
+                                            <div class="mb-3">
+                                              <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
+                                              <textarea class="form-control txtgrow" id="Content" name="Content" style="border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
                                             <?php $cnt1=$cnt1+1;}} ?>
 
