@@ -173,6 +173,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
             <br>
 
+            <!-- Erase Code              
             <div class="input-group">
               <span class="input-group-text" style="float:right;">Zip Code</span>
               <input type="text" aria-label="Age" class="form-control" onkeypress="isInputNumber(event)" name="Zip" style="background-color:#f1f1f1;" >
@@ -429,6 +430,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               </select>
             </div>
             <br>
+            Erase Code-->
                           
             <div class="input-group">
               <span class="input-group-text" style="float:right;">Address</span>             
@@ -443,9 +445,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <span class="input-group-text" style="float:right;">Password</span>
               <input type="password" aria-label="Password" class="form-control" style="background-color:#f1f1f1;" name="Password" data-validate="Password is required" maxlength="50">
             </div>
-            <br>
-            <br> 
-            <br>              
+            <br>            
 					<div style="text-align: center">
 						<button  class="login100-form-btn" style="background-color:#00cdc1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" name="insert">
 							<a style="color:White">Register</a>
@@ -454,11 +454,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           <br>
 	        </form>
       </div>
-      <div class="modal-footer">
-      <div class="w-full text-center p-t-55">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="height:40px;">Close</button>
-      </div>
-    </div>
   </div>
 </div>
 <!-- //Modal for Org-->
