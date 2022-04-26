@@ -393,16 +393,46 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:50px;">
-                  
-                <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-Profile.php';" alt="avatar" style="width:40px;height:40px;" class="rounded-circle img-responsive">&nbsp&nbsp<a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;height:40px;width:900px;background-color:#e9ecef;font-size:16px;height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1remfont-weight: 400;line-height: 1.5;color: #495057;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
-                <div class="clearfix"></div>
-
-                </div>
-              </div>
-            </div>
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner" style="border-radius: 10px;">
+    <div class="carousel-item active">
+      <img src="images/slider1.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      <h3>we provide
+			<span>care</span> that your
+			<span>pet</span> deserves!</h3>
+			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/slider2.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      <h3>we provide
+			<span>care</span> that your
+			<span>pet</span> deserves!</h3>
+			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/slider3.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>we provide
+			<span>care</span> that your
+			<span>pet</span> deserves!</h3>
+			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br>
 
             <!-- New Post For Adoption Code -->
             <div class="clearfix"></div>

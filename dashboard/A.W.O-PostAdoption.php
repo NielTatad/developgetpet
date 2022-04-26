@@ -474,7 +474,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
                          <!-- Back Button -->
-                         <a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:#White;"> Return</i></button></a>
+                         <a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:White;"> Return</i></button></a>
                         <!-- //Back Button -->
                         <ul class="nav navbar-right panel_toolbox">    
                         </ul>
