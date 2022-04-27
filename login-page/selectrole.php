@@ -32,7 +32,7 @@ if(isset($_POST['AnimalWelfareOrganization']))
 
     <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -72,17 +72,18 @@ if(isset($_POST['AnimalWelfareOrganization']))
             <br>
             <br>
             <div style="text-align: center">
-						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:55px;border:none;border-radius: 4px;" name="PetAdopter">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetAdopter" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
 							  <a style="color:White">Pet Adopter</a>
 						    </button>
 					  </div><br>
             <div style="text-align: center">
-						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:55px;border:none;border-radius: 4px;" name="PetOwner">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetOwner">
 							  <a style="color:White">Pet Owner</a>
 						    </button>
 					  </div><br>
+            
             <div style="text-align: center">
-						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:55px;border:none;border-radius: 4px;" name="AnimalWelfareOrganization">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="AnimalWelfareOrganization">
 							  <a style="color:White">Animal Welfare Organization</a>
 						    </button>
 					  </div>

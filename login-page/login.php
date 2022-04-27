@@ -171,17 +171,16 @@ if(isset($_POST['login']))
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
           <a href="http://localhost/developgetpet/web/Dashboard.php">
-          <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-90px;margin-top:-50px;" alt=" " class="img-responsive"/><br></p>
+          <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-190px;margin-top:-50px;" alt=" " class="img-responsive"/><br></p>
           </a>
           </div>
-          <br>
-          <br>
+
             <form action="#" method="post">
             <strong style="font-size:14px;" >Username:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Username" required="required" id="Username">
 					  </div>
-            <br>
+
             <strong style="font-size:14px;">Password:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" id="Password">
@@ -203,7 +202,7 @@ if(isset($_POST['login']))
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>--> 
               </div>
   
-              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:50px;">
+              <input type="submit" name="login" value="Sign In" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:40px;">
               <br>
               <div class="w-full text-center p-t-55">
                 <span class="txt2" style ="font-size: 12px;">
