@@ -100,12 +100,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <div class="bg order-1 order-md-2" style="background-image: url('images/doggy1.jpg');"></div>
     <div class="contents order-2 order-md-1">
 
-    <div class="container">
+    <div class="container" style="width:100%;">
       <div class="row align-items-center justify-content-center">  
-          <div class="col-md-7">  
-          <a href="http://localhost/developgetpet/web/Dashboard.php">
-          <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-90px;margin-top:-300px;margin-right:-15px;" alt=" " class="img-responsive"/></p>
-          </a>    
+          <div class="col-md-7">    
           <br>
             <h5 style="text-align:center;margin-top:-14px;margin-left:-10px;">PET ADOPTER <strong>REGISTRATION</strong></h5>
 
