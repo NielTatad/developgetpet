@@ -109,11 +109,70 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           <br>
             <h5 style="text-align:center;margin-top:-14px;margin-left:-10px;">PET ADOPTER <strong>REGISTRATION</strong></h5>
 
-            <div style="text-align: center">
-						    <button type="button" class="btn btn-primary" style="background-color:#00cdc1;width:350px;height:55px;border:none;border-radius:4px;"  data-bs-toggle="modal" data-bs-target="#Adopter">
-							  <a style="color:White">Click Here To Fill The Information</a>
-						    </button>
-					  </div><br>
+            <form class="login100-form validate-form" method="post">
+
+            <div class="input-group">
+              <span class="input-group-text" style="float:right;height:35px;">Firstname & Lastname</span>
+              <input type="text" aria-label="First name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Firstname">
+              &nbsp
+              <input type="text" aria-label="Last name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Lastname">
+            </div>
+            <br>
+
+            <div class="input-group">
+              <span class="input-group-text" style="float:right;height:35px;">Email</span>
+              <input type="text" aria-label="Email" class="form-control" style="background-color:#f1f1f1;height:35px;" data-validate = "Valid email is required: ex@abc.xyz" name="Email">
+              &nbsp
+              <span class="input-group-text" style="float:right;height:35px;">Contact No</span>
+              <input type="tel" aria-label="Contact No" class="form-control" style="background-color:#f1f1f1;height:35px;" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" required="required">
+            </div>
+            <br>
+
+            <div class="input-group">
+              <span class="input-group-text" style="float:right;height:35px;">Date Of Birth</span>
+												<input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" style="background-color:#f1f1f1;height:35px;">
+												<script>
+													function timeFunctionLong(input) {
+														setTimeout(function() {
+															input.type = 'text';
+														}, 60000);
+													}
+												</script>
+              &nbsp
+              <span class="input-group-text" style="float:right;height:35px;">Age</span>
+              <input type="text" aria-label="Age" class="form-control" style="background-color:#f1f1f1;height:35px;" onkeypress="isInputNumber(event)" name="Age" maxlength="2" min="18" max="80">
+              &nbsp
+              <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+              <select class="form-select" id="inputGroupSelect01" style="background-color:#f1f1f1;">
+                <option selected>Select Gender...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <br>
+                        
+            <div class="input-group">
+              <span class="input-group-text" style="float:right;height:35px;">Address</span>             
+              <input type="text" aria-label="Username" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Address" data-validate = "Valid username is required: ex@abc.xyz">
+            </div>
+            <br>           
+
+            <div class="input-group">
+              <span class="input-group-text" style="float:right;height:35px;">Username</span>
+              <input type="text" aria-label="Username" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Username" data-validate = "Valid username is required: ex@abc.xyz">
+              &nbsp
+              <span class="input-group-text" style="float:right;height:35px;">Password</span>
+              <input type="password" aria-label="Password" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Password" data-validate="Password is required" min="8" max="50">
+            </div>
+            <br>             
+					<div style="text-align: center">
+						<button  class="login100-form-btn" style="background-color:#00cdc1;width:300px;height:40px;border-radius:5px;border:#00cdc1;height:35px;" name="insert">
+							<a style="color:White">Register</a>
+						</button>
+					</div>
+          <br>
+	        </form><br>
             <div class="w-full text-center p-t-55">
             <a href="http://localhost/developgetpet/login-page/login.php" class="txt2 bo1" style="color:blue; font-size:12px;">
             I am already a member
