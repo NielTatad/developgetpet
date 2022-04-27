@@ -110,9 +110,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <div class="input-group">
               <span class="input-group-text" style="float:right;height:35px;">Firstname & Lastname</span>
-              <input type="text" aria-label="First name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Firstname">
+              <input type="text" aria-label="First name" class="form-control" style="background-color:#f1f1f1;height:35px;width:70px;" name="Firstname">
               &nbsp
-              <input type="text" aria-label="Last name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Lastname">
+              <input type="text" aria-label="Last name" class="form-control" style="background-color:#f1f1f1;height:35px;width:70px;" name="Lastname">
             </div>
             <br>
 
