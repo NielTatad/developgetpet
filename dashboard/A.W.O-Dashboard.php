@@ -387,28 +387,27 @@ if($query->rowCount()>0)
     <div class="carousel-item active">
       <img src="images/slider1.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3>we provide
-			<span>care</span> that your
-			<span>pet</span> deserves!</h3>
-			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+      <h3 style="color:black;">We are
+			<span>GetPet</span> were
+			<span>love </span> is wanted!</h3>
+			<h2 style="color:black;"><strong>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</strong></h2>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider2.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3>we provide
+      <h3 style="color:black;">we provide
 			<span>care</span> that your
 			<span>pet</span> deserves!</h3>
-			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+			<h2 style="color:black;"><strong>A comprehensive guide to dog & cat care to make your pet feel your love</strong></h2>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h3>we provide
-			<span>care</span> that your
-			<span>pet</span> deserves!</h3>
-			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+        <h3 style="color:black;">Helping everyone,			
+			<span>With everyone!</h3>
+			<h2 style="color:black;"><strong>I care not for a man’s religion whose dog and cat are not the better for it.</strong></h2>
       </div>
     </div>
   </div>
