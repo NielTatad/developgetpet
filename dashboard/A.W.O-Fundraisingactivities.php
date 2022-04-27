@@ -378,7 +378,6 @@ if($query->rowCount()>0)
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -393,9 +392,6 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-            <!-- Post Button -->
-            <a href="http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Create Post</button></a>
-
             <!-- /page content -->
 
             <div class="clearfix"></div>
@@ -404,15 +400,19 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                  <h2>Donation Post</h2>
+                  <div class="page-title">
+                  <div class="title_left">
+                  <h2>Fundraising Activities Post</h2> 
+                  </div>                 
+
+                    <!-- Post Button -->
+                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Create Post</button></a>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>
                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-                                  
+                  <br>                
                   <!-- View Pet Post for Adotion Code -->
                   <?php
                         $sql="SELECT * from charity WHERE charityStatus='Accepted' AND charityPoststatus='Fundraising' AND charityPoststatus!='Deleted' ORDER BY charityID DESC";
@@ -461,7 +461,7 @@ if($query->rowCount()>0)
                                               <br>
                                               <br>
                                               <div class="progress" style="border-radius:10px;">
-                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">$500</div>
+                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">$500/$1000</div>
                                               </div>
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
@@ -486,6 +486,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
                                               <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-10px;">View More Info</button>
+                                              <button type="button" class="btn btn-success adoptbtn" id="adoptbtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
                                               <br>
 
                                               <?php

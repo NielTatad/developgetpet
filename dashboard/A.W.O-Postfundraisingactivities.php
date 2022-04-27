@@ -375,7 +375,7 @@ if($query->rowCount()>0)
                     <div class="page-title">
                         <div class="title_left">
                         <br>
-                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
+                        <h2>Create Post for Fundraising Activities</h2>
                         </div>
 
                         <div class="title_right">
@@ -454,10 +454,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 }
 ?>
 
-
-                    <!-- Back Button -->
-                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;">Back</button></a>
-
                     <div class="clearfix"></div>
 
                     <div class="row">
@@ -465,7 +461,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
-                        <h2>Create Post for Fund-raising Activities</h2>
+                         <!-- Back Button -->
+                         <a href="http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:White;"> Return</i></button></a>
+                        <!-- //Back Button -->
                         <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
                         </li>          
@@ -506,26 +504,46 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                                         
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Fundraising Name<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petname" class="form-control" name="Title" placeholder="Title..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                                <input type="text" id="petname" class="form-control" name="Title" placeholder="..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
                                             </div>
                                         </div>
 
-                                        <div class="field item form-group">
-                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
-                                          <div class="col-md-6 col-sm-6">
-                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="Reason..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
-                                          </div>
-                                        </div>                                    
-                                      
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Photo</label>
                                         
                                         <div style="text-align: center" class="wrap-input100 validate-input">
                                         <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
                                         </div>
-                               
+
                                         <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">About Your Fundraising</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="Please share what services and projects your raised funds will go towards..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
+                                          </div>
+                                        </div>
+                                        
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Your Website<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="Website" class="form-control" name="Website" placeholder="https://website.org..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="₱00..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                            </div>
+                                        </div>
+
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Gcash QR Code</label>
+                                        
+                                        <div style="text-align: center" class="wrap-input100 validate-input">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+                                        </div>
+                               
+                                        <!--<div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Select Bank<span class="required"></span></label>
                                         <div class="col-md-6 col-sm-6">
                                           <select class="form-control" required="required" name="Bank">
@@ -544,14 +562,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             <div class="col-md-6 col-sm-6">
                                                 <input type="text" id="pin" class="form-control" name="Pin" placeholder="Pin..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                             </div>
-                                      </div>
-
-                                      <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="Amount..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                            </div>
-                                      </div>
+                                      </div>-->                                   
 
                                         <div class="ln_solid">
                                             <br>
