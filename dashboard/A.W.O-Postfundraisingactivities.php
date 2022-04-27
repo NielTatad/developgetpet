@@ -464,9 +464,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                          <!-- Back Button -->
                          <a href="http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:White;"> Return</i></button></a>
                         <!-- //Back Button -->
-                        <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                        </li>          
+                        <ul class="nav navbar-right panel_toolbox">          
                         </ul>
                         <div class="clearfix"></div>
                         </div>
