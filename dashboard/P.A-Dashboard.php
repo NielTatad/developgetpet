@@ -427,83 +427,83 @@ if($query->rowCount()>0)
 </div>
 <br>
 
-            <!-- New Post For Adoption Code -->
-            <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:10px;border-width:2px;">
-                  <div class="x_title">
-                    <h2>New Post For Adoption</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content" style="text-align:center;">
+                        <!-- New Post For Adoption Code -->
+                        <div class="clearfix"></div>
 
-                  <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?> 
-                                  <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
-                                    <div class="col">
-                                      <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                          <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
-                                          <br><br>
-                                          <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
-                                          <br><br>
-                                          <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="x_panel" style="border-radius:10px;border-width:2px;">
+      <div class="x_title">
+        <h2>New Post For Adoption</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+          </li>      
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" style="text-align:center;">
 
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
+      <?php
+            $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+            $query=$dbh->prepare($sql);
+            $query->execute();
+            $results=$query->fetchALL(PDO::FETCH_OBJ);
+            $cnt=1;
+            if($query->rowCount()>0)
+            {
+              foreach($results as $result)
+            {
+               ?> 
+                      <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
+                        <div class="col">
+                          <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                            <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
+                            <div class="card-body">
+                              <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                              <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
+                              <br><br>
+                              <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
+                              <br><br>
+                              <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
+                            </div>
+                            <div class="card-footer" style="background-color:#E4E4E4 ;">
+                                <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                <?php $user_id = $result->userID;
 
-                        </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php"><h2 style="text-align:center;">
-                        <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- //New Post For Adoption Code -->
+                                $sql1="SELECT * from register WHERE userID='$user_id'";
+                                $query1=$dbh->prepare($sql1);
+                                $query1->execute();
+                                $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                $cnt1=1;
+                                if($query1->rowCount()>0)
+                                {
+                                  foreach($userids as $userid)
+                                {
+                                  ?>
+                                
+                                <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                <?php $cnt1=$cnt1+1;}} ?>
+                                <label style=""><?php echo ($result->postDate);?></label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                  <?php $cnt=$cnt+1;
+                }
+            } 
+            else
+            {
+              echo "There isn't any information displayed.";
+            }
+            ?>
+
+      </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
+      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
+    </div>
+  </div>
+</div>
+<!-- //New Post For Adoption Code -->
             
              <!-- New Post For Tips Advice & Articles Code -->
            <div class="clearfix"></div>

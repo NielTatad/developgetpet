@@ -457,13 +457,6 @@ th {
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_bank" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
@@ -471,11 +464,11 @@ th {
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Gcash QR Code<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_pin" name="Age" style="background-color:#fff;width:400px;" required="required"/>
+        <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="card-ing-top" alt="Post Images" style="height:350px;width:400px;border-radius:10px;text-align:center;">
         </div>
-        </div>
+        </div>     
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
@@ -486,10 +479,6 @@ th {
 
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
-				</div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_picture" name="Picture"  required = "required" class="form-control">
 				</div>
 
         <div class="field item form-group">

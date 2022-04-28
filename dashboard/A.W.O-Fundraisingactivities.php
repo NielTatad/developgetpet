@@ -454,22 +454,18 @@ if($query->rowCount()>0)
                                             </div>
                                             <br>
 
-                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
+                                            <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Charity Title: <?php echo ($result->charityTitle);?><br>Amount Needed: ₱<?php echo ($result->charityAmount);?>.00
+                                            <br>Organization Website: <?php echo ($result->charityWebsite);?></p>                                           
                                             <br>
+                                            <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                                                                       
                                               <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
-                                              <br>
-                                              <br>
-                                              <div class="progress" style="border-radius:10px;">
-                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">$500/$1000</div>
-                                              </div>
+                                              <br>                                      
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->charityTitle);?></h2></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charityBank);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityAmount);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charityPinnumber);?></h3></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charityDescription);?></textarea></li>
                                               
                                               
@@ -485,8 +481,13 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-10px;">View More Info</button>
-                                              <button type="button" class="btn btn-success adoptbtn" id="adoptbtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
+                                              <div class="progress" style="border-radius:10px;margin-left:20px;width:500px;">
+                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%;">$500/$1000</div>
+                                              </div>
+                                              <br>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
+                                              <br>
+                                              <button type="button" class="btn btn-success donatebtn" id="donatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-bs-toggle="modal" data-bs-target="#donate"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
                                               <br>
 
                                               <?php
@@ -525,7 +526,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                                 <br>
-                                               <h4 style="margin-top:-42px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+                                               <h4 style="margin-top:-75px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
 
                                                <div class="comment-Div">
 
@@ -788,23 +789,9 @@ if($query->rowCount()>0)
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_bank" name="Bank" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_pin" name="Number" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
@@ -1278,6 +1265,63 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 <!-- //Modal Change Post Picture -->
 
+<!-- Modal for donate-->
+<div class="modal fade" id="donate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Follow some steps on how to Donate through Gcash</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      <div class="card mb-3" style="max-width: 800px;height:250px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+          <?php
+                        $sql="SELECT * from charity WHERE charityQRcode";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                              foreach($results as $result)
+                            {
+                              ?>
+            <img <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="img-fluid rounded-start" alt="...">
+            <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">To donate via Gcash:</h5>
+              <br><br>
+              <p class="card-text" style="line-height:5px;">1. Log in to your Gcash account, then tap on QR on your navigation bar</p>
+              <p class="card-text" style="line-height:5px;">2. Align your phone's camera to our QR code to scan it.</p>
+              <p class="card-text" style="line-height:5px;">3. Input thje total amount and tap next.</p>
+              <p class="card-text" style="line-height:5px;">4. Review all details then tap on Pay.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //Modal for donate-->
+
 			<!-- footer content -->
 			<footer>
       <p class="tweet-p1">
@@ -1364,11 +1408,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                 $('#char_id').val(data[0]);
                 $('#char_title').val(data[1]);
-                $('#char_bank').val(data[2]);
-                $('#char_amount').val(data[3]);
-                $('#char_pin').val(data[4]);
-                $('#char_description').val(data[5]);
-                $('#char_status').val(data[8]);
+                $('#char_amount').val(data[2]);
+                $('#char_description').val(data[3]);
+                $('#char_status').val(data[6]);
                 
             });
         });

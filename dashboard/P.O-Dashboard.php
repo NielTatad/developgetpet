@@ -436,9 +436,10 @@ if($query->rowCount()>0)
 
             <!-- New Post For Adoption Code -->
             <div class="clearfix"></div>
+
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:10px;border-width:2spx;">
+              <div class="col-md-12 col-sm-12">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>New Post For Adoption</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -463,7 +464,7 @@ if($query->rowCount()>0)
                                   <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
                                     <div class="col">
                                       <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" alt="...">
+                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
                                         <div class="card-body">
                                           <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
                                           <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
@@ -472,7 +473,7 @@ if($query->rowCount()>0)
                                           <br><br>
                                           <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
                                         </div>
-                                        <div class="card-footer">
+                                        <div class="card-footer" style="background-color:#E4E4E4 ;">
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 
@@ -504,9 +505,8 @@ if($query->rowCount()>0)
                         }
                         ?>
 
-                        </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><h2 style="text-align:center;">
-                        <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
-                  </div>
+                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
+                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                 </div>
               </div>
             </div>

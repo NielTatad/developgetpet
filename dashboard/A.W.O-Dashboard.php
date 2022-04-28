@@ -381,8 +381,33 @@ if($query->rowCount()>0)
                 </div>
               </div>
             </div>
+            
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  New Post for Event <span class="badge bg-danger">4</span>
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Post for Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
   <div class="carousel-inner" style="border-radius: 10px;">
     <div class="carousel-item active">
       <img src="images/slider1.jpg" class="d-block w-100" alt="...">
@@ -451,7 +476,7 @@ if($query->rowCount()>0)
                                   <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
                                     <div class="col">
                                       <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" alt="...">
+                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
                                         <div class="card-body">
                                           <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
                                           <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
@@ -460,7 +485,7 @@ if($query->rowCount()>0)
                                           <br><br>
                                           <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
                                         </div>
-                                        <div class="card-footer">
+                                        <div class="card-footer" style="background-color:#E4E4E4 ;">
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 

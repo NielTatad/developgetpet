@@ -425,15 +425,17 @@ if(isset($_POST['Post']))
     $ContactNo=($_POST['ContactNo']);
     $Title=($_POST['Title']);
     $Description=($_POST['Description']);
-    $Bank=($_POST['Bank']);
-    $Pin=($_POST['Pin']);
+    $Website=($_POST['Website']);
     $Amount=($_POST['Amount']);
     $Picture = $_FILES["Picture"]["name"];
     $tmp_dir = $_FILES["Picture"]["tmp_name"];
+    $QRCode = $_FILES["QRCode"]["name"];
+    $tmp_dir = $_FILES["QRCode"]["tmp_name"];
     
     move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
+    move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$QRCode");
     
-    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityBank,charityPinnumber,charityAmount,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Bank,:Pin,:Amount,'$date','Unaccepted','Fundraising')";
+    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityAmount,charityWebsite,charityQRcode,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Amount,:Website,:QRCode,'$date','Unaccepted','Fundraising')";
     $query=$dbh->prepare($sql); 
     $query->bindParam(':ID',$ID,PDO::PARAM_STR);
     $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -442,13 +444,13 @@ if(isset($_POST['Post']))
     $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
     $query->bindParam(':Title',$Title,PDO::PARAM_STR);
     $query->bindParam(':Description',$Description,PDO::PARAM_STR);
-    $query->bindParam(':Bank',$Bank,PDO::PARAM_STR);
-    $query->bindParam(':Pin',$Pin,PDO::PARAM_STR);
+    $query->bindParam(':Website',$Website,PDO::PARAM_STR);
     $query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
     $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+    $query->bindParam(':QRCode',$QRCode,PDO::PARAM_STR);
     $query->execute();
 
-echo '<script>alert("Posted Successfully!")</script>';
+echo '<script>alert("Posted Successfully! Please wait for the admin approval of your post Thank you!")</script>';
 echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php'</script>";
 
 }
@@ -511,7 +513,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Photo</label>
                                         
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture" multiple>
                                         </div>
 
                                         <div class="field item form-group">
@@ -524,21 +526,21 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Your Website<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="Website" class="form-control" name="Website" placeholder="https://website.org..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                                <input type="text" id="Website" class="form-control" name="Website" placeholder="https://website.org..." required="required" />
                                             </div>
                                         </div>
 
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="₱00..." required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                                <input type="text" id="amount" class="form-control" name="Amount" placeholder="₱00..."  min="0" max="4" required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                             </div>
                                         </div>
 
                                         <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Gcash QR Code</label>
                                         
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+                                        <input type="file" name="QRCode" id="QRCode" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
                                         </div>
                                
                                         <!--<div class="field item form-group">
@@ -567,7 +569,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                     <button name ="Post" type='submit' id="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Post</button>
-                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Postdonation.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
+                                                    <button onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php';" type='reset' class="btn btn-danger" name="Reset" style="width:120px;height:40px;">Reset</button>
                                                 </div>
                                             </div>
                                         </div>
