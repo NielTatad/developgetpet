@@ -797,13 +797,6 @@ if($query->rowCount()>0)
         </div>
 
         <div class="field item form-group">
-          <label class="col-form-label col-md-3 col-sm-3  label-align">Gcash QR Code<span class="required"></span></label>
-          <div class="col-md-6 col-sm-6">
-          <Img class="card-ing-top" id="char_qrcode" alt="Post Images" style="height:350px;width:400px;border-radius:10px;text-align:center;">
-          </div>
-          </div>
-
-        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
