@@ -191,7 +191,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GETPETs</title>
+    <title>GETPET</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
