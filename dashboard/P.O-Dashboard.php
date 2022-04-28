@@ -392,34 +392,108 @@ if($query->rowCount()>0)
                 </div>
               </div>
             </div>
+            
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  New Post for Event <span class="badge bg-danger">4</span>
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Post for Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      <div class="x_content" style="text-align:center;">
+
+      <?php
+            $sql="SELECT * from post WHERE postStatus!='Deleted' ORDER BY postID DESC LIMIT 3";
+            $query=$dbh->prepare($sql);
+            $query->execute();
+            $results=$query->fetchALL(PDO::FETCH_OBJ);
+            $cnt=1;
+            if($query->rowCount()>0)
+            {
+              foreach($results as $result)
+            {
+               ?>
+
+                <div class="card" style="border-radius:10px;border-width:2px;box-shadow: 8px 8px 8px #888888;">
+                <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">WHAT:&nbsp&nbsp&nbsp<?php echo ($result->postTitle);?><br>WHEN:&nbsp&nbsp<?php echo ($result->postEventdate);?><br>WHERE:&nbsp<?php echo ($result->postLocation);?>
+                                            <br>TIME:&nbsp&nbsp&nbsp<?php echo ($result->postTime);?></p>
+                                            <br>
+                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="..." style="border-radius:10px;">
+
+                  <div class="card-body">
+
+                    <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
+                    <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                    <?php $user_id = $result->userID;
+
+                                $sql1="SELECT * from register WHERE userID='$user_id'";
+                                $query1=$dbh->prepare($sql1);
+                                $query1->execute();
+                                $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                $cnt1=1;
+                                if($query1->rowCount()>0)
+                                {
+                                  foreach($userids as $userid)
+                                {
+                                  ?>
+                        
+                                <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                <label style=""><?php echo ($result->postDate);?></label><br>      
+                                <?php $cnt1=$cnt1+1;}} ?>                
+                  </div>                  
+                </div>   
+                <br>   
+                <?php $cnt=$cnt+1;
+                }
+            } 
+            else
+            {
+              echo "There isn't any information displayed.";
+            }
+            ?>
+
+      </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Events.php"><h2 style="text-align:center;">
+      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">View More!</button></h2></a>
+    </div>
+  </div>
+  </div>
+</div>
+<br>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
   <div class="carousel-inner" style="border-radius: 10px;">
     <div class="carousel-item active">
       <img src="images/slider1.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3>we provide
-			<span>care</span> that your
-			<span>pet</span> deserves!</h3>
-			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+      <h3 style="color:black;">We are
+			<span>GetPet</span> were
+			<span>love </span> is wanted!</h3>
+			<h2 style="color:black;"><strong>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</strong></h2>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider2.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3>we provide
+      <h3 style="color:black;">we provide
 			<span>care</span> that your
 			<span>pet</span> deserves!</h3>
-			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+			<h2 style="color:black;"><strong>A comprehensive guide to dog & cat care to make your pet feel your love</strong></h2>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h3>we provide
-			<span>care</span> that your
-			<span>pet</span> deserves!</h3>
-			<p>A comprehensive guide to dog & cat care to make your pet feel your love</p>
+        <h3 style="color:black;">Helping everyone,			
+			<span>With everyone!</h3>
+			<h2 style="color:black;"><strong>I care not for a man’s religion whose dog and cat are not the better for it.</strong></h2>
       </div>
     </div>
   </div>
@@ -433,7 +507,6 @@ if($query->rowCount()>0)
   </button>
 </div>
 <br>
-
             <!-- New Post For Adoption Code -->
             <div class="clearfix"></div>
 
@@ -442,9 +515,7 @@ if($query->rowCount()>0)
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>New Post For Adoption</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
+                    <ul class="nav navbar-right panel_toolbox">     
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -505,24 +576,22 @@ if($query->rowCount()>0)
                         }
                         ?>
 
-                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
+                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><h2 style="text-align:center;">
                   <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
                 </div>
               </div>
             </div>
             <!-- //New Post For Adoption Code -->
-            
-          <!-- New Post For Tips Advice & Articles Code -->
-          <div class="clearfix"></div>
+
+             <!-- New Post For Tips Advice & Articles Code -->
+           <div class="clearfix"></div>
 
 <div class="row">
   <div class="col-md-12 col-sm-12">
     <div class="x_panel" style="border-radius:10px;border-width:2px;">
       <div class="x_title">
         <h2>New Post For Pet Care Tips</h2>
-        <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-          </li>      
+        <ul class="nav navbar-right panel_toolbox">     
         </ul>
         <div class="clearfix"></div>
       </div>

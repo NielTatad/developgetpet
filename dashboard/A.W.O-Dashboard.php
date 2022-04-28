@@ -396,13 +396,63 @@ if($query->rowCount()>0)
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        
+      <div class="x_content" style="text-align:center;">
+
+      <?php
+            $sql="SELECT * from post WHERE postStatus!='Deleted' ORDER BY postID DESC LIMIT 3";
+            $query=$dbh->prepare($sql);
+            $query->execute();
+            $results=$query->fetchALL(PDO::FETCH_OBJ);
+            $cnt=1;
+            if($query->rowCount()>0)
+            {
+              foreach($results as $result)
+            {
+               ?>
+
+                <div class="card" style="border-radius:10px;border-width:2px;box-shadow: 8px 8px 8px #888888;">
+                <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">WHAT:&nbsp&nbsp&nbsp<?php echo ($result->postTitle);?><br>WHEN:&nbsp&nbsp<?php echo ($result->postEventdate);?><br>WHERE:&nbsp<?php echo ($result->postLocation);?>
+                                            <br>TIME:&nbsp&nbsp&nbsp<?php echo ($result->postTime);?></p>
+                                            <br>
+                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="..." style="border-radius:10px;">
+
+                  <div class="card-body">
+
+                    <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
+                    <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                    <?php $user_id = $result->userID;
+
+                                $sql1="SELECT * from register WHERE userID='$user_id'";
+                                $query1=$dbh->prepare($sql1);
+                                $query1->execute();
+                                $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                $cnt1=1;
+                                if($query1->rowCount()>0)
+                                {
+                                  foreach($userids as $userid)
+                                {
+                                  ?>
+                        
+                                <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                <label style=""><?php echo ($result->postDate);?></label><br>      
+                                <?php $cnt1=$cnt1+1;}} ?>                
+                  </div>                  
+                </div>   
+                <br>   
+                <?php $cnt=$cnt+1;
+                }
+            } 
+            else
+            {
+              echo "There isn't any information displayed.";
+            }
+            ?>
+
+      </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Events.php"><h2 style="text-align:center;">
+      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">View More!</button></h2></a>
     </div>
+  </div>
   </div>
 </div>
 <br>
@@ -454,9 +504,7 @@ if($query->rowCount()>0)
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>New Post For Adoption</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
+                    <ul class="nav navbar-right panel_toolbox">     
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -532,9 +580,7 @@ if($query->rowCount()>0)
     <div class="x_panel" style="border-radius:10px;border-width:2px;">
       <div class="x_title">
         <h2>New Post For Pet Care Tips</h2>
-        <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-          </li>      
+        <ul class="nav navbar-right panel_toolbox">     
         </ul>
         <div class="clearfix"></div>
       </div>
