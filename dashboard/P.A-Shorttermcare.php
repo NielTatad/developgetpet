@@ -390,7 +390,7 @@ if($query->rowCount()>0)
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
+              
               </div>
 
               <div class="title_right">
@@ -405,9 +405,6 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-            <a href="http://localhost/developgetpet/dashboard/P.A-PostShorttermcare.php"><button data-toggle="tooltip" data-placement="top" title="Post Pet" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-plus" style="font-size:30px;color:#White;"></i></button></a>
-            <!-- //Post Button -->
-
             <!-- /page content -->
 
             <div class="clearfix"></div>
@@ -416,13 +413,19 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Available Pet For Short-Term Care</h2>
+                  <div class="page-title">
+                  <div class="title_left">
+                  <h2>Available Pet For Short-Term Care</h2> 
+                  </div>                               
+
+                    <!-- Post Button -->
+                    <a href="http://localhost/developgetpet/dashboard/P.A-PostShorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Create Post</button></a>
                     <ul class="nav navbar-right panel_toolbox">
                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-                                  
+                  <br>                
                   <!-- View Pet Post for Short-term Care Code -->
                   <?php
                         $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Short-term care' AND postStatus!='Deleted' ORDER BY petID DESC";
@@ -639,7 +642,7 @@ if($query->rowCount()>0)
                         }
                         ?>
                      <!-- //View Pet Post for Short-term Care Code -->                                        
-                                       
+                    </div>                 
                   </div>
                 </div>
               </div>

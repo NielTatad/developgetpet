@@ -259,6 +259,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
                     </li>
+
+              </ul>     
                  
               </div>
 

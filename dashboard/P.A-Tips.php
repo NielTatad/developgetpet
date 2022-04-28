@@ -183,6 +183,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -404,31 +406,40 @@ if($query->rowCount()>0)
              -->
 
             <!-- /page content -->
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel" style="border-radius:50px;">
+                  
+                <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-Profile.php';" alt="avatar" style="width:40px;height:40px;" class="rounded-circle img-responsive">&nbsp&nbsp<a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;height:40px;width:900px;background-color:#e9ecef;font-size:16px;height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1remfont-weight: 400;line-height: 1.5;color: #495057;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
+                <div class="clearfix"></div>
+
+                </div>
+              </div>
+            </div>
+
             <div class="clearfix"></div>
 
 <div class="row">
-  <div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-sm-12  ">
     <div class="x_panel" style="border-radius:10px;border-width:2px;">
       <div class="x_title">
-        <h2>Pet Care Tips</h2>
+        <h2>Tips, Advice & Articles</h2>
         <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-          </li>
        </ul>
         <div class="clearfix"></div>
       </div>
       <div class="x_content" style="text-align:center;">
       
-          <!-- View Post for Tips Advice & Articles Code -->
-          <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+       <!-- View Post for Tips Advice & Articles Code -->
+                  <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="tips-tab" data-toggle="tab" href="#tips" role="tab" aria-controls="tips-tab" aria-selected="true">Tips Tab</a>
+                        <a class="nav-link active" href="http://localhost/developgetpet/dashboard/P.A-Tips.php" role="tab" aria-controls="tips-tab" aria-selected="true">Tips</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="advice-tab" data-toggle="tab" href="#advice" role="tab" aria-controls="advice-tab" aria-selected="false">Advice Tab</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.A-Advice.php" role="tab" aria-controls="advice-tab" aria-selected="false">Advice</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles" role="tab" aria-controls="articles-tab" aria-selected="false">Articles Tab</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.A-Articles.php" role="tab" aria-controls="articles-tab" aria-selected="false">Articles</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -450,18 +461,7 @@ if($query->rowCount()>0)
                                       <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                             
                                             
-                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
-                                        
-                                            <div class="field item form-group">  
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <div class="field item form-group">                                        
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
-                                            </div>
-                                            </div>                                
+                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 
@@ -476,9 +476,162 @@ if($query->rowCount()>0)
                                             {
                                               ?>
                                             
+                                           <i class="fa fa-ellipsis-h menu" style="float: right;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($result->userID);?></i>
+                                                </i>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                              <button class="dropdown-item Epost" data-post-id="<?php echo ($result->postID);?>" data-post-title="<?php echo ($result->postTitle);?>" data-post-content="<?php echo ($result->postContent);?>" data-post-location="<?php echo ($result->postLocation);?>" data-post-time="<?php echo ($result->postTime);?>" data-post-date="<?php echo ($result->postEventdate);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
+
+                                            <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
+                                            </div><br>
                                             <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <label style=""><?php echo ($result->postDate);?></label><br><br>
+                                            
+                                            <div class="field item form-group">  
+                                            <div class="col-md-6 col-sm-6">
+                                            <!--<textarea id="description" required="required" class="form-control" id="Title" name="Title"  style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>-->
+                                            <h5 class="card-title" id="description" id="Title" name="Title" style="text-align:left;resize:none;">Title: <?php echo ($result->postTitle);?></h5>
+                                            </div>
+                                            </div>                                
+                                                                                   
+                                            
+                                            <div class="mb-3">
+                                              <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
+                                              <textarea class="form-control txtgrow" id="Content" name="Content" style="border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
+                                            </div>
+                                            
                                             <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
+
+                                            <br>
+
+                                            <?php
+                                            $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->postID'");
+                                            $count->execute();
+
+                                            $commentno=$count->fetchColumn();
+
+                                            ?>
+
+                                            <?php
+                                            $postid = $result->postID;
+
+                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Tips' ORDER BY commentID DESC LIMIT 1";
+                                            $query2=$dbh->prepare($sql2);
+                                            $query2->execute();
+                                            $comments=$query2->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt2=1;
+                                            if($query2->rowCount()>0)
+                                            {
+                                              foreach($comments as $comment)
+                                            {
+                                              ?>
+
+                                            <?php
+                                            $uid = $comment->userID;
+
+                                            $sql3="SELECT * from register WHERE userID ='$uid'";
+                                            $query3=$dbh->prepare($sql3);
+                                            $query3->execute();
+                                            $pictures=$query3->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt3=1;
+                                            if($query3->rowCount()>0)
+                                            {
+                                              foreach($pictures as $picture)
+                                            {
+                                              ?>
+                                              <br>
+                                            <h4 style="margin-top:-40px;float:right;margin-right:25px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+
+                                            <div class="comment-Div">
+
+                                              <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" class="txtgrow" style="width:800px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 10px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->orgName);?><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v option" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($comment->userID);?></i>
+                                              </i>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                  <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
+                                                  <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
+                                                </div><br>
+
+                                              <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
+                                              
+                                              <?php
+                                              $count_more_comment = $commentno-1;
+                                              ?>
+                                              <p class="view-more-comment" id="view_more" style="margin-top:-10px;margin-bottom:8px;"><span class="count-more-comment" id="count-more-comment">View <?php echo $count_more_comment?> more comment</span></p>  
+
+                                            </div>
+
+
+                                              
+                                            <?php $cnt2=$cnt2+1;}} ?>
+                                            <?php $cnt3=$cnt3+1;}} ?>
+
+                                            <div class="view-more-comment-Div" id="view_more_comment_Div">
+
+                                            <?php
+                                            $postid = $result->postID;
+
+                                            $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Tips' ORDER BY commentID DESC";
+                                            $query2=$dbh->prepare($sql2);
+                                            $query2->execute();
+                                            $comments=$query2->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt2=1;
+                                            if($query2->rowCount()>0)
+                                            {
+                                              foreach($comments as $comment)
+                                            {
+                                              ?>
+
+                                            <?php
+                                            $uid = $comment->userID;
+
+                                            $sql3="SELECT * from register WHERE userID ='$uid'";
+                                            $query3=$dbh->prepare($sql3);
+                                            $query3->execute();
+                                            $pictures=$query3->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt3=1;
+                                            if($query3->rowCount()>0)
+                                            {
+                                              foreach($pictures as $picture)
+                                            {
+                                              ?>
+                                              <br>
+                                              
+                                              <label style="margin-top:-30px;"><img <?php echo"<img src = '/developgetpet/web/images/$picture->Image'";?> alt="avatar" style="width:30px;height:30px;margin-top:10px;" class="rounded-circle img-responsive">&nbsp<textarea disabled="yes" class="txtgrow" style="width:800px;height:auto;font-size:16px;border-radius:20px; background-color:#e9ecef;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 10px;color: #808080;margin-top:10px;" type='text'><?php echo ( $picture->orgName);?><?php echo ( $picture->userFirstname);?> <?php echo ( $picture->userLastname);?>&#13;&#10;<?php echo ( $comment->commentContent);?></textarea>&nbsp&nbsp<i class="fa fa-ellipsis-v option" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($comment->userID);?></i></i>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                  <button class="dropdown-item Ecomment" data-comment-id="<?php echo ( $comment->commentID);?>" data-comment-content="<?php echo ( $comment->commentContent);?>"><i hidden><?php echo ( $comment->userID);?></i> Edit</button>
+                                                  <button class="dropdown-item Dcomment" data-comment-id="<?php echo ( $comment->commentID);?>"><i hidden><?php echo ( $comment->userID);?></i> Delete</button>
+                                                </div><br>
+                                              
+                                              <p style="margin-top:5px;margin-bottom:8px;text-align:right;padding-right:15px;"><?php echo ( $comment->commentDate);?></p>
+
+                                            <?php $cnt2=$cnt2+1;}} ?>
+                                            <?php $cnt3=$cnt3+1;}} ?>
+
+                                            <?php
+                                              $hide_more_comment = $commentno-1;
+                                            ?>
+                                            <p class="hide-more-comment" id="hide_more" style="margin-top:-10px;margin-bottom:8px;"> Hide <?php echo $hide_more_comment?> comment</p>
+
+                                            </div>
+
+                                            <?php
+
+                                            $sql4="SELECT * from register WHERE userID='$ID'";
+                                            $query4=$dbh->prepare($sql4);
+                                            $query4->execute();
+                                            $userIDs=$query4->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt4=1;
+                                            if($query4->rowCount()>0)
+                                            {
+                                              foreach($userIDs as $userID)
+                                            {
+                                              ?>
+                                            <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
+                                            <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:750px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;" data-post-id="<?php echo ($result->postID);?>" data-master-id="<?php echo ($result->userID);?>" data-post-status="<?php echo ($result->postStatus);?>">Write a comment...</button>
+                                            <div class="clearfix"></div>
+                                            <?php $cnt4=$cnt4+1;}} ?>
                                             
                                     </div>
                                   </div><br>
@@ -494,63 +647,7 @@ if($query->rowCount()>0)
 
                       </div>
                       <div class="tab-pane fade" id="advice" role="tabpanel" aria-labelledby="advice-tab">
-                      <?php
-                        $sql="SELECT * from post WHERE postStatus='Advice' ORDER BY postID DESC";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-nd-4">
-                                    <div class="card" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>
-                                        
-                                            <div class="field item form-group">  
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea id="description" required="required" class="form-control" id="Title" name="Title" style="height:40px;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <div class="field item form-group">                                        
-                                             <div class="col-md-6 col-sm-6">
-                                                 <textarea required="required" class="form-control" id="Content" name="Content" style="height:200px;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
-                                            </div>
-                                            </div>                                
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
-
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
-                                    </div>
-                                  </div><br>
-                                </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
+      
                       </div>
                       <div class="tab-pane fade" id="articles" role="tabpanel" aria-labelledby="articles-tab">
                         xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
@@ -974,53 +1071,244 @@ if(isset($_POST['Adopt']))
 		</div>
 	</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
 
-    <script type="text/javascript">
-    $(".unread").filter(function(){
-    return $(this).text().trim() === "Read";
-    }).hide();
+    <script>
+     $( "#content" ).keyup(function() {
+  $("#btnEditPost").prop("disabled", !this.value);
+});
     </script>
 
     <script>
-        $(document).ready(function () {
+     $( "#comment" ).keyup(function() {
+  $("#btnComment").prop("disabled", !this.value);
+});
+    </script>
 
-            $('.viewbtn').on('click', function () {
+    <script>
+     $( "#edit_comment" ).keyup(function() {
+  $("#btnEditComment").prop("disabled", !this.value);
+});
+    </script>
 
-                $('#View').modal('show');
+    <script type="text/javascript">
+  $("#selected_picture_cancel").click(function () {
+  
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
 
-                $tr = $(this).closest('ul');
+    <script type="text/javascript">
+  $("#selected_picture_close").click(function () {
 
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
 
-                console.log(data);
+    <script>
+      PostPicture.onchange = evt => {
+  const [file] = PostPicture.files
+  if (file) {
+    post_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("btnChangePostPicture").disabled = false;
+}
+    </script>
+    
+    <script>
+   $(window).on("load", function () {
+    console.log("load");
+    $("div#view_more_comment_Div").hide();
+    });
+    </script>
 
-                $('#pet_id').val(data[0]);
-                $('#pet_name').val(data[1]);
-                $('#pet_type').val(data[2]);
-                $('#pet_breed').val(data[3]);
-                $('#pet_sex').val(data[4]);
-                $('#pet_age').val(data[5]);
-                $('#pet_color').val(data[6]);
-                $('#pet_weight').val(data[7]);
-                $('#vaccination_status').val(data[8]);
-                $('#deworming_status').val(data[9]);
-                $('#pet_description').val(data[10]);
-                $('#des').val(data[11]);
-                $('#pet_picture').val(data[12]);
-                $('#pet_status').val(data[13]);
-                $('#user_id').val(data[14]);
-                $('#post_by').val(data[15]);
-                $('#post_date').val(data[16]);
-                $('#user_email').val(data[17]);
-                $('#user_address').val(data[18]);
-                $('#user_contactno').val(data[19]);
-            });
-        });
+    <script>
+     $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+    </script>
+
+<script type="text/javascript">
+  $(".commentbtn").click(function () {
+    var post_id = $(this).attr('data-post-id');
+    var master_id = $(this).attr('data-master-id');
+    var post_status = $(this).attr('data-post-status');
+    $('#Comment').modal('show');
+    $("#post_id").val( post_id );
+    $("#master_id").val( master_id );
+    $("#post_status").val( post_status );
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Ppost").click(function () {
+    var post_id3 = $(this).attr('data-post-id');
+    $('#ChangePostPicture').modal('show');
+    $("#post_id3").val( post_id3 );
+    var picture_file = $(this).attr('data-post-picture');
+    $('#picture_file').val( picture_file );
+    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Epost").click(function () {
+    var post_id2 = $(this).attr('data-post-id');
+    var title = $(this).attr('data-post-title');
+    var content = $(this).attr('data-post-content');
+    var location = $(this).attr('data-post-location');
+    var time = $(this).attr('data-post-time');
+    var date = $(this).attr('data-post-date');
+    $('#EditPost').modal('show');
+    $("#post_id2").val( post_id2 );
+    $("#title").val( title );
+    $("#content").val( content );
+    $("#location").val( location );
+    $("#time").val( time );
+    $("#date").val( date );
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Dpost").click(function () {
+    var post_id1 = $(this).attr('data-post-id');
+    $('#DeletePost').modal('show');
+    $("#post_id1").val( post_id1 );
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Ecomment").click(function () {
+    var commentid = $(this).attr('data-comment-id');
+    var edit_comment = $(this).attr('data-comment-content');
+    $("#edit_comment").val( edit_comment );
+    $("#commentid").val( commentid );
+    $('#EditComment').modal('show');
+  });
+  </script>
+
+ <script type="text/javascript">
+  $(".Dcomment").click(function () {
+    var comment_id = $(this).attr('data-comment-id');
+    $("#comment_id").val( comment_id );
+    $('#DeleteComment').modal('show');
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(".menu").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?>";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".adoptbtn").filter(function(){
+  return $(this).text().trim() == "<?php echo $ID?> Adopt Me";
+  }).css('visibility', 'hidden');
+  </script>
+
+  <script type="text/javascript">
+  $(".option").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?>";
+  }).css('visibility', 'hidden');
+  </script>
+
+  <script type="text/javascript">
+  $(".Epost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Edit";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".Dpost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Delete";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".comment-count").filter(function(){
+  return $(this).text().trim() === "0";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".count-more-comment").filter(function(){
+  return $(this).text().trim() === "View 0 more comment";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $('p.view-more-comment').click(function() {
+      $('.view-more-comment-Div').show(); // To hide all other contents
+      $('.comment-Div').hide();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide -1 comment";
+  }).hide();
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide 0 comment";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $('p.hide-more-comment').click(function() {
+      $('.view-more-comment-Div').hide(); // To hide all other contents
+      $('.comment-Div').show();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(".unread").filter(function(){
+  return $(this).text().trim() === "Read";
+  }).hide();
+  </script>
+
+    <script>
+     $( "#tips_content" ).keyup(function() {
+  $("#Posttips").prop("disabled", !this.value);
+});
+    </script>
+
+<script>
+     $( "#advice_content" ).keyup(function() {
+  $("#Postadvice").prop("disabled", !this.value);
+});
+    </script>
+
+<script>
+     $( "#article_content" ).keyup(function() {
+  $("#Postarticle").prop("disabled", !this.value);
+});
+    </script>
+
+    <script>
+     let previousLength = 0;
+
+      const handleInput = (event) => {
+        const bullet = "\u2022";
+        const newLength = event.target.value.length;
+        const characterCode = event.target.value.substr(-1).charCodeAt(0);
+
+        if (newLength > previousLength) {
+          if (characterCode === 10) {
+            event.target.value = `${event.target.value}${bullet} `;
+          } else if (newLength === 1) {
+            event.target.value = `${bullet} ${event.target.value}`;
+          }
+        }
+        
+        previousLength = newLength;
+      }
     </script>
 
 	<!-- Javascript functions	-->
@@ -1105,10 +1393,7 @@ if(isset($_POST['Adopt']))
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
-
-  
-
      
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

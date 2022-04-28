@@ -441,8 +441,6 @@ if($query->rowCount()>0)
       <div class="x_title">
         <h2>Tips, Advice & Articles</h2>
         <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-          </li>
        </ul>
         <div class="clearfix"></div>
       </div>
@@ -500,10 +498,11 @@ if($query->rowCount()>0)
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                               <button class="dropdown-item Epost" data-post-id="<?php echo ($result->postID);?>" data-post-title="<?php echo ($result->postTitle);?>" data-post-content="<?php echo ($result->postContent);?>" data-post-location="<?php echo ($result->postLocation);?>" data-post-time="<?php echo ($result->postTime);?>" data-post-date="<?php echo ($result->postEventdate);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
 
-                                              <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
+                                            <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
                                             </div><br>
                                             <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
                                             <label style=""><?php echo ($result->postDate);?></label><br><br>
+                                            
                                             <div class="field item form-group">  
                                             <div class="col-md-6 col-sm-6">
                                             <!--<textarea id="description" required="required" class="form-control" id="Title" name="Title"  style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>-->
@@ -516,6 +515,7 @@ if($query->rowCount()>0)
                                               <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
                                               <textarea class="form-control txtgrow" id="Content" name="Content" style="border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
+                                            
                                             <?php $cnt1=$cnt1+1;}} ?>
 
                                             <br>

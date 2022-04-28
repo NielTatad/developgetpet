@@ -238,7 +238,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-T.A.A.php">Pet Care Tips</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Tips.php">Pet Care Tips</a>
                     </li>
 
                     </ul>
@@ -381,16 +381,13 @@ if($query->rowCount()>0)
                     <div class="page-title">
                         <div class="title_left">
                         <br>
-                        <h2><?php echo ($result->Role);?>'s Dashboard</h2>
+                        <h2>Create Post For Short-term care</h2>
                         </div>
 
                         <div class="title_right">
                             <div class="col-md-5 col-sm-5 form-group pull-right top_search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
+  
                                 </div>
                             </div>
                         </div>
@@ -476,11 +473,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 ?>
 <!-- //Post Pet Code -->
 
-                    <!-- Back Button -->
-                    <a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php"><button data-toggle="tooltip" data-placement="top" title="Back" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="font-size:30px;color:#White;"></i></button></a>
-                    <!-- //Back Button -->
-
-
                     <div class="clearfix"></div>
 
                     <div class="row">
@@ -488,7 +480,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="col-md-12 col-sm-12  ">
                         <div class="x_panel" style="border-radius:10px;border-width:2px;">
                         <div class="x_title">
-                        <h2>Post Pet For Short-Term Care</h2>
+                        <!-- Back Button -->
+                        <a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:White;"> Return</i></button></a>
+                        <!-- //Back Button -->
                         <ul class="nav navbar-right panel_toolbox">     
                         </ul>
                         <div class="clearfix"></div>
