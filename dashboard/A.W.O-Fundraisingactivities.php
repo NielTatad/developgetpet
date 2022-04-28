@@ -466,6 +466,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->charityTitle);?></h2></li>
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityAmount);?></h3></li>
+                                              <li><Img hidden <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;"></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charityDescription);?></textarea></li>
                                               
                                               
@@ -487,7 +488,7 @@ if($query->rowCount()>0)
                                               <br>
                                               <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
                                               <br>
-                                              <button type="button" class="btn btn-success donatebtn" id="donatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-bs-toggle="modal" data-bs-target="#donate"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
+                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-bs-toggle="modal" data-bs-target="#donate"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
                                               <br>
 
                                               <?php
@@ -794,6 +795,13 @@ if($query->rowCount()>0)
                <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
+
+        <div class="field item form-group">
+          <label class="col-form-label col-md-3 col-sm-3  label-align">Gcash QR Code<span class="required"></span></label>
+          <div class="col-md-6 col-sm-6">
+          <Img class="card-ing-top" id="char_qrcode" alt="Post Images" style="height:350px;width:400px;border-radius:10px;text-align:center;">
+          </div>
+          </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
@@ -1266,7 +1274,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!-- //Modal Change Post Picture -->
 
 <!-- Modal for donate-->
-<div class="modal fade" id="donate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Viewdonate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -1278,26 +1286,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
       <div class="card mb-3" style="max-width: 800px;height:250px;">
         <div class="row g-0">
           <div class="col-md-4">
-          <?php
-                        $sql="SELECT * from charity WHERE charityQRcode";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                              foreach($results as $result)
-                            {
-                              ?>
-            <img <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="img-fluid rounded-start" alt="...">
-            <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
+          
+            <img src="..." id="char_qrcode" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -1311,12 +1301,30 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           </div>
         </div>
       </div>
+      </div>
+      
+      <div class="field item form-group">
+      <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Reciept</label>&nbsp&nbsp&nbsp
+                                        
+                                        <div style="text-align: center" class="wrap-input100 validate-input">
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;" placeholder="Upload Picture" multiple>
+                                        </div>
+                                        </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+                                        <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Leave Message(Optional)</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:570px;border-radius:4px;"></textarea>
+                                          </div>
+                                        </div><br>
+
+      
+      <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button id="btnEditComment" name="btnEditComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
+         </div>
+        </div>
+      
     </div>
   </div>
 </div>
@@ -1409,12 +1417,36 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#char_id').val(data[0]);
                 $('#char_title').val(data[1]);
                 $('#char_amount').val(data[2]);
-                $('#char_description').val(data[3]);
+                $('#char_qrcode').val(data[3]);
+                $('#char_description').val(data[4]);
                 $('#char_status').val(data[6]);
                 
             });
         });
     </script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.viewdonatebtn').on('click', function () {
+
+                $('#Viewdonate').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#char_id').val(data[0]);
+                $('#char_qrcode').val(data[3]);
+
+                
+            });
+        });
+    </script>    
 
 <script>
         $(document).ready(function () {
