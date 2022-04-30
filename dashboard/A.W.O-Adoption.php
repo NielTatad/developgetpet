@@ -1481,6 +1481,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 	<!-- //Modal Change Post Picture -->
 
+		</div>
+	</div>
 			<!-- footer content -->
 			<footer>
       <p class="tweet-p1">
@@ -1489,9 +1491,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
-		</div>
-	</div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
