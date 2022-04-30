@@ -267,8 +267,6 @@ th {
           <div class="x_title">
             <h2>Manage Pet Information</h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-              </li>
           </ul>
             <div class="clearfix"></div>
           </div>
@@ -282,9 +280,7 @@ th {
                             <thead>
                             <tr class="headings">
 
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
+                            
                             <th style="text-align:center" class="column-title">Pet ID</th>
                             <th style="text-align:center" class="column-title">Pet Name</th>
                             <th style="text-align:center" class="column-title">Pet Type</th>
@@ -295,8 +291,6 @@ th {
                             <th style="text-align:center" class="column-title">Pet Photo</th>
                             <th style="text-align:center" class="column-title">Vaccination Status</th>
                             <th style="text-align:center" class="column-title">Deworming Status</th>
-                            <th style="text-align:center" class="column-title">Pet Status</th>
-                            <th style="text-align:center" class="column-title">Post Status</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
                             <th class="bulk-actions" colspan="12">
@@ -319,9 +313,6 @@ th {
                              ?>
                               <tr class="even pointer">
 
-                                <td class="a-center ">
-                                  <input type="checkbox" class="flat" name="table_records">
-                                </td>
                                 <td style="text-align:center" class=" " name="#pet_id"><?php echo htmlentities($result->petID);?></td>
                                 <td style="text-align:center" class=" " name="#pet_name"><?php echo htmlentities($result->petName);?></td>
                                 <td style="text-align:center" class=" " name="#pet_type"><?php echo htmlentities($result->petType);?></td>
@@ -331,10 +322,8 @@ th {
                                 <td style="text-align:center" class=" " name="#pet_weight"><?php echo htmlentities($result->petWeight);?></td>
                                 <td style="text-align:center" class=" " name="#pet_picture"><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
                                 <td style="text-align:center" class=" " name="#vaccination_status"><?php echo htmlentities($result->vaccinationStatus);?></td>
-                                <td style="text-align:center" class=" " name="#deworming_status"><?php echo htmlentities($result->dewormingStatus);?></td>
-                                <td style="text-align:center" class=" " name="#pet_petstatus"><?php echo htmlentities($result->petStatus);?></td>
-                                <td style="text-align:center" class=" " name="#pet_poststatus"><?php echo htmlentities($result->postStatus);?></td>
-                                <td style="text-align:center;" class="last"><a data-toggle="modal" data-target="#DeletePost"><i class="fa fa-trash-o deletebtn" style="height:50px;"></i></a>
+                                <td style="text-align:center" class=" " name="#deworming_status"><?php echo htmlentities($result->dewormingStatus);?></td>                                
+                                <td style="text-align:center;" class="last"><a data-toggle="modal" data-target="#DeletePost"><button type="submit" class="btn btn-danger deletebtn"><i class="fa fa-trash"> Delete</i></button></i></a>
                                 </td>
                               </tr>
                             <?php $cnt=$cnt+1;}}?>
@@ -482,38 +471,6 @@ th {
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.editbtn').on('click', function () {
-
-                $('#EditPost').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#pet_id').val(data[0]);
-                $('#pet_name').val(data[1]);
-                $('#pet_type').val(data[2]);
-                $('#pet_breed').val(data[3]);
-                $('#pet_sex').val(data[4]);
-                $('#pet_age').val(data[5]);
-                $('#pet_color').val(data[6]);
-                $('#pet_weight').val(data[7]);
-                $('#pet_pictre').val(data[8]);
-                $('#vaccination_status').val(data[9]);
-                $('#deworming_status').val(data[10]);
-                $('#pet_pettstatus').val(data[11]);
-                $('#pet_poststatus').val(data[12]);
-            });
-        });
-    </script>
 
     <script>
         $(document).ready(function () {

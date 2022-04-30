@@ -264,8 +264,6 @@ th {
                   <div class="x_title">
                     <h2>Timeline</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>
                    </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -363,11 +361,10 @@ th {
 </div>
 	<!-- //ModalProfile -->
 
-  <!-- Modal Total Sign-in Today -->
-  
+  <!-- Modal Total Sign-in Today -->  
   <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document" >
+  <div class="modal-dialog modal-xl" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
@@ -376,11 +373,8 @@ th {
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2>Sign-in Today</h2>
+      <h2><strong>Sign-in Today Were Registered = <?php echo $Date;?></strong></h2>
       <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
-        
       </ul>
       <div class="clearfix"></div>
     </div>
@@ -445,7 +439,7 @@ th {
   
   <div class="modal fade" id="petadopter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document" >
+  <div class="modal-dialog modal-xl" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
@@ -454,11 +448,8 @@ th {
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2>Total Pet Adopters</h2>
+      <h2><strong>Total Pet Adopters Were Registered = <?php echo $pet_adopter;?></strong></h2>
       <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
-        
       </ul>
       <div class="clearfix"></div>
     </div>
@@ -528,7 +519,7 @@ th {
   
   <div class="modal fade" id="petowner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document" >
+  <div class="modal-dialog modal-xl" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
@@ -537,11 +528,8 @@ th {
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2>Total Pet Owners</h2>
+      <h2><strong>Total Pet Owners Were Registered = <?php echo $pet_owner;?></strong></h2>
       <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
-        
       </ul>
       <div class="clearfix"></div>
     </div>
@@ -611,7 +599,7 @@ th {
   
   <div class="modal fade" id="AWO" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document" >
+  <div class="modal-dialog modal-xl" role="document" >
     <div class="modal-content">
       <div class="modal-header text-center">
 
@@ -620,11 +608,8 @@ th {
 <div class="col-md-12 col-sm-12  ">
   <div class="x_panel">
     <div class="x_title">
-      <h2>Total Animal Welfare Organization</h2>
+      <h2><strong>Total Animal Welfare Organization Were Registered = <?php echo $animal_welfare_organization;?></strong> </h2>
       <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up" style="margin-left:50px"></i></a>
-        </li>
-        
       </ul>
       <div class="clearfix"></div>
     </div>

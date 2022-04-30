@@ -469,31 +469,38 @@ if($query->rowCount()>0)
 <br>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
-  <div class="carousel-inner" style="border-radius: 10px;">
+<div class="carousel-inner" style="border-radius: 10px;">
     <div class="carousel-item active">
       <img src="images/slider1.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3 style="color:black;">We are
-			<span>GetPet</span> were
-			<span>love </span> is wanted!</h3>
-			<h2 style="color:black;"><strong>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>We are GetPet were love is wanted!.</p>
+    <h6>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider2.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3 style="color:black;">we provide
-			<span>care</span> that your
-			<span>pet</span> deserves!</h3>
-			<h2 style="color:black;"><strong>A comprehensive guide to dog & cat care to make your pet feel your love</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>we provide care that your pet deserves!</p>
+    <h6>A comprehensive guide to dog & cat care to make your pet feel your love.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h3 style="color:black;">Helping everyone,			
-			<span>With everyone!</h3>
-			<h2 style="color:black;"><strong>I care not for a man’s religion whose dog and cat are not the better for it.</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>Helping everyone, With everyone!</p>
+    <h6>I care not for a man’s religion whose dog and cat are not the better for it.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
   </div>
