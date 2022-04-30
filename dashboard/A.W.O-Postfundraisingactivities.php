@@ -705,11 +705,11 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
-			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
+						<!-- footer content -->
+            <footer>
+      <p class="tweet-p1">
+		  ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		  </p>
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
