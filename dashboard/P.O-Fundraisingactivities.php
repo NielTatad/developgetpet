@@ -756,8 +756,8 @@ if($query->rowCount()>0)
 
 <script>
 <?php 
-$ID=$_SESSION['orgID'];
-$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$ID=$_SESSION['ownerID'];
+$sql = "SELECT * from petowner where ownerID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->execute();
@@ -953,7 +953,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
   
   }
 
@@ -983,7 +983,7 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
   }
   
 }
@@ -1054,7 +1054,7 @@ if(isset($_POST['btnComment']))
       $query1->execute();
 
       echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
     }
   ?>
 <!-- //Edit Comment Code --> 
@@ -1114,7 +1114,7 @@ if(isset($_POST['btnComment']))
     $query1->execute();
     
     echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
   }
   ?>
 <!-- //Delete Comment Code -->
@@ -1163,7 +1163,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
 
     echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
    }
 ?>
 <!-- //Delete Post Code -->
@@ -1229,7 +1229,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
   
     echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
   }
 ?>
 <!-- //Edit Post Code -->
@@ -1335,7 +1335,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Fundraisingactivities.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
 }
 ?>
 <!-- //Change Post Picture Code -->
