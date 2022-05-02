@@ -412,7 +412,7 @@ if($query->rowCount()>0)
                   </div>                 
 
                     <!-- View Org -->
-                    <button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:300px;float:right;" data-bs-toggle="modal" data-bs-target="#Vieworgs">View Animal Welfare Organization</button>  
+                    <button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:300px;float:right;" data-bs-toggle="modal" data-bs-target="#Vieworgs">View Animal Welfare Organization's</button>  
                     <!-- //View Org -->
 
                     <!-- View Org Modal -->
@@ -420,7 +420,7 @@ if($query->rowCount()>0)
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Animal Welfare Organization's</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">List of Animal Welfare Organization's</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -435,12 +435,12 @@ if($query->rowCount()>0)
                           foreach($results as $result)
                         {
                            ?>
-                    <div class="col-md-4 col-sm-4  profile_details">
+                     <div class="col-md-6 col-sm-1  profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
-                            <h4 class="brief"><i><?php echo ( $result->Role);?></i></h4>
-                            <div class="left col-md-7 col-sm-7">
-                              <h2><?php echo ( $result->userFirstname);?> <?php echo ( $result->userLastname);?> <?php echo ( $result->orgName);?></h2><br><br>
+                            <h6 class="brief"><i>Organization Name: <?php echo ( $result->orgName);?></i></h6>
+                            <div class="left col-md-7 col-sm-7">  
+                                <br><br>                        
                               <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Address: <?php echo ( $result->Address);?></li>
