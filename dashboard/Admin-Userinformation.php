@@ -243,7 +243,7 @@ th {
                           foreach($results as $result)
                         {
                            ?>
-                    <div class="col-md-4 col-sm-4  profile_details">
+                    <div class="col-md-6 col-sm-1  profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
                             <h4 class="brief"><i><?php echo ( $result->Role);?></i></h4>
@@ -256,7 +256,7 @@ th {
                               </ul>
                             </div>
                             <div class="right col-md-5 col-sm-5 text-center">
-                              <img <?php echo"<img src = '/developgetpet/web/images/$result->Image'";?> alt="" class="img-circle img-fluid">
+                              <img <?php echo"<img src = '/developgetpet/web/images/$result->Image'";?> alt="" style="height:300px;width:500px;" class="img-circle img-fluid">
                             </div>
                           </div>
                           <div class=" profile-bottom text-center">

@@ -384,12 +384,13 @@ if($query->rowCount()>0)
               </div>
             </div>
             
-<!-- Button trigger modal -->
+<!-- Button trigger modal for event view -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   New Post for Event <span class="badge bg-danger">4</span>
 </button>
+<!-- //Button trigger modal for event view -->
 
-<!-- Modal -->
+<!-- Modal for event view-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -457,6 +458,8 @@ if($query->rowCount()>0)
   </div>
   </div>
 </div>
+<!-- //Modal for event view-->
+
 <br>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 

@@ -159,7 +159,7 @@ if(isset($_POST['login']))
     <style>
     .material-icons {vertical-align:-16%}
     </style>
-    <title>GetPet</title>
+    <title>GETPET</title>
   </head>
   <body>
   

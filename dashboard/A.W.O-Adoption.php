@@ -401,7 +401,9 @@ if($query->rowCount()>0)
                   </div>
                 </div>
               </div>
-            </div>           
+            </div>
+            
+            
 
             <!-- /page content -->
 
@@ -495,7 +497,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-25px;">View Info</button><button type="button" class="btn btn-success adoptbtn" id="adoptbtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;"><i hidden><?php echo ( $result->userID);?></i> Adopt Me</button>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-25px;">View Info</button>
                                               <br>
 
                                               <?php
@@ -534,7 +536,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                                 <br>
-                                               <h4 style="margin-top:-55px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+                                               <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
 
                                                <div class="comment-Div">
 

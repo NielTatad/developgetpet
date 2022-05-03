@@ -457,7 +457,7 @@ if($query->rowCount()>0)
                                             <br>
 
                                             <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Charity Title: <?php echo ($result->charityTitle);?><br>Amount Needed: ₱<?php echo ($result->charityAmount);?>.00
-                                            <br>Organization Website: <?php echo ($result->charityWebsite);?></p>                                           
+                                            <br>Organization Website: <a href="<?php echo ($result->charityWebsite);?>"><?php echo ($result->charityWebsite);?></a></p>                                           
                                             <br>
                                             <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                                                                       
@@ -488,9 +488,8 @@ if($query->rowCount()>0)
                                                 <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%;">$500/$1000</div>
                                               </div>
                                               <br>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-12px;float:left;margin-left:-10px;">View More Info</button>
                                               <br>
-                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-bs-toggle="modal" data-bs-target="#donate"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
                                               <br>
 
                                               <?php
@@ -529,7 +528,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                                 <br>
-                                               <h4 style="margin-top:-75px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+                                               <h4 style="margin-top:-60px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
 
                                                <div class="comment-Div">
 
