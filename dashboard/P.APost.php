@@ -253,7 +253,7 @@ if($query->rowCount()>0)
                     <li><a href="http://localhost/developgetpet/dashboard/PetAdopterDashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li><a >Pet Adoption</a>
+                    <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
                         <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php">Dog's For Adoption</a></li>
                         <li><a href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php">Cat's For Adoption</a></li>
