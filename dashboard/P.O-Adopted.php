@@ -465,7 +465,7 @@ if($query->rowCount()>0)
                   <br>  
 
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Not available' AND postStatus='Adopted' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+                        $sql="SELECT * from postpet WHERE petStatus='Adopted' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -481,9 +481,9 @@ if($query->rowCount()>0)
                                         <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
                                         <div class="card-body">
                                           <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
+                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?> (<?php echo ($result->petSex);?>)</h5>
                                           <br><br>
-                                          <h4 class="card-title" style="float:left;line-height:5px;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
+                                          <h4 class="card-title" style="float:left;line-height:5px;"><?php echo ($result->petType);?> (<?php echo ($result->petBreed);?>)</h4>
                                           <br><br>
                                           <p class="card-title" style="float:left;line-height:5px;">Vaccination Status: <?php echo ($result->vaccinationStatus);?></p>
                                           <br><br>
