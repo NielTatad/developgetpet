@@ -483,8 +483,9 @@ if($query->rowCount()>0)
                                           <br><br>
                                           <p class="card-title" style="float:left;line-height:5px;">Deworming Status: <?php echo ($result->dewormingStatus);?></p>
                                           <br><br>
-                                          <div class="alert alert-success" role="alert">
-                                            This Pet is Already <?php echo ($result->postStatus);?>
+                                          <div class="alert alert-success" style="background-color:
+                                          #7ED8BB;" role="alert">
+                                            This Pet is Already <?php echo ($result->postStatus);?> by Someone
                                           </div>
                                         </div>
                                         <div class="card-footer" style="background-color:#E4E4E4;">
