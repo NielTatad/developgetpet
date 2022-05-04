@@ -254,8 +254,11 @@ if($query->rowCount()>0)
                       </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Short-term Care</a>
+                    <li><a >Pet For Short-term care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogsshorttermcare.php">Dog's For Short-term care</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catsshorttermcare.php">Cat's For Short-term care</a></li>
+                      </ul>
                     </li>
 
                     <li>
