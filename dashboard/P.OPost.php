@@ -275,7 +275,11 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>                 
+                    </li>     
+                    
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Adopted</a>
+                    </li>
 
                     </ul>
 					</div>
