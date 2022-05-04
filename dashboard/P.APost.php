@@ -279,6 +279,10 @@ if($query->rowCount()>0)
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-Tips.php">Pet Care Tips</a>
                     </li>
 
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adopted.php">Adopted</a>
+                    </li>
+
               </ul> 
 					</div>
 					</div>
