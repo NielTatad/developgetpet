@@ -271,6 +271,10 @@ if($query->rowCount()>0)
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adopted.php">Adopted</a>
                     </li>
 
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Donations.php">Manage Donation</a>
+                    </li>
+
               </ul>
 					</div>
 					</div>

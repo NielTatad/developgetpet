@@ -1388,6 +1388,46 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 <!-- //Modal Change Post Picture -->
 
+<!-- Modal Donation Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Sendreciept']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Address=($_POST['Address']);
+$ContactNo=($_POST['ContactNo']);
+$Message=($_POST['Message']);
+$Picture = $_FILES["Picture"]["name"];
+$tmp_dir = $_FILES["Picture"]["tmp_name"];
+
+move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
+
+$sql="INSERT INTO donation(userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationReciept,donationDate,donationStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Message,:Picture,'$date','Not Recieved Yet')";
+
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Address',$Address,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+$query->bindParam(':Message',$Message,PDO::PARAM_STR);
+$query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Your Reciept has successfully uploaded!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
+
+}
+?>
+<!-- //Modal Donation Code -->
+
 <!-- Modal for donate-->
 <div class="modal fade" id="Viewdonate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -1397,12 +1437,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
+      
       <div class="card mb-3" style="max-width: 800px;height:250px;">
         <div class="row g-0">
           <div class="col-md-4">
           
-            <img src="..." id="char_qrcode" class="img-fluid rounded-start" alt="...">
+          <img src="..." id="char_qrcode" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -1410,7 +1450,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <br><br>
               <p class="card-text" style="line-height:5px;">1. Log in to your Gcash account, then tap on QR on your navigation bar</p>
               <p class="card-text" style="line-height:5px;">2. Align your phone's camera to our QR code to scan it.</p>
-              <p class="card-text" style="line-height:5px;">3. Input thje total amount and tap next.</p>
+              <p class="card-text" style="line-height:5px;">3. Input the total amount and tap next.</p>
               <p class="card-text" style="line-height:5px;">4. Review all details then tap on Pay.</p>
             </div>
           </div>
@@ -1418,28 +1458,72 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
       </div>
       </div>
       
-      <div class="field item form-group">
-      <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Reciept</label>&nbsp&nbsp&nbsp
-                                        
+      <form class="" action="" method="post" novalidate enctype="multipart/form-data"> 
+      
+                                        <div hidden class="field item form-group">
+                                          <div class="col-md-6 col-sm-6">
+                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>"/>
+                                          </div> 
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>"/>
+                                            </div> 
+                                         </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Address" class='Address' value="<?php echo ($result->ownerAddress);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Email" class='Email' value="<?php echo ($result->ownerEmail);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                             <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->ownerContactNo);?>"/>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field item form-group">    
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Reciept</label>&nbsp&nbsp&nbsp
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;" placeholder="Upload Picture" multiple>
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;" placeholder="Upload Reciept" multiple>
                                         </div>
                                         </div>
 
                                         <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Please Select<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                          <option selected>Open this select menu</option>
+                                          <option value="showidentity">Show My Identity</option>
+                                          <option value="anonymous">Anonymous</option>
+                                        </select>
+                                        </div>
+                                      </div>
+
+                                        <div class="field item form-group">
                                           <label class="col-form-label col-md-3 col-sm-3  label-align">Leave Message(Optional)</label>
                                           <div class="col-md-6 col-sm-6">
-                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:570px;border-radius:4px;"></textarea>
+                                            <textarea id="Message" required="required" class="form-control" name="Message" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:570px;border-radius:4px;"></textarea>
                                           </div>
                                         </div><br>
 
       
       <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button id="btnEditComment" name="btnEditComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
+         <button name ="Sendreciept" type='submit' id="Sendreciept" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Send</button>
          </div>
         </div>
-      
+    </form>
+
     </div>
   </div>
 </div>

@@ -241,6 +241,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adopted.php">Adopted</a>
                     </li>
 
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Donations.php">Manage Donation</a>
+                    </li>
+
               </ul>
                  
               </div>
@@ -1126,22 +1130,14 @@ if(isset($_POST['btnComment']))
   }
 ?>
 <!-- //Edit Post Code -->
-
+EditPost
 <!-- Modal Edit Post -->
- <div class="modal fade" id="EditPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="EditPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Post</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="enableButton()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-        function enableButton() {
-            document.getElementById("Edit").disabled = false;
-        }
-      </script>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Follow some steps on how to Donate through Gcash</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body mx-3">
       <form method="post">
@@ -1161,20 +1157,6 @@ if(isset($_POST['btnComment']))
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea id="charity_description2" name="Description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank</label>
-        <div class="col-md-6 col-sm-6">
-               <input read only type="text" class="form-control" id="charity_bank2" name="Bank" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Pin Number</label>
-        <div class="col-md-6 col-sm-6">
-               <input read only type="text" class="form-control" id="charity_pinnumber2" name="Pinnumber" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
 
