@@ -266,8 +266,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-Tips.php">Pet Care Tips</a>
                     </li>
 
-              </ul> 
-
                   
               </div>
 
@@ -548,7 +546,7 @@ if($query->rowCount()>0)
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
                         
-<!-- View Adoption History Code -->
+<!-- View History Code -->
 <?php
             $sql="SELECT * from history WHERE userID='$ID' ORDER BY historyID DESC";
             $query=$dbh->prepare($sql);
@@ -593,16 +591,64 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Name: <?php echo ( $petid->petName);?>&#13;&#10;Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?>&#13;&#10;Aprroved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Status: <?php echo ($result->Status);?></textarea><br><br>
+                         
+                      <?php $master_id = $result->masterID;
 
-                      <?php $cnt2=$cnt2+1;}} ?>
-                      <?php $cnt1=$cnt1+1;}} ?>
+                      $sql3="SELECT * from register WHERE userID='$master_id'";
+                      $query3=$dbh->prepare($sql3);
+                      $query3->execute();
+                      $masterids=$query3->fetchALL(PDO::FETCH_OBJ);
+                      $cnt3=1;
+                      if($query3->rowCount()>0)
+                      {
+                        foreach($masterids as $masterid)
+                      {
+                        ?>
+                      <?php if ($result->Title == 'Short-Term Care' AND $result->Status == 'Approved') { ?>
+                      
+                      <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:20px" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?>&#13;&#10;Email: <?php echo ( $masterid->Email);?>&#13;&#10;Contact No: <?php echo ( $masterid->contactNo);?></textarea><br><br>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:240px;height:240px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:240px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ( $petid->selectedRange);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?>&#13;&#10;Approved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Return Date: <?php echo ($result->returnDate);?>&#13;&#10;Status: <?php echo ($result->Status);?></textarea><br><br>
                       
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
-                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">View</button>
+                            <button class="btn btn-round btn-success short-term-return" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Returned</button>
+                            <button class="btn btn-round btn-primary short-term-feedback" style="border:#00cdc1;width: 100px;height:37px;">Feedback</button>
                       </div>
                       </div>
+
+                      <?php } ?>
+
+                      <?php if ($result->Title == 'Short-Term Care' AND $result->Status == 'Disapproved') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:240px;height:220px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:220px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ( $petid->selectedRange);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?>&#13;&#10;Approved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Status: <?php echo ($result->Status);?></textarea><br><br>
+
+                      <?php } ?>
+
+                      <?php if ($result->Title == 'Adoption' AND $result->Status == 'Approved') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:20px" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?>&#13;&#10;Email: <?php echo ( $masterid->Email);?>&#13;&#10;Contact No: <?php echo ( $masterid->contactNo);?></textarea><br><br>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:220px;height:210px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:210px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?>&#13;&#10;Approved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Status: <?php echo ($result->Status);?></textarea><br><br>
+
+                      <div style="text-align: center" class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                            <button class="btn btn-round btn-success adoption-recieved" style="background-color:#00cdc1;border:#00cdc1;width: 100px;height:37px;">Recieved</button>
+                            <button class="btn btn-round btn-primary adoption-feedback" style="border:#00cdc1;width: 100px;height:37px;">Feedback</button>
+                      </div>
+                      </div>
+
+                      <?php } ?>
+
+                      <?php if ($result->Title == 'Adoption' AND $result->Status == 'Disapproved') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:220px;height:210px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:210px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?>&#13;&#10;Approved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Status: <?php echo ($result->Status);?></textarea><br><br>
+
+                      <?php } ?>
+
+                      <?php $cnt3=$cnt3+1;}} ?>
+                      <?php $cnt2=$cnt2+1;}} ?>
+                      <?php $cnt1=$cnt1+1;}} ?>
                       </ul>
               </div>
             </div>
@@ -616,7 +662,7 @@ if($query->rowCount()>0)
           echo "You don't have any adoption requests that should be displayed.";
           }
             ?>
-         <!-- //View Adoption History Code -->
+         <!-- //View History Code -->
                       </div>
                       <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
                       <div class="x_content">

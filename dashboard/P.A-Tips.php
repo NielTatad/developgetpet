@@ -183,10 +183,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+  <style>
+    .view-more-comment:hover {
+    text-decoration: underline;
+}
+    .hide-more-comment:hover {
+    text-decoration: underline;
+}
+  </style>
 </head>
 
 <body class="nav-md">
@@ -203,11 +211,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 					<!-- menu profile quick info -->
                     <div class="profile clearfix">
                     <!--<div class="profile_pic">
-                    <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
+                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
                     </div>
                     <div class="profile_info">
                     <span>Welcome,</span>
-                    <h2><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
+                    <h2><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
                     </div>-->
                     <div class="clearfix"></div>
                     </div>
@@ -215,8 +223,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 					<br />
 
-					<!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				<!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
@@ -243,32 +251,33 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-Tips.php">Pet Care Tips</a>
                     </li>
 
-              </ul> 
-
                   
               </div>
 
             </div>
             <!-- /sidebar menu -->
 
+			 	<!-- /menu footer buttons -->
+         <div class="sidebar-footer hidden-small">
+                    <a  data-toggle="modal" data-target="#Settings" title="Inbox" data-placement="top" title="Settings" style="cursor:pointer;">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
+                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                    </a>
+          </div>
 					<!-- /menu footer buttons -->
-          <div class="sidebar-footer hidden-small">
-              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php">
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
 				</div>
 			</div>
 
-			  <!-- top navigation -->
-        <div class="top_nav">
+	   <!-- top navigation -->
+     <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -320,6 +329,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           foreach($results as $result)
                         {
                            ?>
+                            <?php if ($result->notificationTitle == 'Post Deleted') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle != 'Post Deleted') { ?>
                             <?php $user_id = $result->userID;
 
                             $sql1="SELECT * from register WHERE userID='$user_id'";
@@ -346,6 +373,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
+                         <?php } ?>
                         <?php $cnt=$cnt+1;}} ?>
                       </li>
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-UserRequest.php';" class="nav-item">
@@ -363,6 +391,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
           </div>
         <!-- /top navigation -->
+
 <?php 
 $sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
@@ -380,13 +409,13 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
+
 	  <!-- page content -->
     <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -401,23 +430,11 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-            <!-- Post Button 
-            <a href="http://localhost/developgetpet/dashboard/P.A-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
-             -->
+            <!-- 
+            <a href="http://localhost/developgetpet/dashboard/A.W.O-PostAdoption.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Post Pet</button></a>
+             Post Button -->
 
             <!-- /page content -->
-            <div class="row">
-              <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel" style="border-radius:50px;">
-                  
-                <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> onclick="window.location.href='http://localhost/developgetpet/dashboard/P.A-Profile.php';" alt="avatar" style="width:40px;height:40px;" class="rounded-circle img-responsive">&nbsp&nbsp<a data-toggle="modal" data-target="#create" data-placement="top" title="create"><input Cursor="Arrow" data-toggle="modal" data-target="#create" type="text" id="textarea" name="textarea" placeholder="Wanna create or post something?" required="required" style="border-radius:50px;cursor:pointer;height:40px;width:900px;background-color:#e9ecef;font-size:16px;height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1remfont-weight: 400;line-height: 1.5;color: #495057;" onkeypress="return /[a-z]/i.test(event.key)" disabled/></a>
-                <div class="clearfix"></div>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="clearfix"></div>
 
 <div class="row">
   <div class="col-md-12 col-sm-12  ">
@@ -482,24 +499,22 @@ if($query->rowCount()>0)
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                               <button class="dropdown-item Epost" data-post-id="<?php echo ($result->postID);?>" data-post-title="<?php echo ($result->postTitle);?>" data-post-content="<?php echo ($result->postContent);?>" data-post-location="<?php echo ($result->postLocation);?>" data-post-time="<?php echo ($result->postTime);?>" data-post-date="<?php echo ($result->postEventdate);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
 
-                                            <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
+                                              <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
                                             </div><br>
                                             <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
                                             <label style=""><?php echo ($result->postDate);?></label><br><br>
-                                            
                                             <div class="field item form-group">  
                                             <div class="col-md-6 col-sm-6">
                                             <!--<textarea id="description" required="required" class="form-control" id="Title" name="Title"  style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>-->
                                             <h5 class="card-title" id="description" id="Title" name="Title" style="text-align:left;resize:none;">Title: <?php echo ($result->postTitle);?></h5>
                                             </div>
                                             </div>                                
-                                                                                   
-                                            
-                                            <div class="mb-3">
-                                              <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
-                                              <textarea class="form-control txtgrow" id="Content" name="Content" style="border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
+                                            <div class="field item form-group">                                        
+                                            <div class="col-md-6 col-sm-6">
+                                                 <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
+                                                 <textarea required="required" class="form-control txtgrow" id="Content" name="Content" style="height:auto;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postContent);?></textarea>
                                             </div>
-                                            
+                                            </div>
                                             <?php $cnt1=$cnt1+1;}} ?>
 
                                             <br>
@@ -684,47 +699,6 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
-
-  <!-- ModalProfile -->
-  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="adopterID" value="<?php echo ( $result->adopterID);?>" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center">
-						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
-							 <a style="color:White"> Update Profile </a>
-						 </button>
-				</div>
-        <div style="text-align: center">
-             <h6 class="mt-1 mb-2"><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->adopterContactNo);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->adopterAddress);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->adopterEmail);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
-        </div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //ModalProfile -->
   
    <!-- ModalSettings -->
   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -790,275 +764,370 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
- <!-- Adoption Request Code -->
+  <!-- Comment Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
-?>
-
+?>  
 <?php
-if(isset($_POST['Adopt']))
+if(isset($_POST['btnComment']))
 {
+  $masterID=($_POST['masterID']);
+
+  if($masterID == $ID)
+  {
+    $postID=($_POST['postID']);
+    $masterID=($_POST['masterID']);
+    $Comment=($_POST['Comment']);
+    $postStatus=($_POST['postStatus']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postID,:masterID,'$ID',:Comment,'$date',:postStatus)";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':postID',$postID,PDO::PARAM_STR);
+    $query->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query->bindParam(':postStatus',$postStatus,PDO::PARAM_STR);
+    $query->execute();
+
+    echo '<script>alert("Your Comment Posted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Tips.php'</script>";
   
-  $MasterID=($_POST['MasterID']);
-
-  if($MasterID == $ID){
-
-  echo '<script>alert("Opps! You cannot adopt your own post pet")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Adoption.php'</script>";
-
-  }
-  else{
-  
-  $MasterID=($_POST['MasterID']);
-  $UserID=($_POST['UserID']);
-  $Name=($_POST['Name']);
-  $Email=($_POST['Email']);
-  $Address=($_POST['Address']);
-  $ContactNo=($_POST['ContactNo']);
-  $PetID=($_POST['PetID']);
-  $Type=($_POST['Type']);
-  $PetName=($_POST['PetName']);
-  $Breed=($_POST['Breed']);
-  $Description=($_POST['Description']);
-  $Reason=($_POST['Reason']);
-
-  $sql="INSERT INTO request(masterID,UserID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,petDescription,requestReason,requestDate)VALUES(:MasterID,:UserID,:Name,:Email,:Address,:ContactNo,:PetID,:Type,:PetName,:Breed,:Description,:Reason,'$date')";
-  $query=$dbh->prepare($sql);
-  $query->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
-  $query->bindParam(':UserID',$UserID,PDO::PARAM_STR);
-  $query->bindParam(':Name',$Name,PDO::PARAM_STR);
-  $query->bindParam(':Email',$Email,PDO::PARAM_STR);
-  $query->bindParam(':Address',$Address,PDO::PARAM_STR);
-  $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-  $query->bindParam(':PetID',$PetID,PDO::PARAM_STR);
-  $query->bindParam(':Type',$Type,PDO::PARAM_STR);
-  $query->bindParam(':PetName',$PetName,PDO::PARAM_STR);
-  $query->bindParam(':Breed',$Breed,PDO::PARAM_STR);
-  $query->bindParam(':Description',$Description,PDO::PARAM_STR);
-  $query->bindParam(':Reason',$Reason,PDO::PARAM_STR);
-  $query->execute();
-
-  $sql1="update postpet set
-  petStatus='Not available'
-  where petID=:PetID";
-  $query1=$dbh->prepare($sql1); 
-  $query1->bindParam(':PetID',$PetID,PDO::PARAM_STR); 
-  $query1->execute();
-
-  $sql2="SELECT requestID FROM request ORDER BY requestID DESC";
-  $query2=$dbh->prepare($sql2);
-  $query2->execute();
-
-  $ID=$query2->fetchColumn();
-
-  $sql3="INSERT INTO notification(activityID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES('$ID','Adoption Request',:MasterID,:UserID,:Reason,'$date','Unread')";
-  $query3=$dbh->prepare($sql3);
-  $query3->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
-  $query3->bindParam(':UserID',$UserID,PDO::PARAM_STR);
-  $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
-  $query3->execute();
-
-  echo '<script>alert("Just Wait for the Owner Accept Your Adoption Request!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Request.php'</script>";
-
   }
 
+  else
+  {
+    $postID=($_POST['postID']);
+    $masterID=($_POST['masterID']);
+    $Comment=($_POST['Comment']);
+    $postStatus=($_POST['postStatus']);
+    
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:postID,:masterID,'$ID',:Comment,'$date',:postStatus)";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':postID',$postID,PDO::PARAM_STR);
+    $query->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query->bindParam(':postStatus',$postStatus,PDO::PARAM_STR);
+    $query->execute();
+
+    $sql2="SELECT commentID FROM comment ORDER BY commentID DESC";
+    $query2=$dbh->prepare($sql2);
+    $query2->execute();
+
+    $commentID=$query2->fetchColumn();
+
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID',:postID,'Comment on Your Post','$ID',:masterID,:Comment,'$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':postID',$postID,PDO::PARAM_STR);
+    $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
+    $query3->execute();
+
+    echo '<script>alert("Your Comment Posted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Tips.php'</script>";
+  }
+  
 }
 ?>
-  <!-- //Adoption Request Code -->
+<!-- //Comment Code -->
 
-  <!-- Modal Pet Information -->
-  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <!-- Modal Comment -->
+<div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Comment Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="comment()">
           <span aria-hidden="true">&times;</span>
         </button>
         <script>
-          function cleartext() {
-          document.getElementById("Reason").value="";
-          document.getElementById('adopt').disabled = true;
+          function comment() {
+          document.getElementById("comment").value="";
+          document.getElementById("btnComment").disabled = true;
             }
         </script>
       </div>
       <div class="modal-body mx-3">
       <form method="post">
-        
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="pet_id" name="PetID" required = "required" class="form-control">
+					    <input hidden id="post_id" name="postID" required = "required" class="form-control" id="success">
 				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_name" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Type<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_type" name="Type" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Breed<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_breed" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_sex" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_age" name="Age" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_color" name="Color" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_weight" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="vaccination_status" name="Vaccination" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="deworming_status" name="Deworming" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea disabled="yes" id="pet_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
-        </div>
-        </div>
-
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
+					    <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
 				</div>
-
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="pet_picture" name="Picture"  required = "required" class="form-control">
+					    <input hidden id="user_id" name="userID" value="<?php echo ($result->adopterID);?>" required = "required" class="form-control" id="success">
 				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="pet_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="user_id" name ="MasterID" required = "required" class="form-control">
+					    <input hidden id="post_status" name="postStatus" required = "required" class="form-control" id="success">
 				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_by" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_date" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_email" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_address" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_contactno" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea name="Reason" id="Reason" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" required = "required" placeholder="Write your reason to adopt..." onkeyup="request()"></textarea>
-        </div>
-        </div>
-        <script>
-          function request() {
-          if(document.getElementById("Reason").value==="") { 
-                    document.getElementById('adopt').disabled = true; 
-                } else { 
-                    document.getElementById('adopt').disabled = false;
-                }
-            }
-        </script>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" name="UserID" value="<?php echo ($result->adopterID);?>"  required = "required" class="form-control">
+              <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
+				</div><input type="text" id="comment_emoji" aria-hidden="true"><input type="button" value="Copy emoji" onclick="commentEmoji()" style="float:right;margin-right:-1px"><br>
 
-              <input hidden readonly type="text" class="form-control" name="Name" value="<?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>" style="background-color:#fff;width:400px;" required="required"/>
-
-              <input hidden readonly type="text" class="form-control" name="Email" value="<?php echo ($result->adopterEmail);?>" style="background-color:#fff;width:400px;" required="required"/>
-
-              <input hidden readonly type="text" class="form-control" name="Address" value="<?php echo ($result->adopterAddress);?>" style="background-color:#fff;width:400px;" required="required"/>
-
-              <input hidden readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->adopterContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
-
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button disabled name="btnComment" id="btnComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Post</button>
+         </div>
         </div>
-
-        <div class="ln_solid">
-        <br>
-        <div class="form-group" style="text-align: center">
-        <div class="col-md-6 offset-md-3">
-               <button id="adopt" name ="Adopt" type="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:50px;font-size:18px;" disabled>Adopt Now!</button>
-        </div>
-        </div>
-        </div>
-
-        </form>
+      </form>
       </div>
     </div>
   </div>
 </div>
-	<!-- //Modal Pet Information -->
+	<!-- //Modal Comment -->
+
+  <!-- Edit Comment Code -->
+  <?php
+    if(isset($_POST['btnEditComment']))
+    {
+      $commentContent=($_POST['commentContent']);
+      $commentID=($_POST['commentID']);
+
+      $query="update comment set commentContent=:commentContent where commentID=:commentID";
+      $query= $dbh->prepare($query);
+      $query->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
+      $query->bindParam(':commentID',$commentID,PDO::PARAM_STR);
+      $query->execute();
+
+      $query1="update notification set notificationDescription=:commentContent where activityID=:commentID";
+      $query1= $dbh->prepare($query1);
+      $query1->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
+      $query1->bindParam(':commentID',$commentID,PDO::PARAM_STR);
+      $query1->execute();
+
+      echo '<script>alert("Your Comment Updated Successfully!")</script>';
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Tips.php'</script>";
+    }
+  ?>
+  <!-- //Edit Comment Code -->
+
+  <!-- Modal Edit Comment -->
+<div class="modal fade" id="EditComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Comment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="editcomment()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+          function editcomment() {
+          document.getElementById("edit_comment").value="";
+          document.getElementById("btnEditComment").disabled = false;
+            }
+        </script>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="commentid" name="commentID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <textarea id="edit_comment" name="commentContent" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
+				</div><input type="text" id="edit_comment_emoji" aria-hidden="true"><input type="button" value="Copy emoji" onclick="editcommentEmoji()" style="float:right;margin-right:-1px"><br>
+
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button id="btnEditComment" name="btnEditComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Edit Comment -->
+
+  <!-- Delete Comment Code -->
+  <?php
+  if(isset($_POST['btnDeleteComment']))
+  {
+    $commentID=($_POST['commentID']);
+    
+    $query="Delete from comment where commentID=:commentID";
+    $query = $dbh->prepare($query);
+    $query->bindValue('commentID',$commentID);
+    $query->execute();
+
+    $query1="Delete from notification where activityID=:commentID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('commentID',$commentID);
+    $query1->execute();
+    
+    echo '<script>alert("Comment Deleted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Tips.php'</script>";
+  }
+  ?>
+	<!-- //Delete Comment Code -->
+
+  <!-- Modal Delete Comment -->
+  <div class="modal fade" id="DeleteComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Comment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to delete this comment?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="comment_id" name="commentID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnDeleteComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="btnCancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Delete Comment -->
+
+  <!-- Delete Post Code -->
+<?php
+   if(isset($_POST['Delete']))
+   {
+    $postID=($_POST['postID']);
+
+    $query="update post set postStatus ='Deleted' where postID=:postID";
+    $query= $dbh->prepare($query);
+    $query->bindValue('postID',$postID);
+    $query->execute();
+
+    $query1="Delete from comment where postID=:postID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('postID',$postID);
+    $query1->execute();
+
+    $query2="Delete from notification where postID=:postID";
+    $query2 = $dbh->prepare($query2);
+    $query2->bindValue('postID',$postID);
+    $query2->execute();
+
+    echo '<script>alert("Post Deleted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Tips.php'</script>";
+   }
+?>
+<!-- //Delete Post Code -->
+
+  <!-- Modal Delete Post -->
+<div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to delete your post?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="post_id1" name="postID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="Delete" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Delete Post -->
+
+  <!-- Edit Post Code -->
+<?php
+   if(isset($_POST['btnEditPost']))
+   {
+    $postID=($_POST['postID']);
+    $Title=($_POST['Title']);
+    $Content=($_POST['Content']);
+
+    $sql="update post set
+    postTitle=:Title,
+    postContent=:Content
+    where postID=:postID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':postID',$postID,PDO::PARAM_STR);
+    $query->bindParam(':Title',$Title,PDO::PARAM_STR);
+    $query->bindParam(':Content',$Content,PDO::PARAM_STR);
+    $query->execute();
+  
+    echo '<script>alert("Post Updated Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Tips.php'</script>";
+  }
+?>
+<!-- //Edit Post Code -->
+
+  <!-- Modal Edit Post -->
+<div class="modal fade" id="EditPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="enableButton()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+        function enableButton() {
+            document.getElementById("btnEditPost").disabled = false;
+        }
+      </script>
+      </div>
+      <div class="modal-body mx-3">
+        <form method="post">
+                                         
+                                        <div hidden style="text-align: center" class="wrap-input100 validate-input">
+                                        <input name="postID" id="post_id2" class="form-control" id="success">
+                                        </div><br>
+                                        
+                                        <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="title" name="Title" placeholder="Tips Title..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:40px;width:715px;border-radius:10px;"></textarea>
+                                             </div>
+                                        </div>
+                                       
+                                        <div class="field item form-group">
+                                             
+                                             <div class="col-md-6 col-sm-6">
+                                                 <textarea required="required" class="form-control" id="content" name="Content" placeholder="Write a Tips..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;width:715px;border-radius:10px;" onInput="handleInput(event)"></textarea>
+                                             </div>
+                                        </div>                              
+
+                                        <div class="ln_solid">
+                                            <br>
+                                            <div style="text-align: center" class="form-group">
+                                            <div class="col-md-6 offset-md-3">
+                                                <button name ="btnEditPost" type='submit' id="btnEditPost" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Save</button>
+                                            </div>
+                                            </div>  
+                                        </div>
+                                    </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Edit Post -->
 
 			<!-- footer content -->
 			<footer>
@@ -1071,9 +1140,48 @@ if(isset($_POST['Adopt']))
 		</div>
 	</div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+    $('#edit_comment_emoji').emojioneArea({
+      inline: true,
+      pickerPosition: "right",
+   });
+</script>
+
+<script>
+  function editcommentEmoji() {
+  var copyText = document.getElementById("edit_comment_emoji");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+  </script>
+
+    <script type="text/javascript">
+    $('#comment_emoji').emojioneArea({
+      inline: true,
+      pickerPosition: "right",
+   });
+</script>
+
+<script>
+  function commentEmoji() {
+  var copyText = document.getElementById("comment_emoji");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+  </script>
 
     <script>
      $( "#content" ).keyup(function() {
@@ -1152,9 +1260,6 @@ if(isset($_POST['Adopt']))
     var post_id3 = $(this).attr('data-post-id');
     $('#ChangePostPicture').modal('show');
     $("#post_id3").val( post_id3 );
-    var picture_file = $(this).attr('data-post-picture');
-    $('#picture_file').val( picture_file );
-    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
   });
   </script>
 
@@ -1393,7 +1498,10 @@ if(isset($_POST['Adopt']))
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
+
+  
+
      
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -239,7 +239,6 @@ th {
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -281,11 +280,8 @@ th {
                   <table class="table table-striped jambo_table bulk_action">
                             <thead>
                             <tr class="headings">
-
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
                             <th style="text-align:center" class="column-title">Pet ID</th>
+                            <th hidden style="text-align:center" class="column-title">User ID</th>
                             <th style="text-align:center" class="column-title">Pet Name</th>
                             <th style="text-align:center" class="column-title">Pet Type</th>
                             <th style="text-align:center" class="column-title">Pet Breed</th>
@@ -293,8 +289,11 @@ th {
                             <th style="text-align:center" class="column-title">Pet Color</th>
                             <th style="text-align:center" class="column-title">Pet Weight</th>
                             <th style="text-align:center" class="column-title">Pet Photo</th>
-                            <th style="text-align:center" class="column-title">Vaccination Status</th>
-                            <th style="text-align:center" class="column-title">Deworming Status</th>
+                            <th style="text-align:center" class="column-title">Spay/Neuter</th>
+                            <th style="text-align:center" class="column-title">RabiesVaccine</th>
+                            <th style="text-align:center" class="column-title">Deworming</th>
+                            <th style="text-align:center" class="column-title">3 in 1 Vaccine</th>
+                            <th style="text-align:center" class="column-title">Pet Diet</th>
                             <th style="text-align:center" class="column-title">Pet Status</th>
                             <th style="text-align:center" class="column-title">Post Status</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
@@ -318,24 +317,26 @@ th {
                             {
                              ?>
                               <tr class="even pointer">
-
-                                <td class="a-center ">
-                                  <input type="checkbox" class="flat" name="table_records">
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
+                                <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petName);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petType);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petBreed);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petAge);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petColor);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petWeight);?></td>
+                                <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->SpayNeuter);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->rabiesVaccine);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Deworming);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->threeinoneVaccine	);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Deworming);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petStatus);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->postStatus);?></td>
+                                <?php if ($result->postStatus != 'Deleted' AND $result->petStatus != 'Adopted' AND $result->petStatus != 'Short-Term Care') { ?>
+                                <td style="text-align:center;" class="last"><button type="button" class="btn btn-danger deletebtn" data-pet-id="<?php echo ($result->petID);?>" data-master-id="<?php echo ($result->userID);?>">Delete</button>
                                 </td>
-                                <td style="text-align:center" class=" " name="#pet_id"><?php echo htmlentities($result->petID);?></td>
-                                <td style="text-align:center" class=" " name="#pet_name"><?php echo htmlentities($result->petName);?></td>
-                                <td style="text-align:center" class=" " name="#pet_type"><?php echo htmlentities($result->petType);?></td>
-                                <td style="text-align:center" class=" " name="#pet_breed"><?php echo htmlentities($result->petBreed);?></td>
-                                <td style="text-align:center" class=" " name="#pet_age"><?php echo htmlentities($result->petAge);?></td>
-                                <td style="text-align:center" class=" " name="#pet_color"><?php echo htmlentities($result->petColor);?></td>
-                                <td style="text-align:center" class=" " name="#pet_weight"><?php echo htmlentities($result->petWeight);?></td>
-                                <td style="text-align:center" class=" " name="#pet_picture"><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
-                                <td style="text-align:center" class=" " name="#vaccination_status"><?php echo htmlentities($result->vaccinationStatus);?></td>
-                                <td style="text-align:center" class=" " name="#deworming_status"><?php echo htmlentities($result->dewormingStatus);?></td>
-                                <td style="text-align:center" class=" " name="#pet_petstatus"><?php echo htmlentities($result->petStatus);?></td>
-                                <td style="text-align:center" class=" " name="#pet_poststatus"><?php echo htmlentities($result->postStatus);?></td>
-                                <td style="text-align:center;" class="last"><a data-toggle="modal" data-target="#DeletePost"><i class="fa fa-trash-o deletebtn" style="height:50px;"></i></a>
-                                </td>
+                                <?php } ?>                                
                               </tr>
                             <?php $cnt=$cnt+1;}}?>
                          </tbody>
@@ -351,61 +352,42 @@ th {
   </div>
 </div>
         <!-- /page content -->
-  
-  <!-- ModalProfile -->
-  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->adID);?>" required = "required" class="form-control" id="success">
-				</div>
-       
-        <div style="text-align: center">
-             <h6 class="mt-1 mb-2"><?php echo ($result->adUsername);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->adPassword);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->adEmail);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
-        </div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //ModalProfile -->
 
-<!-- Delete Post Code -->
-<?php
+ <!-- Delete Post Code -->
+ <?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+ <?php
    if(isset($_POST['Delete']))
    {
     $petID=($_POST['petID']);
+    $masterID=($_POST['masterID']);
 
     $query="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
     $query= $dbh->prepare($query);
     $query->bindValue('petID',$petID);
     $query->execute();
-    
-    if($query)
-    {
-    echo '<script>alert("Data Has been Successfully Deleted!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Petinformation.php'</script>";
-    }
-    else
-    {
-    echo '<script>alert("Data Has been Unsuccessfully Deleted!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Petinformation.php'</script>";
-    } 
 
-  }
+    $query1="Delete from comment where postID=:petID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('petID',$petID);
+    $query1->execute();
+
+    $query2="Delete from notification where postID=:petID";
+    $query2 = $dbh->prepare($query2);
+    $query2->bindValue('petID',$petID);
+    $query2->execute();
+ 
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:petID,:petID,'Post Deleted','$ID',:masterID,'Your Post Has Been Removed By Admin','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query3->execute();
+
+    echo '<script>alert("Deleted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Petinformation.php'</script>";
+   }
 ?>
 <!-- //Delete Post Code -->
 
@@ -415,7 +397,7 @@ th {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Data</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Post</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -423,15 +405,18 @@ th {
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to delete this data?</p>
+					    <p>Are you sure, you want to delete your post?</p>
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
 				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
+				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="Delete" id="Deletedata" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="Deletedata" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+              <button name="Delete" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
          </div>
         </div>
       </form>
@@ -439,7 +424,7 @@ th {
     </div>
   </div>
 </div>
-<!-- //Modal Delete Post -->
+	<!-- //Modal Delete Post -->
 
         <!-- footer content -->
         <footer>
@@ -483,57 +468,15 @@ th {
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-
-            $('.editbtn').on('click', function () {
-
-                $('#EditPost').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#pet_id').val(data[0]);
-                $('#pet_name').val(data[1]);
-                $('#pet_type').val(data[2]);
-                $('#pet_breed').val(data[3]);
-                $('#pet_sex').val(data[4]);
-                $('#pet_age').val(data[5]);
-                $('#pet_color').val(data[6]);
-                $('#pet_weight').val(data[7]);
-                $('#pet_pictre').val(data[8]);
-                $('#vaccination_status').val(data[9]);
-                $('#deworming_status').val(data[10]);
-                $('#pet_pettstatus').val(data[11]);
-                $('#pet_poststatus').val(data[12]);
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.deletebtn').on('click', function () {
-
-                $('#DeletePost').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#pet_id').val(data[0]);
-            });
-        });
-    </script>
+<script type="text/javascript">
+  $(".deletebtn").click(function () {
+    var pet_id = $(this).attr('data-pet-id');
+    var master_id = $(this).attr('data-master-id');
+    $('#DeletePost').modal('show');
+    $("#pet_id").val( pet_id );
+    $("#master_id").val( master_id );
+  });
+  </script>
 
     <div id="custom_notifications" class="custom-notifications dsp_none">
       <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">

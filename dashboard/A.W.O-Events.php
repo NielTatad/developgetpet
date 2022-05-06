@@ -162,31 +162,31 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 	<title>GETPET</title>
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- bootstrap-datetimepicker -->
-    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <!-- Ion.RangeSlider -->
-    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
-    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
-    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
-    <!-- Bootstrap Colorpicker -->
-    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-
-    <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
   <style>
-    .view-more-comment:hover {
+.view-more-comment:hover {
     text-decoration: underline;
 }
     .hide-more-comment:hover {
@@ -221,11 +221,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 					<br />
 
-				 <!-- sidebar menu -->
-         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					<!-- sidebar menu -->
+					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
               <div class="menu_section">
-                <ul class="nav side-menu">
-                <li>
+                    <ul class="nav side-menu">
+                    <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
@@ -245,31 +245,33 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
                     </li>
 
-              </ul>
-                 
-              </div>
+                    </ul>
+					</div>
+					</div>
+					<!-- /sidebar menu -->
 
-            </div>
-            <!-- /sidebar menu -->
-
-				<!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
-              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php">
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
+					<!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+                    <a  data-toggle="modal" data-target="#Settings" title="Inbox" data-placement="top" title="Settings" style="cursor:pointer;">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
+                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+                    </a>
+          </div>
+					<!-- /menu footer buttons -->
 				</div>
 			</div>
 
-	  <!-- top navigation -->
-    <div class="top_nav">
+	 
+			  <!-- top navigation -->
+        <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -321,6 +323,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           foreach($results as $result)
                         {
                            ?>
+                            <?php if ($result->notificationTitle == 'Post Deleted') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle != 'Post Deleted') { ?>
                             <?php $user_id = $result->userID;
 
                             $sql1="SELECT * from register WHERE userID='$user_id'";
@@ -347,6 +367,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
+                         <?php } ?>
                         <?php $cnt=$cnt+1;}} ?>
                       </li>
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
@@ -382,7 +403,6 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
-
 	  <!-- page content -->
     <div class="right_col" role="main">
           <div class="">
@@ -403,28 +423,26 @@ if($query->rowCount()>0)
               </div>
             </div>
 
-<!-- /page content -->
-<div class="clearfix"></div>
+            <!-- 
+            <a href="http://localhost/developgetpet/dashboard/P.O-Postdonation.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Create Post</button></a>
+            Post Button -->
+            <!-- /page content -->
 
-<div class="row">
-  <div class="col-md-12 col-sm-12">
-    <div class="x_panel" style="border-radius:10px;border-width:2px;">
-      <div class="x_title">
-      <div class="page-title">
-                  <div class="title_left">
-                  <h2>Event Post</h2> 
-                  </div>                 
+            <div class="clearfix"></div>
 
-                    <!-- Post Button -->
-                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Postevent.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post an Event</button></a>
-        <ul class="nav navbar-right panel_toolbox">
-       </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content" style="text-align:center;">
-      <br>
-       <!-- View Pet Post for Adotion Code -->
-       <?php
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                  <div class="x_title">
+                  <h2>Posted Events</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                   </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" style="text-align:center;">
+                                  
+                  <!-- View Post for Events Code -->
+                  <?php
                         $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
@@ -453,24 +471,14 @@ if($query->rowCount()>0)
                                           {
                                             ?>
                                             
-                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;<?php echo ($result->postDate);?></textarea> <i class="fa fa-ellipsis-h menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($result->userID);?></i>
-                                                </i>
-
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <button class="dropdown-item Epost" data-post-id="<?php echo ($result->postID);?>" data-post-title="<?php echo ($result->postTitle);?>" data-post-content="<?php echo ($result->postContent);?>" data-post-location="<?php echo ($result->postLocation);?>" data-post-time="<?php echo ($result->postTime);?>" data-post-date="<?php echo ($result->postEventdate);?>"><i hidden><?php echo ($result->userID);?></i> Edit</button>
-
-                                              <button class="dropdown-item Dpost" data-post-id="<?php echo ($result->postID);?>"><i hidden><?php echo ($result->userID);?></i> Delete</button>
-                                              <button class="dropdown-item Ppost" data-post-id="<?php echo ($result->postID);?>" data-post-picture="<?php echo ($result->postPicture);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture</button>
-                                            </div><br>
+                                            <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->postDate);?></textarea>
 
                                             <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">What:&nbsp&nbsp&nbsp<?php echo ($result->postTitle);?><br>When:&nbsp&nbsp<?php echo ($result->postEventdate);?><br>Where:&nbsp<?php echo ($result->postLocation);?>
                                             <br>Time:&nbsp&nbsp&nbsp<?php echo ($result->postTime);?></p>
                                             <br>
+                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postContent);?></p> 
 
-                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postContent);?></p>
-                                            <br>
-                                                                                      
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->postID);?></h3></li>
@@ -490,6 +498,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
+
                                               <br>
 
                                               <?php
@@ -634,16 +643,18 @@ if($query->rowCount()>0)
                           echo "There isn't any information displayed.";
                         }
                         ?>     
-                     <!-- //View Post for Events Code -->     
+                     <!-- //View Post for Events Code -->                                        
+                  </div>
+                </div>
+              </div>
             </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
-<!-- /page content -->
+          </div>
+        </div>
+        <!-- /page content -->
+        
 
-<script>
+ <!-- Search By ID Code -->
+ <script>
 <?php 
 $ID=$_SESSION['orgID'];
 $sql = "SELECT * from animalwelfareorganization where orgID=:ID";
@@ -662,8 +673,9 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
+<!-- //Search By ID Code -->
   
-  <!-- ModalSettings -->
+    <!-- ModalSettings -->
   <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -811,11 +823,11 @@ if(isset($_POST['btnComment']))
 					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userid" value="<?php echo ($result->ownerID);?>" required = "required" class="form-control" id="success">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->orgID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
-				</div><br>
+				</div><input type="text" id="comment_emoji" aria-hidden="true"><input type="button" value="Copy emoji" onclick="commentEmoji()" style="float:right;margin-right:-1px"><br>
 
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
@@ -878,7 +890,7 @@ if(isset($_POST['btnComment']))
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="edit_comment" name="commentContent" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
-				</div><br>
+				</div><input type="text" id="edit_comment_emoji" aria-hidden="true"><input type="button" value="Copy emoji" onclick="editcommentEmoji()" style="float:right;margin-right:-1px"><br>
 
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
@@ -950,22 +962,12 @@ if(isset($_POST['btnComment']))
 <?php
    if(isset($_POST['Delete']))
    {
-    $postID=($_POST['postID']);
+    $petID=($_POST['petID']);
 
-    $query="update post set postStatus ='Deleted' where postID=:postID";
+    $query="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
     $query= $dbh->prepare($query);
-    $query->bindValue('postID',$postID);
+    $query->bindValue('petID',$petID);
     $query->execute();
-
-    $query1="Delete from comment where postID=:postID";
-    $query1 = $dbh->prepare($query1);
-    $query1->bindValue('postID',$postID);
-    $query1->execute();
-
-    $query2="Delete from notification where postID=:postID";
-    $query2 = $dbh->prepare($query2);
-    $query2->bindValue('postID',$postID);
-    $query2->execute();
 
     echo '<script>alert("Post Deleted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
@@ -990,7 +992,7 @@ if(isset($_POST['btnComment']))
 					    <p>Are you sure, you want to delete your post?</p>
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="post_id1" name="postID" required = "required" class="form-control" id="success">
+					    <input hidden id="pet_id1" name="petID" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
@@ -1007,29 +1009,44 @@ if(isset($_POST['btnComment']))
 
   <!-- Edit Post Code -->
 <?php
-   if(isset($_POST['btnEditPost']))
+   if(isset($_POST['Edit']))
    {
-    $postID=($_POST['postID']);
-    $Title=($_POST['Title']);
-    $Content=($_POST['Content']);
-    $Location=($_POST['Location']);
-    $Time=($_POST['Time']);
-    $Date=($_POST['Date']);
+    $petID=($_POST['petID']);
+    $Type=($_POST['Type']);
+    $PetName=($_POST['PetName']);
+    $Breed=($_POST['Breed']);
+    $Gender=($_POST['Gender']);
+    $Age=($_POST['Age']);
+    $Color=($_POST['Color']);
+    $Weight=($_POST['Weight']);
+    $Vaccination=($_POST['Vaccination']);
+    $Deworming=($_POST['Deworming']);
+    $Description=($_POST['Description']);
 
-    $sql="update post set
-    postTitle=:Title,
-    postContent=:Content,
-    postLocation=:Location,
-    postTime=:Time,
-    postEventdate=:Date
-    where postID=:postID";
+    $sql="update postpet set
+    petType=:Type,
+    petName=:PetName,
+    petBreed=:Breed,
+    petSex=:Gender,
+    petAge=:Age,
+    petColor=:Color,
+    petWeight=:Weight,
+    vaccinationStatus=:Vaccination,
+    dewormingStatus=:Deworming,
+    petDescription=:Description
+    where petID=:petID";
     $query=$dbh->prepare($sql); 
-    $query->bindParam(':postID',$postID,PDO::PARAM_STR);
-    $query->bindParam(':Title',$Title,PDO::PARAM_STR);
-    $query->bindParam(':Content',$Content,PDO::PARAM_STR);
-    $query->bindParam(':Location',$Location,PDO::PARAM_STR);
-    $query->bindParam(':Time',$Time,PDO::PARAM_STR);
-    $query->bindParam(':Date',$Date,PDO::PARAM_STR);
+    $query->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query->bindParam(':Type',$Type,PDO::PARAM_STR);
+    $query->bindParam(':PetName',$PetName,PDO::PARAM_STR);
+    $query->bindParam(':Breed',$Breed,PDO::PARAM_STR);
+    $query->bindParam(':Gender',$Gender,PDO::PARAM_STR);
+    $query->bindParam(':Age',$Age,PDO::PARAM_STR);
+    $query->bindParam(':Color',$Color,PDO::PARAM_STR);
+    $query->bindParam(':Weight',$Weight,PDO::PARAM_STR);
+    $query->bindParam(':Vaccination',$Vaccination,PDO::PARAM_STR);
+    $query->bindParam(':Deworming',$Deworming,PDO::PARAM_STR);
+    $query->bindParam(':Description',$Description,PDO::PARAM_STR);
     $query->execute();
   
     echo '<script>alert("Post Updated Successfully!")</script>';
@@ -1050,91 +1067,202 @@ if(isset($_POST['btnComment']))
         </button>
         <script>
         function enableButton() {
-            document.getElementById("btnEditPost").disabled = false;
+            document.getElementById("Edit").disabled = false;
         }
       </script>
       </div>
       <div class="modal-body mx-3">
-        <form method="post">
-                                         
-                                        <span class="section"></span>
-                                        <div hidden class="field item form-group">
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>"/>
-                                            </div>
+      <form method="post">
+        
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="pet_id2" name="petID" required = "required" class="form-control">
+				</div>
 
-                                        </div>
-                                        <div hidden class="field item form-group">
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>"/>
-                                            </div>
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input type="text" class="form-control" id="pet_name2" name="PetName" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+        </div>
+        </div>
 
-                                        </div>
-                                        <div hidden class="field item form-group">
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" name="Email" class='email' value="<?php echo ($result->orgEmail);?>"/></div>
-                                        </div>
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" name="Type" id="pet_type2" style="background-color:#fff;width:190px;" required="required"/>
+        <div class="col-md-6 col-sm-6">
+        <select class="form-control myselect" id="slct1" style="background-color:#fff;width:200px;"  onchange="populate(this.id,'slct2')" onclick="typeFunction()">
+          <option value="" selected="selected">Type of pet...</option>
+          <option value="Dog">DOG</option>
+          <option value="Cat">CAT</option>
+        </select>
+        </div>
+        </div>
 
-                                        <div hidden class="field item form-group">
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='number' name="ContactNo" value="<?php echo ($result->orgContactNo);?>"></div>
-                                        </div>
+        <script>
+          function typeFunction() {
+          var type = document.getElementById('slct1').value;
+          document.getElementById('pet_type2').value = type;
+          }
+        </script>
 
-                                        <div hidden style="text-align: center" class="wrap-input100 validate-input">
-                                        <input name="postID" id="post_id2" class="form-control" id="success">
-                                        </div><br>
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Select Breed</label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" id="pet_breed2" name="Breed" style="background-color:#fff;width:190px;" required="required"/>
+        <div class="col-md-6 col-sm-6">
+        <select class="select2_group form-control" id="slct2" onclick="breedFunction()" style="background-color:#fff;width:200px;"></select>
+        </div>
+        </div>
+        <script>
+
+        function populate(s1,s2)
+      {
+       var s1 = document.getElementById(s1);
+       var s2 = document.getElementById(s2);
+
+       s2.innerHTML = "";
+
+       if(s1. value == "Dog")
+      {
+       var optionArray = ['Affenpinscher|Affenpinscher', 'Afghan hound|Afghan hound', 'Airedale terrier|Airedale terrier','Akita|Akita','Alaskan Malamute|Alaskan Malamute','American Staffordshire terrier|American Staffordshire terrier','American water spaniel|American water spaniel','Askal|Askal','Australian cattle dog|Australian cattle dog','Australian shepherd|Australian shepherd','Australian terrier|Australian terrier','Basenji|Basenji','Basset hound|Basset hound','Beagle|Beagle','Bearded collie|Bearded collie','Bedlington terrier|Bedlington terrier','Bernese mountain dog|Bernese mountain dog','Bichon frise|Bichon frise','Black and tan coonhound|Black and tan coonhound','Bloodhound|Bloodhound','Border collie|Border collie','Border terrier|Border terrier','Borzoi|Borzoi','Boston terrier|Boston terrier','Bouvier Des Flandres|Bouvier Des Flandres','Boxer|Boxer','Briard|Briard','Brittany|Brittany','Brussels griffon|Brussels griffon','Bull terrier|Bull terrier','Bulldog|Bulldog','Bullmastiff|Bullmastiff','Cairn terrier|Cairn terrier','Canaan dog|Canaan dog','Chesapeake Bay retriever|Chesapeake Bay retriever','Chihuahua|Chihuahua','Chinese crested|Chinese shar-pei','Chow chow|Chow chow','Clumber spaniel|Clumber spaniel','Cocker spaniel|Cocker spaniel','Collie|Collie','Curly-coated retriever|Curly-coated retriever','Dachshund|Dachshund','Dalmatian|Dalmatian','Doberman pinscher|Doberman pinscher','English cocker spaniel|English cocker spaniel','English setter|English setter','English springer spaniel|English springer spaniel','English toy spaniel|English toy spaniel','Eskimo dog|Eskimo dog','Finnish spitz|Finnish spitz','Flat-coated retriever|Flat-coated retriever','Fox terrier|Fox terrier','Foxhound|Foxhound','French bulldog|German shepherd','German shorthaired pointer|German shorthaired pointer','German wirehaired pointer|German wirehaired pointer','Golden retriever|Golden retriever','Gordon setter|Gordon setter','Great Dane|Great Dane','Greyhound|Greyhound','Irish setter|Irish setter','Irish water spaniel|Irish water spaniel','Irish wolfhound|Irish wolfhound','Jack Russell terrier|Jack Russell terrier','Japanese spaniel|Japanese spaniel','Keeshond|Keeshond','Kerry blue terrier|Kerry blue terrier','Komondor|Komondor','Kuvasz|Kuvasz','Labrador retriever|Labrador retriever','Lakeland terrier|Lakeland terrier','Lhasa apso|Lhasa apso','Maltese|Maltese','Manchester terrier|Manchester terrier','Mastiff|Mastiff','Mexican hairless|Mexican hairless','Newfoundland|Newfoundland','Norwegian elkhound|Norwegian elkhound','Otterhound|Otterhound','Papillon|Papillon','Pekingese|Pekingese','Pointer|Pointer','Pomeranian|Pomeranian','Poodle|Poodle','Pug|Pug','Puli|Puli','Rhodesian ridgeback|Rhodesian ridgeback','Rottweiler|Rottweiler','Saint Bernard|Saint Bernard','Saluki|Saluki','Samoyed|Samoyed','Schipperke|Schipperke','Schnauzer|Schnauzer','Scottish deerhound|Scottish deerhound','Scottish terrier|Scottish terrier','Sealyham terrier|Sealyham terrier','Shetland sheepdog|Shetland sheepdog','Shih tzu|Shih tzu','Siberian husky|Siberian husky','Silky terrier|Silky terrier','Skye terrier|Skye terrier','Staffordshire bull terrier|Staffordshire bull terrier','Soft-coated wheaten terrier|Soft-coated wheaten terrier','Sussex spaniel|Sussex spaniel','Spitz|Spitz','Tibetan terrier|Tibetan terrier','Vizsla|Vizsla','Weimaraner|Weimaraner','Welsh terrier|Welsh terrier','West Highland white terrier|West Highland white terrier','Whippet|Whippet'];
+      }
+        else if(s1.value == 'Cat')
+      {
+        var optionArray = ['American Shorthair|American Shorthair','Abyssinian|Abyssinian','American Curl|American Curl','American Bobtail|American Bobtail','American Wirehair|American Wirehair','Aegean|Aegean','Australian Mist|Australian Mist','American Polydactyl|American Polydactyl','Arabian Mau|Arabian Mau','Asian cat|Asian cat','Asian Semi-longhair|Asian Semi-longhair','British Shorthair|British Shorthair','Bengal|Bengal','Burmese|Burmese','Birman|Birman','Balinese|Balinese','Bombay|Bombay','Burmilla|Burmilla','Bambino|Bambino','Brazilian Shorthair|Brazilian Shorthair','British Longhair|British Longhair','Cornish Rex|Cornish Rex','Colorpoint Shorthair|Colorpoint Shorthair','Chartreux|Chartreux','California Spangled|California Spangled','Cymric|Cymric','Chantilly-Tiffany|Chantilly-Tiffany','Chausie|Chausie','Cheetoh|Cheetoh','Cyprus|Cyprus','Devon Rex|Devon Rex','Domestic shorthair cat|Domestic shorthair cat','Donskoy|Donskoy','Dwelf|Dwelf','Exotic Shorthair|Exotic Shorthair','Egyptian Mau|Egyptian Mau','European Burmese|European Burmese','Elf cat|Elf cat','Havana Brown|Havana Brown','Himalayan|Himalayan','Japanese Bobtail|Japanese Bobtail','Javanese|Javanese','Khao Manee|Khao Manee','Korat|Korat','Lykoi|Lykoi','LaPerm|LaPerm','Maine Coon|Maine Coon','Manx|Manx','Munchkin|Munchkin','Minskin|Minskin','Norwegian Forest Cat|Norwegian Forest Cat','Nebelung|Nebelung','Napoleon cat|Napoleon cat','Oriental|Oriental','Ocicat|Ocicat','Persian|Persian','Pixie-bob|Pixie-bob','Peterbald|Peterbald','Puspin|Puspin','Ragdoll|Ragdoll','Russian Blue|Russian Blue','Ragamuffin|Ragamuffin','Sphynx|Sphynx','Scottish Fold|Scottish Fold','Siamese|Siamese','Siberian|Siberian','Selkirk Rex|Selkirk Rex','Somali|Somali','Singapura|Singapura','Savannah|Savannah','Snowshoe|Snowshoe','Sokoke|Sokoke','Serengeti cat|Serengeti cat','Tonkinese|Tonkinese','Turkish Angora|Turkish Angora','Turkish Van|Turkish Van','Toyger|Toyger','Thai cat|Thai cat','Ukrainian Levkoy|Ukrainian Levkoy','York Chocolate|York Chocolate'];
+        }
+          for (var option in optionArray)
+         {
+          var pair = optionArray[option].split("|");
+          var newoption = document.createElement("option");
+          newoption.value = pair[0];
+          newoption.innerHTML = pair[1];
+          s2.options.add(newoption);
+         }
+        }
+                                            
+        </script>
+
+          <script>
+          function breedFunction() {
+          var breed = document.getElementById('slct2').value;
+          document.getElementById('pet_breed2').value = breed;
+          }
+          </script>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <select class="form-control" style="background-color:#fff;width:400px;" required="required" required="required" name="Gender" id="pet_sex2">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Age</label>
+        <div class="col-md-6 col-sm-6">
+               <input read only type="text" class="form-control" id="pet_age2" name="Age" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="ageFunction()" onkeyup="ageFunction()" id="age" class="form-control" style="width:200px" placeholder="0" value="1"/>
+        <div class="col-md-6 col-sm-6">
+               <select class="form-control" onclick="ageFunction()"  id ="mnyr" style="width:217px">
+               <option value="month">Month</option>
+               <option value="year">Year</option>
+               </select>
+        </div>
+        </div>
+
+        <script>
+         function ageFunction() {
+         var age = document.getElementById('age').value;
+         var mnyr = document.getElementById('mnyr').value;
+         var petage = age +" "+ mnyr;
+        document.getElementById('pet_age2').value = petage;
+        }
+        </script>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Color<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input type="text" class="form-control" id="pet_color2" name="Color" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Weight<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_weight2" name="Weight" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align"></label>&nbsp;&nbsp;&nbsp;<input type="number" min="1" max="1500" onclick="weightFunction()" onkeyup="weightFunction()" id="weight" class="form-control" style="width:200px" placeholder="0" value="1"/>
+        <div class="col-md-6 col-sm-6">
+             <select class="form-control" onclick="weightFunction()" id ="kgpd" style="width:217px">
+             <option value="kg">Kilogram</option>
+             <option value="lb">Pound</option>
+             </select>
+        </div>
+        </div>
                                         
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="title" class="form-control" name="Title" placeholder="Title..." required="required"/>
-                                            </div>
-                                        </div>
+        <script>
+        function weightFunction() {
+        var weight = document.getElementById('weight').value;
+        var kgpd = document.getElementById('kgpd').value;
+        var petweight = weight +" "+ kgpd;
+        document.getElementById('pet_weight2').value = petweight;
+        }
+        </script>
 
-                                        <div class="field item form-group">
-                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
-                                          <div class="col-md-6 col-sm-6">
-                                            <textarea id="content" required="required" class="form-control" name="Content" placeholder="Description..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:200px;"></textarea>
-                                          </div>
-                                        </div>                                    
-                               
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Location<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="location" class="form-control" name="Location" placeholder="Location..." required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
-                                            </div>
-                                        </div>
+        <div class="field item form-group">
+				<label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
+				<div class="col-md-6 col-sm-6">
+				<select class="form-control" id="vaccination_status2" style="background-color:#fff;width:400px;" name="Vaccination">
+					<option>Vaccination Status...</option>
+					<option>Vaccinated</option>
+					<option>Not vaccinated</option>
+					</select>
+				</div>
+				</div>
 
-                                        <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Time</label>
-                                         <div class="col-md-6 col-sm-6" class="form-group">
-                                         <div class='input-group date' id='myDatepicker3'>
-                                         <input required="required" type='text' id="time" name="Time" class="form-control" class="input-group-addon" onkeypress="return onlyNumberKey(event)"/>
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-time" style="margin-top:4px;"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>                                               
+        <div class="field item form-group">
+				<label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
+			  <div class="col-md-6 col-sm-6">
+				<select class="form-control" required="required" id="deworming_status2" style="background-color:#fff;width:400px;" name="Deworming">
+					<option>Deworming Status...</option>
+					<option>Deworm</option>
+					<option>Not deworm</option>
+				</select>
+				</div>
+			  </div>
 
-                                         <div style="text-align: center" class="form-group">
-                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Event Date<span class="required"></span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='date' type="date" id='date' name="Date" required='required'></div>
-                                         </div>
-                                         </div>
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <textarea id="pet_description2" name="Description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
+        </div>
+        </div>
 
-                                        <div class="ln_solid">
-                                            <br>
-                                            <div style="text-align: center" class="form-group">
-                                            <div class="col-md-6 offset-md-3">
-                                                <button name ="btnEditPost" type='submit' id="btnEditPost" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Save</button>
-                                            </div>
-                                            </div>  
-                                        </div>
-                                    </form>
+        <script>
+          function edit() {
+          if(document.getElementById("pet_description2").value==="") { 
+                    document.getElementById('Edit').disabled = true; 
+                } else { 
+                    document.getElementById('Edit').disabled = false;
+                }
+            }
+        </script>
+       
+        <div class="ln_solid">
+        <br>
+        <div class="form-group" style="text-align: center">
+        <div class="col-md-6 offset-md-3">
+               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Update</button>
+        </div>
+        </div>
+        </div>
+
+        </form>
       </div>
     </div>
   </div>
@@ -1145,15 +1273,15 @@ if(isset($_POST['btnComment']))
   <?php
 if(isset($_POST['btnChangePostPicture']))
 {
-$postID=$_POST['postID'];
+$petID=$_POST['petID'];
 $PostPicture=$_POST['PostPicture'];
 
-$sql="update post set 
-postPicture=:PostPicture
-where postID=:postID";
+$sql="update postpet set 
+petPicture=:PostPicture
+where petID=:petID";
 
 $query=$dbh->prepare($sql);
-$query->bindParam(':postID',$postID,PDO::PARAM_STR);  
+$query->bindParam(':petID',$petID,PDO::PARAM_STR);  
 $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
@@ -1183,7 +1311,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <input type="file" onchange="readURL(this);" name="PostPicture" id="PostPicture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden name="postID" id="post_id3" class="form-control" id="success">
+					    <input hidden name="petID" id="pet_id3" class="form-control" id="success">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="picture_file" class="form-control" id="success">
@@ -1201,356 +1329,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 	<!-- //Modal Change Post Picture -->
 
-  <!-- Edit Comment Code -->
-  <?php
-    if(isset($_POST['btnEditComment']))
-    {
-      $commentContent=($_POST['commentContent']);
-      $commentID=($_POST['commentID']);
-
-      $query="update comment set commentContent=:commentContent where commentID=:commentID";
-      $query= $dbh->prepare($query);
-      $query->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
-      $query->bindParam(':commentID',$commentID,PDO::PARAM_STR);
-      $query->execute();
-
-      $query1="update notification set notificationDescription=:commentContent where activityID=:commentID";
-      $query1= $dbh->prepare($query1);
-      $query1->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
-      $query1->bindParam(':commentID',$commentID,PDO::PARAM_STR);
-      $query1->execute();
-
-      echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-    }
-  ?>
-<!-- //Edit Comment Code --> 
-
-<!-- Modal Edit Comment -->
-  <div class="modal fade" id="EditComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Comment</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="editcomment()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-          function editcomment() {
-          document.getElementById("edit_comment").value="";
-          document.getElementById("btnEditComment").disabled = false;
-            }
-        </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="commentid" name="commentID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <textarea id="edit_comment" name="commentContent" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
-				</div><br>
-
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button id="btnEditComment" name="btnEditComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Edit Comment -->
-
-<!-- Delete Comment Code -->
-  <?php
-  if(isset($_POST['btnDeleteComment']))
-  {
-    $commentID=($_POST['commentID']);
-    
-    $query="Delete from comment where commentID=:commentID";
-    $query = $dbh->prepare($query);
-    $query->bindValue(':commentID',$commentID);
-    $query->execute();
-
-    $query1="Delete from notification where activityID=:commentID";
-    $query1 = $dbh->prepare($query1);
-    $query1->bindValue('commentID',$commentID);
-    $query1->execute();
-    
-    echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-  }
-  ?>
-<!-- //Delete Comment Code -->
-
-<!-- Modal Delete Comment -->
-  <div class="modal fade" id="DeleteComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Comment</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to delete this comment?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="comment_id" name="commentID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="btnDeleteComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="btnCancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Delete Comment -->
-
-<!-- Delete Post Code -->
-  <?php
-   if(isset($_POST['Delete']))
-   {
-    $postsID=($_POST['postsID']);
-
-    $query="update post set postStatus='Not available', postStatus ='Deleted' where postsID=:postsID";
-    $query= $dbh->prepare($query);
-    $query->bindValue(':postsID',$postsID);
-    $query->execute();
-
-    echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-   }
-?>
-<!-- //Delete Post Code -->
-
-  <!-- Modal Delete Post -->
-  <div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Post</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to delete your post?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="post_id1" name="postsID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="Delete" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Delete Post -->
-
-<!-- Edit Post Code -->
-  <?php
-   if(isset($_POST['Edit']))
-   {
-    $postsID=($_POST['postsID']);
-    $Title=($_POST['Title']);
-    $Content=($_POST['Content']);
-    $Location=($_POST['Location']);
-    $Time=($_POST['Time']);
-    $Eventdate=($_POST['Eventdate']);
-
-    $sql="update post set
-    postTitle=:Title,
-    postContent=:Content,
-    postLocation=:Location,
-    postTime=:Time,
-    postEventdate=:Eventdate
-    where postsID=:postsID";
-
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':postsID',$postsID,PDO::PARAM_STR);
-    $query->bindParam(':Title',$Title,PDO::PARAM_STR);
-    $query->bindParam(':Content',$Content,PDO::PARAM_STR);
-    $query->bindParam(':Location',$Location,PDO::PARAM_STR);
-    $query->bindParam(':Time',$Time,PDO::PARAM_STR);
-    $query->bindParam(':Eventdate',$Eventdate,PDO::PARAM_STR);
-    $query->execute();
-  
-    echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-  }
-?>
-<!-- //Edit Post Code -->
-
-<!-- Modal Edit Post -->
- <div class="modal fade" id="EditPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Post</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="enableButton()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-        function enableButton() {
-            document.getElementById("Edit").disabled = false;
-        }
-      </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="post_id2" name="postsID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input type="text" class="form-control" id="post_title2" name="Title" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Content<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea id="post_content2" name="Content" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
-        </div>
-        </div>
-
-        <script>
-          function edit() {
-          if(document.getElementById("post_content2").value==="") { 
-                    document.getElementById('Edit').disabled = true; 
-                } else { 
-                    document.getElementById('Edit').disabled = false;
-                }
-            }
-        </script>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Location</label>
-        <div class="col-md-6 col-sm-6">
-               <input read only type="text" class="form-control" id="post_location2" name="Location" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Time</label>
-                                         <div class="col-md-6 col-sm-6" class="form-group">
-                                         <div class='input-group date' id='myDatepicker3' >
-                                         <input required="required" type='text' id="post_time2" name="Time" class="form-control" class="input-group-addon" onkeypress="return onlyNumberKey(event)"/>
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-time" style="margin-top:4px;"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>
-
-        <div class="field item form-group">
-          <label class="col-form-label col-md-3 col-sm-3  label-align">Event Date<span class="required"></span></label>
-          <div class="col-md-6 col-sm-6">
-            <input class="form-control" class='date' type="date" id="post_date2" name="Date" required='required'>
-          </div>
-        </div>
-       
-        <div class="ln_solid">
-        <br>
-        <div class="form-group" style="text-align: center">
-        <div class="col-md-6 offset-md-3">
-               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Update</button>
-        </div>
-        </div>
-        </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Edit Post -->
-
-<!-- Change Post Picture Code -->
-  <?php
-if(isset($_POST['btnChangePostPicture']))
-{
-$postsID=$_POST['postsID'];
-$PostPicture=$_POST['PostPicture'];
-
-$sql="update post set 
-postsID=:PostPicture
-where postsID=:postsID";
-
-$query=$dbh->prepare($sql);
-$query->bindParam(':postsID',$postsID,PDO::PARAM_STR);  
-$query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
-$query->execute();
-
-echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-}
-?>
-<!-- //Change Post Picture Code -->
-
-<!-- Modal Change Post Picture -->
-  <div class="modal fade" id="ChangePostPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Change Post Picture</h4>
-        <button type="button" id="selected_picture_close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img id="post_picture" src="/developgetpet/web/images/" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" >
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" onchange="readURL(this);" name="PostPicture" id="PostPicture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden name="postsID" id="post_id3" class="form-control" id="success">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="picture_file" class="form-control" id="success">
-				</div><br>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="btnChangePostPicture" id="btnChangePostPicture" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
-              <button type='reset' id="selected_picture_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Change Post Picture -->  
-
 			<!-- footer content -->
 			<footer>
       <p class="tweet-p1">
@@ -1566,74 +1344,46 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script type="text/javascript">
-    $('#comment').emojioneArea({
-       pickerPosition: 'right'
-   });
-</script> 
-
-<script>
-     $( "#comment" ).keyup(function() {
-  $("#btnComment").prop("disabled", !this.value);
-});
-</script>
-
-<script>
-     $( "#edit_comment" ).keyup(function() {
-      $("#btnEditComment").prop("disabled", !this.value);
-    });
-</script>
-
-<script type="text/javascript">
-  $("#selected_picture_cancel").click(function () {
   
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
+<script type="text/javascript">
+    $('#edit_comment_emoji').emojioneArea({
+      inline: true,
+      pickerPosition: "right",
+   });
+</script>
+
+<script>
+  function editcommentEmoji() {
+  var copyText = document.getElementById("edit_comment_emoji");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
   </script>
 
 <script type="text/javascript">
-  $("#selected_picture_close").click(function () {
-
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
+    $('#comment_emoji').emojioneArea({
+      inline: true,
+      pickerPosition: "right",
+   });
 </script>
 
 <script>
-      PostPicture.onchange = evt => {
-  const [file] = PostPicture.files
-  if (file) {
-    post_picture.src = URL.createObjectURL(file)
-  }
-  document.getElementById("btnChangePostPicture").disabled = false;
+  function commentEmoji() {
+  var copyText = document.getElementById("comment_emoji");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
 }
-</script>
+  </script>
 
-<script>
-   $(window).on("load", function () {
-    console.log("load");
-    $("div#view_more_comment_Div").hide();
-    });
-</script>
-
-<script>
-    $(function () {
-    $("textarea.txtgrow").each(function () {
-      this.style.height = 'auto';
-      this.style.height = (this.scrollHeight+10)+'px';
-    });
-    });
-</script>
-
-    <script>
-     $( "#content" ).keyup(function() {
-  $("#btnEditPost").prop("disabled", !this.value);
-});
-    </script>
-
-    <script>
+   <script>
      $( "#comment" ).keyup(function() {
   $("#btnComment").prop("disabled", !this.value);
 });
@@ -1780,10 +1530,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 <script type="text/javascript">
   $(".Ppost").click(function () {
-    var post_id3 = $(this).attr('data-post-id');
+    var pet_id3 = $(this).attr('data-pet-id');
     $('#ChangePostPicture').modal('show');
-    $("#post_id3").val( post_id3 );
-    var picture_file = $(this).attr('data-post-picture');
+    $("#pet_id3").val( pet_id3 );
+    var picture_file = $(this).attr('data-pet-picture');
     $('#picture_file').val( picture_file );
     document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
   });
@@ -1791,27 +1541,37 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 <script type="text/javascript">
   $(".Epost").click(function () {
-    var post_id2 = $(this).attr('data-post-id');
-    var title = $(this).attr('data-post-title');
-    var content = $(this).attr('data-post-content');
-    var location = $(this).attr('data-post-location');
-    var time = $(this).attr('data-post-time');
-    var date = $(this).attr('data-post-date');
+    var pet_id2 = $(this).attr('data-pet-id');
+    var pet_name2 = $(this).attr('data-pet-name');
+    var pet_type2 = $(this).attr('data-pet-type');
+    var pet_breed2 = $(this).attr('data-pet-breed');
+    var pet_sex2 = $(this).attr('data-pet-gender');
+    var pet_age2 = $(this).attr('data-pet-age');
+    var pet_color2 = $(this).attr('data-pet-color');
+    var pet_weight2 = $(this).attr('data-pet-weight');
+    var vaccination_status2 = $(this).attr('data-vaccination-status');
+    var deworming_status2 = $(this).attr('data-deworming-status');
+    var pet_description2 = $(this).attr('data-pet-description');
     $('#EditPost').modal('show');
-    $("#post_id2").val( post_id2 );
-    $("#title").val( title );
-    $("#content").val( content );
-    $("#location").val( location );
-    $("#time").val( time );
-    $("#date").val( date );
+    $("#pet_id2").val( pet_id2 );
+    $("#pet_name2").val( pet_name2 );
+    $("#pet_type2").val( pet_type2 );
+    $("#pet_breed2").val( pet_breed2 );
+    $("#pet_sex2").val( pet_sex2 );
+    $("#pet_age2").val( pet_age2 );
+    $("#pet_color2").val( pet_color2 );
+    $("#pet_weight2").val( pet_weight2 );
+    $("#vaccination_status2").val( vaccination_status2 );
+    $("#deworming_status2").val( deworming_status2 );
+    $("#pet_description2").val( pet_description2 );
   });
   </script>
 
 <script type="text/javascript">
   $(".Dpost").click(function () {
-    var post_id1 = $(this).attr('data-post-id');
+    var pet_id1 = $(this).attr('data-pet-id');
     $('#DeletePost').modal('show');
-    $("#post_id1").val( post_id1 );
+    $("#pet_id1").val( pet_id1 );
   });
   </script>
 
@@ -1930,51 +1690,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
     </script>
 
-<!-- Initialize datetimepicker -->
-<script  type="text/javascript">
-   $(function () {
-    $('#myDatepicker').datetimepicker();
-            });
-    
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-    
-    $('#myDatepicker3').datetimepicker({
-        format: 'hh:mm A'
-    });
-    
-    $('#myDatepicker4').datetimepicker({
-        ignoreReadonly: true,
-        allowInputToggle: true
-    });
-
-    $('#datetimepicker6').datetimepicker();
-    
-    $('#datetimepicker7').datetimepicker({
-        useCurrent: false
-    });
-    
-    $("#datetimepicker6").on("dp.change", function(e) {
-        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-    });
-    
-    $("#datetimepicker7").on("dp.change", function(e) {
-        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-    });
-</script>
-
-<script>
-  function onlyNumberKey(evt) {
-                                                    
-  // Only ASCII character in that range allowed
-      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-          return false;
-          return true;
-  }
-</script>
-
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -1990,8 +1705,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<script src="../vendors/moment/min/moment.min.js"></script>
 	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <!-- bootstrap-datetimepicker -->    
-  <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 	<!-- bootstrap-wysiwyg -->
 	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
 	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
@@ -2012,51 +1725,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
-
-   <!-- Initialize datetimepicker -->
-<script  type="text/javascript">
-   $(function () {
-    $('#myDatepicker').datetimepicker();
-            });
-    
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-    
-    $('#myDatepicker3').datetimepicker({
-        format: 'hh:mm A'
-    });
-    
-    $('#myDatepicker4').datetimepicker({
-        ignoreReadonly: true,
-        allowInputToggle: true
-    });
-
-    $('#datetimepicker6').datetimepicker();
-    
-    $('#datetimepicker7').datetimepicker({
-        useCurrent: false
-    });
-    
-    $("#datetimepicker6").on("dp.change", function(e) {
-        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-    });
-    
-    $("#datetimepicker7").on("dp.change", function(e) {
-        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-    });
-</script>
-
-<script>
-  function onlyNumberKey(evt) {
-                                                    
-  // Only ASCII character in that range allowed
-      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-          return false;
-          return true;
-  }
-</script>
 
   
 

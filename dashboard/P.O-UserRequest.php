@@ -210,8 +210,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
     <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -240,11 +238,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <br />
 
-            <!-- sidebar menu -->
-					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
+         <!-- sidebar menu -->
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                    <ul class="nav side-menu">
-
+                <ul class="nav side-menu">
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
@@ -267,38 +264,32 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>                 
+                    </li>
 
-                    </ul>
-					</div>
-					</div>
-					<!-- /sidebar menu -->
+                  
+              </div>
 
-					<!-- /menu footer buttons -->
-					<div class="sidebar-footer hidden-small">
-                    <a  data-toggle="modal" data-target="#Settings" title="Inbox" data-placement="top" title="Settings" style="cursor:pointer;">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        99+
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
-                    </a>
-          </div>
-					<!-- /menu footer buttons -->
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
+              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
           </div>
         </div>
 
-          <!-- top navigation -->
-         <div class="top_nav">
+       <!-- top navigation -->
+       <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -350,6 +341,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           foreach($results as $result)
                         {
                            ?>
+                            <?php if ($result->notificationTitle == 'Post Deleted') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle != 'Post Deleted') { ?>
                             <?php $user_id = $result->userID;
 
                             $sql1="SELECT * from register WHERE userID='$user_id'";
@@ -376,6 +385,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
+                         <?php } ?>
                         <?php $cnt=$cnt+1;}} ?>
                       </li>
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
@@ -436,7 +446,7 @@ if($query->rowCount()>0)
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
+              <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>My Profile</h2>
@@ -477,7 +487,7 @@ if($query->rowCount()>0)
                         </div>
                       </div>
                       <br>
-                      <?php $cnt=$cnt+1;}}?>
+                      <?php $cnt=$cnt+1;}} ?>
                       
                      <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       <li class="nav-item">
@@ -494,7 +504,7 @@ if($query->rowCount()>0)
 
                       ?>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?></span>
                         </a>
                         <script type="text/javascript">
                         var myrequest = <?php echo ($myrequest);?>;
@@ -555,8 +565,8 @@ if($query->rowCount()>0)
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
                         
- <!-- View User Request Code -->
- <?php
+<!-- View User Request Code -->
+<?php
             $sql="SELECT * from request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' ORDER BY requestID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
@@ -585,42 +595,7 @@ if($query->rowCount()>0)
                         foreach($userids as $userid)
                       {
                         ?>
-                      
-                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:100px;height:100px;margin-bottom:5px" class="rounded-circle img-responsive"><br>
-
-                      <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
- 
-                      <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
-                      <tr>
-                          <td align='center'>Name:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                      <td align='center'>Address:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->Address);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                          <td align='center'>Email:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->Email);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                          <td align='center'>Contact No:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->contactNo);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                          <td align='center'>Reason:</td>
-                          <td><textarea disabled="yes" id="description" style="width:300px;margin-bottom:-10px;height:80px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'><?php echo ( $result->requestReason);?></textarea></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <table border='0' cellpadding='0' cellspacing='0' width='480px' align='center'>
-                      </table>
-                      </table>
-                      
-                      </table>
+                        
                       <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($result->userName);?></h3></li>
@@ -639,20 +614,44 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Name: <?php echo ( $petid->petName);?>&#13;&#10;Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+                      
+                      <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Email: <?php echo ( $userid->Email);?>&#13;&#10;Contact No: <?php echo ( $userid->contactNo);?>&#13;&#10;Reason for Short-term care: <?php echo ( $result->requestReason);?></textarea><br><br>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ( $petid->selectedRange);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+
+                      <div style="text-align: center" class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success accept-shorttermcare-btn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
+                            <button type='reset' class="btn btn-round btn-danger decline-shorttermcare-btn" style="width:90px;height:37px;">Decline</button>
+                      </div>
+                      </div>
+                      
+                      <?php } ?>
+
+                      <?php if ($result->requestTitle == 'Adoption Request') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Email: <?php echo ( $userid->Email);?>&#13;&#10;Contact No: <?php echo ( $userid->contactNo);?>&#13;&#10;Reason for Adoption: <?php echo ( $result->requestReason);?></textarea><br><br>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+
+                      <div style="text-align: center" class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success accept-adoption-btn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
+                            <button type='reset' class="btn btn-round btn-danger decline-adoption-btn" style="width:90px;height:37px;">Decline</button>
+                      </div>
+                      </div>
+
+                      <?php } ?>
 
                       <li><h3 hidden class="card-title"><?php echo ($petid->petType);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($petid->petName);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($petid->petBreed);?></h3></li>
+                      <li><h3 hidden class="card-title"><?php echo ($petid->totalDays);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($result->requestDate);?></h3></li>
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
-                      <div style="text-align: center" class="form-group">
-                      <div class="col-md-6 offset-md-3">
-                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
-                            <button type='reset' class="btn btn-round btn-danger declinebtn" style="width:90px;height:37px;">Decline</button>
-                      </div>
-                      </div>
                       </ul>
               </div>
             </div>
@@ -678,422 +677,6 @@ if($query->rowCount()>0)
           </div>
         </div>
         <!-- /page content -->
-
-<!-- Decline User Request Code-->
-<?php
-$sql="SELECT * from request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' ORDER BY requestID DESC";
-$query=$dbh->prepare($sql);
-$query->execute();
-$results=$query->fetchALL(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-    foreach($results as $result)
-  {
-    ?>
-          
-<?php
-date_default_timezone_set("Asia/Manila");
-$title = ($result->requestTitle);
-$date = date('m/d/Y h:i A', time());
-?>  
-<?php
-if(isset($_POST['DeclineRequest']))
-{
-  if($title == 'Adoption Request')
-  {
-    $requestID=($_POST['requestID']);
-    $userID=($_POST['userID']);
-    $userName=($_POST['userName']);
-    $userEmail=($_POST['userEmail']);
-    $userAddress=($_POST['userAddress']);
-    $userContactNo=($_POST['userContactNo']);
-    $petID=($_POST['petID']);
-    $petType=($_POST['petType']);
-    $petName=($_POST['petName']);
-    $petBreed=($_POST['petBreed']);
-    $requestDate=($_POST['requestDate']);
-  
-    $sql="update request set
-    approvalDate='$date', requestStatus='Disapproved'
-    where requestID=:requestID";
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query->execute();
-  
-    $sql1="update postpet set
-    petStatus='Available'
-    where petID=:petID";
-    $query1=$dbh->prepare($sql1); 
-    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-    $query1->execute();
-  
-    $sql2="update notification set
-    notificationStatus='Read'
-    where activityID=:requestID";
-    $query2=$dbh->prepare($sql2); 
-    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query2->execute();
-  
-    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Disapproved Adoption Request','$ID',:userID,'Disapproved your adoption request','$date','Unread')";
-    $query3=$dbh->prepare($sql3);
-    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query3->execute();
-  
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
-    $query4=$dbh->prepare($sql4);
-    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
-    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
-    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
-    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
-    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
-    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
-    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
-    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
-    $query4->execute();
-  
-    echo '<script>alert("User Request Declined Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
-  }
-  if($title == 'Short-Term Care Request')
-  {
-    $requestID=($_POST['requestID']);
-    $userID=($_POST['userID']);
-    $userName=($_POST['userName']);
-    $userEmail=($_POST['userEmail']);
-    $userAddress=($_POST['userAddress']);
-    $userContactNo=($_POST['userContactNo']);
-    $petID=($_POST['petID']);
-    $petType=($_POST['petType']);
-    $petName=($_POST['petName']);
-    $petBreed=($_POST['petBreed']);
-    $requestDate=($_POST['requestDate']);
-  
-    $sql="update request set
-    approvalDate='$date', requestStatus='Disapproved'
-    where requestID=:requestID";
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query->execute();
-  
-    $sql1="update postpet set
-    petStatus='Available'
-    where petID=:petID";
-    $query1=$dbh->prepare($sql1); 
-    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-    $query1->execute();
-  
-    $sql2="update notification set
-    notificationStatus='Read'
-    where activityID=:requestID";
-    $query2=$dbh->prepare($sql2); 
-    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query2->execute();
-  
-    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Disapproved Short-Term Care Request','$ID',:userID,'Disapproved your short-term care request','$date','Unread')";
-    $query3=$dbh->prepare($sql3);
-    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query3->execute();
-  
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
-    $query4=$dbh->prepare($sql4);
-    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
-    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
-    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
-    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
-    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
-    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
-    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
-    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
-    $query4->execute();
-  
-    echo '<script>alert("User Request Declined Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
-  }
-}
-?>
-<?php $cnt=$cnt+1;}}?>
-<!-- //Decline User Request Code -->
-
-        <!-- Modal Decline User Request -->
-<div class="modal fade" id="DeclineRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Decline Request</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to decline this request?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="request_id" name="requestID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_id" name="userID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_name" name="userName" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_email" name="userEmail" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_address" name="userAddress" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_contactno" name="userContactNo" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_type" name="petType" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_name" name="petName" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_breed" name="petBreed" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="request_date" name="requestDate" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="DeclineRequest" id="DeclineRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Decline User Request -->
-
-<!-- Accept User Request Code-->
-<?php
-$sql="SELECT * from request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' ORDER BY requestID DESC";
-$query=$dbh->prepare($sql);
-$query->execute();
-$results=$query->fetchALL(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-    foreach($results as $result)
-  {
-    ?>
-          
-<?php
-date_default_timezone_set("Asia/Manila");
-$title = ($result->requestTitle);
-$date = date('m/d/Y h:i A', time());
-?>  
-<?php
-if(isset($_POST['AcceptRequest']))
-{
-  if($title == 'Adoption Request')
-  {
-    $requestID=($_POST['requestID']);
-    $userID=($_POST['userID']);
-    $userName=($_POST['userName']);
-    $userEmail=($_POST['userEmail']);
-    $userAddress=($_POST['userAddress']);
-    $userContactNo=($_POST['userContactNo']);
-    $petID=($_POST['petID']);
-    $petType=($_POST['petType']);
-    $petName=($_POST['petName']);
-    $petBreed=($_POST['petBreed']);
-    $requestDate=($_POST['requestDate']);
-  
-    $sql="update request set
-    approvalDate='$date', requestStatus='Approved'
-    where requestID=:requestID";
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query->execute();
-  
-    $sql1="update postpet set
-    petStatus='Adopted'
-    where petID=:petID";
-    $query1=$dbh->prepare($sql1); 
-    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-    $query1->execute();
-  
-    $sql2="update notification set
-    notificationStatus='Read'
-    where activityID=:requestID";
-    $query2=$dbh->prepare($sql2); 
-    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query2->execute();
-  
-    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Approved Adoption Request','$ID',:userID,'Approved your adoption request','$date','Unread')";
-    $query3=$dbh->prepare($sql3);
-    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query3->execute();
-  
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
-    $query4=$dbh->prepare($sql4);
-    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
-    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
-    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
-    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
-    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
-    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
-    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
-    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
-    $query4->execute();
-  
-    echo '<script>alert("User Request Accepted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
-  }
-  if($title == 'Adoption Request')
-  {
-    $requestID=($_POST['requestID']);
-    $userID=($_POST['userID']);
-    $userName=($_POST['userName']);
-    $userEmail=($_POST['userEmail']);
-    $userAddress=($_POST['userAddress']);
-    $userContactNo=($_POST['userContactNo']);
-    $petID=($_POST['petID']);
-    $petType=($_POST['petType']);
-    $petName=($_POST['petName']);
-    $petBreed=($_POST['petBreed']);
-    $requestDate=($_POST['requestDate']);
-  
-    $sql="update request set
-    approvalDate='$date', requestStatus='Approved'
-    where requestID=:requestID";
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query->execute();
-  
-    $sql1="update postpet set
-    petStatus='Adopted'
-    where petID=:petID";
-    $query1=$dbh->prepare($sql1); 
-    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-    $query1->execute();
-  
-    $sql2="update notification set
-    notificationStatus='Read'
-    where activityID=:requestID";
-    $query2=$dbh->prepare($sql2); 
-    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query2->execute();
-  
-    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Approved Short-Term Care Request','$ID',:userID,'Approved your short-term care request','$date','Unread')";
-    $query3=$dbh->prepare($sql3);
-    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query3->execute();
-  
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
-    $query4=$dbh->prepare($sql4);
-    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
-    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
-    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
-    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
-    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
-    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
-    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
-    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
-    $query4->execute();
-  
-    echo '<script>alert("User Request Accepted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
-  }
-}
-?>
-<?php $cnt=$cnt+1;}}?>
-<!-- //Accept User Request Code -->
-
-  <!-- Modal Accept User Request -->
-<div class="modal fade" id="AcceptRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Accept Request</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to accept this request?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="requestid" name="requestID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="petid" name="petID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="username" name="userName" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="useremail" name="userEmail" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="useraddress" name="userAddress" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="usercontactno" name="userContactNo" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pettype" name="petType" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="petname" name="petName" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="petbreed" name="petBreed" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="requestdate" name="requestDate" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="AcceptRequest" id="AcceptRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Accept User Request -->
 
 <script>
 <?php
@@ -1213,6 +796,525 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
+  <!-- Decline Adoption Request Code-->          
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['DeclineAdoptionRequest']))
+{
+    $requestID=($_POST['requestID']);
+    $userID=($_POST['userID']);
+    $userName=($_POST['userName']);
+    $userEmail=($_POST['userEmail']);
+    $userAddress=($_POST['userAddress']);
+    $userContactNo=($_POST['userContactNo']);
+    $petID=($_POST['petID']);
+    $petType=($_POST['petType']);
+    $petName=($_POST['petName']);
+    $petBreed=($_POST['petBreed']);
+    $requestDate=($_POST['requestDate']);
+  
+    $sql="update request set
+    approvalDate='$date', requestStatus='Disapproved'
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query->execute();
+  
+    $sql2="update notification set
+    notificationStatus='Read'
+    where activityID=:requestID";
+    $query2=$dbh->prepare($sql2); 
+    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query2->execute();
+  
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Disapproved Adoption Request','$ID',:userID,'Disapproved your adoption request','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query3->execute();
+  
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
+    $query4=$dbh->prepare($sql4);
+    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
+    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
+    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
+    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
+    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
+    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
+    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
+    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
+    $query4->execute();
+  
+    echo '<script>alert("User Request Declined Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>"; 
+}
+?>
+<!-- //Decline Adoption Request Code -->
+
+ <!-- Modal Decline Adoption Request -->
+ <div class="modal fade" id="ModalDeclineAdoptionRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Decline Request</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to decline this request?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="request_id" name="requestID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_id" name="petID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_id" name="userID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_name" name="userName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_email" name="userEmail" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_address" name="userAddress" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_contactno" name="userContactNo" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_type" name="petType" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_name" name="petName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_breed" name="petBreed" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="request_date" name="requestDate" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="DeclineAdoptionRequest" name="DeclineAdoptionRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Decline Adoption Request -->
+
+   <!-- Decline Short-Term Care Request Code-->          
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['DeclineShort-Term-CareRequest']))
+{
+    $requestID=($_POST['requestID']);
+    $userID=($_POST['userID']);
+    $userName=($_POST['userName']);
+    $userEmail=($_POST['userEmail']);
+    $userAddress=($_POST['userAddress']);
+    $userContactNo=($_POST['userContactNo']);
+    $petID=($_POST['petID']);
+    $petType=($_POST['petType']);
+    $petName=($_POST['petName']);
+    $petBreed=($_POST['petBreed']);
+    $requestDate=($_POST['requestDate']);
+  
+    $sql="update request set
+    approvalDate='$date', requestStatus='Disapproved'
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query->execute();
+  
+    $sql2="update notification set
+    notificationStatus='Read'
+    where activityID=:requestID";
+    $query2=$dbh->prepare($sql2); 
+    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query2->execute();
+  
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Disapproved Short-Term Care Request','$ID',:userID,'Disapproved your short-term care request','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query3->execute();
+  
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
+    $query4=$dbh->prepare($sql4);
+    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
+    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
+    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
+    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
+    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
+    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
+    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
+    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
+    $query4->execute();
+  
+    echo '<script>alert("User Request Declined Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
+}
+?>
+<!-- //Decline Short-Term Care Request Code -->
+
+  <!-- Modal Decline Short-Term Care Request -->
+ <div class="modal fade" id="ModalDeclineShort-Term-CareRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Decline Request</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to decline this request?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="request_id1" name="requestID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_id1" name="petID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_id1" name="userID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_name1" name="userName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_email1" name="userEmail" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_address1" name="userAddress" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_contactno1" name="userContactNo" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_type1" name="petType" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_name1" name="petName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_breed1" name="petBreed" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="request_date1" name="requestDate" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="DeclineShort-Term-CareRequest" id="DeclineShort-Term-CareRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Decline Short-Term Care Request -->
+
+<!-- Accept Adoption Request Code-->         
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['AcceptAdoptionRequest']))
+{
+    $requestID=($_POST['requestID']);
+    $userID=($_POST['userID']);
+    $userName=($_POST['userName']);
+    $userEmail=($_POST['userEmail']);
+    $userAddress=($_POST['userAddress']);
+    $userContactNo=($_POST['userContactNo']);
+    $petID=($_POST['petID']);
+    $petType=($_POST['petType']);
+    $petName=($_POST['petName']);
+    $petBreed=($_POST['petBreed']);
+    $requestDate=($_POST['requestDate']);
+  
+    $sql="update request set
+    approvalDate='$date', requestStatus='Approved'
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query->execute();
+  
+    $sql1="update postpet set
+    petStatus='Adopted'
+    where petID=:petID";
+    $query1=$dbh->prepare($sql1); 
+    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
+    $query1->execute();
+  
+    $sql2="update notification set
+    notificationStatus='Read'
+    where activityID=:requestID";
+    $query2=$dbh->prepare($sql2); 
+    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query2->execute();
+  
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Approved Adoption Request','$ID',:userID,'Approved your adoption request','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query3->execute();
+  
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
+    $query4=$dbh->prepare($sql4);
+    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
+    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
+    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
+    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
+    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
+    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
+    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
+    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
+    $query4->execute();
+  
+    echo '<script>alert("User Request Accepted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
+}
+?>
+<!-- //Accept Adoption Request Code -->
+
+  <!-- Modal Accept Adoption Request -->
+<div class="modal fade" id="ModalAcceptAdoptionRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Accept Request</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to accept this request?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="requestid" name="requestID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petid" name="petID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="userid" name="userID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="username" name="userName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="useremail" name="userEmail" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="useraddress" name="userAddress" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="usercontactno" name="userContactNo" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pettype" name="petType" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petname" name="petName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petbreed" name="petBreed" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="requestdate" name="requestDate" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="AcceptAdoptionRequest" id="AcceptAdoptionRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Accept Adoption Request -->
+
+<!-- Accept Short-Term Care Request Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['AcceptShort-Term-CareRequest']))
+{
+    $requestID=($_POST['requestID']);
+    $userID=($_POST['userID']);
+    $userName=($_POST['userName']);
+    $userEmail=($_POST['userEmail']);
+    $userAddress=($_POST['userAddress']);
+    $userContactNo=($_POST['userContactNo']);
+    $petID=($_POST['petID']);
+    $petType=($_POST['petType']);
+    $petName=($_POST['petName']);
+    $petBreed=($_POST['petBreed']);
+    $totalDays=($_POST['totalDays']);
+    $requestDate=($_POST['requestDate']);
+  
+    $sql="update request set
+    approvalDate='$date', requestStatus='Approved'
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query->execute();
+  
+    $sql1="update postpet set
+    petStatus='Short-Term Care'
+    where petID=:petID";
+    $query1=$dbh->prepare($sql1); 
+    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
+    $query1->execute();
+  
+    $sql2="update notification set
+    notificationStatus='Read'
+    where activityID=:requestID";
+    $query2=$dbh->prepare($sql2); 
+    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query2->execute();
+  
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Approved Short-Term Care Request','$ID',:userID,'Approved your short-term care request','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query3->execute();
+
+    date_default_timezone_set("Asia/Manila");
+    $approval_date = date("m/d/Y");
+    $day = $totalDays;
+    $returndate=date('m/d/Y', strtotime("+$day days"));
+  
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,returnDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','$returndate','Approved')";
+    $query4=$dbh->prepare($sql4);
+    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
+    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
+    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
+    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
+    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
+    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
+    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
+    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
+    $query4->execute();
+  
+    echo '<script>alert("User Request Accepted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
+}
+?>
+<!-- //Accept Short-Term Care Request Code -->
+
+  <!-- Modal Accept Short-Term-Care Request -->
+<div class="modal fade" id="ModalAcceptShort-Term-CareRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Accept Request</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to accept this request?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="requestid1" name="requestID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petid1" name="petID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="userid1" name="userID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="username1" name="userName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="useremail1" name="userEmail" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="useraddress1" name="userAddress" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="usercontactno1" name="userContactNo" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pettype1" name="petType" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petname1" name="petName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petbreed1" name="petBreed" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="totaldays1" name="totalDays" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="requestdate1" name="requestDate" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="AcceptShort-Term-CareRequest" id="AcceptShort-Term-CareRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Accept Short-Term-Care Request -->
+
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
@@ -1228,6 +1330,14 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+
+    <script>
+     $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+    </script>
 
     <script type="text/javascript">
   $("#selected_profile_cancel").click(function () {
@@ -1247,13 +1357,39 @@ if($query->rowCount()>0)
 });
   </script>
 
-<script>
+<script type="text/javascript">
+  $("#selected_picture_cancel").click(function () {
+  
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+    <script type="text/javascript">
+  $("#selected_picture_close").click(function () {
+
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+    <script>
       Picture.onchange = evt => {
   const [file] = Picture.files
   if (file) {
     profile_picture.src = URL.createObjectURL(file)
   }
   document.getElementById("profile").disabled = false;
+}
+    </script>
+
+    <script>
+      PostPicture.onchange = evt => {
+  const [file] = PostPicture.files
+  if (file) {
+    post_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("btnChangePostPicture").disabled = false;
 }
     </script>
 
@@ -1266,9 +1402,9 @@ if($query->rowCount()>0)
     <script>
         $(document).ready(function () {
 
-            $('.declinebtn').on('click', function () {
+            $('.decline-adoption-btn').on('click', function () {
 
-                $('#DeclineRequest').modal('show');
+                $('#ModalDeclineAdoptionRequest').modal('show');
 
                 $tr = $(this).closest('ul');
 
@@ -1288,17 +1424,47 @@ if($query->rowCount()>0)
                 $('#pet_type').val(data[7]);
                 $('#pet_name').val(data[8]);
                 $('#pet_breed').val(data[9]);
-                $('#request_date').val(data[10]);
+                $('#request_date').val(data[11]);
             });
         });
     </script>
 
-    <script>
+<script>
         $(document).ready(function () {
 
-            $('.acceptbtn').on('click', function () {
+            $('.decline-shorttermcare-btn').on('click', function () {
 
-                $('#AcceptRequest').modal('show');
+                $('#ModalDeclineShort-Term-CareRequest').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#request_id1').val(data[0]);
+                $('#pet_id1').val(data[1]);
+                $('#user_id1').val(data[2]);
+                $('#user_name1').val(data[3]);
+                $('#user_email1').val(data[4]);
+                $('#user_address1').val(data[5]);
+                $('#user_contactno1').val(data[6]);
+                $('#pet_type1').val(data[7]);
+                $('#pet_name1').val(data[8]);
+                $('#pet_breed1').val(data[9]);
+                $('#request_date1').val(data[11]);
+            });
+        });
+    </script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.accept-adoption-btn').on('click', function () {
+
+                $('#ModalAcceptAdoptionRequest').modal('show');
 
                 $tr = $(this).closest('ul');
 
@@ -1318,7 +1484,38 @@ if($query->rowCount()>0)
                 $('#pettype').val(data[7]);
                 $('#petname').val(data[8]);
                 $('#petbreed').val(data[9]);
-                $('#requestdate').val(data[10]);
+                $('#requestdate').val(data[11]);
+            });
+        });
+    </script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.accept-shorttermcare-btn').on('click', function () {
+
+                $('#ModalAcceptShort-Term-CareRequest').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#requestid1').val(data[0]);
+                $('#petid1').val(data[1]);
+                $('#userid1').val(data[2]);
+                $('#username1').val(data[3]);
+                $('#useremail1').val(data[4]);
+                $('#useraddress1').val(data[5]);
+                $('#usercontactno1').val(data[6]);
+                $('#pettype1').val(data[7]);
+                $('#petname1').val(data[8]);
+                $('#petbreed1').val(data[9]);
+                $('#totaldays1').val(data[10]);
+                $('#requestdate1').val(data[11]);
             });
         });
     </script>
@@ -1350,7 +1547,5 @@ if($query->rowCount()>0)
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>

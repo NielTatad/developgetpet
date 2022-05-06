@@ -236,8 +236,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <br />
 
-         <!-- sidebar menu -->
-         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+       <!-- sidebar menu -->
+       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                 <li>
@@ -259,16 +259,14 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
                     </li>
-
-              </ul>
                  
               </div>
 
             </div>
             <!-- /sidebar menu -->
 
-           <!-- /menu footer buttons -->
-           <div class="sidebar-footer hidden-small">
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
               <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -283,7 +281,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           </div>
         </div>
 
-           <!-- top navigation -->
+         <!-- top navigation -->
      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
@@ -422,7 +420,7 @@ if($query->rowCount()>0)
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
+              <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>My Profile</h2>
@@ -480,7 +478,8 @@ if($query->rowCount()>0)
 
                       ?>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/A.W.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
+                        <a href="http://localhost/developgetpet/dashboard/A.W.O-Request.php"role="tab" aria-controls="request" aria-selected="false">My Request <span class="badge bg-green" id="myrequest" value=""><?php echo ($myrequest);?></span>
+                        </a>
                         <script type="text/javascript">
                         var myrequest = <?php echo ($myrequest);?>;
                         if (myrequest === 0){
@@ -540,8 +539,8 @@ if($query->rowCount()>0)
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
                         
- <!-- View User Request Code -->
- <?php
+<!-- View User Request Code -->
+<?php
             $sql="SELECT * from request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' ORDER BY requestID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
@@ -555,7 +554,7 @@ if($query->rowCount()>0)
             <div class="col-nd-4">
               <div class="card" style="border-radius:10px;border-width:2px;">                 
                 <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                  <h3>Adoption Request</h3>
+                  <h3><?php echo ($result->requestTitle);?></h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <li><h3 hidden class="card-title"><?php echo ($result->requestID);?></h3></li>
                       <?php $user_id = $result->userID;
@@ -570,42 +569,7 @@ if($query->rowCount()>0)
                         foreach($userids as $userid)
                       {
                         ?>
-                      
-                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:100px;height:100px;margin-bottom:5px" class="rounded-circle img-responsive"><br>
-
-                      <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
- 
-                      <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center'>
-                      <tr>
-                          <td align='center'>Name:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                      <td align='center'>Address:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->Address);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                          <td align='center'>Email:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->Email);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                          <td align='center'>Contact No:</td>
-                          <td><input readonly style="width:300px;margin-bottom:-10px;color:#73879C" type='text' value="<?php echo ( $userid->contactNo);?>"></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <tr>
-                          <td align='center'>Reason:</td>
-                          <td><textarea disabled="yes" id="description" style="width:300px;margin-bottom:-10px;height:80px;background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'><?php echo ( $result->requestReason);?></textarea></td>
-                      </tr>
-                      <tr> <td>&nbsp;</td> </tr>
-                      <table border='0' cellpadding='0' cellspacing='0' width='480px' align='center'>
-                      </table>
-                      </table>
-                      
-                      </table>
+                        
                       <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($result->userID);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($result->userName);?></h3></li>
@@ -624,20 +588,44 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Name: <?php echo ( $petid->petName);?>&#13;&#10;Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+                      
+                      <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Email: <?php echo ( $userid->Email);?>&#13;&#10;Contact No: <?php echo ( $userid->contactNo);?>&#13;&#10;Reason for Short-term care: <?php echo ( $result->requestReason);?></textarea><br><br>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ( $petid->selectedRange);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+
+                      <div style="text-align: center" class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success accept-shorttermcare-btn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
+                            <button type='reset' class="btn btn-round btn-danger decline-shorttermcare-btn" style="width:90px;height:37px;">Decline</button>
+                      </div>
+                      </div>
+                      
+                      <?php } ?>
+
+                      <?php if ($result->requestTitle == 'Adoption Request') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Email: <?php echo ( $userid->Email);?>&#13;&#10;Contact No: <?php echo ( $userid->contactNo);?>&#13;&#10;Reason for Adoption: <?php echo ( $result->requestReason);?></textarea><br><br>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Request Date: <?php echo ($result->requestDate);?></textarea><br><br>
+
+                      <div style="text-align: center" class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success accept-adoption-btn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
+                            <button type='reset' class="btn btn-round btn-danger decline-adoption-btn" style="width:90px;height:37px;">Decline</button>
+                      </div>
+                      </div>
+
+                      <?php } ?>
 
                       <li><h3 hidden class="card-title"><?php echo ($petid->petType);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($petid->petName);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($petid->petBreed);?></h3></li>
+                      <li><h3 hidden class="card-title"><?php echo ($petid->totalDays);?></h3></li>
                       <li><h3 hidden class="card-title"><?php echo ($result->requestDate);?></h3></li>
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
-                      <div style="text-align: center" class="form-group">
-                      <div class="col-md-6 offset-md-3">
-                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
-                            <button type='reset' class="btn btn-round btn-danger declinebtn" style="width:90px;height:37px;">Decline</button>
-                      </div>
-                      </div>
                       </ul>
               </div>
             </div>
@@ -664,29 +652,129 @@ if($query->rowCount()>0)
         </div>
         <!-- /page content -->
 
-<!-- Decline User Request Code-->
-<?php
-$sql="SELECT * from request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' ORDER BY requestID DESC";
+<script>
+<?php 
+$ID=$_SESSION['orgID'];
+$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
 $query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->execute();
-$results=$query->fetchALL(PDO::FETCH_OBJ);
+$results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
 if($query->rowCount()>0)
 {
-    foreach($results as $result)
+  foreach($results as $result)
   {
     ?>
-          
+                              
+<?php
+?>
+<?php }} ?>
+</script>
+
+<!-- ModalProfile -->
+<div class="modal fade" id="ProfilePicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Update Profile Picture</h4>
+        <button type="button" id="selected_profile_close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3"> 
+      <form method="post">
+        <div class="modal-header">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> id ="profile_picture" alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+        </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="hidden" name="adopterID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="profile" id="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
+              <button type='reset' id="selected_profile_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //ModalProfile -->
+
+  <!-- ModalSettings -->
+  <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Account Settings</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div class="modal-header">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;border:1px solid #E5E4E2" class="rounded-circle img-responsive">
+        </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgname" required="required" value="<?php echo ($result->orgName);?>" placeholder="Organization Name">
+				</div><br>
+        <div  style="text-align: center" class="wrap-input100 validate-input">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->orgContactNo);?>" placeholder="Contact No.">
+						<script>
+            
+                        function isInputNumber(evt){
+                
+                        var ch = String.fromCharCode(evt.which);
+                
+                        if(!(/[0-9]/.test(ch))){
+                        evt.preventDefault();
+                       }
+					}
+                    </script>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->orgAddress);?>" placeholder="Address">
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->orgEmail);?>" placeholder="Email">
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->orgUsername);?>" placeholder="Username">
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->orgPassword);?>" placeholder="Password">
+				</div><br><br>
+        <div style="text-align: center">
+						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
+							<a style="color:White"> Update </a>
+						</button>
+	      </div><br>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- //ModalSettings -->
+
+  <!-- Decline Adoption Request Code-->          
 <?php
 date_default_timezone_set("Asia/Manila");
-$title = ($result->requestTitle);
 $date = date('m/d/Y h:i A', time());
 ?>  
 <?php
-if(isset($_POST['DeclineRequest']))
+if(isset($_POST['DeclineAdoptionRequest']))
 {
-  if($title == 'Adoption Request')
-  {
     $requestID=($_POST['requestID']);
     $userID=($_POST['userID']);
     $userName=($_POST['userName']);
@@ -705,13 +793,6 @@ if(isset($_POST['DeclineRequest']))
     $query=$dbh->prepare($sql); 
     $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
     $query->execute();
-  
-    $sql1="update postpet set
-    petStatus='Available'
-    where petID=:petID";
-    $query1=$dbh->prepare($sql1); 
-    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-    $query1->execute();
   
     $sql2="update notification set
     notificationStatus='Read'
@@ -743,10 +824,81 @@ if(isset($_POST['DeclineRequest']))
     $query4->execute();
   
     echo '<script>alert("User Request Declined Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php'</script>";
-  }
-  if($title == 'Short-Term Care Request')
-  {
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php'</script>"; 
+}
+?>
+<!-- //Decline Adoption Request Code -->
+
+ <!-- Modal Decline Adoption Request -->
+ <div class="modal fade" id="ModalDeclineAdoptionRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Decline Request</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to decline this request?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="request_id" name="requestID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_id" name="petID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_id" name="userID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_name" name="userName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_email" name="userEmail" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_address" name="userAddress" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_contactno" name="userContactNo" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_type" name="petType" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_name" name="petName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_breed" name="petBreed" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="request_date" name="requestDate" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="DeclineAdoptionRequest" name="DeclineAdoptionRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Decline Adoption Request -->
+
+   <!-- Decline Short-Term Care Request Code-->          
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['DeclineShort-Term-CareRequest']))
+{
     $requestID=($_POST['requestID']);
     $userID=($_POST['userID']);
     $userName=($_POST['userName']);
@@ -765,13 +917,6 @@ if(isset($_POST['DeclineRequest']))
     $query=$dbh->prepare($sql); 
     $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
     $query->execute();
-  
-    $sql1="update postpet set
-    petStatus='Available'
-    where petID=:petID";
-    $query1=$dbh->prepare($sql1); 
-    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-    $query1->execute();
   
     $sql2="update notification set
     notificationStatus='Read'
@@ -804,14 +949,12 @@ if(isset($_POST['DeclineRequest']))
   
     echo '<script>alert("User Request Declined Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php'</script>";
-  }
 }
 ?>
-<?php $cnt=$cnt+1;}}?>
-<!-- //Decline User Request Code -->
+<!-- //Decline Short-Term Care Request Code -->
 
-        <!-- Modal Decline User Request -->
-<div class="modal fade" id="DeclineRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <!-- Modal Decline Short-Term Care Request -->
+ <div class="modal fade" id="ModalDeclineShort-Term-CareRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -827,41 +970,41 @@ if(isset($_POST['DeclineRequest']))
 					    <p>Are you sure, you want to decline this request?</p>
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="request_id" name="requestID" required = "required" class="form-control" id="success">
+					    <input hidden id="request_id1" name="requestID" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
+					    <input hidden id="pet_id1" name="petID" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_id" name="userID" required = "required" class="form-control" id="success">
+					    <input hidden id="user_id1" name="userID" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_name" name="userName" required = "required" class="form-control" id="success">
+					    <input hidden id="user_name1" name="userName" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_email" name="userEmail" required = "required" class="form-control" id="success">
+					    <input hidden id="user_email1" name="userEmail" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_address" name="userAddress" required = "required" class="form-control" id="success">
+					    <input hidden id="user_address1" name="userAddress" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="user_contactno" name="userContactNo" required = "required" class="form-control" id="success">
+					    <input hidden id="user_contactno1" name="userContactNo" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_type" name="petType" required = "required" class="form-control" id="success">
+					    <input hidden id="pet_type1" name="petType" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_name" name="petName" required = "required" class="form-control" id="success">
+					    <input hidden id="pet_name1" name="petName" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_breed" name="petBreed" required = "required" class="form-control" id="success">
+					    <input hidden id="pet_breed1" name="petBreed" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="request_date" name="requestDate" required = "required" class="form-control" id="success">
+					    <input hidden id="request_date1" name="requestDate" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="DeclineRequest" id="DeclineRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button name="DeclineShort-Term-CareRequest" id="DeclineShort-Term-CareRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
               <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
          </div>
         </div>
@@ -870,31 +1013,16 @@ if(isset($_POST['DeclineRequest']))
     </div>
   </div>
 </div>
-	<!-- //Modal Decline User Request -->
+	<!-- //Modal Decline Short-Term Care Request -->
 
-<!-- Accept User Request Code-->
-<?php
-$sql="SELECT * from request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved' ORDER BY requestID DESC";
-$query=$dbh->prepare($sql);
-$query->execute();
-$results=$query->fetchALL(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-    foreach($results as $result)
-  {
-    ?>
-          
+<!-- Accept Adoption Request Code-->         
 <?php
 date_default_timezone_set("Asia/Manila");
-$title = ($result->requestTitle);
 $date = date('m/d/Y h:i A', time());
 ?>  
 <?php
-if(isset($_POST['AcceptRequest']))
+if(isset($_POST['AcceptAdoptionRequest']))
 {
-  if($title == 'Adoption Request')
-  {
     $requestID=($_POST['requestID']);
     $userID=($_POST['userID']);
     $userName=($_POST['userName']);
@@ -952,74 +1080,12 @@ if(isset($_POST['AcceptRequest']))
   
     echo '<script>alert("User Request Accepted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php'</script>";
-  }
-  if($title == 'Short-Term Care Request')
-  {
-    $requestID=($_POST['requestID']);
-    $userID=($_POST['userID']);
-    $userName=($_POST['userName']);
-    $userEmail=($_POST['userEmail']);
-    $userAddress=($_POST['userAddress']);
-    $userContactNo=($_POST['userContactNo']);
-    $petID=($_POST['petID']);
-    $petType=($_POST['petType']);
-    $petName=($_POST['petName']);
-    $petBreed=($_POST['petBreed']);
-    $requestDate=($_POST['requestDate']);
-  
-    $sql="update request set
-    approvalDate='$date', requestStatus='Approved'
-    where requestID=:requestID";
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query->execute();
-  
-    $sql1="update postpet set
-    petStatus='Adopted'
-    where petID=:petID";
-    $query1=$dbh->prepare($sql1); 
-    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
-    $query1->execute();
-  
-    $sql2="update notification set
-    notificationStatus='Read'
-    where activityID=:requestID";
-    $query2=$dbh->prepare($sql2); 
-    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
-    $query2->execute();
-  
-    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Short-Term Care Request','$ID',:userID,'Approved your short-term care request','$date','Unread')";
-    $query3=$dbh->prepare($sql3);
-    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query3->execute();
-  
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
-    $query4=$dbh->prepare($sql4);
-    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
-    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
-    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
-    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
-    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
-    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
-    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
-    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
-    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
-    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
-    $query4->execute();
-  
-    echo '<script>alert("User Request Accepted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php'</script>";
-  }
 }
 ?>
-<?php $cnt=$cnt+1;}}?>
-<!-- //Accept User Request Code -->
+<!-- //Accept Adoption Request Code -->
 
-  <!-- Modal Accept User Request -->
-<div class="modal fade" id="AcceptRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <!-- Modal Accept Adoption Request -->
+<div class="modal fade" id="ModalAcceptAdoptionRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -1038,38 +1104,38 @@ if(isset($_POST['AcceptRequest']))
 					    <input hidden id="requestid" name="requestID" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="petid" name="petID" required = "required" class="form-control" id="success">
+					    <input hidden id="petid" name="petID" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userID" required = "required" class="form-control" id="success">
+					    <input hidden id="userid" name="userID" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="username" name="userName" required = "required" class="form-control" id="success">
+					    <input hidden id="username" name="userName" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="useremail" name="userEmail" required = "required" class="form-control" id="success">
+					    <input hidden id="useremail" name="userEmail" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="useraddress" name="userAddress" required = "required" class="form-control" id="success">
+					    <input hidden id="useraddress" name="userAddress" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="usercontactno" name="userContactNo" required = "required" class="form-control" id="success">
+					    <input hidden id="usercontactno" name="userContactNo" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="pettype" name="petType" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="petname" name="petName" required = "required" class="form-control" id="success">
+					    <input hidden id="petname" name="petName" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="petbreed" name="petBreed" required = "required" class="form-control" id="success">
+					    <input hidden id="petbreed" name="petBreed" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="requestdate" name="requestDate" required = "required" class="form-control" id="success">
+					    <input hidden id="requestdate" name="requestDate" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="AcceptRequest" id="AcceptRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button name="AcceptAdoptionRequest" id="AcceptAdoptionRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
               <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
          </div>
         </div>
@@ -1078,53 +1144,139 @@ if(isset($_POST['AcceptRequest']))
     </div>
   </div>
 </div>
-	<!-- //Modal Accept User Request -->
+	<!-- //Modal Accept Adoption Request -->
 
-<script>
+<!-- Accept Short-Term Care Request Code -->
 <?php
-$ID=$_SESSION['orgID'];           
-$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
+if(isset($_POST['AcceptShort-Term-CareRequest']))
 {
-  foreach($results as $result)
-  {
-     ?>
-<?php
-?>
-<?php }} ?>
-</script>        
+    $requestID=($_POST['requestID']);
+    $userID=($_POST['userID']);
+    $userName=($_POST['userName']);
+    $userEmail=($_POST['userEmail']);
+    $userAddress=($_POST['userAddress']);
+    $userContactNo=($_POST['userContactNo']);
+    $petID=($_POST['petID']);
+    $petType=($_POST['petType']);
+    $petName=($_POST['petName']);
+    $petBreed=($_POST['petBreed']);
+    $totalDays=($_POST['totalDays']);
+    $requestDate=($_POST['requestDate']);
+  
+    $sql="update request set
+    approvalDate='$date', requestStatus='Approved'
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query->execute();
+  
+    $sql1="update postpet set
+    petStatus='Short-Term Care'
+    where petID=:petID";
+    $query1=$dbh->prepare($sql1); 
+    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
+    $query1->execute();
+  
+    $sql2="update notification set
+    notificationStatus='Read'
+    where activityID=:requestID";
+    $query2=$dbh->prepare($sql2); 
+    $query2->bindParam(':requestID',$requestID,PDO::PARAM_STR); 
+    $query2->execute();
+  
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Approved Short-Term Care Request','$ID',:userID,'Approved your short-term care request','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query3->execute();
 
-<!-- ModalProfile -->
-<div class="modal fade" id="ProfilePicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    date_default_timezone_set("Asia/Manila");
+    $approval_date = date("m/d/Y");
+    $day = $totalDays;
+    $returndate=date('m/d/Y', strtotime("+$day days"));
+  
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,returnDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','$returndate','Approved')";
+    $query4=$dbh->prepare($sql4);
+    $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
+    $query4->bindParam(':userName',$userName,PDO::PARAM_STR);
+    $query4->bindParam(':userEmail',$userEmail,PDO::PARAM_STR);
+    $query4->bindParam(':userAddress',$userAddress,PDO::PARAM_STR);
+    $query4->bindParam(':userContactNo',$userContactNo,PDO::PARAM_STR);
+    $query4->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query4->bindParam(':petType',$petType,PDO::PARAM_STR);
+    $query4->bindParam(':petName',$petName,PDO::PARAM_STR);
+    $query4->bindParam(':petBreed',$petBreed,PDO::PARAM_STR);
+    $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
+    $query4->execute();
+  
+    echo '<script>alert("User Request Accepted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php'</script>";
+}
+?>
+<!-- //Accept Short-Term Care Request Code -->
+
+  <!-- Modal Accept Short-Term-Care Request -->
+<div class="modal fade" id="ModalAcceptShort-Term-CareRequest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Update Profile Picture</h4>
-        <button type="button" id="selected_profile_close" class="close" data-dismiss="modal" aria-label="Close">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Accept Request</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body mx-3"> 
+      <div class="modal-body mx-3">
       <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> id ="profile_picture" alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
+					    <p>Are you sure, you want to accept this request?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="requestid1" name="requestID" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="adopterID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
-				</div><br>
+					    <input hidden id="petid1" name="petID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="userid1" name="userID" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="username1" name="userName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="useremail1" name="userEmail" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="useraddress1" name="userAddress" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="usercontactno1" name="userContactNo" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pettype1" name="petType" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petname1" name="petName" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="petbreed1" name="petBreed" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="totaldays1" name="totalDays" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="requestdate1" name="requestDate" required = "required" class="form-control">
+				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="profile" id="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
-              <button type='reset' id="selected_profile_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+              <button name="AcceptShort-Term-CareRequest" id="AcceptShort-Term-CareRequest" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
          </div>
         </div>
       </form>
@@ -1132,67 +1284,7 @@ if($query->rowCount()>0)
     </div>
   </div>
 </div>
-	<!-- //ModalProfile -->
-  
-  <!-- ModalSettings -->
-  <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Account Settings</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;border:1px solid #E5E4E2" class="rounded-circle img-responsive">
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgname" required="required" value="<?php echo ($result->orgName);?>" placeholder="Organization Name">
-				</div><br>
-        <div  style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->orgContactNo);?>" placeholder="Contact No.">
-						<script>
-            
-                        function isInputNumber(evt){
-                
-                        var ch = String.fromCharCode(evt.which);
-                
-                        if(!(/[0-9]/.test(ch))){
-                        evt.preventDefault();
-                       }
-					}
-                    </script>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->orgAddress);?>" placeholder="Address">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->orgEmail);?>" placeholder="Email">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->orgUsername);?>" placeholder="Username">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->orgPassword);?>" placeholder="Password">
-				</div><br><br>
-        <div style="text-align: center">
-						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
-							<a style="color:White"> Update </a>
-						</button>
-	            </div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- //ModalSettings -->
+	<!-- //Modal Accept Short-Term-Care Request -->
 
         <!-- footer content -->
         <footer>
@@ -1209,6 +1301,14 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
+
+    <script>
+     $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+    </script>
 
     <script type="text/javascript">
   $("#selected_profile_cancel").click(function () {
@@ -1264,18 +1364,18 @@ if($query->rowCount()>0)
 }
     </script>
 
-<script type="text/javascript">
-  $(".unread").filter(function(){
-  return $(this).text().trim() === "Read";
-  }).hide();
-  </script>
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
 
     <script>
         $(document).ready(function () {
 
-            $('.declinebtn').on('click', function () {
+            $('.decline-adoption-btn').on('click', function () {
 
-                $('#DeclineRequest').modal('show');
+                $('#ModalDeclineAdoptionRequest').modal('show');
 
                 $tr = $(this).closest('ul');
 
@@ -1295,17 +1395,47 @@ if($query->rowCount()>0)
                 $('#pet_type').val(data[7]);
                 $('#pet_name').val(data[8]);
                 $('#pet_breed').val(data[9]);
-                $('#request_date').val(data[10]);
+                $('#request_date').val(data[11]);
             });
         });
     </script>
 
-    <script>
+<script>
         $(document).ready(function () {
 
-            $('.acceptbtn').on('click', function () {
+            $('.decline-shorttermcare-btn').on('click', function () {
 
-                $('#AcceptRequest').modal('show');
+                $('#ModalDeclineShort-Term-CareRequest').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#request_id1').val(data[0]);
+                $('#pet_id1').val(data[1]);
+                $('#user_id1').val(data[2]);
+                $('#user_name1').val(data[3]);
+                $('#user_email1').val(data[4]);
+                $('#user_address1').val(data[5]);
+                $('#user_contactno1').val(data[6]);
+                $('#pet_type1').val(data[7]);
+                $('#pet_name1').val(data[8]);
+                $('#pet_breed1').val(data[9]);
+                $('#request_date1').val(data[11]);
+            });
+        });
+    </script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.accept-adoption-btn').on('click', function () {
+
+                $('#ModalAcceptAdoptionRequest').modal('show');
 
                 $tr = $(this).closest('ul');
 
@@ -1325,7 +1455,38 @@ if($query->rowCount()>0)
                 $('#pettype').val(data[7]);
                 $('#petname').val(data[8]);
                 $('#petbreed').val(data[9]);
-                $('#requestdate').val(data[10]);
+                $('#requestdate').val(data[11]);
+            });
+        });
+    </script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.accept-shorttermcare-btn').on('click', function () {
+
+                $('#ModalAcceptShort-Term-CareRequest').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#requestid1').val(data[0]);
+                $('#petid1').val(data[1]);
+                $('#userid1').val(data[2]);
+                $('#username1').val(data[3]);
+                $('#useremail1').val(data[4]);
+                $('#useraddress1').val(data[5]);
+                $('#usercontactno1').val(data[6]);
+                $('#pettype1').val(data[7]);
+                $('#petname1').val(data[8]);
+                $('#petbreed1').val(data[9]);
+                $('#totaldays1').val(data[10]);
+                $('#requestdate1').val(data[11]);
             });
         });
     </script>

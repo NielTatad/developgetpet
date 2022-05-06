@@ -149,23 +149,7 @@ $query3->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query3->execute();
 {
 echo '<script>alert("Your Profile Picture Updated Successfully!")</script>';
-$ID=$_SESSION['ownerID'];
-$sql = "SELECT * from petowner where ownerID=:ID";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ID',$ID,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount()>0)
-{
-  foreach($results as $result)
-  {
-    ?>
-                              
-<p></p>
-<?php
-?>
-<?php }}
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Profile.php'</script>";
 }
 }
 ?>
@@ -231,17 +215,16 @@ if($query->rowCount()>0)
 
 					<br />
 
-					<!-- sidebar menu -->
-					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
+				<!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
               <div class="menu_section">
                     <ul class="nav side-menu">
-
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet Adoption</a>
+                    <li class="current-page"><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet Adoption</a>
                     </li>
 
                     <li>
@@ -258,7 +241,7 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>                 
+                    </li>
 
                     </ul>
 					</div>
@@ -277,19 +260,15 @@ if($query->rowCount()>0)
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        99+
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
+                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
                     </a>
           </div>
 					<!-- /menu footer buttons -->
 				</div>
 			</div>
 
-	<!-- top navigation -->
-  <div class="top_nav">
+	 <!-- top navigation -->
+   <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -341,6 +320,24 @@ if($query->rowCount()>0)
                           foreach($results as $result)
                         {
                            ?>
+                            <?php if ($result->notificationTitle == 'Post Deleted') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle != 'Post Deleted') { ?>
                             <?php $user_id = $result->userID;
 
                             $sql1="SELECT * from register WHERE userID='$user_id'";
@@ -367,6 +364,7 @@ if($query->rowCount()>0)
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
+                         <?php } ?>
                         <?php $cnt=$cnt+1;}} ?>
                       </li>
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
@@ -462,15 +460,18 @@ $Gender=($_POST['Gender']);
 $Age=($_POST['Age']);
 $Color=($_POST['Color']);
 $Weight=($_POST['Weight']);
-$Vaccination=($_POST['Vaccination']);
+$SpayNeuter=($_POST['SpayNeuter']);
+$Vaccine=($_POST['Vaccine']);
 $Deworming=($_POST['Deworming']);
+$threeinoneVaccine=($_POST['threeinoneVaccine']);
+$Diet=($_POST['Diet']);
 $Description=($_POST['Description']);
 $Picture = $_FILES["Picture"]["name"];
 $tmp_dir = $_FILES["Picture"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-$sql="INSERT INTO postpet(userID,userName,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,vaccinationStatus,dewormingStatus,petDescription,petPicture,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:Vaccination,:Deworming,:Description,:Picture,'$date','Available','Adoption')";
+$sql="INSERT INTO postpet(userID,userName,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,SpayNeuter,rabiesVaccine,Deworming,threeinoneVaccine,petDiet,petDescription,petPicture,petPicture2,petPicture3,petPicture4,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:SpayNeuter,:Vaccine,:Deworming,:threeinoneVaccine,:Diet,:Description,:Picture,:Picture,:Picture,:Picture,'$date','Available','Adoption')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -484,8 +485,11 @@ $query->bindParam(':Gender',$Gender,PDO::PARAM_STR);
 $query->bindParam(':Age',$Age,PDO::PARAM_STR);
 $query->bindParam(':Color',$Color,PDO::PARAM_STR);
 $query->bindParam(':Weight',$Weight,PDO::PARAM_STR);
-$query->bindParam(':Vaccination',$Vaccination,PDO::PARAM_STR);
+$query->bindParam(':SpayNeuter',$SpayNeuter,PDO::PARAM_STR);
+$query->bindParam(':Vaccine',$Vaccine,PDO::PARAM_STR);
 $query->bindParam(':Deworming',$Deworming,PDO::PARAM_STR);
+$query->bindParam(':threeinoneVaccine',$threeinoneVaccine,PDO::PARAM_STR);
+$query->bindParam(':Diet',$Diet,PDO::PARAM_STR);
 $query->bindParam(':Description',$Description,PDO::PARAM_STR);
 $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query->execute();
@@ -516,7 +520,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="clearfix"></div>
                         </div>
 
-                                <div class="x_content">
+                        <div class="x_content">
                                     <form class="" action="" method="post" novalidate enctype="multipart/form-data" style="margin-top:-40px;">
                                          
                                        
@@ -597,7 +601,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input type="text" id="petname" class="form-control" name="Petname" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
+                                                <input type="text" id="petname" class="form-control" name="Petname" required="required"/>
                                             </div>
                                         </div>
 
@@ -673,27 +677,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                              </div>
                                          </div>
 
+                    <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Status<span class="required"></span></label>&nbsp;&nbsp;&nbsp;
+                    <div class="d-flex align-items-center" style="">
+                    <input type="checkbox" id="spayneuter" style="width:20px;height:20px" name="SpayNeuter" value="✔">&nbsp;Spay/Neuter&emsp;<input type="checkbox" id="rabiesvaccine" style="width:20px;height:20px" name="Vaccine" value="✔">&nbsp;Rabies Vaccine&emsp;<input type="checkbox" id="deworming" style="width:20px;height:20px" name="Deworming" value="✔">&nbsp;Deworming&emsp;<input type="checkbox" id="threeinonevaccine" style="width:20px;height:20px" name="threeinoneVaccine" value="✔">&nbsp;3 in 1 Vaccine
+                    </div>
+                    </div>
 
                     <div class="field item form-group">
-											<label class="col-form-label col-md-3 col-sm-3  label-align">Vaccination Status<span class="required"></span></label>
+											<label class="col-form-label col-md-3 col-sm-3  label-align">Pet Diet</label>
 											<div class="col-md-6 col-sm-6">
-												<select class="form-control" id="vax" name="Vaccination">
-													<option></option>
-													<option>Vaccinated</option>
-													<option>Not vaccinated</option>
-												</select>
-											</div>
-										</div>
-
-                    <div class="field item form-group">
-											<label class="col-form-label col-md-3 col-sm-3  label-align">Deworming Status<span class="required"></span></label>
-											<div class="col-md-6 col-sm-6">
-												<select class="form-control" required="required" id="deworm" name="Deworming">
-													<option></option>
-													<option>Dewormed</option>
-													<option>Not dewormed</option>
-												</select>
-											</div>
+												<textarea id="diet" class="form-control" name="Diet" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+                      </div>
 										</div>
 
                     <div class="field item form-group">
@@ -730,46 +725,25 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
 			<!-- /page content -->
 
-            <!-- ModalProfile -->
-  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center">
-						  <button class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
-							 <a style="color:White"> Update Profile </a>
-						 </button>
-				</div>
-        <div style="text-align: center">
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerContactNo);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerAddress);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->ownerEmail);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
-        </div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //ModalProfile -->
+<script>
+<?php 
+$ID=$_SESSION['ownerID'];
+$sql = "SELECT * from petowner where ownerID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<p></p>
+<?php
+?>
+<?php }} ?>
+</script>
   
    <!-- ModalSettings -->
    <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

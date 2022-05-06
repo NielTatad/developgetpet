@@ -107,10 +107,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <div class="input-group">
               <span class="input-group-text" style="float:right;height:35px;">Organization Name</span>
-              <input type="text" aria-label="First name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Firstname">
-              &nbsp
-              <span class="input-group-text" style="float:right;height:35px;">Full Name</span>
-              <input type="text" aria-label="Last name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Lastname">
+              <input type="text" aria-label="First name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="OrganizationName">
             </div>
             <br>
 
@@ -120,30 +117,6 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               &nbsp
               <span class="input-group-text" style="float:right;height:35px;">Contact No</span>
               <input type="tel" aria-label="Contact No" class="form-control" style="background-color:#f1f1f1;height:35px;" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" required="required">
-            </div>
-            <br>
-
-            <div class="input-group">
-              <span class="input-group-text" style="float:right;height:35px;">Date Of Birth</span>
-												<input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" style="background-color:#f1f1f1;height:35px;font-size:13px;">
-												<script>
-													function timeFunctionLong(input) {
-														setTimeout(function() {
-															input.type = 'text';
-														}, 60000);
-													}
-												</script>
-              &nbsp
-              <span class="input-group-text" style="float:right;height:35px;">Age</span>
-              <input type="text" aria-label="Age" class="form-control" style="background-color:#f1f1f1;height:35px;" onkeypress="isInputNumber(event)" name="Age" maxlength="2" min="18" max="80">
-              &nbsp
-              <label class="input-group-text" for="inputGroupSelect01">Gender</label>
-              <select class="form-select" id="inputGroupSelect01" style="background-color:#f1f1f1;font-size:13px;">
-                <option selected>Select Gender...</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
-              </select>
             </div>
             <br>
                         
