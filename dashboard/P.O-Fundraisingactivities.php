@@ -581,7 +581,7 @@ if($query->rowCount()>0)
                                             <br>
                                             <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                                                                       
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:450px;width:500px;border-radius:10px;">
                                               <br>                                      
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
@@ -917,6 +917,8 @@ if($query->rowCount()>0)
                <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
+        
+        <img id="char_qrcode" src="/developgetpet/web/images/" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" >
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
@@ -1619,7 +1621,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#char_amount').val(data[2]);
                 $('#char_qrcode').val(data[3]);
                 $('#char_description').val(data[4]);
-                $('#char_status').val(data[6]);
+                $('#char_status').val(data[7]);
                 
             });
         });
