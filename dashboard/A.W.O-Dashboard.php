@@ -252,13 +252,16 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
               <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php">
               <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
-            </div>
-            <!-- /menu footer buttons -->
+              <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
+                <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+              </a>
+        </div>
+        <!-- /menu footer buttons -->
 				</div>
 			</div>
 
-	   <!-- top navigation -->
-     <div class="top_nav">
+	    <!-- top navigation -->
+      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -310,6 +313,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           foreach($results as $result)
                         {
                            ?>
+                            <?php if ($result->notificationTitle == 'Post Deleted') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle != 'Post Deleted') { ?>
                             <?php $user_id = $result->userID;
 
                             $sql1="SELECT * from register WHERE userID='$user_id'";
@@ -336,6 +357,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
+                         <?php } ?>
                         <?php $cnt=$cnt+1;}} ?>
                       </li>
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
@@ -392,13 +414,26 @@ if($query->rowCount()>0)
               </div>
             </div>
             
-<!-- Button trigger modal for event view -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  New Post for Event <span class="badge bg-danger">4</span>
-</button>
-<!-- //Button trigger modal for event view -->
+<!-- Button trigger modal -->
+<?php
+$query=$dbh->prepare("SELECT COUNT(postStatus) FROM post WHERE postStatus='Event' AND postStatus != 'Deleted' ");
+$query->execute();
 
-<!-- Modal for event view-->
+$event=$query->fetchColumn();
+
+?>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  New Post for Event <span class="badge bg-danger" id="event"><?php echo ($event);?></span>
+</button>
+<script type="text/javascript">
+  var number = <?php echo ($event);?>;
+  if (number === 0){
+  document.getElementById("event").style.display = "none";
+  }
+</script>
+<!-- //Button trigger modal -->
+
+<!-- Modal New Post for Event-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -411,7 +446,7 @@ if($query->rowCount()>0)
       <div class="x_content" style="text-align:center;">
 
       <?php
-            $sql="SELECT * from post WHERE postStatus!='Deleted' ORDER BY postID DESC LIMIT 3";
+            $sql="SELECT * from post WHERE postStatus='Event' AND postStatus!='Deleted' ORDER BY postID DESC LIMIT 3";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -466,8 +501,7 @@ if($query->rowCount()>0)
   </div>
   </div>
 </div>
-<!-- //Modal for event view-->
-
+<!-- //Modal New Post for Event-->
 <br>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
@@ -608,7 +642,7 @@ if($query->rowCount()>0)
       <div class="x_content" style="text-align:center;">
 
       <?php
-            $sql="SELECT * from post WHERE postStatus!='Deleted' ORDER BY postID DESC LIMIT 3";
+            $sql="SELECT * from post WHERE postStatus!='Deleted' AND postStatus!='Event' ORDER BY postID DESC LIMIT 3";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -621,13 +655,13 @@ if($query->rowCount()>0)
 
                 <div class="card" style="border-radius:10px;border-width:2px;box-shadow: 8px 8px 8px #888888;">
                   <h2 class="card-title" style="text-align:left;">&nbsp&nbspTitle: <?php echo ($result->postTitle);?></h2>
-                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" alt="..." style="border-radius:10px;">
+                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" onerror='this.style.display = "none"' alt="..." style="border-radius:10px;">
 
                   <div class="card-body">
 
                 <div class="mb-3">
                   <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled style="border-radius:10px;height:200px;"><?php echo ($result->postContent);?></textarea>
+                  <textarea class="form-control txtgrow" id="exampleFormControlTextarea1" rows="3" disabled style="border-radius:10px;"><?php echo ($result->postContent);?></textarea>
                 </div>
                     <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
                     <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
@@ -664,7 +698,7 @@ if($query->rowCount()>0)
     </div>
   </div>
 </div>            
-<!-- New Post For Tips Advice & Articles Code -->             
+<!-- New Post For Tips Advice & Articles Code -->              
 
           </div>
         </div>

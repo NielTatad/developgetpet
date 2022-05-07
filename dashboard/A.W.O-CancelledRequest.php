@@ -291,8 +291,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           </div>
         </div>
 
-         <!-- top navigation -->
-      <div class="top_nav">
+           <!-- top navigation -->
+   <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -344,6 +344,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           foreach($results as $result)
                         {
                            ?>
+                            <?php if ($result->notificationTitle == 'Post Deleted') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle != 'Post Deleted') { ?>
                             <?php $user_id = $result->userID;
 
                             $sql1="SELECT * from register WHERE userID='$user_id'";
@@ -370,6 +388,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           </span>
                         </a>
                          <?php $cnt1=$cnt1+1;}} ?>
+                         <?php } ?>
                         <?php $cnt=$cnt+1;}} ?>
                       </li>
                       <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">

@@ -573,7 +573,7 @@ if($query->rowCount()>0)
             <div class="col-nd-4">
               <div class="card" style="border-radius:10px;border-width:2px;">                 
                   <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                  <h3>Cancelled Request</h3>
+                  <h3>Cancelled <?php echo ($result->requestTitle);?></h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <li><h3 hidden class="card-title"><?php echo ($result->requestID);?></h3></li>
                       <?php $user_id = $result->userID;
@@ -603,14 +603,38 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Name: <?php echo ( $petid->petName);?>&#13;&#10;Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;&#13;&#10;Request Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
+                      
+                      <?php $master_id = $petid->userID;
 
+                    $sql3="SELECT * from register WHERE userID='$master_id'";
+                    $query3=$dbh->prepare($sql3);
+                    $query3->execute();
+                    $masterids=$query3->fetchALL(PDO::FETCH_OBJ);
+                    $cnt3=1;
+                    if($query3->rowCount()>0)
+                    {
+                      foreach($masterids as $masterid)
+                    {
+                      ?>
+                      <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ($petid->selectedRange);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
+
+                      <?php } ?>
+
+                      <?php if ($result->requestTitle == 'Adoption Request') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
+
+                      <?php } ?>
+
+                      <?php $cnt3=$cnt3+1;}} ?>
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
                       
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
-                            <button name="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">View</button>
+                      <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
                       </div>
                       </div>
                       </ul>
@@ -766,6 +790,117 @@ if($query->rowCount()>0)
 </div>
   <!-- //ModalSettings -->
 
+ <!-- Modal View Pet Info -->
+ <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="pet_id1" name="petID" required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Name<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_name1" name="petName" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Type<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_type1" name="petType" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Breed<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_breed1" name="petBreed" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Gender<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_gender1" name="petGender" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Age<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_age1" name="petAge" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Color<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_color1" name="petColor" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Weight<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_weight1" name="petWeight" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Pet Status<span class="required"></span></label>&nbsp;&nbsp;&nbsp;
+        <div class="d-flex align-items-center" style="">
+        <input readonly id="spay_neuter1" style="width:20px;height:20px;" name="SpayNeuter">&nbsp;Spay/Neuter&emsp;<input readonly id="rabies_vaccine1" style="width:20px;height:20px" name="Vaccine">&nbsp;Rabies Vaccine&emsp;<input readonly id="deworming1" style="width:20px;height:20px" name="Deworming" >&nbsp;Deworming&emsp;<input readonly id="three_in_one_vaccine1" style="width:20px;height:20px" name="threeinoneVaccine" >&nbsp;3 in 1 Vaccine
+        </div>
+        </div>
+
+        <div class="field item form-group">
+				<label class="col-form-label col-md-3 col-sm-3  label-align">Pet Diet</label>
+			  <div class="col-md-6 col-sm-6">
+        <textarea disabled="yes" id="pet_diet1" style="width:440px;height:80px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
+        </div>
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+        <textarea disabled="yes" id="pet_description1" name="petDescription" style="width:440px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="pet_status1" name="petStatus" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By:<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="master_name1" name="masterName" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <br><br>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal View Pet Info -->
+
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
@@ -781,12 +916,6 @@ if($query->rowCount()>0)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-
-    <script type="text/javascript">
-    $(".unread").filter(function(){
-    return $(this).text().trim() === "Read";
-    }).hide();
-    </script>
 
 <script type="text/javascript">
   $("#selected_profile_cancel").click(function () {
@@ -806,22 +935,6 @@ if($query->rowCount()>0)
 });
   </script>
 
-<script type="text/javascript">
-  $("#selected_picture_cancel").click(function () {
-  
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_close").click(function () {
-
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
-  </script>
-
     <script>
       Picture.onchange = evt => {
   const [file] = Picture.files
@@ -832,39 +945,50 @@ if($query->rowCount()>0)
 }
     </script>
 
-    <script>
-      PostPicture.onchange = evt => {
-  const [file] = PostPicture.files
-  if (file) {
-    post_picture.src = URL.createObjectURL(file)
-  }
-  document.getElementById("btnChangePostPicture").disabled = false;
-}
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
     </script>
 
-    <script>
-        $(document).ready(function () {
-
-            $('.cancelbtn').on('click', function () {
-
-                $('#CancelRequest').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#request_id').val(data[0]);
-                $('#pet_id').val(data[1]);
-                $('#master_id').val(data[2]);
-            });
-        });
-    </script>
+<script type="text/javascript">
+  $(".viewbtn").click(function () {
+    var pet_id1 = $(this).attr('data-pet-id');
+    var pet_name1 = $(this).attr('data-pet-name');
+    var pet_type1 = $(this).attr('data-pet-type');
+    var pet_breed1 = $(this).attr('data-pet-breed');
+    var pet_gender1 = $(this).attr('data-pet-gender');
+    var pet_age1 = $(this).attr('data-pet-age');
+    var pet_color1 = $(this).attr('data-pet-color');
+    var pet_weight1 = $(this).attr('data-pet-weight');
+    var spay_neuter1 = $(this).attr('data-pet-spayneuter');
+    var rabies_vaccine1 = $(this).attr('data-pet-rabiesvaccine');
+    var deworming1 = $(this).attr('data-pet-deworming');
+    var three_in_one_vaccine1 = $(this).attr('data-pet-threeinonevaccine');
+    var pet_diet1 = $(this).attr('data-pet-diet');
+    var pet_description1 = $(this).attr('data-pet-description');
+    var pet_status1 = $(this).attr('data-pet-status');
+    var master_name1 = $(this).attr('data-master-name');
+    $('#View').modal('show');
+    $("#pet_id1").val( pet_id1 );
+    $("#pet_name1").val( pet_name1 );
+    $("#pet_type1").val( pet_type1 );
+    $("#pet_breed1").val( pet_breed1 );
+    $("#pet_gender1").val( pet_gender1 );
+    $("#pet_age1").val( pet_age1 );
+    $("#pet_color1").val( pet_color1 );
+    $("#pet_weight1").val( pet_weight1 );
+    $("#spay_neuter1").val( spay_neuter1 );
+    $("#rabies_vaccine1").val( rabies_vaccine1 );
+    $("#deworming1").val( deworming1 );
+    $("#three_in_one_vaccine1").val( three_in_one_vaccine1 );
+    $("#pet_diet1").val( pet_diet1 );
+    $("#pet_description1").val( pet_description1 );
+    $("#pet_status1").val( pet_status1 );
+    $("#master_name1").val( master_name1 );
+  });
+  </script>
     
-
     <div id="custom_notifications" class="custom-notifications dsp_none">
       <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
       </ul>

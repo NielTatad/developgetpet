@@ -3,69 +3,95 @@ session_start();
 include('C:\xampp\htdocs\developgetpet\includes\config.php');
 if(isset($_POST['insert']))
 {
-$Firstname=($_POST['Firstname']);
-$Lastname=($_POST['Lastname']);
-$ContactNo=($_POST['ContactNo']);
-$Address=($_POST['Address']);
-$Email=($_POST['Email']);
-$Username=($_POST['Username']);
-$Password=($_POST['Password']);
-$sql="INSERT INTO register(userFirstname,userLastname,contactNo,Address,Image,Email,Username,Password,Role,registerDate)VALUES(:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter',Now())";
-$query=$dbh->prepare($sql); 
-$query->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
-$query->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
-$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-$query->bindParam(':Address',$Address,PDO::PARAM_STR);
-$query->bindParam(':Email',$Email,PDO::PARAM_STR);
-$query->bindParam(':Username',$Username,PDO::PARAM_STR);
-$query->bindParam(':Password',$Password,PDO::PARAM_STR);
-$query->execute();
+  $Age=($_POST['Age']);
+ 
+  if($Age < 18){
 
-$sql2="SELECT userID FROM register ORDER BY userID DESC";
-$query2=$dbh->prepare($sql2);
-$query2->execute();
-
-$ID=$query2->fetchColumn();
-
-$Firstname=($_POST['Firstname']);
-$Lastname=($_POST['Lastname']);
-$ContactNo=($_POST['ContactNo']);
-$Address=($_POST['Address']);
-$Email=($_POST['Email']);
-$Username=($_POST['Username']);
-$Password=($_POST['Password']);
-$sql1="INSERT INTO petadopter(adopterID,adopterFirstname,adopterLastname,adopterContactNo,adopterAddress,adopterPicture,adopterEmail,adopterUsername,adopterPassword,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
-$query1=$dbh->prepare($sql1);
-$query1->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
-$query1->bindParam(':Lastname',$Lastname,PDO::PARAM_STR); 
-$query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-$query1->bindParam(':Address',$Address,PDO::PARAM_STR);
-$query1->bindParam(':Email',$Email,PDO::PARAM_STR);
-$query1->bindParam(':Username',$Username,PDO::PARAM_STR);
-$query1->bindParam(':Password',$Password,PDO::PARAM_STR);
-$query1->execute();
-
-$Firstname=($_POST['Firstname']);
-$Lastname=($_POST['Lastname']);
-$ContactNo=($_POST['ContactNo']);
-$Address=($_POST['Address']);
-$Email=($_POST['Email']);
-$Username=($_POST['Username']);
-$Password=($_POST['Password']);
-$sql3="INSERT INTO login(userID,userFirstname,userLastname,contactNo,Address,Image,Email,Username,Password,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
-$query3=$dbh->prepare($sql3); 
-$query3->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
-$query3->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
-$query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-$query3->bindParam(':Address',$Address,PDO::PARAM_STR);
-$query3->bindParam(':Email',$Email,PDO::PARAM_STR);
-$query3->bindParam(':Username',$Username,PDO::PARAM_STR);
-$query3->bindParam(':Password',$Password,PDO::PARAM_STR);
-$query3->execute();
-
-echo '<script>alert("Registered Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/login.php'</script>";
-
+    echo '<script>alert("Opps! You cannot register if your age is 18 below")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-Registration.php'</script>";
+  }
+  else{
+    $Firstname=($_POST['Firstname']);
+    $Lastname=($_POST['Lastname']);
+    $ContactNo=($_POST['ContactNo']);
+    $BirthDate=($_POST['BirthDate']);
+    $Age=($_POST['Age']);
+    $Gender=($_POST['Gender']);
+    $Address=($_POST['Address']);
+    $Email=($_POST['Email']);
+    $Username=($_POST['Username']);
+    $Password=($_POST['Password']);
+    $sql="INSERT INTO register(userFirstname,userLastname,contactNo,birthDate,Age,Gender,Address,Image,Email,Username,Password,Role,registerDate)VALUES(:Firstname,:Lastname,:ContactNo,:BirthDate,:Age,:Gender,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter',Now())";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
+    $query->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
+    $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+    $query->bindParam(':BirthDate',$BirthDate,PDO::PARAM_STR);
+    $query->bindParam(':Age',$Age,PDO::PARAM_STR);
+    $query->bindParam(':Gender',$Gender,PDO::PARAM_STR);
+    $query->bindParam(':Address',$Address,PDO::PARAM_STR);
+    $query->bindParam(':Email',$Email,PDO::PARAM_STR);
+    $query->bindParam(':Username',$Username,PDO::PARAM_STR);
+    $query->bindParam(':Password',$Password,PDO::PARAM_STR);
+    $query->execute();
+    
+    $sql2="SELECT userID FROM register ORDER BY userID DESC";
+    $query2=$dbh->prepare($sql2);
+    $query2->execute();
+    
+    $ID=$query2->fetchColumn();
+    
+    $Firstname=($_POST['Firstname']);
+    $Lastname=($_POST['Lastname']);
+    $ContactNo=($_POST['ContactNo']);
+    $BirthDate=($_POST['BirthDate']);
+    $Age=($_POST['Age']);
+    $Gender=($_POST['Gender']);
+    $Address=($_POST['Address']);
+    $Email=($_POST['Email']);
+    $Username=($_POST['Username']);
+    $Password=($_POST['Password']);
+    $sql1="INSERT INTO petadopter(adopterID,adopterFirstname,adopterLastname,adopterContactNo,adopterBirthdate,adopterAge,adopterGender,adopterAddress,adopterPicture,adopterEmail,adopterUsername,adopterPassword,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:BirthDate,:Age,:Gender,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
+    $query1=$dbh->prepare($sql1);
+    $query1->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
+    $query1->bindParam(':Lastname',$Lastname,PDO::PARAM_STR); 
+    $query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+    $query1->bindParam(':BirthDate',$BirthDate,PDO::PARAM_STR);
+    $query1->bindParam(':Age',$Age,PDO::PARAM_STR);
+    $query1->bindParam(':Gender',$Gender,PDO::PARAM_STR);
+    $query1->bindParam(':Address',$Address,PDO::PARAM_STR);
+    $query1->bindParam(':Email',$Email,PDO::PARAM_STR);
+    $query1->bindParam(':Username',$Username,PDO::PARAM_STR);
+    $query1->bindParam(':Password',$Password,PDO::PARAM_STR);
+    $query1->execute();
+    
+    $Firstname=($_POST['Firstname']);
+    $Lastname=($_POST['Lastname']);
+    $ContactNo=($_POST['ContactNo']);
+    $BirthDate=($_POST['BirthDate']);
+    $Age=($_POST['Age']);
+    $Gender=($_POST['Gender']);
+    $Address=($_POST['Address']);
+    $Email=($_POST['Email']);
+    $Username=($_POST['Username']);
+    $Password=($_POST['Password']);
+    $sql3="INSERT INTO login(userID,userFirstname,userLastname,contactNo,birthDate,Age,Gender,Address,Image,Email,Username,Password,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:BirthDate,:Age,:Gender,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
+    $query3=$dbh->prepare($sql3); 
+    $query3->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
+    $query3->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
+    $query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+    $query3->bindParam(':BirthDate',$BirthDate,PDO::PARAM_STR);
+    $query3->bindParam(':Age',$Age,PDO::PARAM_STR);
+    $query3->bindParam(':Gender',$Gender,PDO::PARAM_STR);
+    $query3->bindParam(':Address',$Address,PDO::PARAM_STR);
+    $query3->bindParam(':Email',$Email,PDO::PARAM_STR);
+    $query3->bindParam(':Username',$Username,PDO::PARAM_STR);
+    $query3->bindParam(':Password',$Password,PDO::PARAM_STR);
+    $query3->execute();
+    
+    echo '<script>alert("Registered Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/login.php'</script>";
+  }
 }
 ?>
 <!doctype html>
@@ -109,9 +135,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             <form class="login100-form validate-form" method="post">
 
             <div class="input-group">
-              <span class="input-group-text" style="float:right;height:35px;">Firstname & Lastname</span>
+              <span class="input-group-text" style="float:right;height:35px;">Firstname</span>
               <input type="text" aria-label="First name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Firstname">
-              &nbsp
+              &nbsp<span class="input-group-text" style="float:right;height:35px;">Lastname</span>
               <input type="text" aria-label="Last name" class="form-control" style="background-color:#f1f1f1;height:35px;" name="Lastname">
             </div>
             <br>
@@ -127,7 +153,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <div class="input-group">
               <span class="input-group-text" style="float:right;height:35px;">Date Of Birth</span>
-												<input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" style="background-color:#f1f1f1;height:35px;font-size:13px;">
+												<input id="birthday" name="BirthDate" class="form-control" placeholder="mm-dd-yyyy" type="text" required="required" type="text" style="background-color:#f1f1f1;height:35px;font-size:13px;">
 												<script>
 													function timeFunctionLong(input) {
 														setTimeout(function() {
@@ -137,14 +163,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 												</script>
               &nbsp
               <span class="input-group-text" style="float:right;height:35px;">Age</span>
-              <input type="text" aria-label="Age" class="form-control" style="background-color:#f1f1f1;height:35px;" onkeypress="isInputNumber(event)" name="Age" maxlength="2" min="18" max="80">
+              <input readonly type="number" min="18" max="60" aria-label="Age" class="form-control" style="background-color:#f1f1f1;height:35px;" onkeypress="isInputNumber(event)" id="age" name="Age" maxlength="2">
               &nbsp
               <label class="input-group-text" for="inputGroupSelect01">Gender</label>
-              <select class="form-select" id="inputGroupSelect01" style="background-color:#f1f1f1;font-size:13px;">
+              <select class="form-select" id="inputGroupSelect01" name="Gender" style="background-color:#f1f1f1;font-size:13px;">
                 <option selected>Select Gender...</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
             </div>
             <br>
@@ -197,5 +222,22 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var age = "";
+        $('#birthday').datepicker({
+            onSelect: function(value, ui) {
+                var today = new Date();
+                age = today.getFullYear() - ui.selectedYear;
+                $('#age').val(age);
+            },
+            changeMonth: true,
+            changeYear: true
+        })
+    })
+</script>
   </body>
 </html>
