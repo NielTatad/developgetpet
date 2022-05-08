@@ -184,6 +184,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
@@ -255,9 +256,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Donations.php">Manage Donation</a>
                     </li>
 
-              </ul>
-                 
-              </div>
+                    </ul>
+					</div>
+					</div>
+					<!-- /sidebar menu -->
 
 							<!-- /menu footer buttons -->
               <div class="sidebar-footer hidden-small">
@@ -430,8 +432,6 @@ if($query->rowCount()>0)
                 </div>
               </div>
             </div>
-            
-            
 
             <!-- /page content -->
 
@@ -563,7 +563,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                                 <br>
-                                               <h4 style="margin-top:-40px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
+                                               <h4 style="margin-top:-55px;float:right;margin-right:10px;"><span class="comment-count" id="comment-count"><?php echo ($commentno);?></span> Comment</h4>
 
                                                <div class="comment-Div">
 
@@ -1781,6 +1781,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
+		</div>
+	</div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
@@ -2316,6 +2319,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
      
 
