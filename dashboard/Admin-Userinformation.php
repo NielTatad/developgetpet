@@ -256,7 +256,7 @@ th {
                               </ul>
                             </div>
                             <div class="right col-md-5 col-sm-5 text-center">
-                              <img <?php echo"<img src = '/developgetpet/web/images/$result->Image'";?> alt="" style="height:300px;width:500px;" class="img-circle img-fluid">
+                              <img <?php echo"<img src = '/developgetpet/web/images/$result->Image'";?> alt="" style="height:160px;width:450px;" class="img-circle img-fluid">
                             </div>
                           </div>
                           <div class=" profile-bottom text-center">
