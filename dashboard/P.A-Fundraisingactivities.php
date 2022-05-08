@@ -499,9 +499,12 @@ if($query->rowCount()>0)
                             <div class=" col-sm-6 emphasis">
                               <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
                                 </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-sm">
-                                <i class="fa fa-user"> </i> View Profile
+
+ 
+                              <button type="button" class="btn btn-primary btn-sm">                             
+                              <i class="fa fa-user"> </i>View Profile
                               </button>
+                              
                             </div>
                           </div>
                         </div>
