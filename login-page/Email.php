@@ -3,31 +3,34 @@
 
 session_start();
 include('C:\xampp\htdocs\developgetpet\includes\config.php');
-$Email=$_SESSION['Email'];
-$verification_code=$_SESSION['verification_code'];
 
+if(isset($_POST['next']))
+  {
+    $Email=($_POST['Email']);
+    $verification_code = generateRandomString();
 
-if(isset($_POST['continue']))
-    {
-      if($otp_code = $_POST['otp_code'] == $verification_code)
-      {
-        $otp_code = $_POST['otp_code'];
-        $Email=($_POST['Email']);
-        
-        echo "<script>alert('You can now change your password!');</script>";
-        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/Reset-Password.php'</script>";
+    $receiver = $Email;
+    $subject = "Verification Code";
+    $body = "Your Verification Code: $verification_code";
+    $sender = "getpet2022.test@gmail.com";
     
-        $_SESSION['Email'] = $Email;
-        $_SESSION['verification_code'] = $verification_code;
+    mail($receiver, $subject, $body, $sender);
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/OTP.php'</script>";
+    
+    $_SESSION['Email'] = $Email;
+    $_SESSION['verification_code'] = $verification_code;
 
-      }
+  }
 
-      else
-      {
-          echo "<script>alert('Invalid OTP code or Email does not exist!');</script>";
-      }
+function generateRandomString($length = 8) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
-    
+    return $randomString;
+  }    
 ?>
 <!doctype html>
 <html lang="en">
@@ -70,18 +73,12 @@ if(isset($_POST['continue']))
           </div>
 
             <form action="" method="post">
+            <strong style="font-size:14px;" >Email:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
-						<input hidden class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="email" name="Email" value="<?php echo $Email;?>">
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="email" name="Email">
 					  </div><br>
-            <strong style="font-size:14px;" >Verification Code:</strong>
-            <div style="text-align: center;" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="otp_code" required="required">
-					  </div><br>
-            <input type="submit" name="continue" value="Continue" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:40px;">
-              <br>
-            <div style="text-align: center" class="wrap-input100 validate-input">
-						<input hidden class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="verification_code" value="<?php echo $verification_code;?>">
-					  </div><br>  
+            <input type="submit" name="next" value="Next" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:40px;">
+              <br><br><br><br>
             </form>
           </div>
         </div>
