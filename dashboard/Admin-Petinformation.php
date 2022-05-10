@@ -136,7 +136,7 @@ th {
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Userrequest.php" style="font-size:15px;">User Request</a>
                             </li>
 
-                            <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care<span class="fa fa-chevron-down"></span></a>
+                            <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
                                 <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
                                   <li><a href="#">Short-Term Care</a></li>
@@ -144,14 +144,14 @@ th {
                               </li>
 
 
-                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities<span class="fa fa-chevron-down"></span></a>
+                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities</a>
                                 <ul class="nav child_menu">
                                   <li><a href="#">Donation</a></li>
                                   <li><a href="#">Fundraising Activities</a></li>
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">Manage Pet Care Tips<span class="fa fa-chevron-down"></span></a>
+                                <li><a style="font-size:15px;">Manage Pet Care Tips</a>
                                 <ul class="nav child_menu">
                                   <li><a href="#">Tips</a></li>
                                   <li><a href="#">Advice</a></li>
@@ -159,7 +159,7 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">History<span class="fa fa-chevron-down"></span></a>
+                                <li><a style="font-size:15px;">History</a>
                                 <ul class="nav child_menu">
                                   <li><a href="#">Adoption</a></li>
                                   <li><a href="#">Short Term-Care</a></li>
@@ -266,8 +266,6 @@ th {
           <div class="x_title">
             <h2>Manage Pet Information</h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-              </li>
           </ul>
             <div class="clearfix"></div>
           </div>
