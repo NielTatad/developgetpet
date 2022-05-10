@@ -3,95 +3,88 @@ session_start();
 include('C:\xampp\htdocs\developgetpet\includes\config.php');
 if(isset($_POST['insert']))
 {
-  $Age=($_POST['Age']);
- 
-  if($Age < 18){
+    $Firstname=($_POST['Firstname']);
+    $Lastname=($_POST['Lastname']);
+    $ContactNo=($_POST['ContactNo']);
+    $BirthDate=($_POST['BirthDate']);
+    $Age=($_POST['Age']);
+    $Gender=($_POST['Gender']);
+    $Address=($_POST['Address']);
+    $Email=($_POST['Email']);
+    $Username=($_POST['Username']);
+    $Password=($_POST['Password']);
+    $verification_code = generateRandomString();
+  
+  if($Age < 18)
+  {
 
     echo '<script>alert("Opps! You cannot register if your age is 18 below")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-Registration.php'</script>";
   }
-  else{
-    $Firstname=($_POST['Firstname']);
-    $Lastname=($_POST['Lastname']);
-    $ContactNo=($_POST['ContactNo']);
-    $BirthDate=($_POST['BirthDate']);
-    $Age=($_POST['Age']);
-    $Gender=($_POST['Gender']);
-    $Address=($_POST['Address']);
-    $Email=($_POST['Email']);
-    $Username=($_POST['Username']);
-    $Password=($_POST['Password']);
-    $sql="INSERT INTO register(userFirstname,userLastname,contactNo,birthDate,Age,Gender,Address,Image,Email,Username,Password,Role,registerDate)VALUES(:Firstname,:Lastname,:ContactNo,:BirthDate,:Age,:Gender,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter',Now())";
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
-    $query->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
-    $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-    $query->bindParam(':BirthDate',$BirthDate,PDO::PARAM_STR);
-    $query->bindParam(':Age',$Age,PDO::PARAM_STR);
-    $query->bindParam(':Gender',$Gender,PDO::PARAM_STR);
-    $query->bindParam(':Address',$Address,PDO::PARAM_STR);
-    $query->bindParam(':Email',$Email,PDO::PARAM_STR);
-    $query->bindParam(':Username',$Username,PDO::PARAM_STR);
-    $query->bindParam(':Password',$Password,PDO::PARAM_STR);
-    $query->execute();
+  else
+  {
+
+    $query = $dbh->prepare("SELECT COUNT(*) FROM register WHERE Email =:Email");
+    $query->execute([':Email' => $Email]);
+    if ($query->fetchColumn()) 
+    {
+        echo "<script>alert('$Email is already in use!');</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-Registration.php'</script>";
+    }
+
+    $query = $dbh->prepare("SELECT COUNT(*) FROM register WHERE contactNo =:ContactNo");
+    $query->execute([':ContactNo' => $ContactNo]);
+    if ($query->fetchColumn()) 
+    {
+        echo "<script>alert('$ContactNo is already in use!');</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-Registration.php'</script>";
+    }
+
+    $query = $dbh->prepare("SELECT COUNT(*) FROM register WHERE Username =:Username");
+    $query->execute([':Username' => $Username]);
+    if ($query->fetchColumn()) 
+    {
+        echo "<script>alert('$Username is already exists!');</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-Registration.php'</script>";
+    }
+        
+    else
+    {
+
+      $receiver = $Email;
+      $subject = "Verification Code";
+      $body = "Your Verification Code: $verification_code";
+      $sender = "getpet2022.test@gmail.com";
+  
+      mail($receiver, $subject, $body, $sender);
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-OTP.php'</script>";
+  
+      $_SESSION['Firstname'] = $Firstname;
+      $_SESSION['Lastname'] = $Lastname;
+      $_SESSION['Email'] = $Email;
+      $_SESSION['ContactNo'] = $ContactNo;
+      $_SESSION['BirthDate'] = $BirthDate;
+      $_SESSION['Age'] = $Age;
+      $_SESSION['Gender'] = $Gender;
+      $_SESSION['Address'] = $Address;
+      $_SESSION['Username'] = $Username;
+      $_SESSION['Password'] = $Password;
+      $_SESSION['verification_code'] = $verification_code;
+
+    }
     
-    $sql2="SELECT userID FROM register ORDER BY userID DESC";
-    $query2=$dbh->prepare($sql2);
-    $query2->execute();
-    
-    $ID=$query2->fetchColumn();
-    
-    $Firstname=($_POST['Firstname']);
-    $Lastname=($_POST['Lastname']);
-    $ContactNo=($_POST['ContactNo']);
-    $BirthDate=($_POST['BirthDate']);
-    $Age=($_POST['Age']);
-    $Gender=($_POST['Gender']);
-    $Address=($_POST['Address']);
-    $Email=($_POST['Email']);
-    $Username=($_POST['Username']);
-    $Password=($_POST['Password']);
-    $sql1="INSERT INTO petadopter(adopterID,adopterFirstname,adopterLastname,adopterContactNo,adopterBirthdate,adopterAge,adopterGender,adopterAddress,adopterPicture,adopterEmail,adopterUsername,adopterPassword,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:BirthDate,:Age,:Gender,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
-    $query1=$dbh->prepare($sql1);
-    $query1->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
-    $query1->bindParam(':Lastname',$Lastname,PDO::PARAM_STR); 
-    $query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-    $query1->bindParam(':BirthDate',$BirthDate,PDO::PARAM_STR);
-    $query1->bindParam(':Age',$Age,PDO::PARAM_STR);
-    $query1->bindParam(':Gender',$Gender,PDO::PARAM_STR);
-    $query1->bindParam(':Address',$Address,PDO::PARAM_STR);
-    $query1->bindParam(':Email',$Email,PDO::PARAM_STR);
-    $query1->bindParam(':Username',$Username,PDO::PARAM_STR);
-    $query1->bindParam(':Password',$Password,PDO::PARAM_STR);
-    $query1->execute();
-    
-    $Firstname=($_POST['Firstname']);
-    $Lastname=($_POST['Lastname']);
-    $ContactNo=($_POST['ContactNo']);
-    $BirthDate=($_POST['BirthDate']);
-    $Age=($_POST['Age']);
-    $Gender=($_POST['Gender']);
-    $Address=($_POST['Address']);
-    $Email=($_POST['Email']);
-    $Username=($_POST['Username']);
-    $Password=($_POST['Password']);
-    $sql3="INSERT INTO login(userID,userFirstname,userLastname,contactNo,birthDate,Age,Gender,Address,Image,Email,Username,Password,Role)VALUES($ID,:Firstname,:Lastname,:ContactNo,:BirthDate,:Age,:Gender,:Address,'default_profile.png',:Email,:Username,:Password,'Pet Adopter')";
-    $query3=$dbh->prepare($sql3); 
-    $query3->bindParam(':Firstname',$Firstname,PDO::PARAM_STR);
-    $query3->bindParam(':Lastname',$Lastname,PDO::PARAM_STR);
-    $query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-    $query3->bindParam(':BirthDate',$BirthDate,PDO::PARAM_STR);
-    $query3->bindParam(':Age',$Age,PDO::PARAM_STR);
-    $query3->bindParam(':Gender',$Gender,PDO::PARAM_STR);
-    $query3->bindParam(':Address',$Address,PDO::PARAM_STR);
-    $query3->bindParam(':Email',$Email,PDO::PARAM_STR);
-    $query3->bindParam(':Username',$Username,PDO::PARAM_STR);
-    $query3->bindParam(':Password',$Password,PDO::PARAM_STR);
-    $query3->execute();
-    
-    echo '<script>alert("Registered Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/login.php'</script>";
   }
+
+}
+
+function generateRandomString($length = 8) {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $charactersLength = strlen($characters);
+  $randomString = '';
+  for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $randomString;
 }
 ?>
 <!doctype html>

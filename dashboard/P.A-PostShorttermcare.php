@@ -475,13 +475,23 @@ $threeinoneVaccine=($_POST['threeinoneVaccine']);
 $Diet=($_POST['Diet']);
 $selectedRange=($_POST['selectedRange']);
 $totalDays=($_POST['totalDays']);
+$Charge=($_POST['Charge']);
 $Description=($_POST['Description']);
 $Picture = $_FILES["Picture"]["name"];
 $tmp_dir = $_FILES["Picture"]["tmp_name"];
+$Picture2 = $_FILES["Picture2"]["name"];
+$tmp_dir2 = $_FILES["Picture2"]["tmp_name"];
+$Picture3 = $_FILES["Picture3"]["name"];
+$tmp_dir3 = $_FILES["Picture3"]["tmp_name"];
+$Picture4 = $_FILES["Picture4"]["name"];
+$tmp_dir4 = $_FILES["Picture4"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
+move_uploaded_file($tmp_dir2, "C:/xampp/htdocs/developgetpet/web/images/$Picture2");
+move_uploaded_file($tmp_dir3, "C:/xampp/htdocs/developgetpet/web/images/$Picture3");
+move_uploaded_file($tmp_dir4, "C:/xampp/htdocs/developgetpet/web/images/$Picture4");
 
-$sql="INSERT INTO postpet(userID,userName,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,SpayNeuter,rabiesVaccine,Deworming,threeinoneVaccine,petDiet,selectedRange,totalDays,petDescription,petPicture,petPicture2,petPicture3,petPicture4,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:SpayNeuter,:Vaccine,:Deworming,:threeinoneVaccine,:Diet,:selectedRange,:totalDays,:Description,:Picture,:Picture,:Picture,:Picture,'$date','Available','Short-term care')";
+$sql="INSERT INTO postpet(userID,userName,userEmail,userAddress,userContactNo,petType,petName,petBreed,petSex,petAge,petColor,petWeight,SpayNeuter,rabiesVaccine,Deworming,threeinoneVaccine,petDiet,selectedRange,totalDays,Charge,petDescription,petPicture,petPicture2,petPicture3,petPicture4,postDate,petStatus,postStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Type,:Petname,:Breed,:Gender,:Age,:Color,:Weight,:SpayNeuter,:Vaccine,:Deworming,:threeinoneVaccine,:Diet,:selectedRange,:totalDays,:Charge,:Description,:Picture,:Picture2,:Picture3,:Picture4,'$date','Available','Short-term care')";
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -502,8 +512,12 @@ $query->bindParam(':threeinoneVaccine',$threeinoneVaccine,PDO::PARAM_STR);
 $query->bindParam(':Diet',$Diet,PDO::PARAM_STR);
 $query->bindParam(':selectedRange',$selectedRange,PDO::PARAM_STR);
 $query->bindParam(':totalDays',$totalDays,PDO::PARAM_STR);
+$query->bindParam(':Charge',$Charge,PDO::PARAM_STR);
 $query->bindParam(':Description',$Description,PDO::PARAM_STR);
 $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query->bindParam(':Picture2',$Picture2,PDO::PARAM_STR);
+$query->bindParam(':Picture3',$Picture3,PDO::PARAM_STR);
+$query->bindParam(':Picture4',$Picture4,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
@@ -742,16 +756,41 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </div>
 
                     <div class="field item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3  label-align">Charge<span class="required"></span></label>
+                          <div class="col-md-6 col-sm-6">
+                              <input type="number" id="Charge" class="form-control" name="Charge" required="required" min="1" placeholder="₱.00"/>
+                          </div>
+                    </div>
+
+                    <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Short-tem care</label>
 											<div class="col-md-6 col-sm-6">
 												<textarea id="description" required="required" class="form-control" name="Description" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
                       </div>
 										</div>
 
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo</label>
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo 1</label>
                     
                     <div style="text-align: center" class="wrap-input100 validate-input">
                      <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+			              </div>
+
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo 2</label>
+                    
+                    <div style="text-align: center" class="wrap-input100 validate-input">
+                     <input type="file" name="Picture2" id="Picture2" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+			              </div>
+
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo 3</label>
+                    
+                    <div style="text-align: center" class="wrap-input100 validate-input">
+                     <input type="file" name="Picture3" id="Picture3" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
+			              </div>
+
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Pet Photo 4</label>
+                    
+                    <div style="text-align: center" class="wrap-input100 validate-input">
+                     <input type="file" name="Picture4" id="Picture4" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
 			              </div>
 
                                             <div class="ln_solid">

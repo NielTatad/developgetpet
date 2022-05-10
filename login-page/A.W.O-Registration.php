@@ -3,66 +3,69 @@ session_start();
 include('C:\xampp\htdocs\developgetpet\includes\config.php');
 if(isset($_POST['insert']))
 {
-$OrganizationName=($_POST['OrganizationName']);
-$ContactNo=($_POST['ContactNo']);
-$Address=($_POST['Address']);
-$Email=($_POST['Email']);
-$Username=($_POST['Username']);
-$Password=($_POST['Password']);
+    $OrganizationName=($_POST['OrganizationName']);
+    $ContactNo=($_POST['ContactNo']);
+    $Address=($_POST['Address']);
+    $Email=($_POST['Email']);
+    $Username=($_POST['Username']);
+    $Password=($_POST['Password']);
+    $verification_code = generateRandomString();
 
-$sql="INSERT INTO register(orgName,Image,contactNo,Address,Email,Username,Password,Role,registerDate)VALUES(:OrganizationName,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization',Now())";
-$query=$dbh->prepare($sql); 
-$query->bindParam(':OrganizationName',$OrganizationName,PDO::PARAM_STR);
-$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-$query->bindParam(':Address',$Address,PDO::PARAM_STR);
-$query->bindParam(':Email',$Email,PDO::PARAM_STR);
-$query->bindParam(':Username',$Username,PDO::PARAM_STR);
-$query->bindParam(':Password',$Password,PDO::PARAM_STR);
-$query->execute();
+    $query = $dbh->prepare("SELECT COUNT(*) FROM register WHERE Email =:Email");
+    $query->execute([':Email' => $Email]);
+    if ($query->fetchColumn()) 
+    {
+        echo "<script>alert('$Email is already in use!');</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/A.W.O-Registration.php'</script>";
+    }
 
-$sql2="SELECT userID FROM register ORDER BY userID DESC";
-$query2=$dbh->prepare($sql2);
-$query2->execute();
+    $query = $dbh->prepare("SELECT COUNT(*) FROM register WHERE contactNo =:ContactNo");
+    $query->execute([':ContactNo' => $ContactNo]);
+    if ($query->fetchColumn()) 
+    {
+        echo "<script>alert('$ContactNo is already in use!');</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/A.W.O-Registration.php'</script>";
+    }
 
-$ID=$query2->fetchColumn();
+    $query = $dbh->prepare("SELECT COUNT(*) FROM register WHERE Username =:Username");
+    $query->execute([':Username' => $Username]);
+    if ($query->fetchColumn()) 
+    {
+        echo "<script>alert('$Username is already exists!');</script>";
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/A.W.O-Registration.php'</script>";
+    }
+        
+    else
+    {
 
+      $receiver = $Email;
+      $subject = "Verification Code";
+      $body = "Your Verification Code: $verification_code";
+      $sender = "getpet2022.test@gmail.com";
 
-$OrganizationName=($_POST['OrganizationName']);
-$ContactNo=($_POST['ContactNo']);
-$Address=($_POST['Address']);
-$Email=($_POST['Email']);
-$Username=($_POST['Username']);
-$Password=($_POST['Password']);
+      mail($receiver, $subject, $body, $sender);
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/A.W.O-OTP.php'</script>";
 
-$sql1="INSERT INTO animalwelfareorganization(orgID,orgName,orgLogo,orgContactNo,orgAddress,orgEmail,orgUsername,orgPassword,Role)VALUES($ID,:OrganizationName,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization')";
-$query1=$dbh->prepare($sql1); 
-$query1->bindParam(':OrganizationName',$OrganizationName,PDO::PARAM_STR);
-$query1->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-$query1->bindParam(':Address',$Address,PDO::PARAM_STR);
-$query1->bindParam(':Email',$Email,PDO::PARAM_STR);
-$query1->bindParam(':Username',$Username,PDO::PARAM_STR);
-$query1->bindParam(':Password',$Password,PDO::PARAM_STR);
-$query1->execute();
+      $_SESSION['OrganizationName'] = $OrganizationName;
+      $_SESSION['Email'] = $Email;
+      $_SESSION['ContactNo'] = $ContactNo;
+      $_SESSION['Address'] = $Address;
+      $_SESSION['Username'] = $Username;
+      $_SESSION['Password'] = $Password;
+      $_SESSION['verification_code'] = $verification_code;
 
-$OrganizationName=($_POST['OrganizationName']);
-$ContactNo=($_POST['ContactNo']);
-$Address=($_POST['Address']);
-$Email=($_POST['Email']);
-$Username=($_POST['Username']);
-$Password=($_POST['Password']);
+    }
 
-$sql3="INSERT INTO login(userID,orgName,Image,contactNo,Address,Email,Username,Password,Role)VALUES($ID,:OrganizationName,'default_logo.png',:ContactNo,:Address,:Email,:Username,:Password,'Animal Welfare Organization')";
-$query3=$dbh->prepare($sql3); 
-$query3->bindParam(':OrganizationName',$OrganizationName,PDO::PARAM_STR);
-$query3->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
-$query3->bindParam(':Address',$Address,PDO::PARAM_STR);
-$query3->bindParam(':Email',$Email,PDO::PARAM_STR);
-$query3->bindParam(':Username',$Username,PDO::PARAM_STR);
-$query3->bindParam(':Password',$Password,PDO::PARAM_STR);
-$query3->execute();
+}
 
-echo '<script>alert("Registered Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/login.php'</script>";
+function generateRandomString($length = 8) {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $charactersLength = strlen($characters);
+  $randomString = '';
+  for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $randomString;
 }
 ?>
 <!doctype html>

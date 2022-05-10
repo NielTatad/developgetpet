@@ -36,33 +36,27 @@ if(isset($_POST['login']))
 
     if($query1->rowCount()>0)
     {
-      if($results1['verified'] == 1)
-      {
-          session_regenerate_id();
-          $_SESSION['ownerID'] = $results1['ownerID'];
-          $_SESSION['ownerFirstname'] = $results1['ownerFirstname'];
-          $_SESSION['ownerLastname'] = $results1['ownerLastname'];
 
-          $ID=$_SESSION['ownerID'];
+        session_regenerate_id();
+		    $_SESSION['ownerID'] = $results1['ownerID'];
+        $_SESSION['ownerFirstname'] = $results1['ownerFirstname'];
+        $_SESSION['ownerLastname'] = $results1['ownerLastname'];
 
-          $Date=($_POST['Date']);
+        $ID=$_SESSION['ownerID'];
 
-          $sql="update login set loginDate=:Date where userID=$ID";
-          $query=$dbh->prepare($sql); 
-          $query->bindParam(':Date',$Date,PDO::PARAM_STR);
-          $query->execute();
+        $Date=($_POST['Date']);
 
-          echo '<script>alert("Login Successfully!")</script>';
-          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Dashboard.php'</script>";
-          echo $_SESSION['ownerID'];
-          echo $_SESSION['ownerFirstname'];
-          echo $_SESSION['ownerLastname'];
-      }
-      else
-      {
-        echo '<script>alert("Not Verfied!")</script>';
-      
-      }
+        $sql="update login set loginDate=:Date where userID=$ID";
+        $query=$dbh->prepare($sql); 
+        $query->bindParam(':Date',$Date,PDO::PARAM_STR);
+        $query->execute();
+
+        echo '<script>alert("Login Successfully!")</script>';
+        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Dashboard.php'</script>";
+        echo $_SESSION['ownerID'];
+        echo $_SESSION['ownerFirstname'];
+        echo $_SESSION['ownerLastname'];
+
     }
 
     $sql2 = "SELECT * FROM petadopter WHERE adopterUsername = :Username AND adopterPassword =:Password";
@@ -76,8 +70,6 @@ if(isset($_POST['login']))
     if($query2->rowCount()>0)
     {
 
-      if($results2['verified'] == 1)
-      {
         session_regenerate_id();
 		    $_SESSION['adopterID'] = $results2['adopterID'];
         $_SESSION['adopterFirstname'] = $results2['adopterFirstname'];
@@ -97,12 +89,6 @@ if(isset($_POST['login']))
         echo $_SESSION['adopterID'];
         echo $_SESSION['adopterFirstname'];
         echo $_SESSION['adopterLastname'];
-      }
-      else
-      {
-        echo '<script>alert("Not Verfied!")</script>';
-      
-      }
 
     }
 
@@ -117,8 +103,6 @@ if(isset($_POST['login']))
     if($query3->rowCount()>0)
     {
 
-      if($results3['verified'] == 1)
-      {
         session_regenerate_id();
 		    $_SESSION['orgID'] = $results3['orgID'];
         $_SESSION['orgName'] = $results3['orgName'];
@@ -137,20 +121,12 @@ if(isset($_POST['login']))
         echo $_SESSION['ID'];
         echo $_SESSION['OrganizationName'];
         echo $_SESSION['OrganizationManager'];
-      }
-      else
-      {
-        echo '<script>alert("Not Verfied!")</script>';
-      
-      }
 
     }
     
-    // else
-    // { 
-    //   echo '<script>alert("Invalid Account!")</script>';
-    
-    // }
+    else 
+    echo '<script>alert("Invalid Account!")</script>';
+	
 
 
 
@@ -159,9 +135,6 @@ if(isset($_POST['login']))
 <!doctype html>
 <html lang="en">
   <head>
-  <script language="javascript" type="text/javascript">
-    window.history.forward();
-    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -237,11 +210,12 @@ if(isset($_POST['login']))
                 </a><br>
 
                 <span class="txt2" style ="font-size: 12px;">
-                Email not verify?
+                Forgot Password?
                 </span>
-                <a href="http://localhost/developgetpet/login-page/OTP.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
-                Verify now!
-                </a>
+                <a href="http://localhost/developgetpet/login-page/Email.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
+                Reset Password!
+                </a><br>
+
 					    </div>
             </form>
           </div>

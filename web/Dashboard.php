@@ -217,19 +217,24 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 							It is amazing how much love and laughter they bring into our lives and even how much closer we become with each other because of them.”</p>
 						<ul>
 							<li>
-								<i class="glyphicon glyphicon-ok"></i>Pet Information</li>
-							<li>
-								<i class="glyphicon glyphicon-ok"></i>Animal Care Tips</li>
+							    <i class="glyphicon glyphicon-ok"></i>Pet Adoption</li>
 							<li>
 							    <i class="glyphicon glyphicon-ok"></i>Short-Term Care</li>
 							<li>
-							    <i class="glyphicon glyphicon-ok"></i>Pets for Adoption</li>
+								<i class="glyphicon glyphicon-ok"></i>Events</li>
 							<li>
-								<i class="glyphicon glyphicon-ok"></i>Donation and fundraising activities</li>
+								<i class="glyphicon glyphicon-ok"></i>Pet Care Tips</li>
+							<li>
+								<i class="glyphicon glyphicon-ok"></i>Fundraising activities and Donation</li>
 						</ul>
 					</div>
 					<div class="button-styles">
-						<a href="#" data-toggle="modal" data-target="#myModal2">More Info</a>
+						<a href="http://localhost/developgetpet/login-page/login.php" onclick="myFunction()">More Info</a>
+						<script>
+						function myFunction() {
+						alert("Login first!");
+						}
+						</script>
 						<a href="#contact" class="button2-w3l scroll">Contact Us</a>
 					</div>
 				</div>
@@ -292,52 +297,7 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 	<!-- services -->
 	<div class="services" id="services">
 		<div class="container">
-			<h3 class="agile-title">Dashboard</h3>
-			<div class="w3_agile_services_grids">
-				<div class="col-md-4 col-sm-4 col-xs-4 w3_agile_services_grid " data-aos="zoom-in">
-					<div class="ih-item circle effect1 agile_services_grid">
-						<div class="spinner"></div>
-						<div class="img">
-							<img src="images/b1.jpg" alt=" " class="img-responsive"/>
-						</div>
-					</div>
-					<fieldset>
-						<legend>Tips & Advice</legend>
-						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
-						</div>
-					</fieldset>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-4 w3_agile_services_grid" data-aos="zoom-in">
-					<div class="ih-item circle effect1 agile_services_grid">
-						<div class="spinner"></div>
-						<div class="img">
-							<img src="images/c2.jpg" alt=" " class="img-responsive" />
-						</div>
-					</div>
-					<fieldset>
-						<legend>Articles</legend>
-						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
-						</div>
-					</fieldset>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-4 w3_agile_services_grid" data-aos="zoom-in">
-					<div class="ih-item circle effect1 agile_services_grid">
-						<div class="spinner"></div>
-						<div class="img">
-							<img src="images/b3.jpg" alt=" " class="img-responsive" />
-						</div>
-					</div>
-					<fieldset>
-						<legend>Short-Term Care</legend>
-						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
-						</div>
-					</fieldset>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+			<h3 class="agile-title">Services</h3>
 			<div class="w3_agile_services_grids">
 				<div class="col-md-4 col-sm-4 col-xs-4 w3_agile_services_grid " data-aos="zoom-in">
 					<div class="ih-item circle effect1 agile_services_grid">
@@ -357,11 +317,42 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<div class="ih-item circle effect1 agile_services_grid">
 						<div class="spinner"></div>
 						<div class="img">
-							<img src="images/b5.jpg" alt=" " class="img-responsive" />
+							<img src="images/b3.jpg" alt=" " class="img-responsive" />
 						</div>
 					</div>
 					<fieldset>
-						<legend>Donation</legend>
+						<legend>Short-Term Care</legend>
+						<div class="button-styles">
+						<a href="#contact" class="button2-w3l scroll">More info</a>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-4 w3_agile_services_grid" data-aos="zoom-in">
+					<div class="ih-item circle effect1 agile_services_grid">
+						<div class="spinner"></div>
+						<div class="img">
+							<img src="images/c2.jpg" alt=" " class="img-responsive" />
+						</div>
+					</div>
+					<fieldset>
+						<legend>Events</legend>
+						<div class="button-styles">
+						<a href="#contact" class="button2-w3l scroll">More info</a>
+						</div>
+					</fieldset>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="w3_agile_services_grids">
+				<div class="col-md-4 col-sm-4 col-xs-4 w3_agile_services_grid " data-aos="zoom-in">
+					<div class="ih-item circle effect1 agile_services_grid">
+						<div class="spinner"></div>
+						<div class="img">
+							<img src="images/b1.jpg" alt=" " class="img-responsive"/>
+						</div>
+					</div>
+					<fieldset>
+						<legend>Pet Tips</legend>
 						<div class="button-styles">
 						<a href="#contact" class="button2-w3l scroll">More info</a>
 						</div>
@@ -376,6 +367,20 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					</div>
 					<fieldset>
 						<legend>Fund-raising</legend>
+						<div class="button-styles">
+						<a href="#contact" class="button2-w3l scroll">More info</a>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-4 w3_agile_services_grid" data-aos="zoom-in">
+					<div class="ih-item circle effect1 agile_services_grid">
+						<div class="spinner"></div>
+						<div class="img">
+							<img src="images/b5.jpg" alt=" " class="img-responsive" />
+						</div>
+					</div>
+					<fieldset>
+						<legend>Donation</legend>
 						<div class="button-styles">
 						<a href="#contact" class="button2-w3l scroll">More info</a>
 						</div>
@@ -631,13 +636,8 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 		<div class="container">
 			<h3 class="agile-title">Contact Us</h3>
 			<div class="col-md-9 col-sm-9 contact-right">
-				<form action="#" method="post">
-					<input type="text" name="name" placeholder="Your name" required="">
-					<input type="email" name="email" placeholder="Your email" required="">
-					<input type="text" name="subject" placeholder="Your subject" required="">
-					<input type="text" name="phone number" placeholder="Phone number" required="">
-					<textarea name="message" placeholder="Your message" required=""></textarea>
-					<input type="submit" value="Send">
+				<form action="#" method="post">	
+				<img src="images/contact.jpg" alt="" style="width:800px;height:400px;" />
 				</form>
 			</div>
 			<div class="col-md-3 col-sm-3 contact-left">
@@ -657,10 +657,7 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<h4>
 						<i class="fa fa-envelope-o" aria-hidden="true"></i>G-MAIL</h4>
 					<p>
-						<a href="mailto::king30cinco@gmail.com">GetPet@gmail.com</a>
-					</p>
-					<p>
-						<a href="mailto:king30cinco@gmail.com">WeAreGetPet@gmail.com</a>
+						<a href="https://mail.google.com/mail/u/4/#inbox?compose=GTvVlcSHvnqbQbWwRNFsHFQCHBwRvbcDWxflRJgXLkWFQQhCBkCbkDPxbWdXZGwNnQGjJJhJLnWJG">getpet2022.test@gmail.com</a>
 					</p>
 				</div>
 			</div>
