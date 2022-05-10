@@ -473,7 +473,7 @@ if($query->rowCount()>0)
                                               <br>
                                               <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
                                               <br>
-                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-bs-toggle="modal" data-bs-target="#donate"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
+                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-char-code="<?php echo ( $result->charityQRcode);?>"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
                                               <br>
 
                                               <?php
@@ -780,8 +780,6 @@ if($query->rowCount()>0)
                <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
-        
-        <img id="char_qrcode" src="/developgetpet/web/images/" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" >
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
@@ -1306,9 +1304,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
       <div class="card mb-3" style="max-width: 800px;height:250px;">
         <div class="row g-0">
           <div class="col-md-4">
+          <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="char_qrcodefile" class="form-control" id="success">
+				  </div>
           
-          <img src="..." id="char_qrcode" class="img-fluid rounded-start" alt="...">
+          <img src="/developgetpet/web/images/" id="char_qrcode" class="img-fluid rounded-start" style="height:247px;width:300px;" alt="...">
           </div>
+
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">To donate via Gcash:</h5>
@@ -1490,28 +1492,15 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         });
     </script>
 
-<script>
-        $(document).ready(function () {
-
-            $('.viewdonatebtn').on('click', function () {
-
-                $('#Viewdonate').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#char_id').val(data[0]);
-                $('#char_qrcode').val(data[3]);
-
-                
-            });
-        });
-    </script>    
+<script type="text/javascript">
+  $(".viewdonatebtn").click(function () {
+    $("#").val( char_qrcodefile );
+    $('#Viewdonate').modal('show');
+    var char_qrcodefile = $(this).attr('data-char-code');
+    $('#char_qrcodefile').val( char_qrcodefile );
+    document.getElementById('char_qrcode').src="/developgetpet/web/images/"+""+char_qrcodefile;
+  });
+</script>
 
 <script>
         $(document).ready(function () {
