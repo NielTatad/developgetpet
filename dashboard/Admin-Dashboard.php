@@ -86,6 +86,8 @@ th {
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -166,9 +168,14 @@ th {
                                 </ul>
                               </li>
                                 
-                                <li>
-                                <li><a href="#" style="font-size:15px;">Report</a>
-                                </li>
+                              <li><a style="font-size:15px;">Report</a>
+                                <ul class="nav child_menu">
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
+                                  <li><a href="#">Short Term-Care</a></li>
+                                  <li><a href="#">Fund-raising activities</a></li>
+                                  <li><a href="#">Donation</a></li>
+                                </ul>
+                              </li>
 
         </ul>		
 				</div>
@@ -326,6 +333,225 @@ th {
                 </div>
               </div>
             </div>
+
+            <!-- New Post For Adoption Code -->
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                  <div class="x_title">
+                    <h2>New Post For Adoption</h2>
+                    <ul class="nav navbar-right panel_toolbox">     
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" style="text-align:center;">
+
+                  <?php
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?> 
+                                  <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
+                                    <div class="col">
+                                      <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
+                                        <div class="card-body">
+                                          <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
+                                          <br><br>
+                                          <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
+                                          <br><br>
+                                          <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
+                                        </div>
+                                        <div class="card-footer" style="background-color:#E4E4E4 ;">
+                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                            <?php $user_id = $result->userID;
+
+                                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                                            $query1=$dbh->prepare($sql1);
+                                            $query1->execute();
+                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt1=1;
+                                            if($query1->rowCount()>0)
+                                            {
+                                              foreach($userids as $userid)
+                                            {
+                                              ?>
+                                            
+                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <?php $cnt1=$cnt1+1;}} ?>
+                                            <label style=""><?php echo ($result->postDate);?></label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                              <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+
+
+              </div>
+            </div>
+            <!-- //New Post For Adoption Code -->
+
+            <!-- New Post For Short-term care Code -->
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="x_panel" style="border-radius:10px;border-width:2px;">
+                  <div class="x_title">
+                    <h2>New Post For Short-Term Care</h2>
+                    <ul class="nav navbar-right panel_toolbox">     
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" style="text-align:center;">
+
+                  <?php
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Short-term care' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?> 
+                                  <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
+                                    <div class="col">
+                                      <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
+                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
+                                        <div class="card-body">
+                                          <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
+                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
+                                          <br><br>
+                                          <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
+                                          <br><br>
+                                          <p class="card-title" style="float:left;"><?php echo ($result->selectedRange);?></p><br><br>
+                                          <p class="card-title" style="float:left;line-height:5px"><?php echo ($result->petStatus);?></p>
+                                        </div>
+                                        <div class="card-footer" style="background-color:#E4E4E4 ;">
+                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                                            <?php $user_id = $result->userID;
+
+                                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                                            $query1=$dbh->prepare($sql1);
+                                            $query1->execute();
+                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                            $cnt1=1;
+                                            if($query1->rowCount()>0)
+                                            {
+                                              foreach($userids as $userid)
+                                            {
+                                              ?>
+                                            
+                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                            <?php $cnt1=$cnt1+1;}} ?>
+                                            <label style=""><?php echo ($result->postDate);?></label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                              <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
+
+              </div>
+            </div>
+            <!-- //New Post For Short-term care Code -->
+
+            <!-- New Post For Tips Advice & Articles Code -->
+           <div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="x_panel" style="border-radius:10px;border-width:2px;">
+      <div class="x_title">
+        <h2>New Post For Pet Care Tips</h2>
+        <ul class="nav navbar-right panel_toolbox">     
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" style="text-align:center;">
+
+      <?php
+            $sql="SELECT * from post WHERE postStatus!='Deleted' AND postStatus!='Event' ORDER BY postID DESC LIMIT 3";
+            $query=$dbh->prepare($sql);
+            $query->execute();
+            $results=$query->fetchALL(PDO::FETCH_OBJ);
+            $cnt=1;
+            if($query->rowCount()>0)
+            {
+              foreach($results as $result)
+            {
+               ?>
+
+                <div class="card" style="border-radius:10px;border-width:2px;box-shadow: 8px 8px 8px #888888;">
+                  <h2 class="card-title" style="text-align:left;">&nbsp&nbspTitle: <?php echo ($result->postTitle);?></h2>
+                  <img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-img-top" onerror='this.style.display = "none"' alt="..." style="border-radius:10px;">
+
+                  <div class="card-body">
+
+                <div class="mb-3">
+                  <h5><label for="exampleFormControlTextarea1" class="form-label" style="float:left;">Content:</label></h5>
+                  <textarea class="form-control txtgrow" id="exampleFormControlTextarea1" rows="3" disabled style="border-radius:10px;"><?php echo ($result->postContent);?></textarea>
+                </div>
+                    <h3 hidden class="card-title"><?php echo ($result->postID);?></h3>                                
+                    <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
+                    <?php $user_id = $result->userID;
+
+                                $sql1="SELECT * from register WHERE userID='$user_id'";
+                                $query1=$dbh->prepare($sql1);
+                                $query1->execute();
+                                $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                                $cnt1=1;
+                                if($query1->rowCount()>0)
+                                {
+                                  foreach($userids as $userid)
+                                {
+                                  ?>
+                        
+                                <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
+                                <label style=""><?php echo ($result->postDate);?></label><br>      
+                                <?php $cnt1=$cnt1+1;}} ?>                
+                  </div>                  
+                </div>   
+                <br>   
+                <?php $cnt=$cnt+1;
+                }
+            } 
+            else
+            {
+              echo "There isn't any information displayed.";
+            }
+            ?>
+
+  </div>
+</div>            
+<!-- New Post For Tips Advice & Articles Code -->
+
           </div>
         </div>
         <!-- /page content -->
@@ -690,6 +916,53 @@ th {
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
 
+    <script>
+     $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+    </script>
+    
+    <script>
+     $( "#tips_content" ).keyup(function() {
+  $("#Posttips").prop("disabled", !this.value);
+});
+    </script>
+
+<script>
+     $( "#advice_content" ).keyup(function() {
+  $("#Postadvice").prop("disabled", !this.value);
+});
+    </script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
+
+<script>
+     let previousLength = 0;
+
+      const handleInput = (event) => {
+        const bullet = "\u2022";
+        const newLength = event.target.value.length;
+        const characterCode = event.target.value.substr(-1).charCodeAt(0);
+
+        if (newLength > previousLength) {
+          if (characterCode === 10) {
+            event.target.value = `${event.target.value}${bullet} `;
+          } else if (newLength === 1) {
+            event.target.value = `${bullet} ${event.target.value}`;
+          }
+        }
+        
+        previousLength = newLength;
+      }
+</script>
+
     <!-- Datatables -->
     <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -711,5 +984,8 @@ th {
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </body>
 </html>
