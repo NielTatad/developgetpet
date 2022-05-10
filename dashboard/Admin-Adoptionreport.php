@@ -282,6 +282,7 @@ th {
                           <table class="table table-striped jambo_table bulk_action">
                                     <thead>
                                     <tr class="headings">
+                                    <th style="text-align:center" class="column-title">Mater ID</th>
                                     <th style="text-align:center" class="column-title">User ID</th>
                                     <th style="text-align:center" class="column-title">Pet ID</th>
                                     <th hidden style="text-align:center" class="column-title">User ID</th>
@@ -292,6 +293,7 @@ th {
                                     <th style="text-align:center" class="column-title">Pet Photo</th>
                                     <th style="text-align:center" class="column-title">Post Status</th>
                                     <th style="text-align:center" class="column-title">Pet Status</th>
+                                    <th style="text-align:center" class="column-title">Adopter</th>
                                     </th>
                                     <th class="bulk-actions" colspan="12">
                                       <a class="antoo" style="color:#fff; font-weight:500;">Data to be Deleted (<span class="action-cnt"> </span>)</a>
@@ -301,7 +303,7 @@ th {
 
                                     <tbody>
                                     <?php
-                                    $sql="SELECT * from postpet WHERE petStatus='Adopted' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC";
+                                    $sql="SELECT * from history WHERE Title='Adoption' ORDER BY historyID DESC";
                                     $query=$dbh->prepare($sql);
                                     $query->execute();
                                     $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -311,7 +313,32 @@ th {
                                     foreach($results as $result)
                                     {
                                     ?>
+                                      <?php
+                                      $pet_id = $result->petID;
+                                      $sql1="SELECT * from postpet WHERE petID='$pet_id' AND petStatus='Adopted' ORDER BY petID DESC";
+                                      $query1=$dbh->prepare($sql1);
+                                      $query1->execute();
+                                      $results1=$query1->fetchALL(PDO::FETCH_OBJ);
+                                      $cnt1=1;
+                                      if($query1->rowCount()>0)
+                                      {
+                                      foreach($results1 as $result1)
+                                      {
+                                      ?>
+                                      <?php
+                                      $master_id = $result->masterID;
+                                      $sql2="SELECT * from register WHERE userID='$master_id'";
+                                      $query2=$dbh->prepare($sql2);
+                                      $query2->execute();
+                                      $results2=$query2->fetchALL(PDO::FETCH_OBJ);
+                                      $cnt2=1;
+                                      if($query2->rowCount()>0)
+                                      {
+                                      foreach($results2 as $result2)
+                                      {
+                                      ?>
                                       <tr class="even pointer">
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->masterID);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
                                         <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
@@ -319,10 +346,13 @@ th {
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petName);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petType);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petBreed);?></td>
-                                        <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->postStatus);?></td>     
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->petStatus);?></td>                                                         
+                                        <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result1->petPicture' style = height:80px; width: 80px;/>";?></td>
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result1->postStatus);?></td>     
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result1->petStatus);?></td>
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result2->orgName);?><?php echo htmlentities($result2->userFirstname);?> <?php echo htmlentities($result2->userLastname);?></td>                                                         
                                       </tr>
+                                    <?php $cnt2=$cnt2+1;}}?>
+                                    <?php $cnt1=$cnt1+1;}}?>
                                     <?php $cnt=$cnt+1;}}?>
                                 </tbody>
                             </table>
