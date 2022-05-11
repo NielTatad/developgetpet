@@ -119,6 +119,8 @@ if($query->rowCount()>0)
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
                     </li>
 
+                </ul>
+
                   
               </div>
 

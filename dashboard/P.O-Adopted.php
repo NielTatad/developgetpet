@@ -73,18 +73,12 @@ if($query->rowCount()>0)
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li><a >Pet For Adoption</a>
-                      <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogslistadoption.php">Dog's For Adoption</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catslistadoption.php">Cat's For Adoption</a></li>
-                      </ul>
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet For Adoption</a>
                     </li>
 
-                    <li><a >Pet For Short-term care</a>
-                      <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogsshorttermcare.php">Dog's For Short-term care</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catsshorttermcare.php">Cat's For Short-term care</a></li>
-                      </ul>
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Pet For Short-term Care</a>
                     </li>
 
                     <li>
@@ -97,42 +91,39 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li> 
-                    
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Adopted</a>
                     </li>
 
-                    </ul>
-					</div>
-					</div>
-					<!-- /sidebar menu -->
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
+                    </li>
 
-					<!-- /menu footer buttons -->
-					<div class="sidebar-footer hidden-small">
-                    <a  data-toggle="modal" data-target="#Settings" title="Inbox" data-placement="top" title="Settings" style="cursor:pointer;">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        99+
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
-                    </a>
+                  
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+				 <!-- /menu footer buttons -->
+         <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
+              <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
           </div>
-					<!-- /menu footer buttons -->
-				</div>
-			</div>
+        </div>
 
-	 <!-- top navigation -->
-   <div class="top_nav">
+         <!-- top navigation -->
+      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -280,7 +271,7 @@ if($query->rowCount()>0)
               <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" id="breed" class="form-control" placeholder="Search for...">
+                    <input type="text" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="button">Go!</button>
                     </span>
@@ -288,26 +279,22 @@ if($query->rowCount()>0)
                 </div>
               </div>
             </div>
-
-            <!-- /page content -->
-
+            <!-- Pet Adopted Code -->
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
+              <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                  <h2>Pet's That has already Adopted</h2> 
-                 
-                    <ul class="nav navbar-right panel_toolbox">
-                   </ul>
+                    <h2>Pet Adopted</h2>
+                    <ul class="nav navbar-right panel_toolbox">     
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-                  <br>  
 
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Adopted' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
+                        $sql="SELECT * from postpet WHERE petStatus='Adopted' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -316,27 +303,20 @@ if($query->rowCount()>0)
                         {
                           foreach($results as $result)
                         {
-                           ?>  
-                            <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
+                           ?> 
+                                  <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
                                     <div class="col">
                                       <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                         <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
                                         <div class="card-body">
                                           <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?> (<?php echo ($result->petSex);?>)</h5>
+                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
                                           <br><br>
-                                          <h4 class="card-title" style="float:left;line-height:5px;"><?php echo ($result->petType);?> (<?php echo ($result->petBreed);?>)</h4>
+                                          <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
                                           <br><br>
-                                          <p class="card-title" style="float:left;line-height:5px;">Vaccination Status: <?php echo ($result->vaccinationStatus);?></p>
-                                          <br><br>
-                                          <p class="card-title" style="float:left;line-height:5px;">Deworming Status: <?php echo ($result->dewormingStatus);?></p>
-                                          <br><br>
-                                          <div class="alert alert-success" style="background-color:
-                                          #7ED8BB;" role="alert">
-                                            This Pet is Already <?php echo ($result->postStatus);?> by Someone
-                                          </div>
+                                          <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
                                         </div>
-                                        <div class="card-footer" style="background-color:#E4E4E4;">
+                                        <div class="card-footer" style="background-color:#E4E4E4 ;">
                                             <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
                                             <?php $user_id = $result->userID;
 
@@ -358,85 +338,61 @@ if($query->rowCount()>0)
                                       </div>
                                     </div>
                                   </div>
-                            <?php $cnt=$cnt+1;
+                                  
+                              <?php $cnt=$cnt+1;
                             }
                         } 
                         else
                         {
                           echo "There isn't any information displayed.";
                         }
-                        ?>                                
-                                       
+                        ?>
+
                   </div>
                 </div>
               </div>
             </div>
+            <!-- //Pet Adopted Code -->
+
           </div>
         </div>
         <!-- /page content -->
-		
-		</div>
-	</div>
 
-  <!-- footer content -->
-  <footer>
-      <p class="tweet-p1">
-		  ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
-		  </p>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
 
-  
+<script>
+<?php
+$ID=$_SESSION['ownerID'];           
+$sql = "SELECT * from petowner where ownerID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+<?php
+?>
+<?php }} ?>
+</script>
+
+        <!-- footer content -->
+        <footer>
+        <p class="tweet-p1">
+		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		<!--<a href="#">http://ax.by/zzzz</a>-->
+		</p>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-    
-    <script>
-     $( "#comment" ).keyup(function() {
-  $("#btnComment").prop("disabled", !this.value);
-});
-    </script>
-
-    <script>
-     $( "#edit_comment" ).keyup(function() {
-  $("#btnEditComment").prop("disabled", !this.value);
-});
-    </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_cancel").click(function () {
-  
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_close").click(function () {
-
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
-  </script>
-
-    <script>
-      PostPicture.onchange = evt => {
-  const [file] = PostPicture.files
-  if (file) {
-    post_picture.src = URL.createObjectURL(file)
-  }
-  document.getElementById("btnChangePostPicture").disabled = false;
-}
-    </script>
-    
-    <script>
-   $(window).on("load", function () {
-    console.log("load");
-    $("div#view_more_comment_Div").hide();
-    });
-    </script>
 
     <script>
      $(function () {
@@ -446,292 +402,45 @@ if($query->rowCount()>0)
     });
     });
     </script>
-
+    
     <script>
-        $(document).ready(function () {
-
-            $('.adoptbtn').on('click', function () {
-
-                $('#AdoptModal').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#pet_id').val(data[0]);
-                $('#pet_name').val(data[1]);
-                $('#pet_type').val(data[2]);
-                $('#pet_breed').val(data[3]);
-                $('#pet_sex').val(data[4]);
-                $('#pet_age').val(data[5]);
-                $('#pet_color').val(data[6]);
-                $('#pet_weight').val(data[7]);
-                $('#vaccination_status').val(data[8]);
-                $('#deworming_status').val(data[9]);
-                $('#pet_description').val(data[10]);
-                $('#des').val(data[11]);
-                $('#pet_picture').val(data[12]);
-                $('#pet_status').val(data[13]);
-                $('#user_id').val(data[14]);
-                $('#post_by').val(data[15]);
-                $('#post_date').val(data[16]);
-                $('#user_email').val(data[17]);
-                $('#user_address').val(data[18]);
-                $('#user_contactno').val(data[19]);
-            });
-        });
+     $( "#tips_content" ).keyup(function() {
+  $("#Posttips").prop("disabled", !this.value);
+});
     </script>
 
 <script>
-        $(document).ready(function () {
+     $( "#advice_content" ).keyup(function() {
+  $("#Postadvice").prop("disabled", !this.value);
+});
+    </script>
 
-            $('.viewbtn').on('click', function () {
-
-                $('#View').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#petid').val(data[0]);
-                $('#petname').val(data[1]);
-                $('#pettype').val(data[2]);
-                $('#petbreed').val(data[3]);
-                $('#petsex').val(data[4]);
-                $('#petage').val(data[5]);
-                $('#petcolor').val(data[6]);
-                $('#petweight').val(data[7]);
-                $('#vaccinationstatus').val(data[8]);
-                $('#dewormingstatus').val(data[9]);
-                $('#petdescription').val(data[10]);
-                $('#petstatus').val(data[13]);
-            });
-        });
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
     </script>
 
 <script>
-        $(document).ready(function () {
+     let previousLength = 0;
 
-            $('.commentbtn').on('click', function () {
+      const handleInput = (event) => {
+        const bullet = "\u2022";
+        const newLength = event.target.value.length;
+        const characterCode = event.target.value.substr(-1).charCodeAt(0);
 
-                $('#Comment').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#petid').val(data[0]);
-                $('#masterid').val(data[14]);
-            });
-        });
-    </script>
-
-<script type="text/javascript">
-  $(".Ppost").click(function () {
-    var pet_id3 = $(this).attr('data-pet-id');
-    $('#ChangePostPicture').modal('show');
-    $("#pet_id3").val( pet_id3 );
-    var picture_file = $(this).attr('data-pet-picture');
-    $('#picture_file').val( picture_file );
-    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
-  });
-  </script>
-
-<script type="text/javascript">
-  $(".Epost").click(function () {
-    var pet_id2 = $(this).attr('data-pet-id');
-    var pet_name2 = $(this).attr('data-pet-name');
-    var pet_type2 = $(this).attr('data-pet-type');
-    var pet_breed2 = $(this).attr('data-pet-breed');
-    var pet_sex2 = $(this).attr('data-pet-gender');
-    var pet_age2 = $(this).attr('data-pet-age');
-    var pet_color2 = $(this).attr('data-pet-color');
-    var pet_weight2 = $(this).attr('data-pet-weight');
-    var vaccination_status2 = $(this).attr('data-vaccination-status');
-    var deworming_status2 = $(this).attr('data-deworming-status');
-    var pet_description2 = $(this).attr('data-pet-description');
-    $('#EditPost').modal('show');
-    $("#pet_id2").val( pet_id2 );
-    $("#pet_name2").val( pet_name2 );
-    $("#pet_type2").val( pet_type2 );
-    $("#pet_breed2").val( pet_breed2 );
-    $("#pet_sex2").val( pet_sex2 );
-    $("#pet_age2").val( pet_age2 );
-    $("#pet_color2").val( pet_color2 );
-    $("#pet_weight2").val( pet_weight2 );
-    $("#vaccination_status2").val( vaccination_status2 );
-    $("#deworming_status2").val( deworming_status2 );
-    $("#pet_description2").val( pet_description2 );
-  });
-  </script>
-
-<script type="text/javascript">
-  $(".Dpost").click(function () {
-    var pet_id1 = $(this).attr('data-pet-id');
-    $('#DeletePost').modal('show');
-    $("#pet_id1").val( pet_id1 );
-  });
-  </script>
-
-<script type="text/javascript">
-  $(".Ecomment").click(function () {
-    var commentid = $(this).attr('data-comment-id');
-    var edit_comment = $(this).attr('data-comment-content');
-    $("#edit_comment").val( edit_comment );
-    $("#commentid").val( commentid );
-    $('#EditComment').modal('show');
-  });
-  </script>
-
- <script type="text/javascript">
-  $(".Dcomment").click(function () {
-    var comment_id = $(this).attr('data-comment-id');
-    $("#comment_id").val( comment_id );
-    $('#DeleteComment').modal('show');
-  });
-  </script>
-
-  <script type="text/javascript">
-  $(".menu").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?>";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $(".adoptbtn").filter(function(){
-  return $(this).text().trim() == "<?php echo $ID?> Adopt Me";
-  }).css('visibility', 'hidden');
-  </script>
-
-  <script type="text/javascript">
-  $(".option").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?>";
-  }).css('visibility', 'hidden');
-  </script>
-
-  <script type="text/javascript">
-  $(".Epost").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?> Edit";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $(".Dpost").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?> Delete";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $(".comment-count").filter(function(){
-  return $(this).text().trim() === "0";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $(".count-more-comment").filter(function(){
-  return $(this).text().trim() === "View 0 more comment";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $('p.view-more-comment').click(function() {
-      $('.view-more-comment-Div').show(); // To hide all other contents
-      $('.comment-Div').hide();
-  });
-  </script>
-
-  <script type="text/javascript">
-  $("p.hide-more-comment").filter(function(){
-  return $(this).text().trim() === "Hide -1 comment";
-  }).hide();
-  $("p.hide-more-comment").filter(function(){
-  return $(this).text().trim() === "Hide 0 comment";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $('p.hide-more-comment').click(function() {
-      $('.view-more-comment-Div').hide(); // To hide all other contents
-      $('.comment-Div').show();
-  });
-  </script>
-
-  <script type="text/javascript">
-  $(".unread").filter(function(){
-  return $(this).text().trim() === "Read";
-  }).hide();
-  </script>
-
-	<!-- Javascript functions	-->
-	<script>
-		function hideshow(){
-			var password = document.getElementById("password1");
-			var slash = document.getElementById("slash");
-			var eye = document.getElementById("eye");
-			
-			if(password.type === 'password'){
-				password.type = "text";
-				slash.style.display = "block";
-				eye.style.display = "none";
-			}
-			else{
-				password.type = "password";
-				slash.style.display = "none";
-				eye.style.display = "block";
-			}
-
-		}
-	</script>
-
-    <script>
-        // initialize a validator instance from the "FormValidator" constructor.
-        // A "<form>" element is optionally passed as an argument, but is not a must
-        var validator = new FormValidator({
-            "events": ['blur', 'input', 'change']
-        }, document.forms[0]);
-        // on form "submit" event
-        document.forms[0].onsubmit = function(e) {
-            var submit = true,
-                validatorResult = validator.checkAll(this);
-            console.log(validatorResult);
-            return !!validatorResult.valid;
-        };
-        // on form "reset" event
-        document.forms[0].onreset = function(e) {
-            validator.reset();
-        };
-        // stuff related ONLY for this demo page:
-        $('.toggleValidationTooltips').change(function() {
-            validator.settings.alerts = !this.checked;
-            if (this.checked)
-                $('form .alert').remove();
-        }).prop('checked', false);
-
-    </script>
-
-<script>
-     $(document).ready(function(){
-        $("#breed").on("keyup", function(){
-        var value = $(this).val().toLowerCase();
-         $("#card div").filter(function(){
-             $(this).toggle($(this).text().toLowerCase().indexof(value)>-1);
-        });
-   });
-  });
+        if (newLength > previousLength) {
+          if (characterCode === 10) {
+            event.target.value = `${event.target.value}${bullet} `;
+          } else if (newLength === 1) {
+            event.target.value = `${bullet} ${event.target.value}`;
+          }
+        }
+        
+        previousLength = newLength;
+      }
 </script>
-  
+
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -741,39 +450,10 @@ if($query->rowCount()>0)
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
-	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<!-- iCheck -->
-	<script src="../vendors/iCheck/icheck.min.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script src="../vendors/moment/min/moment.min.js"></script>
-	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- bootstrap-wysiwyg -->
-	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
-	<!-- jQuery Tags Input -->
-	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-	<!-- Switchery -->
-	<script src="../vendors/switchery/dist/switchery.min.js"></script>
-	<!-- Select2 -->
-	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
-	<!-- Parsley -->
-	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
-	<!-- Autosize -->
-	<script src="../vendors/autosize/dist/autosize.min.js"></script>
-	<!-- jQuery autocomplete -->
-	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-	<!-- starrr -->
-	<script src="../vendors/starrr/dist/starrr.js"></script>
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-  
-
-     
-
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
 </html>

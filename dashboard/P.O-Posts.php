@@ -283,10 +283,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>            
                     
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Adopted</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
                     </li>
 
-                    </ul>
+                </ul>
 					</div>
 					</div>
 					<!-- /sidebar menu -->
