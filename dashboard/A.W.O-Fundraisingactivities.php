@@ -492,7 +492,7 @@ if($query->rowCount()>0)
                                             <br>
                                             <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                                                                       
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:450px;width:500px;border-radius:10px;">
                                               <br>                                      
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
@@ -1153,7 +1153,7 @@ if(isset($_POST['btnComment']))
   }
 ?>
 <!-- //Edit Post Code -->
-EditPost
+
 <!-- Modal Edit Post -->
 <div class="modal fade" id="EditPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
