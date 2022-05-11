@@ -249,7 +249,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     </li>
 
                     <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adopted.php">Adopted</a>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adopted.php">Pet Adopted</a>
                     </li>
 
               </ul> 
@@ -260,16 +260,16 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
             <!-- /sidebar menu -->
 
-					<!-- /menu footer buttons -->
-          <div class="sidebar-footer hidden-small">
-              <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
+										<!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings" href="http://localhost/developgetpet/dashboard/P.A-AccountSettings.php">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php">
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
               <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
@@ -279,8 +279,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				</div>
 			</div>
 
-			  <!-- top navigation -->
-              <div class="top_nav">
+	 <!-- top navigation -->
+   <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -297,7 +297,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item" data-toggle="modal" data-target="#Settings">Settings</a>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-AccountSettings.php">Account Settings</a>
+                      <a class="dropdown-item" href="">My Request</a>
+                      <a class="dropdown-item" href="">User Request</a>
+                      <a class="dropdown-item" href="">Pet Adoption</a>
+                      <a class="dropdown-item" href="">Short-Term Care</a>
+                      <a class="dropdown-item" href="">My History</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -394,6 +399,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             </div>
           </div>
         <!-- /top navigation -->
+
 <?php 
 $sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
@@ -417,7 +423,6 @@ if($query->rowCount()>0)
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -469,7 +474,7 @@ if($query->rowCount()>0)
                           foreach($results as $result)
                         {
                            ?>
-                     <div class="col-md-6 col-sm-1  profile_details">
+                    <div class="col-md-6 col-sm-1  profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
                             <h6 class="brief"><i>Organization Name: <?php echo ( $result->orgName);?></i></h6>
@@ -499,12 +504,9 @@ if($query->rowCount()>0)
                             <div class=" col-sm-6 emphasis">
                               <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
                                 </i> <i class="fa fa-comments-o"></i> </button>
-
- 
-                              <button type="button" class="btn btn-primary btn-sm">                             
-                              <i class="fa fa-user"> </i>View Profile
+                              <button type="button" class="btn btn-primary btn-sm">
+                                <i class="fa fa-user"> </i> View Profile
                               </button>
-                              
                             </div>
                           </div>
                         </div>
@@ -568,7 +570,7 @@ if($query->rowCount()>0)
                                             <br>
                                             <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                                                                       
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:450px;width:500px;border-radius:10px;">
                                               <br>                                      
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
@@ -597,7 +599,7 @@ if($query->rowCount()>0)
                                               <br>
                                               <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
                                               <br>
-                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-bs-toggle="modal" data-bs-target="#donate"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
+                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-char-code="<?php echo ( $result->charityQRcode);?>"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
                                               <br>
 
                                               <?php
@@ -751,7 +753,6 @@ if($query->rowCount()>0)
         </div>
         <!-- /page content -->
 
-<!-- Search By ID Code -->
 <script>
 <?php 
 $ID=$_SESSION['adopterID'];
@@ -827,20 +828,16 @@ if($query->rowCount()>0)
       <div class="modal-body mx-3">
       <form method="post">
         <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->adopterPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
         </div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->adopterID);?>" required = "required" class="form-control" id="success">
+					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Firstname" required="required" value="<?php echo ($result->adopterFirstname);?>" placeholder="First Name">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Lastname" required="required" value="<?php echo ($result->adopterLastname);?>" placeholder="Last Name">
-						<span class="focus-input100"></span>
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgname" required="required" value="<?php echo ($result->orgName);?>" placeholder="Organization Name">
 				</div><br>
         <div  style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->adopterContactNo);?>" placeholder="Contact No.">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->orgContactNo);?>" placeholder="Contact No.">
 						<script>
             
                         function isInputNumber(evt){
@@ -854,16 +851,16 @@ if($query->rowCount()>0)
                     </script>
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->adopterAddress);?>" placeholder="Address">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->orgAddress);?>" placeholder="Address">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->adopterEmail);?>" placeholder="Email">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->orgEmail);?>" placeholder="Email">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->adopterUsername);?>" placeholder="Username">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->orgUsername);?>" placeholder="Username">
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->adopterPassword);?>" placeholder="Password">
+						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->orgPassword);?>" placeholder="Password">
 				</div><br><br>
         <div style="text-align: center">
 						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
@@ -884,9 +881,10 @@ if($query->rowCount()>0)
     <div class="modal-content">
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
           <span aria-hidden="true">&times;</span>
         </button>
+
       </div>
       <div class="modal-body mx-3">
       <form method="post">
@@ -992,7 +990,7 @@ if(isset($_POST['btnComment']))
 <!-- //Comment Code -->
 
   <!-- Modal Comment -->
-<div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div class="modal fade" id="Comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -1017,7 +1015,7 @@ if(isset($_POST['btnComment']))
 					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userid" value="<?php echo ($result->adopterID);?>" required = "required" class="form-control" id="success">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->orgID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
@@ -1170,7 +1168,7 @@ if(isset($_POST['btnComment']))
 <!-- //Delete Post Code -->
 
   <!-- Modal Delete Post -->
-<div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -1379,6 +1377,46 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 <!-- //Modal Change Post Picture -->
 
+<!-- Modal Donation Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Sendreciept']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Address=($_POST['Address']);
+$ContactNo=($_POST['ContactNo']);
+$Message=($_POST['Message']);
+$Picture = $_FILES["Picture"]["name"];
+$tmp_dir = $_FILES["Picture"]["tmp_name"];
+
+move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
+
+$sql="INSERT INTO donation(userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationReciept,donationDate,donationStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Message,:Picture,'$date','Not Recieved Yet')";
+
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Address',$Address,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+$query->bindParam(':Message',$Message,PDO::PARAM_STR);
+$query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Your Reciept has successfully uploaded!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Fundraisingactivities.php'</script>";
+
+}
+?>
+<!-- //Modal Donation Code -->
+
 <!-- Modal for donate-->
 <div class="modal fade" id="Viewdonate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -1388,20 +1426,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
+      
       <div class="card mb-3" style="max-width: 800px;height:250px;">
         <div class="row g-0">
           <div class="col-md-4">
+          <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="char_qrcodefile" class="form-control" id="success">
+				  </div>
           
-            <img src="..." id="char_qrcode" class="img-fluid rounded-start" alt="...">
+          <img src="/developgetpet/web/images/" id="char_qrcode" class="img-fluid rounded-start" style="height:247px;width:300px;" alt="...">
           </div>
+
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">To donate via Gcash:</h5>
               <br><br>
               <p class="card-text" style="line-height:5px;">1. Log in to your Gcash account, then tap on QR on your navigation bar</p>
               <p class="card-text" style="line-height:5px;">2. Align your phone's camera to our QR code to scan it.</p>
-              <p class="card-text" style="line-height:5px;">3. Input thje total amount and tap next.</p>
+              <p class="card-text" style="line-height:5px;">3. Input the total amount and tap next.</p>
               <p class="card-text" style="line-height:5px;">4. Review all details then tap on Pay.</p>
             </div>
           </div>
@@ -1409,28 +1451,72 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
       </div>
       </div>
       
-      <div class="field item form-group">
-      <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Reciept</label>&nbsp&nbsp&nbsp
-                                        
+      <form class="" action="" method="post" novalidate enctype="multipart/form-data"> 
+      
+                                        <div hidden class="field item form-group">
+                                          <div class="col-md-6 col-sm-6">
+                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>"/>
+                                          </div> 
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>"/>
+                                            </div> 
+                                         </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Address" class='Address' value="<?php echo ($result->ownerAddress);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Email" class='Email' value="<?php echo ($result->ownerEmail);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                             <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->ownerContactNo);?>"/>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field item form-group">    
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Reciept</label>&nbsp&nbsp&nbsp
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;" placeholder="Upload Picture" multiple>
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;" placeholder="Upload Reciept" multiple>
                                         </div>
                                         </div>
 
                                         <div class="field item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Please Select<span class="required"></span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                          <option selected>Open this select menu</option>
+                                          <option value="showidentity">Show My Identity</option>
+                                          <option value="anonymous">Anonymous</option>
+                                        </select>
+                                        </div>
+                                      </div>
+
+                                        <div class="field item form-group">
                                           <label class="col-form-label col-md-3 col-sm-3  label-align">Leave Message(Optional)</label>
                                           <div class="col-md-6 col-sm-6">
-                                            <textarea id="description" required="required" class="form-control" name="Description" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:570px;border-radius:4px;"></textarea>
+                                            <textarea id="Message" required="required" class="form-control" name="Message" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:570px;border-radius:4px;"></textarea>
                                           </div>
                                         </div><br>
 
       
       <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button id="btnEditComment" name="btnEditComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
+         <button name ="Sendreciept" type='submit' id="Sendreciept" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Send</button>
          </div>
         </div>
-      
+    </form>
+
     </div>
   </div>
 </div>
@@ -1526,34 +1612,21 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#char_amount').val(data[2]);
                 $('#char_qrcode').val(data[3]);
                 $('#char_description').val(data[4]);
-                $('#char_status').val(data[6]);
+                $('#char_status').val(data[7]);
                 
             });
         });
     </script>
 
-<script>
-        $(document).ready(function () {
-
-            $('.viewdonatebtn').on('click', function () {
-
-                $('#Viewdonate').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#char_id').val(data[0]);
-                $('#char_qrcode').val(data[3]);
-
-                
-            });
-        });
-    </script>    
+<script type="text/javascript">
+  $(".viewdonatebtn").click(function () {
+    $("#").val( char_qrcodefile );
+    $('#Viewdonate').modal('show');
+    var char_qrcodefile = $(this).attr('data-char-code');
+    $('#char_qrcodefile').val( char_qrcodefile );
+    document.getElementById('char_qrcode').src="/developgetpet/web/images/"+""+char_qrcodefile;
+  });
+</script>
 
 <script>
         $(document).ready(function () {
