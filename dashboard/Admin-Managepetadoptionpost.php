@@ -166,9 +166,13 @@ th {
                                 </ul>
                               </li>
                                 
-                                <li>
-                                <li><a href="#" style="font-size:15px;">Report</a>
-                                </li>
+                              <li><a style="font-size:15px;">Report</a>
+                                <ul class="nav child_menu">
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
+                                  <li><a href="#">Short Term-Care</a></li>
+                                  <li><a href="#">Donation</a></li>
+                                </ul>
+                              </li>
 
         </ul>		
 				</div>

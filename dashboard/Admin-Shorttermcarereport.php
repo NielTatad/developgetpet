@@ -266,7 +266,7 @@ th {
                   </div>
                   <div class="x_content" style="text-align:center;">
 
-                  <a class="btn btn-info" href="Admin-Printadoptionreport.php" style="margin-top: 25px;float: left; margin-bottom: 25px;"><i class="sidebar-item-icon fa fa-print"></i><span class="nav-label">  Print</span></a>
+                  <a class="btn btn-info" href="Admin-Printshorttermcarereport.php" style="margin-top: 25px;float: left; margin-bottom: 25px;"><i class="sidebar-item-icon fa fa-print"></i><span class="nav-label">  Print</span></a>
                   <br>
                   <br>
                   <br>
@@ -291,7 +291,7 @@ th {
                                     <th style="text-align:center" class="column-title">Pet Breed</th>
                                     <th style="text-align:center" class="column-title">Post Status</th>
                                     <th style="text-align:center" class="column-title">Pet Status</th>
-                                    <th style="text-align:center" class="column-title">Adopter</th>
+                                    <th style="text-align:center" class="column-title">Pet-Sitter</th>
                                     </th>
                                     <th class="bulk-actions" colspan="12">
                                       <a class="antoo" style="color:#fff; font-weight:500;">Data to be Deleted (<span class="action-cnt"> </span>)</a>
@@ -301,7 +301,7 @@ th {
 
                                     <tbody>
                                     <?php
-                                    $sql="SELECT * from history WHERE Title='Adoption' ORDER BY historyID DESC";
+                                    $sql="SELECT * from history WHERE Title='Short-term care' ORDER BY historyID DESC";
                                     $query=$dbh->prepare($sql);
                                     $query->execute();
                                     $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -313,7 +313,7 @@ th {
                                     ?>
                                       <?php
                                       $pet_id = $result->petID;
-                                      $sql1="SELECT * from postpet WHERE petID='$pet_id' AND petStatus='Adopted' ORDER BY petID DESC";
+                                      $sql1="SELECT * from postpet WHERE petID='$pet_id' AND petStatus='Short-Term Care' ORDER BY petID DESC";
                                       $query1=$dbh->prepare($sql1);
                                       $query1->execute();
                                       $results1=$query1->fetchALL(PDO::FETCH_OBJ);
@@ -375,126 +375,6 @@ th {
   </div>
 </div>
 <!-- //page content -->
-
-  <!-- Modal Donation Information -->
-  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-          function cleartext() {
-          document.getElementById("Reason").value="";
-          document.getElementById('adopt').disabled = true;
-            }
-        </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_id" name="CharityID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_title" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_bank" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_pin" name="Age" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
-        </div>
-        </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
-				</div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_picture" name="Picture"  required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="user_id" name ="MasterID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_by" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_date" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_email" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_address" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_contactno" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Donation Information -->
 
   <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

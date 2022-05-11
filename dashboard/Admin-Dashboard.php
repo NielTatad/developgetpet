@@ -172,7 +172,6 @@ th {
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
                                   <li><a href="#">Short Term-Care</a></li>
-                                  <li><a href="#">Fund-raising activities</a></li>
                                   <li><a href="#">Donation</a></li>
                                 </ul>
                               </li>
