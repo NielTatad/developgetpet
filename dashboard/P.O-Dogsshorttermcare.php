@@ -268,22 +268,22 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 					</div>
 					<!-- /sidebar menu -->
 
-						<!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-                    <a  data-toggle="modal" data-target="#Settings" title="Inbox" data-placement="top" title="Settings" style="cursor:pointer;">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
-                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
-                    </a>
-          </div>
-					<!-- /menu footer buttons -->
+												<!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
+              <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
 				</div>
 			</div>
 
@@ -305,7 +305,12 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item" data-toggle="modal" data-target="#Settings">Settings</a>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">Account Settings</a>
+                      <a class="dropdown-item" href="">My Request</a>
+                      <a class="dropdown-item" href="">User Request</a>
+                      <a class="dropdown-item" href="">Pet Adoption</a>
+                      <a class="dropdown-item" href="">Short-Term Care</a>
+                      <a class="dropdown-item" href="">My History</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -492,19 +497,19 @@ if($query->rowCount()>0)
                                                 </i>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <button class="dropdown-item Epost" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-gender="<?php echo ($result->petSex);?>" data-pet-age="<?php echo ($result->petAge);?>" data-pet-color="<?php echo ($result->petColor);?>" data-pet-weight="<?php echo ($result->petWeight);?>"  data-pet-spayneuter="<?php echo ($result->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($result->rabiesVaccine);?>" data-pet-deworming="<?php echo ($result->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($result->threeinoneVaccine);?>" data-pet-diet="<?php echo ($result->petDiet);?>" data-total-days="<?php echo ($result->totalDays);?>" data-selected-range="<?php echo ($result->selectedRange);?>" data-pet-description="<?php echo ($result->petDescription);?>"><i hidden><?php echo ($result->userID);?></i> Edit Post</button>
+                                              <button class="dropdown-item Epost" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-gender="<?php echo ($result->petSex);?>" data-pet-age="<?php echo ($result->petAge);?>" data-pet-color="<?php echo ($result->petColor);?>" data-pet-weight="<?php echo ($result->petWeight);?>"  data-pet-spayneuter="<?php echo ($result->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($result->rabiesVaccine);?>" data-pet-deworming="<?php echo ($result->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($result->threeinoneVaccine);?>" data-pet-diet="<?php echo ($result->petDiet);?>" data-total-days="<?php echo ($result->totalDays);?>" data-selected-range="<?php echo ($result->selectedRange);?>" data-charge="<?php echo ( $result->Charge);?>" data-pet-description="<?php echo ($result->petDescription);?>"><i hidden><?php echo ($result->userID);?></i> Edit Post</button>
 
                                               <button class="dropdown-item Dpost" data-pet-id="<?php echo ($result->petID);?>"><i hidden><?php echo ($result->userID);?></i> Delete Post</button>
-                                              <button class="dropdown-item Ppost" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture 1</button>
-                                              <button class="dropdown-item Ppost2" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture2);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture 2</button>
-                                              <button class="dropdown-item Ppost3" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture3);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture 3</button>
-                                              <button class="dropdown-item Ppost4" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture4);?>"><i hidden><?php echo ($result->userID);?></i> Change Picture 4</button>
+                                              <button class="dropdown-item Ppost" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture);?>"><i hidden><?php echo ($result->userID);?></i> Add/Change Picture 1</button>
+                                              <button class="dropdown-item Ppost2" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture2);?>"><i hidden><?php echo ($result->userID);?></i> Add/Change Picture 2</button>
+                                              <button class="dropdown-item Ppost3" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture3);?>"><i hidden><?php echo ($result->userID);?></i> Add/Change Picture 3</button>
+                                              <button class="dropdown-item Ppost4" data-pet-id="<?php echo ($result->petID);?>" data-pet-picture="<?php echo ($result->petPicture4);?>"><i hidden><?php echo ($result->userID);?></i> Add/Change Picture 4</button>
                                             </div><br>
                                           <p id="description" style="font-size:16px;margin-top:10px;float:left;padding-left: 10px;text-align:justify;text-justify: inter-word;"><?php echo ($result->petDescription);?></p>
                                           
                                           <br>
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top view_picture" alt="Post Image" style="height:300px;width:500px;border-radius:10px;margin-bottom:5px;" data-pet-picture="<?php echo ($result->petPicture);?>"><Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture2'";?> class="card-ing-top view_picture2" alt="Post Image" align="left" style="height:150px;width:165px;border-radius:10px;" data-pet-picture="<?php echo ($result->petPicture2);?>"><Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture3'";?> class="card-ing-top view_picture3" alt="Post Image" align="center" style="height:150px;width:165px;border-radius:10px;" data-pet-picture="<?php echo ($result->petPicture3);?>"><Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture4'";?> class="card-ing-top view_picture4" alt="Post Image" align="right" style="height:150px;width:165px;border-radius:10px;" data-pet-picture="<?php echo ($result->petPicture4);?>">
-                                                  <ul style="list-style:none;margin-left:-50px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-ing-top view_picture" alt="Post Image" onerror="this.onerror=null;this.src='/developgetpet/web/images/noimage.jpg'" style="height:300px;width:500px;border-radius:10px;margin-bottom:5px;" data-pet-picture="<?php echo ($result->petPicture);?>"><Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture2'";?> class="card-ing-top view_picture2" alt="Post Image" onerror="this.onerror=null;this.src='/developgetpet/web/images/noimage.jpg'" align="left" style="height:150px;width:165px;border-radius:10px;" data-pet-picture="<?php echo ($result->petPicture2);?>"><Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture3'";?> class="card-ing-top view_picture3" alt="Post Image" onerror="this.onerror=null;this.src='/developgetpet/web/images/noimage.jpg'" align="center" style="height:150px;width:165px;border-radius:10px;" data-pet-picture="<?php echo ($result->petPicture3);?>"><Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture4'";?> class="card-ing-top view_picture4" alt="Post Image" onerror="this.onerror=null;this.src='/developgetpet/web/images/noimage.jpg'" align="right" style="height:150px;width:165px;border-radius:10px;" data-pet-picture="<?php echo ($result->petPicture4);?>">
+                                              <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->petID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->petName);?></h2></li>
@@ -531,7 +536,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-25px;" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-gender="<?php echo ($result->petSex);?>" data-pet-age="<?php echo ($result->petAge);?>" data-pet-color="<?php echo ($result->petColor);?>" data-pet-weight="<?php echo ($result->petWeight);?>" data-pet-spayneuter="<?php echo ($result->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($result->rabiesVaccine);?>" data-pet-deworming="<?php echo ($result->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($result->threeinoneVaccine);?>" data-pet-diet="<?php echo ($result->petDiet);?>" data-selected-range="<?php echo ( $result->selectedRange);?>" data-pet-description="<?php echo ($result->petDescription);?>" data-pet-status="<?php echo ($result->petStatus);?>">View Info</button><button type="button" class="btn btn-success stcbtn" id="stcbtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;"  data-master-id="<?php echo ($userid->userID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-description="<?php echo ($result->petDescription);?>"><i hidden><?php echo ( $result->userID);?></i> Care Me</button>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-10px;float:left;margin-left:-25px;" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-gender="<?php echo ($result->petSex);?>" data-pet-age="<?php echo ($result->petAge);?>" data-pet-color="<?php echo ($result->petColor);?>" data-pet-weight="<?php echo ($result->petWeight);?>" data-pet-spayneuter="<?php echo ($result->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($result->rabiesVaccine);?>" data-pet-deworming="<?php echo ($result->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($result->threeinoneVaccine);?>" data-pet-diet="<?php echo ($result->petDiet);?>" data-selected-range="<?php echo ( $result->selectedRange);?>" data-charge="₱<?php echo ( $result->Charge);?>.00" data-pet-description="<?php echo ($result->petDescription);?>" data-pet-status="<?php echo ($result->petStatus);?>">View Info</button><button type="button" class="btn btn-success stcbtn" id="stcbtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;"  data-master-id="<?php echo ($userid->userID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-id="<?php echo ($result->petID);?>" data-pet-name="<?php echo ($result->petName);?>" data-pet-type="<?php echo ($result->petType);?>" data-pet-breed="<?php echo ($result->petBreed);?>" data-pet-description="<?php echo ($result->petDescription);?>"><i hidden><?php echo ( $result->userID);?></i> Care Me</button>
                                               <br>
 
                                               <?php
@@ -545,7 +550,7 @@ if($query->rowCount()>0)
                                               <?php
                                               $postid = $result->petID;
 
-                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Adoption' ORDER BY commentID DESC LIMIT 1";
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Short-term care' ORDER BY commentID DESC LIMIT 1";
                                               $query2=$dbh->prepare($sql2);
                                               $query2->execute();
                                               $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -601,7 +606,7 @@ if($query->rowCount()>0)
                                               <?php
                                               $postid = $result->petID;
 
-                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Adoption' ORDER BY commentID DESC";
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Short-term care' ORDER BY commentID DESC";
                                               $query2=$dbh->prepare($sql2);
                                               $query2->execute();
                                               $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -707,70 +712,6 @@ if($query->rowCount()>0)
 </script>
   <!-- //Search By ID Code -->
 
-  <!-- ModalSettings -->
-  <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Account Settings</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Firstname" required="required" value="<?php echo ($result->ownerFirstname);?>" placeholder="First Name">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Lastname" required="required" value="<?php echo ($result->ownerLastname);?>" placeholder="Last Name">
-						<span class="focus-input100"></span>
-				</div><br>
-        <div  style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->ownerContactNo);?>" placeholder="Contact No.">
-						<script>
-            
-                        function isInputNumber(evt){
-                
-                        var ch = String.fromCharCode(evt.which);
-                
-                        if(!(/[0-9]/.test(ch))){
-                        evt.preventDefault();
-                       }
-					}
-                    </script>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->ownerAddress);?>" placeholder="Address">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->ownerEmail);?>" placeholder="Email">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->ownerUsername);?>" placeholder="Username">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->ownerPassword);?>" placeholder="Password">
-				</div><br><br>
-        <div style="text-align: center">
-						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
-							<a style="color:White"> Update </a>
-						</button>
-				</div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- //ModalSettings -->
-
   <!-- Short-Term Care Request Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
@@ -785,7 +726,7 @@ if(isset($_POST['Short-Term-Care']))
 
   if($MasterID == $ID){
 
-  echo '<script>alert("Opps! You cannot care your own post pet")</script>';
+  echo '<script>alert("Opps! You cannot adopt your own post pet")</script>';
   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Dogsshorttermcare.php'</script>";
 
   }
@@ -835,7 +776,7 @@ if(isset($_POST['Short-Term-Care']))
   $query3->execute();
 
   echo '<script>alert("Just Wait for The Owner Accept Your Short-Term Care Request!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Request.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyRequest.php'</script>";
 
   }
 
@@ -931,7 +872,7 @@ if(isset($_POST['Short-Term-Care']))
         <br>
         <div class="form-group" style="text-align: center">
         <div class="col-md-6 offset-md-3">
-               <button id="short-term-care" name ="Short-Term-Care" type="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:160px;height:50px;font-size:18px;" disabled>Take Care Now!</button>
+               <button id="short-term-care" name ="Short-Term-Care" type="submit" class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:160px;height:50px;font-size:18px;" disabled>Care Now!</button>
         </div>
         </div>
         </div>
@@ -1032,6 +973,13 @@ if(isset($_POST['Short-Term-Care']))
         </div>
 
         <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Charge<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="charge" name="Charge" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Short-term care<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea disabled="yes" id="petdescription" style="width:440px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
@@ -1070,7 +1018,7 @@ if(isset($_POST['btnComment']))
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Adoption')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Short-term care')";
     $query=$dbh->prepare($sql);
     $query->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
@@ -1088,7 +1036,7 @@ if(isset($_POST['btnComment']))
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Adoption')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Short-term care')";
     $query=$dbh->prepare($sql);
     $query->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
@@ -1355,6 +1303,7 @@ if(isset($_POST['btnComment']))
     $petDiet=($_POST['petDiet']);
     $selectedRange=($_POST['selectedRange']);
     $totalDays=($_POST['totalDays']);
+    $Charge=($_POST['Charge']);
     $Description=($_POST['Description']);
 
     $sql="update postpet set
@@ -1372,6 +1321,7 @@ if(isset($_POST['btnComment']))
     petDiet=:petDiet,
     selectedRange=:selectedRange,
     totalDays=:totalDays,
+    Charge=:Charge,
     petDescription=:Description
     where petID=:petID";
     $query=$dbh->prepare($sql); 
@@ -1390,6 +1340,7 @@ if(isset($_POST['btnComment']))
     $query->bindParam(':petDiet',$petDiet,PDO::PARAM_STR);
     $query->bindParam(':selectedRange',$selectedRange,PDO::PARAM_STR);
     $query->bindParam(':totalDays',$totalDays,PDO::PARAM_STR);
+    $query->bindParam(':Charge',$Charge,PDO::PARAM_STR);
     $query->bindParam(':Description',$Description,PDO::PARAM_STR);
     $query->execute();
   
@@ -1620,6 +1571,12 @@ if(isset($_POST['btnComment']))
                         </div>
                     </div>
        
+                    <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Charge<span class="required"></span></label>
+                    <div class="col-md-6 col-sm-6">
+                          <input type="number" class="form-control" id="charge2" name="Charge" style="background-color:#fff;width:440px;" required="required" min="1" placeholder="₱.00"/>
+                    </div>
+                    </div>
 
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Adoption<span class="required"></span></label>
@@ -2304,6 +2261,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     var threeinonevaccine = $(this).attr('data-pet-threeinonevaccine');
     var petdiet = $(this).attr('data-pet-diet');
     var selectedrange = $(this).attr('data-selected-range');
+    var charge = $(this).attr('data-charge');
     var petdescription = $(this).attr('data-pet-description');
     var petstatus = $(this).attr('data-pet-status');
     $('#View').modal('show');
@@ -2321,6 +2279,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $("#threeinonevaccine").val( threeinonevaccine );
     $("#petdiet").val( petdiet );
     $("#selectedrange").val( selectedrange );
+    $("#charge").val( charge );
     $("#petdescription").val( petdescription );
     $("#petstatus").val( petstatus );
   });
@@ -2366,6 +2325,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     var pet_diet2 = $(this).attr('data-pet-diet');
     var totalDays = $(this).attr('data-total-days');
     var selected_Range2 = $(this).attr('data-selected-range');
+    var charge2 = $(this).attr('data-charge');
     var pet_description2 = $(this).attr('data-pet-description');
     $('#EditPost').modal('show');
     $("#pet_id2").val( pet_id2 );
@@ -2383,6 +2343,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $("#pet_diet2").val( pet_diet2 );
     $("#totalDays").val( totalDays );
     $("#selected_Range2").val( selected_Range2 );
+    $("#charge2").val( charge2 );
     $("#pet_description2").val( pet_description2 );
   });
   </script>
