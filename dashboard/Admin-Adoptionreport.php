@@ -267,7 +267,7 @@ th {
                   </div>
                   <div class="x_content" style="text-align:center;">
 
-                  <a class="btn btn-info" href="returnedReport.php" style="margin-top: 25px;float: left; margin-bottom: 25px;"><i class="sidebar-item-icon fa fa-print"></i><span class="nav-label">  Print</span></a>
+                  <a class="btn btn-info" href="A.W.O-Printadoptionreport.php" style="margin-top: 25px;float: left; margin-bottom: 25px;"><i class="sidebar-item-icon fa fa-print"></i><span class="nav-label">  Print</span></a>
                   <br>
                   <br>
                   <br>
@@ -342,14 +342,14 @@ th {
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
                                         <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->userName);?></td>
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result2->orgName);?><?php echo htmlentities($result2->userFirstname);?> <?php echo htmlentities($result2->userLastname);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petName);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petType);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petBreed);?></td>
                                         <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result1->petPicture' style = height:80px; width: 80px;/>";?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result1->postStatus);?></td>     
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result1->petStatus);?></td>
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result2->orgName);?><?php echo htmlentities($result2->userFirstname);?> <?php echo htmlentities($result2->userLastname);?></td>                                                         
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->userName);?></td>                                                         
                                       </tr>
                                     <?php $cnt2=$cnt2+1;}}?>
                                     <?php $cnt1=$cnt1+1;}}?>
