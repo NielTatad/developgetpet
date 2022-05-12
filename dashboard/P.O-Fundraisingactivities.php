@@ -1359,17 +1359,17 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 
                                         <div class="field item form-group">    
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Reciept</label>&nbsp&nbsp&nbsp
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Please attach your deposit slip for reference. Thank you!</label>&nbsp&nbsp&nbsp
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;" placeholder="Upload Reciept" multiple>
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;margin-top:10px;border:none;" placeholder="Upload Reciept" multiple>
                                         </div>
                                         </div>
 
                                         <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Please Select<span class="required"></span></label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Please Select if you want to appear your name in the Dashboard<span class="required"></span></label>
                                         <div class="col-md-6 col-sm-6">
-                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                                          <option selected>Open this select menu</option>
+                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" style="margin-top:10px;">
+                                          <option selected>Open this to choose option</option>
                                           <option value="showidentity">Show My Identity</option>
                                           <option value="anonymous">Anonymous</option>
                                         </select>
