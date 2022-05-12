@@ -181,7 +181,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- bootstrap-daterangepicker -->
 	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
@@ -245,17 +245,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
                     </li>
 
-                    <li>
+	            <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adopted.php">Pet Adopted</a>
                     </li>
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Donations.php">Manage Donation</a>
-                    </li>
+                    </li>		
 
-              </ul>
-                 
-              </div>
+                    </ul>
+					</div>
+					</div>
+					<!-- /sidebar menu -->
 
 					<!-- /menu footer buttons -->
           <div class="sidebar-footer hidden-small">
@@ -1336,360 +1337,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 	<!-- //Modal Change Post Picture -->
 
-  <!-- Edit Comment Code -->
-  <?php
-    if(isset($_POST['btnEditComment']))
-    {
-      $commentContent=($_POST['commentContent']);
-      $commentID=($_POST['commentID']);
-
-      $query="update comment set commentContent=:commentContent where commentID=:commentID";
-      $query= $dbh->prepare($query);
-      $query->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
-      $query->bindParam(':commentID',$commentID,PDO::PARAM_STR);
-      $query->execute();
-
-      $query1="update notification set notificationDescription=:commentContent where activityID=:commentID";
-      $query1= $dbh->prepare($query1);
-      $query1->bindParam(':commentContent',$commentContent,PDO::PARAM_STR);
-      $query1->bindParam(':commentID',$commentID,PDO::PARAM_STR);
-      $query1->execute();
-
-      echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-    }
-  ?>
-<!-- //Edit Comment Code --> 
-
-<!-- Modal Edit Comment -->
-  <div class="modal fade" id="EditComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Comment</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="editcomment()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-          function editcomment() {
-          document.getElementById("edit_comment").value="";
-          document.getElementById("btnEditComment").disabled = false;
-            }
-        </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="commentid" name="commentID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <textarea id="edit_comment" name="commentContent" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
-				</div><br>
-
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button id="btnEditComment" name="btnEditComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Save</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Edit Comment -->
-
-<!-- Delete Comment Code -->
-  <?php
-  if(isset($_POST['btnDeleteComment']))
-  {
-    $commentID=($_POST['commentID']);
-    
-    $query="Delete from comment where commentID=:commentID";
-    $query = $dbh->prepare($query);
-    $query->bindValue(':commentID',$commentID);
-    $query->execute();
-
-    $query1="Delete from notification where activityID=:commentID";
-    $query1 = $dbh->prepare($query1);
-    $query1->bindValue('commentID',$commentID);
-    $query1->execute();
-    
-    echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-  }
-  ?>
-<!-- //Delete Comment Code -->
-
-<!-- Modal Delete Comment -->
-  <div class="modal fade" id="DeleteComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Comment</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to delete this comment?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="comment_id" name="commentID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="btnDeleteComment" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="btnCancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Delete Comment -->
-
-<!-- Delete Post Code -->
-  <?php
-   if(isset($_POST['Delete']))
-   {
-    $postsID=($_POST['postsID']);
-
-    $query="update post set postStatus='Not available', postStatus ='Deleted' where postsID=:postsID";
-    $query= $dbh->prepare($query);
-    $query->bindValue(':postsID',$postsID);
-    $query->execute();
-
-    echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-   }
-?>
-<!-- //Delete Post Code -->
-
-  <!-- Modal Delete Post -->
-  <div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Post</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to delete your post?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="post_id1" name="postsID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="Delete" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Delete Post -->
-
-<!-- Edit Post Code -->
-  <?php
-   if(isset($_POST['Edit']))
-   {
-    $postsID=($_POST['postsID']);
-    $Title=($_POST['Title']);
-    $Content=($_POST['Content']);
-    $Location=($_POST['Location']);
-    $Time=($_POST['Time']);
-    $Eventdate=($_POST['Eventdate']);
-
-    $sql="update post set
-    postTitle=:Title,
-    postContent=:Content,
-    postLocation=:Location,
-    postTime=:Time,
-    postEventdate=:Eventdate
-    where postsID=:postsID";
-
-    $query=$dbh->prepare($sql); 
-    $query->bindParam(':postsID',$postsID,PDO::PARAM_STR);
-    $query->bindParam(':Title',$Title,PDO::PARAM_STR);
-    $query->bindParam(':Content',$Content,PDO::PARAM_STR);
-    $query->bindParam(':Location',$Location,PDO::PARAM_STR);
-    $query->bindParam(':Time',$Time,PDO::PARAM_STR);
-    $query->bindParam(':Eventdate',$Eventdate,PDO::PARAM_STR);
-    $query->execute();
-  
-    echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-  }
-?>
-<!-- //Edit Post Code -->
-
-<!-- Modal Edit Post -->
- <div class="modal fade" id="EditPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Edit Post</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="enableButton()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-        function enableButton() {
-            document.getElementById("Edit").disabled = false;
-        }
-      </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="post_id2" name="postsID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input type="text" class="form-control" id="post_title2" name="Title" style="background-color:#fff;width:400px;" required="required" onkeypress="return /[a-z\s*]/i.test(event.key)"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Content<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea id="post_content2" name="Content" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;" onkeyup="edit()"></textarea>
-        </div>
-        </div>
-
-        <script>
-          function edit() {
-          if(document.getElementById("post_content2").value==="") { 
-                    document.getElementById('Edit').disabled = true; 
-                } else { 
-                    document.getElementById('Edit').disabled = false;
-                }
-            }
-        </script>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Location</label>
-        <div class="col-md-6 col-sm-6">
-               <input read only type="text" class="form-control" id="post_location2" name="Location" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-                                         <label class='col-form-label col-md-3 col-sm-3  label-align'>
-                                         Time</label>
-                                         <div class="col-md-6 col-sm-6" class="form-group">
-                                         <div class='input-group date' id='myDatepicker3' >
-                                         <input required="required" type='text' id="post_time2" name="Time" class="form-control" class="input-group-addon" onkeypress="return onlyNumberKey(event)"/>
-                                         <span class="input-group-addon">
-                                         <span class="glyphicon glyphicon-time" style="margin-top:4px;"></span>
-                                         </span>
-                                         </div>
-                                         </div>
-                                         </div>
-
-        <div class="field item form-group">
-          <label class="col-form-label col-md-3 col-sm-3  label-align">Event Date<span class="required"></span></label>
-          <div class="col-md-6 col-sm-6">
-            <input class="form-control" class='date' type="date" id="post_date2" name="Date" required='required'>
-          </div>
-        </div>
-       
-        <div class="ln_solid">
-        <br>
-        <div class="form-group" style="text-align: center">
-        <div class="col-md-6 offset-md-3">
-               <button id="Edit" name ="Edit" type='submit' class="btn btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;font-size:18px;">Update</button>
-        </div>
-        </div>
-        </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Edit Post -->
-
-<!-- Change Post Picture Code -->
-  <?php
-if(isset($_POST['btnChangePostPicture']))
-{
-$postsID=$_POST['postsID'];
-$PostPicture=$_POST['PostPicture'];
-
-$sql="update post set 
-postsID=:PostPicture
-where postsID=:postsID";
-
-$query=$dbh->prepare($sql);
-$query->bindParam(':postsID',$postsID,PDO::PARAM_STR);  
-$query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
-$query->execute();
-
-echo '<script>alert("Your Post Picture Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Events.php'</script>";
-}
-?>
-<!-- //Change Post Picture Code -->
-
-<!-- Modal Change Post Picture -->
-  <div class="modal fade" id="ChangePostPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Change Post Picture</h4>
-        <button type="button" id="selected_picture_close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img id="post_picture" src="/developgetpet/web/images/" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" >
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" onchange="readURL(this);" name="PostPicture" id="PostPicture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden name="postsID" id="post_id3" class="form-control" id="success">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="picture_file" class="form-control" id="success">
-				</div><br>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="btnChangePostPicture" id="btnChangePostPicture" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
-              <button type='reset' id="selected_picture_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Change Post Picture -->  
-
-		</div>
-	</div>
-
-    			<!-- footer content -->
+			<!-- footer content -->
 			<footer>
       <p class="tweet-p1">
 		  ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
@@ -1697,6 +1345,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
+		</div>
+	</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
