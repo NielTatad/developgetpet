@@ -1393,12 +1393,13 @@ $Email=($_POST['Email']);
 $Address=($_POST['Address']);
 $ContactNo=($_POST['ContactNo']);
 $Message=($_POST['Message']);
+$Identity=($_POST['Identity']);
 $Picture = $_FILES["Picture"]["name"];
 $tmp_dir = $_FILES["Picture"]["tmp_name"];
 
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
 
-$sql="INSERT INTO donation(userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationReciept,donationDate,donationStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Message,:Picture,'$date','Not Recieved Yet')";
+$sql="INSERT INTO donation(userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationIdentity,donationReciept,donationDate,donationStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Message,:Identity,:Picture,'$date','Not Recieved Yet')";
 
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
@@ -1407,6 +1408,7 @@ $query->bindParam(':Email',$Email,PDO::PARAM_STR);
 $query->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Message',$Message,PDO::PARAM_STR);
+$query->bindParam(':Identity',$Identity,PDO::PARAM_STR);
 $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query->execute();
 
@@ -1455,31 +1457,31 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
       
                                         <div hidden class="field item form-group">
                                           <div class="col-md-6 col-sm-6">
-                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>"/>
+                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->adopterID);?>"/>
                                           </div> 
                                         </div>
 
                                         <div hidden class="field item form-group">
                                             <div class="col-md-6 col-sm-6">
-                                              <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?>"/>
+                                              <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?>"/>
                                             </div> 
                                          </div>
 
                                         <div hidden class="field item form-group">
                                             <div class="col-md-6 col-sm-6">
-                                              <input class="form-control" name="Address" class='Address' value="<?php echo ($result->ownerAddress);?>"/>
+                                              <input class="form-control" name="Address" class='Address' value="<?php echo ($result->adopterAddress);?>"/>
                                             </div>
                                         </div>
 
                                         <div hidden class="field item form-group">
                                             <div class="col-md-6 col-sm-6">
-                                              <input class="form-control" name="Email" class='Email' value="<?php echo ($result->ownerEmail);?>"/>
+                                              <input class="form-control" name="Email" class='Email' value="<?php echo ($result->adopterEmail);?>"/>
                                             </div>
                                         </div>
 
                                         <div hidden class="field item form-group">
                                             <div class="col-md-6 col-sm-6">
-                                             <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->ownerContactNo);?>"/>
+                                             <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->adopterContactNo);?>"/>
                                             </div>
                                         </div>
 
@@ -1494,7 +1496,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Please Select if you want to appear your name in the Dashboard<span class="required"></span></label>
                                         <div class="col-md-6 col-sm-6">
-                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" style="margin-top:10px;">
+                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" style="margin-top:10px;" name="Identity">
                                           <option selected>Open this to choose option</option>
                                           <option value="showidentity">Show My Identity</option>
                                           <option value="anonymous">Anonymous</option>

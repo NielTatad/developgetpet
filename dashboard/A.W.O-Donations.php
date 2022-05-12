@@ -464,9 +464,9 @@ if($query->rowCount()>0)
                                             ?>
                                             
                                             <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->donationDate);?></textarea>
-                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->donationMessage);?></p>
+                                            <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Message: <?php echo ($result->donationMessage);?><br>Suggestion: <?php echo ($result->donationIdentity);?></p>
                                                                                       
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->donationReciept'";?> class="card-ing-top" alt="Post Images" style="height:350px;width:500px;border-radius:10px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->donationReciept'";?> class="card-ing-top" alt="Post Images" style="height:450px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->donationID);?></h3></li>
