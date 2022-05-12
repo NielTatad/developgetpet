@@ -169,7 +169,7 @@ th {
                               <li><a style="font-size:15px;">Report</a>
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
                                   <li><a href="#">Donation</a></li>
                                 </ul>
                               </li>
@@ -281,7 +281,7 @@ th {
                           <table class="table table-striped jambo_table bulk_action">
                                     <thead>
                                     <tr class="headings">
-                                    <th style="text-align:center" class="column-title">Mater ID</th>
+                                    <th style="text-align:center" class="column-title">Master ID</th>
                                     <th style="text-align:center" class="column-title">User ID</th>
                                     <th style="text-align:center" class="column-title">Pet ID</th>
                                     <th hidden style="text-align:center" class="column-title">User ID</th>

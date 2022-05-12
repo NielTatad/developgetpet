@@ -507,14 +507,23 @@ $event=$query->fetchColumn();
                         }
                         ?>
 
-                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php"><h2 style="text-align:center;">
-                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
-                </div>
-              </div>
-            </div>
-            <!-- //New Post For Adoption Code -->
+</div>&nbsp
+                    <h2 style="text-align:center;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#00cdc1;border:#00cdc1;">
+                      Check Now!
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-Dogslistadoption.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Adoption</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-Catslistadoption.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Adoption</a>
+                    </ul>
+                    </h2>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //New Post For Adoption Code -->
 
-            <!-- New Post For Short-term care Code -->
+<!-- New Post For Short-term care Code -->
             <div class="clearfix"></div>
 
             <div class="row">
@@ -584,14 +593,23 @@ $event=$query->fetchColumn();
                         }
                         ?>
 
-                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php"><h2 style="text-align:center;">
-                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
-                </div>
-              </div>
-            </div>
-            <!-- //New Post For Short-term care Code -->
+</div>&nbsp
+                    <h2 style="text-align:center;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#00cdc1;border:#00cdc1;">
+                      Check Now!
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-Dogsshorttermcare.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Short-term care</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-Catsshorttermcare.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Short-term care</a>
+                    </ul>
+                    </h2>
 
-             <!-- New Post For Tips Advice & Articles Code -->
+    </div>
+  </div>
+</div>
+<!-- //New Post For Short-term care Code -->
+
+<!-- New Post For Tips Advice & Articles Code -->
            <div class="clearfix"></div>
 
 <div class="row">
@@ -1119,6 +1137,9 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </body>
 </html>
