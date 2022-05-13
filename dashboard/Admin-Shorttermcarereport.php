@@ -170,7 +170,7 @@ th {
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
-                                  <li><a href="#">Donation</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
                                 </ul>
                               </li>
 
@@ -259,7 +259,7 @@ th {
               <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Adoption Report</h2>
+                    <h2>Short-Term Care Report</h2>
                     <ul class="nav navbar-right panel_toolbox">
                   </ul>
                     <div class="clearfix"></div>

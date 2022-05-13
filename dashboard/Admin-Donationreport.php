@@ -259,7 +259,7 @@ th {
               <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Adoption Report</h2>
+                    <h2>Donation Report</h2>
                     <ul class="nav navbar-right panel_toolbox">
                   </ul>
                     <div class="clearfix"></div>
@@ -283,15 +283,16 @@ th {
                                     <tr class="headings">
                                     <th style="text-align:center" class="column-title">Master ID</th>
                                     <th style="text-align:center" class="column-title">User ID</th>
-                                    <th style="text-align:center" class="column-title">Pet ID</th>
+                                    <th style="text-align:center" class="column-title">Donation ID</th>
                                     <th hidden style="text-align:center" class="column-title">User ID</th>
-                                    <th style="text-align:center" class="column-title">Pet Owner</th>
-                                    <th style="text-align:center" class="column-title">Pet Name</th>
-                                    <th style="text-align:center" class="column-title">Pet Type</th>
-                                    <th style="text-align:center" class="column-title">Pet Breed</th>
+                                    <th style="text-align:center" class="column-title">Fundraiser (Organization)</th>
+                                    <th style="text-align:center" class="column-title">Charity Title</th>
+                                    <th style="text-align:center" class="column-title">Charity Description</th>
+                                    <th style="text-align:center" class="column-title">Charity Money</th>
+                                    <th style="text-align:center" class="column-title">Charity Website</th>
                                     <th style="text-align:center" class="column-title">Post Status</th>
-                                    <th style="text-align:center" class="column-title">Pet Status</th>
-                                    <th style="text-align:center" class="column-title">Adopter</th>
+                                    <th style="text-align:center" class="column-title">Charity Status</th>
+                                    <th style="text-align:center" class="column-title">Donator</th>
                                     </th>
                                     <th class="bulk-actions" colspan="12">
                                       <a class="antoo" style="color:#fff; font-weight:500;">Data to be Deleted (<span class="action-cnt"> </span>)</a>
@@ -312,8 +313,8 @@ th {
                                     {
                                     ?>
                                       <?php
-                                      $pet_id = $result->petID;
-                                      $sql1="SELECT * from postpet WHERE petID='$pet_id' AND petStatus='Adopted' ORDER BY petID DESC";
+                                      $charity_id = $result->charityID;
+                                      $sql1="SELECT * from charity WHERE charityID='$charity_id' AND charityStatus='Accepted' ORDER BY charityID DESC";
                                       $query1=$dbh->prepare($sql1);
                                       $query1->execute();
                                       $results1=$query1->fetchALL(PDO::FETCH_OBJ);

@@ -131,6 +131,25 @@ if(isset($_POST['login']))
 
 
 }
+
+if(isset($_POST['PetAdopter']))
+{
+	
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-Registration.php'</script>";
+
+}
+if(isset($_POST['PetOwner']))
+{
+	
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.O-Registration.php'</script>";
+
+}
+if(isset($_POST['AnimalWelfareOrganization']))
+{
+	
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/A.W.O-Registration.php'</script>";
+
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -138,14 +157,12 @@ if(isset($_POST['login']))
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="fonts/icomoon/style.css">
 
     <link rel="stylesheet" href="css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
@@ -153,6 +170,11 @@ if(isset($_POST['login']))
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+
     <style>
     .material-icons {vertical-align:-16%}
     </style>
@@ -206,7 +228,7 @@ if(isset($_POST['login']))
                 Not a member?
                 </span>
 
-                <a href="http://localhost/developgetpet/login-page/selectrole.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
+                <a href="#" class="txt2 bo1" style="color:blue; font-size: 12px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Sign up now!
                 </a><br>
 
@@ -216,7 +238,6 @@ if(isset($_POST['login']))
                 <a href="http://localhost/developgetpet/login-page/Email.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
                 Reset Password!
                 </a><br>
-
 					    </div>
             </form>
           </div>
@@ -224,6 +245,29 @@ if(isset($_POST['login']))
       </div>
     </div> 
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                      <form class="login100-form validate-form" method="post">
+            <b style="font-size:14px;">&nbspSELECT ROLE</b>
+            <br>
+            <br>
+            <div class="d-grid gap-2 d-md-block">
+  <button class="btn btn-primary" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div>
+            <br>
+            </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
