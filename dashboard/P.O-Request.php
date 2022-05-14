@@ -638,7 +638,7 @@ if($query->rowCount()>0)
           }
           else
           {
-          echo "You don't have any adoption requests that should be displayed.";
+            echo "There's no information to display.";
           }
             ?>
          <!-- //View My Request Code -->

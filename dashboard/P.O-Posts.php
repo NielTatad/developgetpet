@@ -793,7 +793,7 @@ if($query->rowCount()>0)
                         } 
                         else
                         {
-                          echo "There isn't any information displayed.";
+                          echo "There's no information to display.";
                         }
                         ?>
          <!-- //View Post Pet Code -->     

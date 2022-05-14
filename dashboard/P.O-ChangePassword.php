@@ -17,6 +17,93 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
+<?php
+
+if(isset($_POST['update']))
+    {
+      $Email=($_POST['Email']);  
+      $Password=($_POST['Password']);  
+      $New_Password=($_POST['New_Password']);  
+      $Confirm_New_Password=($_POST['Confirm_New_Password']);
+
+      if($New_Password= $_POST['New_Password'] == "")
+      {
+        
+          echo "<script>alert('Please enter a new password!');</script>";
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ChangePassword.php'</script>";
+
+      }
+
+      if($Confirm_New_Password= $_POST['Confirm_New_Password'] == "")
+      {
+        
+          echo "<script>alert('Please enter the confirmation password!');</script>";
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ChangePassword.php'</script>";
+          
+      }
+
+      else
+      {
+        if($New_Password = $_POST['New_Password'] == $Confirm_New_Password = $_POST['Confirm_New_Password'])
+        {
+          
+          if($Password = $_POST['Password'] == $New_Password = $_POST['New_Password'])
+          {
+            
+              echo "<script>alert('You entered your old password!');</script>";
+              echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ChangePassword.php'</script>";
+  
+          }
+  
+          else
+          {
+              $Email=($_POST['Email']);  
+              $New_Password=($_POST['New_Password']); 
+      
+              $receiver = $Email;
+              $subject = "Password Changed!";
+              $body = "Your new password: $New_Password";
+              $sender = "getpet2022.test@gmail.com";
+      
+              mail($receiver, $subject, $body, $sender);
+  
+              $sql="update register set Password=:New_Password where userID='$ID'";
+              
+              $query=$dbh->prepare($sql);
+              $query->bindParam(':New_Password',$New_Password,PDO::PARAM_STR);
+              $query->execute();
+              
+              $sql1="update petowner set ownerPassword=:New_Password where ownerID='$ID'";
+              $query1=$dbh->prepare($sql1); 
+              $query1->bindParam(':New_Password',$New_Password,PDO::PARAM_STR);
+              $query1->execute();
+              
+              $sql3="update login set Password=:New_Password where userID=$ID";
+              
+              $query3=$dbh->prepare($sql3);
+              $query3->bindParam(':New_Password',$New_Password,PDO::PARAM_STR);
+              $query3->execute();
+              
+              echo "<script>alert('Your password changed successfully!');</script>";
+              echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-AccountSettings.php'</script>";
+      
+      
+          }
+      
+        }
+  
+        else
+        {
+            echo "<script>alert('New password and Confirm password must be the same!');</script>";
+            echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ChangePassword.php'</script>";
+        }
+  
+      }
+      
+
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,26 +152,20 @@ if($query->rowCount()>0)
 
             <br />
 
-				  <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				 <!-- sidebar menu -->
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li><a >Pet For Adoption</a>
-                      <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dogs</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cats</a></li>
-                      </ul>
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet For Adoption</a>
                     </li>
 
-                    <li><a >Pet For Short-Term Care</a>
-                      <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dogs</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cats</a></li>
-                      </ul>
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Pet For Short-term Care</a>
                     </li>
 
                     <li>
@@ -147,126 +228,11 @@ if($query->rowCount()>0)
                           <span>Settings</span>
                         </a>-->
                       <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">Account Settings</a>
-                      <?php
-                      
-                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Cancelled' AND requestStatus != 'Approved'");
-                      $query->execute();
-
-                      $myrequest=$query->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyRequest.php">My Request <span class="badge bg-red" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
-                      <script type="text/javascript">
-                        var myrequest = <?php echo ($myrequest);?>;
-                        if (myrequest === 0){
-                          document.getElementById("myrequest").style.display = "none";
-                        }
-                        </script>
-
-                      <?php
-                      $query1=$dbh->prepare("SELECT COUNT(masterID) FROM request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved'");
-                      $query1->execute();
-
-                      $user_request=$query1->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php">User Request <span class="badge bg-red" id="user_request" value=""> <?php echo ($user_request);?></span></a>
-                      <script type="text/javascript">
-                        var user_request = <?php echo ($user_request);?>;
-                        if (user_request === 0){
-                          document.getElementById("user_request").style.display = "none";
-                        }
-                        </script>
-
-                      <?php
-                      $query2=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
-                      $query2->execute();
-
-                      $my_adopted=$query2->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyAdoptedPet.php">My Adopted Pet <span class="badge bg-red" id="my_adopted" value=""> <?php echo ($my_adopted);?></a>
-                      <script type="text/javascript">
-                        var my_adopted = <?php echo ($my_adopted);?>;
-                        if (my_adopted === 0){
-                          document.getElementById("my_adopted").style.display = "none";
-                        }
-                        </script>
-                      <?php
-                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
-                      $query3->execute();
-
-                      $user_adopted=$query3->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyPetAdoptedByUser.php">My Pet Adopted By User <span class="badge bg-red" id="user_adopted" value=""> <?php echo ($user_adopted);?></a>
-                      <script type="text/javascript">
-                        var user_adopted = <?php echo ($user_adopted);?>;
-                        if (user_adopted === 0){
-                          document.getElementById("user_adopted").style.display = "none";
-                        }
-                        </script>
-
-                      <?php
-                      $query4=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
-                      $query4->execute();
-
-                      $my_shorttermcare=$query4->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyShorttermcare.php">My Short-Term Care <span class="badge bg-red" id="my_shorttermcare" value=""> <?php echo ($my_shorttermcare);?></a>
-                      <script type="text/javascript">
-                        var my_shorttermcare = <?php echo ($my_shorttermcare);?>;
-                        if (my_shorttermcare === 0){
-                          document.getElementById("my_shorttermcare").style.display = "none";
-                        }
-                        </script>
-                      
-                      <?php
-                      $query5=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
-                      $query5->execute();
-
-                      $user_shorttermcare=$query5->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyPetShorttermcare.php">My Pet In Short-Term Care <span class="badge bg-red" id="user_shorttermcare" value=""> <?php echo ($user_shorttermcare);?></a>
-                      <script type="text/javascript">
-                        var user_shorttermcare = <?php echo ($user_shorttermcare);?>;
-                        if (user_shorttermcare === 0){
-                          document.getElementById("user_shorttermcare").style.display = "none";
-                        }
-                        </script>
-
-                      <?php
-                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus = 'Cancelled'");
-                      $query->execute();
-
-                      $cancelled=$query->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-CancelledRequest.php">Cancelled Request <span class="badge bg-red" id="cancelled" value=""><?php echo ($cancelled);?></span></a>
-                      <script type="text/javascript">
-                        var cancelled = <?php echo ($cancelled);?>;
-                        if (cancelled === 0){
-                          document.getElementById("cancelled").style.display = "none";
-                        }
-                        </script>
-                      
-                      <?php
-                      $query=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID'");
-                      $query->execute();
-
-                      $history=$query->fetchColumn();
-
-                      ?>
-                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-History.php">My History <span class="badge bg-red" id="adoption" value=""><?php echo ($history);?></span></a>
-                      <script type="text/javascript">
-                        var adoption = <?php echo ($history);?>;
-                        if (adoption === 0){
-                          document.getElementById("adoption").style.display = "none";
-                        }
-                        </script>
-                        
+                      <a class="dropdown-item" href="">My Request</a>
+                      <a class="dropdown-item" href="">User Request</a>
+                      <a class="dropdown-item" href="">Pet Adoption</a>
+                      <a class="dropdown-item" href="">Short-Term Care</a>
+                      <a class="dropdown-item" href="">My History</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -384,7 +350,12 @@ if($query->rowCount()>0)
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-           
+            <div class="page-title">
+              <div class="title_left">
+              <br>
+              </div>
+
+            </div>
             <!-- Pet Adopted Code -->
             <div class="clearfix"></div>
 
@@ -392,68 +363,52 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Pet Adopted</h2>
+                    <h2>Change Password</h2>
                     <ul class="nav navbar-right panel_toolbox">     
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-
-                  <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Adopted' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 3";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?> 
-                                  <div class="row row-cols-1 col-md-4 g-4" style="margin-left:5px;">
-                                    <div class="col">
-                                      <div class="card h-100" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                        <img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="card-img-top" height="250" alt="..." style="border-radius:3px;">
-                                        <div class="card-body">
-                                          <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                          <h5 class="card-title" style="float:left;text-transform: uppercase;"><?php echo ($result->petName);?></h5>
-                                          <br><br>
-                                          <h4 class="card-title" style="float:left;"><?php echo ($result->petSex);?>(<?php echo ($result->petBreed);?>)</h4>
-                                          <br><br>
-                                          <p class="card-title" style="float:left;"><?php echo ($result->petStatus);?></p>
+                  <form class="" action="" method="post" novalidate enctype="multipart/form-data">
+                                         
+                                        <br>
+                                        <div hidden class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" class="form-control" name="Email" value="<?php echo ( $result->ownerEmail);?>" required="required"/>
+                                            </div>
                                         </div>
-                                        <div class="card-footer" style="background-color:#E4E4E4 ;">
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
-
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Current Password<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input readonly type="text" class="form-control" name="Password" value="<?php echo ( $result->ownerPassword);?>" style="background-color:#fff;" required="required"/>
+                                            </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There's no information to display.";
-                        }
-                        ?>
+                                        <br>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">New Password<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="password" class="form-control" name="New_Password" required="required"/>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Confirm New Password<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="password" class="form-control" name="Confirm_New_Password" required="required"/>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"><span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <button name ="update" type='submit' class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Update Password</button>
+                                            </div>
+                                        </div>
+                                        <div class="ln_solid"><br>
 
+                                        </div>
+                    </form>    
                   </div>
                 </div>
               </div>

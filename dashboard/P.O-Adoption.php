@@ -284,25 +284,47 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
+<!-- Search Pet Breed Code  -->
+<?php
+if(isset($_POST['Go']))
+{
+  if($Search = $_POST['Search'] == "")
+  {
+   echo "<script>alert('No data entered!');</script>";
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+  
+  }
+  else
+  {
+
+   $Search=($_POST['Search']);
+
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-SearchBreedAdoption.php'</script>";
+    
+   $_SESSION['Search'] = $Search;
+
+  }
+
+}
+?>
+
+<!-- //Search Pet Breed Code -->
+
 	  <!-- page content -->
     <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-              <br>
-              </div>
-
               <div class="title_right">
+               <form method="post">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <input type="text" name="Search" class="form-control" placeholder="Search for Pet Breeds...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
+                      <button class="btn btn-default" name="Go" type="submit" style="height:38px"><i class="fa fa-search fa-lg"></i></button>
                     </span>
                   </div>
                 </div>
+               </form>
               </div>
-            </div>
 
             <!-- /page content -->
 
@@ -320,17 +342,16 @@ if($query->rowCount()>0)
                    </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content" style="text-align:center;">
-                  
                   <div style="text-align: center" class="form-group">
                     <div class="form-group">
                       <div class="col-md-6 offset-md-3">
-                          <button  style="width:160px;height:35px;" class="btn btn-info">Dog</button>
-                          <button  style="width:160px;height:35px;" class="btn btn-info">Cat</button>
-                          <br><br>
+                        <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php';" style="background-color:#00cdc1;width:160px;height:35px;" class="btn btn-info">Dog</button>
+                        <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php';" style="background-color:#00cdc1;width:160px;height:35px;" class="btn btn-info">Cat</button>
+                        <br><br>
                       </div>
                     </div>
                   </div>
+                  <div class="x_content" style="text-align:center;">
                                   
                   <!-- View Pet Post for Adotion Code -->
                   <?php
@@ -547,7 +568,7 @@ if($query->rowCount()>0)
                         } 
                         else
                         {
-                          echo "There isn't any information displayed.";
+                          echo "There's no information to display.";
                         }
                         ?>
                      <!-- //View Pet Post for Adotion Code -->                                     

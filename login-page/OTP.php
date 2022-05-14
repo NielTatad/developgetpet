@@ -25,6 +25,7 @@ if(isset($_POST['continue']))
       else
       {
           echo "<script>alert('Invalid OTP code or Email does not exist!');</script>";
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/OTP.php'</script>";
       }
     }
     

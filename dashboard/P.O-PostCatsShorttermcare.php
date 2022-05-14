@@ -17,90 +17,163 @@ if($query->rowCount()>0)
 <?php
 ?>
 <?php }} ?>
+
+<?php
+if(isset($_POST['profile']))
+{
+$Picture=$_POST['Picture'];
+
+$sql="update register set 
+Image=:Picture
+where userID=:ID";
+
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);  
+$query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query->execute();
+
+
+$Picture=($_POST['Picture']);
+
+$sql1="update petowner set
+ownerPicture=:Picture
+where ownerID=:ID";
+$query1=$dbh->prepare($sql1); 
+$query1->bindParam(':ID',$ID,PDO::PARAM_STR); 
+$query1->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query1->execute();
+
+
+$Picture=$_POST['Picture'];
+
+$sql3="update login set 
+Image=:Picture
+where userID=:ID";
+
+$query3=$dbh->prepare($sql3);
+$query3->bindParam(':ID',$ID,PDO::PARAM_STR); 
+$query3->bindParam(':Picture',$Picture,PDO::PARAM_STR);
+$query3->execute();
+{
+echo '<script>alert("Your Profile Picture Updated Successfully!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Profile.php'</script>";
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<!-- Meta, title, CSS, favicons, etc. -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>GETPET</title>
-
-	<!-- Bootstrap -->
-	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<!-- Font Awesome -->
-	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<!-- NProgress -->
-	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-	<!-- iCheck -->
-	<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	<!-- bootstrap-wysiwyg -->
-	<link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-	<!-- Select2 -->
-	<link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
-	<!-- Switchery -->
-	<link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
-	<!-- starrr -->
-	<link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
-	<!-- bootstrap-daterangepicker -->
-	<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-	<!-- Custom Theme Style -->
-	<link href="../build/css/custom.min.css" rel="stylesheet">
   <style>
-    .view-more-comment:hover {
-    text-decoration: underline;
-}
-    .hide-more-comment:hover {
-    text-decoration: underline;
-}
-  </style>
-</head>
+  .Img-icons i {
+            position: absolute;
+        }
+          
+        .Img-icons {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+          
+        .camera {
+            padding: 194px;
+            min-width: 300px;
+            width: 44%;
+        }
+        
+        .circle {
+            padding: 180px;
+            min-width: 300px;
+            color:white;
+            border-color: #F5F5F5;
+            color: #F5F5F5;
+            width: 44%;
+        }
+          
+        .Img-field {
+            width: 100%;
+            padding: 100px;
+            text-align: center;
+        }
 
-<body class="nav-md">
+        .view-more-comment:hover {
+        text-decoration: underline;
+    }
+        .hide-more-comment:hover {
+        text-decoration: underline;
+    }
+  </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GETPET</title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md" onLoad="window.scroll(0, 500)">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+               <a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
 
-					<!-- menu profile quick info -->
-                    <div class="profile clearfix">
-                    <!--<div class="profile_pic">
-                    <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> alt="..." class="img-circle profile_img" style="background-color:#00cdc1;border:#00cdc1;">
-                    </div>
-                    <div class="profile_info">
-                    <span>Welcome,</span>
-                    <h2><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
-                    </div>-->
-                    <div class="clearfix"></div>
-                    </div>
-                    <!-- /menu profile quick info -->
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+            
+              <!--<div class="profile_info" style="margin-left:60px;">
+                
+                <h2>Welcome, <br><?php echo ($result->adopterFirstname);?> <?php echo ($result->adopterLastname);?></h2>
+              </div>-->
+              <div class="clearfix"></div>
+            </div>
+            <!-- /menu profile quick info -->
 
-					<br />
+            <br />
 
-							<!-- sidebar menu -->
-              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  	 <!-- sidebar menu -->
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet For Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dogs</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cats</a></li>
+                      </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Pet For Short-term Care</a>
+                    <li><a >Pet For Short-Term Care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dogs</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cats</a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -125,7 +198,7 @@ if($query->rowCount()>0)
             </div>
             <!-- /sidebar menu -->
 
-						<!-- /menu footer buttons -->
+				 	 <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -141,11 +214,11 @@ if($query->rowCount()>0)
               </a>
             </div>
             <!-- /menu footer buttons -->
-				</div>
-			</div>
+          </div>
+        </div>
 
-  <!-- top navigation -->
-  <div class="top_nav">
+      <!-- top navigation -->
+      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -163,11 +236,126 @@ if($query->rowCount()>0)
                           <span>Settings</span>
                         </a>-->
                       <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">Account Settings</a>
-                      <a class="dropdown-item" href="">My Request</a>
-                      <a class="dropdown-item" href="">User Request</a>
-                      <a class="dropdown-item" href="">Pet Adoption</a>
-                      <a class="dropdown-item" href="">Short-Term Care</a>
-                      <a class="dropdown-item" href="">My History</a>
+                      <?php
+                      
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Cancelled' AND requestStatus != 'Approved'");
+                      $query->execute();
+
+                      $myrequest=$query->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyRequest.php">My Request <span class="badge bg-red" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
+                      <script type="text/javascript">
+                        var myrequest = <?php echo ($myrequest);?>;
+                        if (myrequest === 0){
+                          document.getElementById("myrequest").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query1=$dbh->prepare("SELECT COUNT(masterID) FROM request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved'");
+                      $query1->execute();
+
+                      $user_request=$query1->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php">User Request <span class="badge bg-red" id="user_request" value=""> <?php echo ($user_request);?></span></a>
+                      <script type="text/javascript">
+                        var user_request = <?php echo ($user_request);?>;
+                        if (user_request === 0){
+                          document.getElementById("user_request").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query2=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query2->execute();
+
+                      $my_adopted=$query2->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyAdoptedPet.php">My Adopted Pet <span class="badge bg-red" id="my_adopted" value=""> <?php echo ($my_adopted);?></a>
+                      <script type="text/javascript">
+                        var my_adopted = <?php echo ($my_adopted);?>;
+                        if (my_adopted === 0){
+                          document.getElementById("my_adopted").style.display = "none";
+                        }
+                        </script>
+                      <?php
+                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query3->execute();
+
+                      $user_adopted=$query3->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyPetAdoptedByUser.php">My Pet Adopted By User <span class="badge bg-red" id="user_adopted" value=""> <?php echo ($user_adopted);?></a>
+                      <script type="text/javascript">
+                        var user_adopted = <?php echo ($user_adopted);?>;
+                        if (user_adopted === 0){
+                          document.getElementById("user_adopted").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query4=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query4->execute();
+
+                      $my_shorttermcare=$query4->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyShorttermcare.php">My Short-Term Care <span class="badge bg-red" id="my_shorttermcare" value=""> <?php echo ($my_shorttermcare);?></a>
+                      <script type="text/javascript">
+                        var my_shorttermcare = <?php echo ($my_shorttermcare);?>;
+                        if (my_shorttermcare === 0){
+                          document.getElementById("my_shorttermcare").style.display = "none";
+                        }
+                        </script>
+                      
+                      <?php
+                      $query5=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query5->execute();
+
+                      $user_shorttermcare=$query5->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyPetShorttermcare.php">My Pet In Short-Term Care <span class="badge bg-red" id="user_shorttermcare" value=""> <?php echo ($user_shorttermcare);?></a>
+                      <script type="text/javascript">
+                        var user_shorttermcare = <?php echo ($user_shorttermcare);?>;
+                        if (user_shorttermcare === 0){
+                          document.getElementById("user_shorttermcare").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus = 'Cancelled'");
+                      $query->execute();
+
+                      $cancelled=$query->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-CancelledRequest.php">Cancelled Request <span class="badge bg-red" id="cancelled" value=""><?php echo ($cancelled);?></span></a>
+                      <script type="text/javascript">
+                        var cancelled = <?php echo ($cancelled);?>;
+                        if (cancelled === 0){
+                          document.getElementById("cancelled").style.display = "none";
+                        }
+                        </script>
+                      
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID'");
+                      $query->execute();
+
+                      $history=$query->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-History.php">My History <span class="badge bg-red" id="adoption" value=""><?php echo ($history);?></span></a>
+                      <script type="text/javascript">
+                        var adoption = <?php echo ($history);?>;
+                        if (adoption === 0){
+                          document.getElementById("adoption").style.display = "none";
+                        }
+                        </script>
+                        
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -282,49 +470,15 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
-<!-- Search Pet Breed Code  -->
-<?php
-if(isset($_POST['Go']))
-{
-  if($Search = $_POST['Search'] == "")
-  {
-   echo "<script>alert('No data entered!');</script>";
-   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
-  
-  }
-  else
-  {
 
-   $Search=($_POST['Search']);
-
-   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-SearchBreedShorttermcare.php'</script>";
-    
-   $_SESSION['Search'] = $Search;
-
-  }
-
-}
-?>
-
-<!-- //Search Pet Breed Code -->
-
-	  <!-- page content -->
-    <div class="right_col" role="main">
+        <!-- page content -->
+        <div class="right_col" role="main">
           <div class="">
-          <div class="title_right">
-               <form method="post">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" name="Search" class="form-control" placeholder="Search for Pet Breeds...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" name="Go" type="submit" style="height:38px"><i class="fa fa-search fa-lg"></i></button>
-                    </span>
-                  </div>
-                </div>
-               </form>
+            <div class="page-title">
+              <div class="title_left">
+              <br>
               </div>
-
-            <!-- /page content -->
+            </div>
 
             <div class="clearfix"></div>
 
@@ -332,28 +486,81 @@ if(isset($_POST['Go']))
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Available Pet For Short-Term Care</h2>
-                     <!-- Post Button -->
-                     <a href="http://localhost/developgetpet/dashboard/P.O-PostShorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post Pet</button></a>
-                    <!-- //Post Button -->
+                    <h2>My Profile</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                   </ul>
+                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
+                      </li>      
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div style="text-align: center" class="form-group">
-                    <div class="form-group">
-                      <div class="col-md-6 offset-md-3">
-                        <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-DogsForShortermcare.php';" style="background-color:#00cdc1;width:160px;height:35px;" class="btn btn-info">Dog</button>
-                        <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-CatsForShortermcare.php';" style="background-color:#00cdc1;width:160px;height:35px;" class="btn btn-info">Cat</button>
-                        <br><br>
-                      </div>
-                    </div>
-                  </div>
+
                   <div class="x_content" style="text-align:center;">
-                                  
-                  <!-- View Pet Post for Short-term Care Code -->
+                  
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Short-term care' AND postStatus!='Deleted' ORDER BY petID DESC";
+                        $sql="SELECT * from petowner WHERE ownerID='$ID'";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+                        <div class="col-nd-4">
+                            <div class="card">
+                              <div class="card-body">
+
+                                  <div style="max-width:400px;margin:auto">
+                                        <div class="Img-icons">
+                                        <i class="fa fa-circle circle fa-4x" data-toggle="modal" href="#ProfilePicture"></i>
+                                        <i class="fa fa-camera camera fa-2x" data-toggle="modal" href="#ProfilePicture"></i>
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" id="Modalprofile" alt="Post Images" style="height:250px;width:250px;border-style: solid;border-color: #F5F5F5;border-width: 6px;">
+                                        </div>
+                                  </div>                            
+                                  <h2 class="card-title"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
+                                  
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <?php $cnt=$cnt+1;}} ?>
+                      
+                      <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-About.php" role="tab" aria-controls="about" aria-selected="false">About</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostDogsAdoption.php" role="tab" aria-controls="post_adoption" aria-selected="false">Post Dogs Adoption</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostCatsAdoption.php" role="tab" aria-controls="post_adoption" aria-selected="false">Post Cats Adoption</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostDogsShorttermcare.php" role="tab" aria-controls="post_short-term-care" aria-selected="false">Post Dogs Short-Term Care</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php" role="tab" aria-controls="post_short-term-care" aria-selected="false">Post Cats Short-Term Care</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostTips.php" role="tab" aria-controls="post_tips" aria-selected="false">Post Tips</a>
+                      </li>
+                    </ul>
+                    <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostAdvice.php" role="tab" aria-controls="post_advice" aria-selected="false">Post Advice</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostArticles.php" role="tab" aria-controls="post_advice" aria-selected="false">Post Articles</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
+                      <div class="x_content" style="text-align:center;">
+                                  
+                <!-- View Pet Post for Short-term Care Code -->
+                  <?php
+                        $sql="SELECT * from postpet WHERE userID='$ID' AND petStatus='Available' AND petType='Cat' AND postStatus='Short-term care' AND postStatus!='Deleted' ORDER BY petID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -569,9 +776,23 @@ if(isset($_POST['Go']))
                           echo "There's no information to display.";
                         }
                         ?>
-                     <!-- //View Pet Post for Short-term Care Code -->                                        
-                                       
-                  </div>
+                     <!-- //View Pet Post for Short-term Care Code -->   
+                                                       
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
+                      <div class="x_content">
+
+                                </div>
+                      </div>
+                      <div class="tab-pane fade" id="request1" role="tabpanel" aria-labelledby="request-tab">
+                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                            booth letterpress, commodo enim craft beer mlkshk 
+                      </div>
+                    </div>     
+                    
+
+                   </div>
                 </div>
               </div>
             </div>
@@ -579,10 +800,9 @@ if(isset($_POST['Go']))
         </div>
         <!-- /page content -->
 
-  <!-- Search By ID Code -->
 <script>
-<?php 
-$ID=$_SESSION['ownerID'];
+<?php
+$ID=$_SESSION['ownerID'];           
 $sql = "SELECT * from petowner where ownerID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
@@ -598,9 +818,8 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
-  <!-- //Search By ID Code -->
 
-  <!-- Short-Term Care Request Code -->
+<!-- Short-Term Care Request Code -->
 <?php
 date_default_timezone_set("Asia/Manila");
 $date = date('m/d/Y h:i A', time());
@@ -615,7 +834,7 @@ if(isset($_POST['Short-Term-Care']))
   if($MasterID == $ID){
 
   echo '<script>alert("Opps! You cannot adopt your own post pet")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Adoption.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
 
   }
   else{
@@ -664,7 +883,7 @@ if(isset($_POST['Short-Term-Care']))
   $query3->execute();
 
   echo '<script>alert("Just Wait for The Owner Accept Your Short-Term Care Request!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyRequest.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
 
   }
 
@@ -914,7 +1133,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
   
   }
 
@@ -945,7 +1164,7 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
   }
   
 }
@@ -1016,7 +1235,7 @@ if(isset($_POST['btnComment']))
       $query1->execute();
 
       echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
     }
   ?>
   <!-- //Edit Comment Code -->
@@ -1076,7 +1295,7 @@ if(isset($_POST['btnComment']))
     $query1->execute();
     
     echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
   }
   ?>
 	<!-- //Delete Comment Code -->
@@ -1135,7 +1354,7 @@ if(isset($_POST['btnComment']))
     $query2->execute();
 
     echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
    }
 ?>
 <!-- //Delete Post Code -->
@@ -1233,7 +1452,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
   
     echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
   }
 ?>
 <!-- //Edit Post Code -->
@@ -1516,7 +1735,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 1 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture Code -->
@@ -1576,7 +1795,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 2 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture 2 Code -->
@@ -1636,7 +1855,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 3 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture 3 Code -->
@@ -1696,7 +1915,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 4 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture 4 Code -->
@@ -1851,287 +2070,315 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 </div>
 	<!-- //Modal View Post Picture 4 -->
 
-			<!-- footer content -->
-			<footer>
-      <p class="tweet-p1">
-		  ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
-		  </p>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
-		</div>
-	</div>
+<!-- ModalProfile -->
+<div class="modal fade" id="ProfilePicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Update Profile Picture</h4>
+        <button type="button" id="selected_profile_close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3"> 
+      <form method="post">
+        <div class="modal-header">
+              <img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> id ="profile_picture" alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
+        </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input type="hidden" name="ownerID" value="<?php echo ( $result->ownerID);?>" required = "required" class="form-control" id="success">
+				</div><br>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="profile" id="profile" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Save</button>
+              <button type='reset' id="selected_profile_cancel" class="btn btn-round btn-danger" name="Cancel" class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //ModalProfile -->
+
+        <!-- footer content -->
+        <footer>
+        <p class="tweet-p1">
+		ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.com</a>
+		<!--<a href="#">http://ax.by/zzzz</a>-->
+		</p>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script type="text/javascript">
-  $("#selected_picture_cancel4").click(function () {
-  
-    PostPicture4.value = "";
-    document.getElementById("btnChangePostPicture4").disabled = true;
-});
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_close4").click(function () {
-
-    PostPicture4.value = "";
-    document.getElementById("btnChangePostPicture4").disabled = true;
-});
-  </script>
-
-    <script>
-      PostPicture4.onchange = evt => {
-  const [file] = PostPicture4.files
-  if (file) {
-    post_picture4.src = URL.createObjectURL(file)
-  }
-  document.getElementById("btnChangePostPicture4").disabled = false;
-}
-    </script>
-
-    <script type="text/javascript">
-  $(".Ppost4").click(function () {
-    var pet_id34 = $(this).attr('data-pet-id');
-    $('#ChangePostPicture4').modal('show');
-    $("#pet_id34").val( pet_id34 );
-    var picture_file4 = $(this).attr('data-pet-picture');
-    $('#picture_file4').val( picture_file4 );
-    document.getElementById('post_picture4').src="/developgetpet/web/images/"+""+picture_file4;
-  });
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_cancel3").click(function () {
-  
-    PostPicture3.value = "";
-    document.getElementById("btnChangePostPicture3").disabled = true;
-});
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_close3").click(function () {
-
-    PostPicture3.value = "";
-    document.getElementById("btnChangePostPicture3").disabled = true;
-});
-  </script>
-
-    <script>
-      PostPicture3.onchange = evt => {
-  const [file] = PostPicture3.files
-  if (file) {
-    post_picture3.src = URL.createObjectURL(file)
-  }
-  document.getElementById("btnChangePostPicture3").disabled = false;
-}
-    </script>
-
-    <script type="text/javascript">
-  $(".Ppost3").click(function () {
-    var pet_id33 = $(this).attr('data-pet-id');
-    $('#ChangePostPicture3').modal('show');
-    $("#pet_id33").val( pet_id33 );
-    var picture_file3 = $(this).attr('data-pet-picture');
-    $('#picture_file3').val( picture_file3 );
-    document.getElementById('post_picture3').src="/developgetpet/web/images/"+""+picture_file3;
-  });
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_cancel2").click(function () {
-  
-    PostPicture2.value = "";
-    document.getElementById("btnChangePostPicture2").disabled = true;
-});
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_close2").click(function () {
-
-    PostPicture2.value = "";
-    document.getElementById("btnChangePostPicture2").disabled = true;
-});
-  </script>
-
-    <script>
-      PostPicture2.onchange = evt => {
-  const [file] = PostPicture2.files
-  if (file) {
-    post_picture2.src = URL.createObjectURL(file)
-  }
-  document.getElementById("btnChangePostPicture2").disabled = false;
-}
-    </script>
-
-    <script type="text/javascript">
-  $(".Ppost2").click(function () {
-    var pet_id32 = $(this).attr('data-pet-id');
-    $('#ChangePostPicture2').modal('show');
-    $("#pet_id32").val( pet_id32 );
-    var picture_file2 = $(this).attr('data-pet-picture');
-    $('#picture_file2').val( picture_file2 );
-    document.getElementById('post_picture2').src="/developgetpet/web/images/"+""+picture_file2;
-  });
-  </script>
-
-    <script type="text/javascript">
-  $(".view_picture4").click(function () {
-    $('#ViewPostPicture4').modal('show');
-    var photo_file4 = $(this).attr('data-pet-picture');
-    $('#photo_file4').val( photo_file4 );
-    document.getElementById('view_photo4').src="/developgetpet/web/images/"+""+photo_file4;
-  });
-  </script>
-
-    <script type="text/javascript">
-  $(".view_picture3").click(function () {
-    $('#ViewPostPicture3').modal('show');
-    var photo_file3 = $(this).attr('data-pet-picture');
-    $('#photo_file3').val( photo_file3 );
-    document.getElementById('view_photo3').src="/developgetpet/web/images/"+""+photo_file3;
-  });
-  </script>
-
-    <script type="text/javascript">
-  $(".view_picture2").click(function () {
-    $('#ViewPostPicture2').modal('show');
-    var photo_file2 = $(this).attr('data-pet-picture');
-    $('#photo_file2').val( photo_file2 );
-    document.getElementById('view_photo2').src="/developgetpet/web/images/"+""+photo_file2;
-  });
-  </script>
-
-    <script type="text/javascript">
-  $(".view_picture").click(function () {
-    $('#ViewPostPicture').modal('show');
-    var photo_file = $(this).attr('data-pet-picture');
-    $('#photo_file').val( picture_file );
-    document.getElementById('view_photo').src="/developgetpet/web/images/"+""+photo_file;
-  });
-  </script>
-
 <script type="text/javascript">
-    $('#edit_comment_emoji').emojioneArea({
-      inline: true,
-      pickerPosition: "right",
-   });
+$("#selected_picture_cancel4").click(function () {
+
+PostPicture4.value = "";
+document.getElementById("btnChangePostPicture4").disabled = true;
+});
 </script>
 
 <script type="text/javascript">
-    $('#comment_emoji').emojioneArea({
-      inline: true,
-      pickerPosition: "right",
-   });
+$("#selected_picture_close4").click(function () {
+
+PostPicture4.value = "";
+document.getElementById("btnChangePostPicture4").disabled = true;
+});
 </script>
 
 <script>
-  function commentEmoji() {
-  var copyText = document.getElementById("comment_emoji");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value);
-
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
+  PostPicture4.onchange = evt => {
+const [file] = PostPicture4.files
+if (file) {
+post_picture4.src = URL.createObjectURL(file)
 }
-  </script>
-
-<script>
-  function editcommentEmoji() {
-  var copyText = document.getElementById("edit_comment_emoji");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value);
-
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
+document.getElementById("btnChangePostPicture4").disabled = false;
 }
-  </script>
-
-   <script type="text/javascript">
-  $(".stcbtn").click(function () {
-    var selected_range = $(this).attr('data-selected-range');
-    $('#STCModal').modal('show');
-    $("#selected_range").val( selected_range );
-  });
-  </script>
-
-    <script>
-     $( "#comment" ).keyup(function() {
-  $("#btnComment").prop("disabled", !this.value);
-});
-    </script>
-
-    <script>
-     $( "#edit_comment" ).keyup(function() {
-  $("#btnEditComment").prop("disabled", !this.value);
-});
-    </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_cancel").click(function () {
-  
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_picture_close").click(function () {
-
-    PostPicture.value = "";
-    document.getElementById("btnChangePostPicture").disabled = true;
-});
-  </script>
-
-    <script>
-      PostPicture.onchange = evt => {
-  const [file] = PostPicture.files
-  if (file) {
-    post_picture.src = URL.createObjectURL(file)
-  }
-  document.getElementById("btnChangePostPicture").disabled = false;
-}
-    </script>
-    
-    <script>
-   $(window).on("load", function () {
-    console.log("load");
-    $("div#view_more_comment_Div").hide();
-    });
-    </script>
-
-    <script>
-     $(function () {
-    $("textarea.txtgrow").each(function () {
-      this.style.height = 'auto';
-      this.style.height = (this.scrollHeight+10)+'px';
-    });
-    });
-    </script>
+</script>
 
 <script type="text/javascript">
-  $(".stcbtn").click(function () {
-    var master_id = $(this).attr('data-master-id');
-    var pet_id = $(this).attr('data-pet-id');
-    var pet_name = $(this).attr('data-pet-name');
-    var pet_type = $(this).attr('data-pet-type');
-    var pet_breed = $(this).attr('data-pet-breed');
-    var pet_description = $(this).attr('data-pet-description');
-    $('#STCModal').modal('show');
-    $("#master_id").val( master_id );
-    $("#pet_id").val( pet_id );
-    $("#pet_name").val( pet_name );
-    $("#pet_type").val( pet_type );
-    $("#pet_breed").val( pet_breed );
-    $("#pet_description").val( pet_description );
-    
-  });
-  </script>
+$(".Ppost4").click(function () {
+var pet_id34 = $(this).attr('data-pet-id');
+$('#ChangePostPicture4').modal('show');
+$("#pet_id34").val( pet_id34 );
+var picture_file4 = $(this).attr('data-pet-picture');
+$('#picture_file4').val( picture_file4 );
+document.getElementById('post_picture4').src="/developgetpet/web/images/"+""+picture_file4;
+});
+</script>
+
+<script type="text/javascript">
+$("#selected_picture_cancel3").click(function () {
+
+PostPicture3.value = "";
+document.getElementById("btnChangePostPicture3").disabled = true;
+});
+</script>
+
+<script type="text/javascript">
+$("#selected_picture_close3").click(function () {
+
+PostPicture3.value = "";
+document.getElementById("btnChangePostPicture3").disabled = true;
+});
+</script>
+
+<script>
+  PostPicture3.onchange = evt => {
+const [file] = PostPicture3.files
+if (file) {
+post_picture3.src = URL.createObjectURL(file)
+}
+document.getElementById("btnChangePostPicture3").disabled = false;
+}
+</script>
+
+<script type="text/javascript">
+$(".Ppost3").click(function () {
+var pet_id33 = $(this).attr('data-pet-id');
+$('#ChangePostPicture3').modal('show');
+$("#pet_id33").val( pet_id33 );
+var picture_file3 = $(this).attr('data-pet-picture');
+$('#picture_file3').val( picture_file3 );
+document.getElementById('post_picture3').src="/developgetpet/web/images/"+""+picture_file3;
+});
+</script>
+
+<script type="text/javascript">
+$("#selected_picture_cancel2").click(function () {
+
+PostPicture2.value = "";
+document.getElementById("btnChangePostPicture2").disabled = true;
+});
+</script>
+
+<script type="text/javascript">
+$("#selected_picture_close2").click(function () {
+
+PostPicture2.value = "";
+document.getElementById("btnChangePostPicture2").disabled = true;
+});
+</script>
+
+<script>
+  PostPicture2.onchange = evt => {
+const [file] = PostPicture2.files
+if (file) {
+post_picture2.src = URL.createObjectURL(file)
+}
+document.getElementById("btnChangePostPicture2").disabled = false;
+}
+</script>
+
+<script type="text/javascript">
+$(".Ppost2").click(function () {
+var pet_id32 = $(this).attr('data-pet-id');
+$('#ChangePostPicture2').modal('show');
+$("#pet_id32").val( pet_id32 );
+var picture_file2 = $(this).attr('data-pet-picture');
+$('#picture_file2').val( picture_file2 );
+document.getElementById('post_picture2').src="/developgetpet/web/images/"+""+picture_file2;
+});
+</script>
+
+<script type="text/javascript">
+$(".view_picture4").click(function () {
+$('#ViewPostPicture4').modal('show');
+var photo_file4 = $(this).attr('data-pet-picture');
+$('#photo_file4').val( photo_file4 );
+document.getElementById('view_photo4').src="/developgetpet/web/images/"+""+photo_file4;
+});
+</script>
+
+<script type="text/javascript">
+$(".view_picture3").click(function () {
+$('#ViewPostPicture3').modal('show');
+var photo_file3 = $(this).attr('data-pet-picture');
+$('#photo_file3').val( photo_file3 );
+document.getElementById('view_photo3').src="/developgetpet/web/images/"+""+photo_file3;
+});
+</script>
+
+<script type="text/javascript">
+$(".view_picture2").click(function () {
+$('#ViewPostPicture2').modal('show');
+var photo_file2 = $(this).attr('data-pet-picture');
+$('#photo_file2').val( photo_file2 );
+document.getElementById('view_photo2').src="/developgetpet/web/images/"+""+photo_file2;
+});
+</script>
+
+<script type="text/javascript">
+$(".view_picture").click(function () {
+$('#ViewPostPicture').modal('show');
+var photo_file = $(this).attr('data-pet-picture');
+$('#photo_file').val( picture_file );
+document.getElementById('view_photo').src="/developgetpet/web/images/"+""+photo_file;
+});
+</script>
+
+<script type="text/javascript">
+$('#edit_comment_emoji').emojioneArea({
+  inline: true,
+  pickerPosition: "right",
+});
+</script>
+
+<script type="text/javascript">
+$('#comment_emoji').emojioneArea({
+  inline: true,
+  pickerPosition: "right",
+});
+</script>
+
+<script>
+function commentEmoji() {
+var copyText = document.getElementById("comment_emoji");
+copyText.select();
+copyText.setSelectionRange(0, 99999);
+navigator.clipboard.writeText(copyText.value);
+
+/* Alert the copied text */
+alert("Copied the text: " + copyText.value);
+}
+</script>
+
+<script>
+function editcommentEmoji() {
+var copyText = document.getElementById("edit_comment_emoji");
+copyText.select();
+copyText.setSelectionRange(0, 99999);
+navigator.clipboard.writeText(copyText.value);
+
+/* Alert the copied text */
+alert("Copied the text: " + copyText.value);
+}
+</script>
+
+<script>
+ $( "#comment" ).keyup(function() {
+$("#btnComment").prop("disabled", !this.value);
+});
+</script>
+
+<script>
+ $( "#edit_comment" ).keyup(function() {
+$("#btnEditComment").prop("disabled", !this.value);
+});
+</script>
+
+<script type="text/javascript">
+$("#selected_picture_cancel").click(function () {
+
+PostPicture.value = "";
+document.getElementById("btnChangePostPicture").disabled = true;
+});
+</script>
+
+<script type="text/javascript">
+$("#selected_picture_close").click(function () {
+
+PostPicture.value = "";
+document.getElementById("btnChangePostPicture").disabled = true;
+});
+</script>
+
+<script>
+  PostPicture.onchange = evt => {
+const [file] = PostPicture.files
+if (file) {
+post_picture.src = URL.createObjectURL(file)
+}
+document.getElementById("btnChangePostPicture").disabled = false;
+}
+</script>
+
+<script>
+$(window).on("load", function () {
+console.log("load");
+$("div#view_more_comment_Div").hide();
+});
+</script>
+
+<script>
+ $(function () {
+$("textarea.txtgrow").each(function () {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight+10)+'px';
+});
+});
+</script>
+
+<script type="text/javascript">
+$(".adoptbtn").click(function () {
+var master_id = $(this).attr('data-master-id');
+var pet_id = $(this).attr('data-pet-id');
+var pet_name = $(this).attr('data-pet-name');
+var pet_type = $(this).attr('data-pet-type');
+var pet_breed = $(this).attr('data-pet-breed');
+var pet_description = $(this).attr('data-pet-description');
+$('#AdoptModal').modal('show');
+$("#master_id").val( master_id );
+$("#pet_id").val( pet_id );
+$("#pet_name").val( pet_name );
+$("#pet_type").val( pet_type );
+$("#pet_breed").val( pet_breed );
+$("#pet_description").val( pet_description );
+
+});
+</script>
 
 <script type="text/javascript">
   $(".viewbtn").click(function () {
@@ -2174,27 +2421,15 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   </script>
 
 <script type="text/javascript">
-  $(".commentbtn").click(function () {
-    var petid = $(this).attr('data-pet-id');
-    var masterid = $(this).attr('data-master-id');
-  
-    $('#Comment').modal('show');
-    $("#petid").val( petid );
-    $("#masterid").val( masterid );
-
-  });
-  </script>
-
-<script type="text/javascript">
-  $(".Ppost").click(function () {
-    var pet_id3 = $(this).attr('data-pet-id');
-    $('#ChangePostPicture').modal('show');
-    $("#pet_id3").val( pet_id3 );
-    var picture_file = $(this).attr('data-pet-picture');
-    $('#picture_file').val( picture_file );
-    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
-  });
-  </script>
+$(".Ppost").click(function () {
+var pet_id3 = $(this).attr('data-pet-id');
+$('#ChangePostPicture').modal('show');
+$("#pet_id3").val( pet_id3 );
+var picture_file = $(this).attr('data-pet-picture');
+$('#picture_file').val( picture_file );
+document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
+});
+</script>
 
 <script type="text/javascript">
   $(".Epost").click(function () {
@@ -2237,189 +2472,156 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   </script>
 
 <script type="text/javascript">
-  $(".Dpost").click(function () {
-    var pet_id1 = $(this).attr('data-pet-id');
-    $('#DeletePost').modal('show');
-    $("#pet_id1").val( pet_id1 );
-  });
-  </script>
+$(".Dpost").click(function () {
+var pet_id1 = $(this).attr('data-pet-id');
+$('#DeletePost').modal('show');
+$("#pet_id1").val( pet_id1 );
+});
+</script>
 
 <script type="text/javascript">
-  $(".Ecomment").click(function () {
-    var commentid = $(this).attr('data-comment-id');
-    var edit_comment = $(this).attr('data-comment-content');
-    $("#edit_comment").val( edit_comment );
-    $("#commentid").val( commentid );
-    $('#EditComment').modal('show');
-  });
-  </script>
+$(".Ecomment").click(function () {
+var commentid = $(this).attr('data-comment-id');
+var edit_comment = $(this).attr('data-comment-content');
+$("#edit_comment").val( edit_comment );
+$("#commentid").val( commentid );
+$('#EditComment').modal('show');
+});
+</script>
 
- <script type="text/javascript">
-  $(".Dcomment").click(function () {
-    var comment_id = $(this).attr('data-comment-id');
-    $("#comment_id").val( comment_id );
-    $('#DeleteComment').modal('show');
-  });
-  </script>
+<script type="text/javascript">
+$(".Dcomment").click(function () {
+var comment_id = $(this).attr('data-comment-id');
+$("#comment_id").val( comment_id );
+$('#DeleteComment').modal('show');
+});
+</script>
 
-  <script type="text/javascript">
-  $(".menu").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?>";
-  }).hide();
-  </script>
+<script type="text/javascript">
+$(".menu").filter(function(){
+return $(this).text().trim() != "<?php echo $ID?>";
+}).hide();
+</script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
   $(".stcbtn").filter(function(){
   return $(this).text().trim() == "<?php echo $ID?> Care Me";
   }).css('visibility', 'hidden');
   </script>
 
-  <script type="text/javascript">
-  $(".option").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?>";
-  }).css('visibility', 'hidden');
-  </script>
+<script type="text/javascript">
+$(".Epost").filter(function(){
+return $(this).text().trim() != "<?php echo $ID?> Edit Post";
+}).hide();
+</script>
 
-  <script type="text/javascript">
-  $(".Epost").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?> Edit Post";
+<script type="text/javascript">
+$(".Dpost").filter(function(){
+return $(this).text().trim() != "<?php echo $ID?> Delete Post";
+}).hide();
+</script>
+
+<script type="text/javascript">
+  $(".Ecomment").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Edit";
   }).hide();
   </script>
 
-  <script type="text/javascript">
-  $(".Dpost").filter(function(){
-  return $(this).text().trim() != "<?php echo $ID?> Delete Post";
-  }).hide();
+<script type="text/javascript">
+$(".comment-count").filter(function(){
+return $(this).text().trim() === "0";
+}).hide();
+</script>
+
+<script type="text/javascript">
+$(".count-more-comment").filter(function(){
+return $(this).text().trim() === "View 0 more comment";
+}).hide();
+</script>
+
+<script type="text/javascript">
+$('p.view-more-comment').click(function() {
+  $('.view-more-comment-Div').show(); // To hide all other contents
+  $('.comment-Div').hide();
+});
+</script>
+
+<script type="text/javascript">
+$("p.hide-more-comment").filter(function(){
+return $(this).text().trim() === "Hide -1 comment";
+}).hide();
+$("p.hide-more-comment").filter(function(){
+return $(this).text().trim() === "Hide 0 comment";
+}).hide();
+</script>
+
+<script type="text/javascript">
+$('p.hide-more-comment').click(function() {
+  $('.view-more-comment-Div').hide(); // To hide all other contents
+  $('.comment-Div').show();
+});
+</script>
+
+    <script type="text/javascript">
+  $("#selected_profile_cancel").click(function () {
+   
+    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
+    Picture.value = "";
+    document.getElementById("profile").disabled = true;
+});
   </script>
 
-  <script type="text/javascript">
-  $(".comment-count").filter(function(){
-  return $(this).text().trim() === "0";
-  }).hide();
+    <script type="text/javascript">
+  $("#selected_profile_close").click(function () {
+   
+    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
+    Picture.value = "";
+    document.getElementById("profile").disabled = true;
+});
   </script>
 
-  <script type="text/javascript">
-  $(".count-more-comment").filter(function(){
-  return $(this).text().trim() === "View 0 more comment";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $('p.view-more-comment').click(function() {
-      $('.view-more-comment-Div').show(); // To hide all other contents
-      $('.comment-Div').hide();
-  });
-  </script>
-
-  <script type="text/javascript">
-  $("p.hide-more-comment").filter(function(){
-  return $(this).text().trim() === "Hide -1 comment";
-  }).hide();
-  $("p.hide-more-comment").filter(function(){
-  return $(this).text().trim() === "Hide 0 comment";
-  }).hide();
-  </script>
-
-  <script type="text/javascript">
-  $('p.hide-more-comment').click(function() {
-      $('.view-more-comment-Div').hide(); // To hide all other contents
-      $('.comment-Div').show();
-  });
-  </script>
-
-  <script type="text/javascript">
-  $(".unread").filter(function(){
-  return $(this).text().trim() === "Read";
-  }).hide();
-  </script>
-
-
-	<!-- Javascript functions	-->
-	<script>
-		function hideshow(){
-			var password = document.getElementById("password1");
-			var slash = document.getElementById("slash");
-			var eye = document.getElementById("eye");
-			
-			if(password.type === 'password'){
-				password.type = "text";
-				slash.style.display = "block";
-				eye.style.display = "none";
-			}
-			else{
-				password.type = "password";
-				slash.style.display = "none";
-				eye.style.display = "block";
-			}
-
-		}
-	</script>
-
-    <script>
-        // initialize a validator instance from the "FormValidator" constructor.
-        // A "<form>" element is optionally passed as an argument, but is not a must
-        var validator = new FormValidator({
-            "events": ['blur', 'input', 'change']
-        }, document.forms[0]);
-        // on form "submit" event
-        document.forms[0].onsubmit = function(e) {
-            var submit = true,
-                validatorResult = validator.checkAll(this);
-            console.log(validatorResult);
-            return !!validatorResult.valid;
-        };
-        // on form "reset" event
-        document.forms[0].onreset = function(e) {
-            validator.reset();
-        };
-        // stuff related ONLY for this demo page:
-        $('.toggleValidationTooltips').change(function() {
-            validator.settings.alerts = !this.checked;
-            if (this.checked)
-                $('form .alert').remove();
-        }).prop('checked', false);
-
+<script>
+      Picture.onchange = evt => {
+  const [file] = Picture.files
+  if (file) {
+    profile_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("profile").disabled = false;
+}
     </script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
+    
+
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+      <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+      </ul>
+      <div class="clearfix"></div>
+      <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- bootstrap-progressbar -->
-	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<!-- iCheck -->
-	<script src="../vendors/iCheck/icheck.min.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script src="../vendors/moment/min/moment.min.js"></script>
-	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- bootstrap-wysiwyg -->
-	<script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-	<script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-	<script src="../vendors/google-code-prettify/src/prettify.js"></script>
-	<!-- jQuery Tags Input -->
-	<script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-	<!-- Switchery -->
-	<script src="../vendors/switchery/dist/switchery.min.js"></script>
-	<!-- Select2 -->
-	<script src="../vendors/select2/dist/js/select2.full.min.js"></script>
-	<!-- Parsley -->
-	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
-	<!-- Autosize -->
-	<script src="../vendors/autosize/dist/autosize.min.js"></script>
-	<!-- jQuery autocomplete -->
-	<script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-	<!-- starrr -->
-	<script src="../vendors/starrr/dist/starrr.js"></script>
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- PNotify -->
+    <script src="../vendors/pnotify/dist/pnotify.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
-  
-
-     
-
-</body>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+  </body>
 </html>
