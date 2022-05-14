@@ -352,7 +352,7 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 						</div>
 					</div>
 					<fieldset>
-						<legend>Pet Tips</legend>
+						<legend>Pet Care Tips</legend>
 						<div class="button-styles">
 						<a href="#contact" class="button2-w3l scroll">More info</a>
 						</div>

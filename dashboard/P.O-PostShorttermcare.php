@@ -77,8 +77,8 @@ if($query->rowCount()>0)
 
 					<br />
 
-						<!-- sidebar menu -->
-              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				 <!-- sidebar menu -->
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
@@ -87,15 +87,15 @@ if($query->rowCount()>0)
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogslistadoption.php">Dog's For Adoption</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catslistadoption.php">Cat's For Adoption</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dogs</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cats</a></li>
                       </ul>
                     </li>
 
-                    <li><a >Pet For Short-term care</a>
+                    <li><a >Pet For Short-Term Care</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogsshorttermcare.php">Dog's For Short-term care</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catsshorttermcare.php">Cat's For Short-term care</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dogs</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cats</a></li>
                       </ul>
                     </li>
 
@@ -398,7 +398,16 @@ $query->bindParam(':Picture4',$Picture4,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Posted Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+
+if($Type=$_POST['Type'] == "Dog")
+{
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php'</script>";
+}
+
+if($Type=$_POST['Type'] == "Cat")
+{
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php'</script>";
+}
 
 }
 ?>
@@ -413,7 +422,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                         <div class="x_title">
                         
                         <!-- Back Button -->
-                        <a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:White;"> Return</i></button></a>
+                        <a onclick="window.history.go(-1); return false;"><button data-toggle="tooltip" data-placement="top" title="Return" type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;"><i class="fa fa-arrow-left" style="padding-right:5px;color:White;"> Return</i></button></a>
                         <!-- //Back Button -->
 
                         <ul class="nav navbar-right panel_toolbox">

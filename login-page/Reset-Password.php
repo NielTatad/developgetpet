@@ -121,6 +121,7 @@ if(isset($_POST['confirm']))
       else
       {
           echo "<script>alert('Password must be the same!');</script>";
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/Reset-Password.php'</script>";
       }
     }
     

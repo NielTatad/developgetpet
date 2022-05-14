@@ -294,25 +294,47 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
+<!-- Search Pet Breed Code  -->
+<?php
+if(isset($_POST['Go']))
+{
+  if($Search = $_POST['Search'] == "")
+  {
+   echo "<script>alert('No data entered!');</script>";
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php'</script>";
+  
+  }
+  else
+  {
+
+   $Search=($_POST['Search']);
+
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-SearchBreedShorttermcare.php'</script>";
+    
+   $_SESSION['Search'] = $Search;
+
+  }
+
+}
+?>
+
+<!-- //Search Pet Breed Code -->
+
 	  <!-- page content -->
     <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-              <br>
-              </div>
-
-              <div class="title_right">
+          <div class="title_right">
+               <form method="post">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <input type="text" name="Search" class="form-control" placeholder="Search for Pet Breeds...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
+                      <button class="btn btn-default" name="Go" type="submit" style="height:38px"><i class="fa fa-search fa-lg"></i></button>
                     </span>
                   </div>
                 </div>
+               </form>
               </div>
-            </div>
 
             <!-- /page content -->
 
@@ -329,6 +351,15 @@ if($query->rowCount()>0)
                     <ul class="nav navbar-right panel_toolbox">
                    </ul>
                     <div class="clearfix"></div>
+                  </div>
+                  <div style="text-align: center" class="form-group">
+                    <div class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                        <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-DogsForShortermcare.php';" style="background-color:#00cdc1;width:160px;height:35px;" class="btn btn-info">Dog</button>
+                        <button onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-CatsForShortermcare.php';" style="background-color:#00cdc1;width:160px;height:35px;" class="btn btn-info">Cat</button>
+                        <br><br>
+                      </div>
+                    </div>
                   </div>
                   <div class="x_content" style="text-align:center;">
                                   
@@ -419,7 +450,7 @@ if($query->rowCount()>0)
                                               <?php
                                               $postid = $result->petID;
 
-                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Adoption' ORDER BY commentID DESC LIMIT 1";
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Short-Term Care' ORDER BY commentID DESC LIMIT 1";
                                               $query2=$dbh->prepare($sql2);
                                               $query2->execute();
                                               $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -475,7 +506,7 @@ if($query->rowCount()>0)
                                               <?php
                                               $postid = $result->petID;
 
-                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Adoption' ORDER BY commentID DESC";
+                                              $sql2="SELECT * from comment WHERE postID ='$postid' AND  commentStatus='Short-Term Care' ORDER BY commentID DESC";
                                               $query2=$dbh->prepare($sql2);
                                               $query2->execute();
                                               $comments=$query2->fetchALL(PDO::FETCH_OBJ);
@@ -547,7 +578,7 @@ if($query->rowCount()>0)
                         } 
                         else
                         {
-                          echo "There isn't any information displayed.";
+                          echo "There's no information to display.";
                         }
                         ?>
                      <!-- //View Pet Post for Short-term Care Code -->                                        
@@ -887,7 +918,7 @@ if(isset($_POST['btnComment']))
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Adoption')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Short-term care')";
     $query=$dbh->prepare($sql);
     $query->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);
@@ -905,7 +936,7 @@ if(isset($_POST['btnComment']))
     $masterid=($_POST['masterid']);
     $Comment=($_POST['Comment']);
     
-    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Adoption')";
+    $sql="INSERT INTO comment(postID,masterID,userID,commentContent,commentDate,commentStatus)VALUES(:petid,:masterid,'$ID',:Comment,'$date','Short-term care')";
     $query=$dbh->prepare($sql);
     $query->bindParam(':petid',$petid,PDO::PARAM_STR);
     $query->bindParam(':masterid',$masterid,PDO::PARAM_STR);

@@ -160,7 +160,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <br />
 
-             <!-- sidebar menu -->
+            <!-- sidebar menu -->
          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
@@ -168,12 +168,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet For Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dogs</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cats</a></li>
+                      </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Pet For Short-term Care</a>
+                    <li><a >Pet For Short-Term Care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dogs</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cats</a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -217,8 +223,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
           </div>
         </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
+         <!-- top navigation -->
+         <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -236,11 +242,126 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           <span>Settings</span>
                         </a>-->
                       <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">Account Settings</a>
-                      <a class="dropdown-item" href="">My Request</a>
-                      <a class="dropdown-item" href="">User Request</a>
-                      <a class="dropdown-item" href="">Pet Adoption</a>
-                      <a class="dropdown-item" href="">Short-Term Care</a>
-                      <a class="dropdown-item" href="">My History</a>
+                      <?php
+                      
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus != 'Disapproved' AND requestStatus != 'Cancelled' AND requestStatus != 'Approved'");
+                      $query->execute();
+
+                      $myrequest=$query->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyRequest.php">My Request <span class="badge bg-red" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
+                      <script type="text/javascript">
+                        var myrequest = <?php echo ($myrequest);?>;
+                        if (myrequest === 0){
+                          document.getElementById("myrequest").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query1=$dbh->prepare("SELECT COUNT(masterID) FROM request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved'");
+                      $query1->execute();
+
+                      $user_request=$query1->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-UserRequest.php">User Request <span class="badge bg-red" id="user_request" value=""> <?php echo ($user_request);?></span></a>
+                      <script type="text/javascript">
+                        var user_request = <?php echo ($user_request);?>;
+                        if (user_request === 0){
+                          document.getElementById("user_request").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query2=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query2->execute();
+
+                      $my_adopted=$query2->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyAdoptedPet.php">My Adopted Pet <span class="badge bg-red" id="my_adopted" value=""> <?php echo ($my_adopted);?></a>
+                      <script type="text/javascript">
+                        var my_adopted = <?php echo ($my_adopted);?>;
+                        if (my_adopted === 0){
+                          document.getElementById("my_adopted").style.display = "none";
+                        }
+                        </script>
+                      <?php
+                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query3->execute();
+
+                      $user_adopted=$query3->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyPetAdoptedByUser.php">My Pet Adopted By User <span class="badge bg-red" id="user_adopted" value=""> <?php echo ($user_adopted);?></a>
+                      <script type="text/javascript">
+                        var user_adopted = <?php echo ($user_adopted);?>;
+                        if (user_adopted === 0){
+                          document.getElementById("user_adopted").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query4=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query4->execute();
+
+                      $my_shorttermcare=$query4->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyShorttermcare.php">My Short-Term Care <span class="badge bg-red" id="my_shorttermcare" value=""> <?php echo ($my_shorttermcare);?></a>
+                      <script type="text/javascript">
+                        var my_shorttermcare = <?php echo ($my_shorttermcare);?>;
+                        if (my_shorttermcare === 0){
+                          document.getElementById("my_shorttermcare").style.display = "none";
+                        }
+                        </script>
+                      
+                      <?php
+                      $query5=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query5->execute();
+
+                      $user_shorttermcare=$query5->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-MyPetShorttermcare.php">My Pet In Short-Term Care <span class="badge bg-red" id="user_shorttermcare" value=""> <?php echo ($user_shorttermcare);?></a>
+                      <script type="text/javascript">
+                        var user_shorttermcare = <?php echo ($user_shorttermcare);?>;
+                        if (user_shorttermcare === 0){
+                          document.getElementById("user_shorttermcare").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM request WHERE userID='$ID' AND requestStatus = 'Cancelled'");
+                      $query->execute();
+
+                      $cancelled=$query->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-CancelledRequest.php">Cancelled Request <span class="badge bg-red" id="cancelled" value=""><?php echo ($cancelled);?></span></a>
+                      <script type="text/javascript">
+                        var cancelled = <?php echo ($cancelled);?>;
+                        if (cancelled === 0){
+                          document.getElementById("cancelled").style.display = "none";
+                        }
+                        </script>
+                      
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID'");
+                      $query->execute();
+
+                      $history=$query->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.O-History.php">My History <span class="badge bg-red" id="adoption" value=""><?php echo ($history);?></span></a>
+                      <script type="text/javascript">
+                        var adoption = <?php echo ($history);?>;
+                        if (adoption === 0){
+                          document.getElementById("adoption").style.display = "none";
+                        }
+                        </script>
+                        
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -393,19 +514,19 @@ if($query->rowCount()>0)
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>&nbsp;&nbsp;&nbsp;<input readonly type="email" class="form-control" name="Email" value="<?php echo ( $result->ownerEmail);?>" style="background-color:#fff;width:230px;" required="required"/>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <button type="email" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Email</button>
+                                                <input readonly type="email" class="form-control" name="Email" value="<?php echo ( $result->ownerEmail);?>" style="background-color:#fff;" required="required"/>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Contact<span class="required"></span></label>&nbsp;&nbsp;&nbsp;<input readonly type="number" class="form-control" name="ContactNo" value="<?php echo ( $result->ownerContactNo);?>" style="background-color:#fff;width:230px;" required="required"/>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>&nbsp;&nbsp;&nbsp;<input readonly type="number" class="form-control" name="ContactNo" value="<?php echo ( $result->ownerContactNo);?>" style="background-color:#fff;width:230px;" required="required"/>
                                             <div class="col-md-6 col-sm-6">
-                                                <button type="email" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Contact No.</button>
+                                                <button type="button" onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-ChangeContactNo.php';" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Contact No.</button>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">BirthDate<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Birth Date<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input type="text" class="form-control" placeholder="mm-dd-yyyy" id="birthday" name="Birthdate" value="<?php echo ( $result->ownerBirthdate);?>" required="required"/>
                                             </div>
@@ -442,13 +563,13 @@ if($query->rowCount()>0)
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Username<span class="required"></span></label>&nbsp;&nbsp;&nbsp;<input readonly type="text" class="form-control" name="Username" value="<?php echo ( $result->ownerUsername);?>" style="background-color:#fff;width:230px;" required="required"/>
                                             <div class="col-md-6 col-sm-6">
-                                                <button type="email" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Username</button>
+                                                <button type="button" onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-ChangeUsername.php';" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Username</button>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Password<span class="required"></span></label>&nbsp;&nbsp;&nbsp;<input readonly type="password" class="form-control" name="Password" value="<?php echo ( $result->ownerPassword);?>" style="background-color:#fff;width:230px;" required="required"/>
                                             <div class="col-md-6 col-sm-6">
-                                                <button type="email" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Password</button>
+                                                <button type="button" onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-ChangePassword.php';" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Password</button>
                                             </div>
                                         </div>
                                         <div class="ln_solid">

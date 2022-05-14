@@ -75,6 +75,7 @@ if(isset($_POST['register']))
       else
       {
           echo "<script>alert('Invalid OTP code or Email does not exist!');</script>";
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/A.W.O-OTP.php'</script>";
       }
     }
     

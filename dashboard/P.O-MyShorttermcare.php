@@ -65,8 +65,8 @@ if($query->rowCount()>0)
 
             <br />
 
-				 <!-- sidebar menu -->
-         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+			<!-- sidebar menu -->
+      <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
@@ -97,10 +97,6 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>  
-                    
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
                     </li>
 
                     <li>
@@ -132,7 +128,7 @@ if($query->rowCount()>0)
           </div>
         </div>
 
-        <!-- top navigation -->
+          <!-- top navigation -->
       <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
@@ -400,16 +396,15 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Cancelled Request</h2>
+                    <h2>My Short-Term Care</h2>
                     <ul class="nav navbar-right panel_toolbox">     
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content" style="text-align:center;">
-
-               <!-- View Cancelled Request Code -->
+<!-- View My Short-Term Care Code -->
 <?php
-            $sql="SELECT * from request WHERE userID='$ID' AND requestStatus = 'Cancelled' ORDER BY requestID DESC";
+            $sql="SELECT * from history WHERE userID='$ID' AND Title='Short-Term Care' AND Status='Approved' ORDER BY historyID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -422,7 +417,7 @@ if($query->rowCount()>0)
             <div class="col-nd-4">
               <div class="card" style="border-radius:10px;border-width:2px;">                 
                   <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                  <h3>Cancelled <?php echo ($result->requestTitle);?></h3>
+                  <h3><?php echo ($result->Title);?></h3>
                       <ul style="list-style:none;margin-left:-50px;"><br>
                       <li><h3 hidden class="card-title"><?php echo ($result->requestID);?></h3></li>
                       <?php $user_id = $result->userID;
@@ -452,40 +447,39 @@ if($query->rowCount()>0)
                         foreach($petids as $petid)
                       {
                         ?>
-                      
-                      <?php $master_id = $petid->userID;
+                         
+                      <?php $master_id = $result->masterID;
 
-                    $sql3="SELECT * from register WHERE userID='$master_id'";
-                    $query3=$dbh->prepare($sql3);
-                    $query3->execute();
-                    $masterids=$query3->fetchALL(PDO::FETCH_OBJ);
-                    $cnt3=1;
-                    if($query3->rowCount()>0)
-                    {
-                      foreach($masterids as $masterid)
-                    {
-                      ?>
-                      <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
+                      $sql3="SELECT * from register WHERE userID='$master_id'";
+                      $query3=$dbh->prepare($sql3);
+                      $query3->execute();
+                      $masterids=$query3->fetchALL(PDO::FETCH_OBJ);
+                      $cnt3=1;
+                      if($query3->rowCount()>0)
+                      {
+                        foreach($masterids as $masterid)
+                      {
+                        ?>
+                    
+                      <?php if ($result->Title == 'Short-Term Care' AND $result->Status == 'Approved') { ?>
 
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:230px;height:210px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:210px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ($petid->selectedRange);?>&#13;&#10;Charge: ₱<?php echo ($petid->Charge);?>.00&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:20px" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?>&#13;&#10;Email: <?php echo ( $masterid->Email);?>&#13;&#10;Contact No: <?php echo ( $masterid->contactNo);?></textarea><br><br>
 
-                      <?php } ?>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:260px;height:260px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:260px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ( $petid->selectedRange);?>&#13;&#10;Charge:  ₱<?php echo ( $petid->Charge);?>.00&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Approved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Return Date: <?php echo ($result->returnDate);?>&#13;&#10;Status: <?php echo ($result->Status);?></textarea><br><br>
 
-                      <?php if ($result->requestTitle == 'Adoption Request') { ?>
+                      <div style="text-align: center" class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                      <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-selected-range="<?php echo ( $petid->selectedRange);?>" data-charge="₱<?php echo ( $petid->Charge);?>.00" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
 
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
+                      <button class="btn btn-round btn-primary short-term-return" style="border:#00cdc1;width: 90px;height:37px;">Returned</button>
+                      </div>
+                      </div>
 
                       <?php } ?>
 
                       <?php $cnt3=$cnt3+1;}} ?>
                       <?php $cnt2=$cnt2+1;}} ?>
                       <?php $cnt1=$cnt1+1;}} ?>
-                      
-                      <div style="text-align: center" class="form-group">
-                      <div class="col-md-6 offset-md-3">
-                      <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
-                      </div>
-                      </div>
                       </ul>
               </div>
             </div>
@@ -499,7 +493,7 @@ if($query->rowCount()>0)
             echo "There's no information to display.";
           }
             ?>
-         <!-- //View Cancelled Request Code -->
+         <!-- //View My Short-Term Care Code -->
 
                   </div>
                 </div>
@@ -609,10 +603,24 @@ if($query->rowCount()>0)
 			  <div class="col-md-6 col-sm-6">
         <textarea disabled="yes" id="pet_diet1" style="width:440px;height:80px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
         </div>
-				</div>
+		</div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Time Period<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="selected_range1" name="selectedRange" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Charge<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="charge1" name="Charge" style="background-color:#fff;width:440px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Reason for Short-term care<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
         <textarea disabled="yes" id="pet_description1" name="petDescription" style="width:440px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
         </div>
@@ -692,6 +700,40 @@ if($query->rowCount()>0)
     </script>
 
 <script type="text/javascript">
+  $("#selected_profile_cancel").click(function () {
+   
+    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
+    Picture.value = "";
+    document.getElementById("profile").disabled = true;
+});
+  </script>
+
+    <script type="text/javascript">
+  $("#selected_profile_close").click(function () {
+   
+    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
+    Picture.value = "";
+    document.getElementById("profile").disabled = true;
+});
+  </script>
+
+<script>
+      Picture.onchange = evt => {
+  const [file] = Picture.files
+  if (file) {
+    profile_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("profile").disabled = false;
+}
+    </script>
+
+    <script type="text/javascript">
+    $(".unread").filter(function(){
+    return $(this).text().trim() === "Read";
+    }).hide();
+    </script>
+
+<script type="text/javascript">
   $(".viewbtn").click(function () {
     var pet_id1 = $(this).attr('data-pet-id');
     var pet_name1 = $(this).attr('data-pet-name');
@@ -706,6 +748,8 @@ if($query->rowCount()>0)
     var deworming1 = $(this).attr('data-pet-deworming');
     var three_in_one_vaccine1 = $(this).attr('data-pet-threeinonevaccine');
     var pet_diet1 = $(this).attr('data-pet-diet');
+    var selected_range1 = $(this).attr('data-selected-range');
+    var charge1 = $(this).attr('data-charge');
     var pet_description1 = $(this).attr('data-pet-description');
     var pet_status1 = $(this).attr('data-pet-status');
     var master_name1 = $(this).attr('data-master-name');
@@ -723,11 +767,35 @@ if($query->rowCount()>0)
     $("#deworming1").val( deworming1 );
     $("#three_in_one_vaccine1").val( three_in_one_vaccine1 );
     $("#pet_diet1").val( pet_diet1 );
+    $("#selected_range1").val( selected_range1 );
+    $("#charge1").val( charge1 );
     $("#pet_description1").val( pet_description1 );
     $("#pet_status1").val( pet_status1 );
     $("#master_name1").val( master_name1 );
   });
   </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.cancelbtn').on('click', function () {
+
+                $('#CancelRequest').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#request_id').val(data[0]);
+                $('#pet_id').val(data[1]);
+                $('#master_id').val(data[2]);
+            });
+        });
+    </script>
 
 
     <!-- jQuery -->
