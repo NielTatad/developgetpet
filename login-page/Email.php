@@ -78,7 +78,7 @@ function generateRandomString($length = 8) {
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="email" name="Email">
 					  </div><br>
             <input type="submit" name="next" value="Next" class="btn btn-block btn-primary" style="background-color:#00cdc1;border:#00cdc1;height:40px;">
-              <br><br><br><br>
+              <br><br>
             </form>
           </div>
         </div>

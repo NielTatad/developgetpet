@@ -311,14 +311,12 @@ th {
                                             <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->charityPostdate);?></textarea>
                                             <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                                                                       
-                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                              <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:445px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->charityTitle);?></h2></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charityBank);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charityAmount);?></h3></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charityPinnumber);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityTargetamount);?></h3></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charityDescription);?></textarea></li>
                                               
                                               
@@ -461,7 +459,7 @@ th {
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Target Amount<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
         </div>
@@ -470,7 +468,7 @@ th {
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Gcash QR Code<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
-        <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="card-ing-top" alt="Post Images" style="height:350px;width:400px;border-radius:10px;text-align:center;">
+        <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="card-ing-top" alt="Post Images" style="height:445px;width:400px;border-radius:10px;text-align:center;">
         </div>
         </div>     
 
@@ -629,19 +627,17 @@ th {
 
                 $('#char_id').val(data[0]);
                 $('#char_title').val(data[1]);
-                $('#char_bank').val(data[2]);
-                $('#char_amount').val(data[3]);
-                $('#char_pin').val(data[4]);
-                $('#char_description').val(data[5]);
-                $('#des').val(data[6]);
-                $('#char_picture').val(data[7]);
-                $('#char_status').val(data[8]);
-                $('#user_id').val(data[9]);
-                $('#post_by').val(data[10]);
-                $('#post_date').val(data[11]);
-                $('#user_email').val(data[12]);
-                $('#user_address').val(data[13]);
-                $('#user_contactno').val(data[14]);
+                $('#char_amount').val(data[2]);
+                $('#char_description').val(data[3]);
+                $('#des').val(data[4]);
+                $('#char_picture').val(data[5]);
+                $('#char_status').val(data[6]);
+                $('#user_id').val(data[7]);
+                $('#post_by').val(data[8]);
+                $('#post_date').val(data[9]);
+                $('#user_email').val(data[10]);
+                $('#user_address').val(data[11]);
+                $('#user_contactno').val(data[12]);
             });
         });
     </script>

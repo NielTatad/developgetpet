@@ -203,8 +203,7 @@ if(isset($_POST['AnimalWelfareOrganization']))
 
             <strong style="font-size:14px;">Password:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" id="Password">
-            
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" id="Password">          
 					  </div>
               
               <?php
@@ -252,13 +251,26 @@ if(isset($_POST['AnimalWelfareOrganization']))
                     <div class="modal-content">
                       <div class="modal-body">
                       <form class="login100-form validate-form" method="post">
-            <b style="font-size:14px;">&nbspSELECT ROLE</b>
+            <b style="font-size:16px;">SELECT ROLE:</b>
             <br>
             <br>
-            <div class="d-grid gap-2 d-md-block">
-  <button class="btn btn-primary" type="button">Button</button>
-  <button class="btn btn-primary" type="button">Button</button>
-</div>
+            <br>
+            <div style="text-align: center">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetAdopter" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+							  <a style="color:White">Pet Adopter</a>
+						    </button>
+					  </div><br>
+            <div style="text-align: center">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetOwner">
+							  <a style="color:White">Pet Owner</a>
+						    </button>
+					  </div><br>
+            
+            <div style="text-align: center">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="AnimalWelfareOrganization">
+							  <a style="color:White">Animal Welfare Organization</a>
+						    </button>
+					  </div>
             <br>
             </form>
                       </div>

@@ -465,7 +465,9 @@ if($query->rowCount()>0)
                                             
                                             <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->donationDate);?></textarea>
                                             <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Message: <?php echo ($result->donationMessage);?><br>Suggestion: <?php echo ($result->donationIdentity);?></p>
-                                                                                      
+                                            <br>
+                                              
+                                              <p style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;line-height:2px;">Deposit Slip:</p>
                                               <Img <?php echo"<img src = '/developgetpet/web/images/$result->donationReciept'";?> class="card-ing-top" alt="Post Images" style="height:450px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
@@ -476,8 +478,13 @@ if($query->rowCount()>0)
                                               <?php $cnt1=$cnt1+1;}} ?>
                                               
                                               <br> 
-
-                                            <button name ="Post" type='submit' id="submit" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;width:130px;margin-right:10px;height:40px;">Recieved</button>
+                                            
+                                            <!--<button name ="Post" type='submit' id="submit" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;width:130px;margin-right:10px;height:40px;float:left;">Recieved</button>
+                                            <br><br><br>-->
+                                            &nbsp&nbsp&nbsp
+                                            <button name ="Post" type='submit' class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:130px;">Recieved</button>
+                                            <button type="button" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:140px;">Post Newsfeed</button>
+                                            <button type="button" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:180px;">Give rate & Feedback</button>
                                             
                                               </ul>
                                             </div>
@@ -555,11 +562,17 @@ if($query->rowCount()>0)
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="donation_id" name="donationID" required = "required" class="form-control" id="success">
 				</div>
+
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="Recieved" id="AcceptRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Recieved</button>
-              <button class="btn btn-round btn-danger" name="NotRecieved" type="submit" type='submit' style="width:120px;height:37px;">Not Recieved</button>
+              <!--<button name="Recieved" id="AcceptRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Recieved</button>
+              <button class="btn btn-round btn-danger" name="NotRecieved" type="submit" type='submit' style="width:120px;height:37px;">Not Recieved</button>-->
          </div>
+
+         <button name="Recieved" id="AcceptRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:120px;height:37px;">Recieved</button>
+
+         <button name="NotRecieved" type="submit" type='submit' class="btn btn-round btn-danger" style="width:120px;height:37px;">Not Recieved</button>
+
         </div>
       </form>
       </div>

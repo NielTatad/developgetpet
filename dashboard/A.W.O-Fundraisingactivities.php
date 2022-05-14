@@ -483,14 +483,14 @@ if($query->rowCount()>0)
                                             </i>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <button class="dropdown-item Epost" data-charity-id="<?php echo ($result->charityID);?>" data-charity-title="<?php echo ($result->charityTitle);?>" data-charity-description="<?php echo ($result->charityDescription);?>" data-charity-bank="<?php echo ($result->charityBank);?>" data-charity-pinnumber="<?php echo ($result->charityPinnumber);?>" data-charity-amount="<?php echo ($result->charityAmount);?>"><i hidden><?php echo ($result->userID);?></i>Edit</button>
+                                              <button class="dropdown-item Epost" data-charity-id="<?php echo ($result->charityID);?>" data-charity-title="<?php echo ($result->charityTitle);?>" data-charity-description="<?php echo ($result->charityDescription);?>" data-charity-bank="<?php echo ($result->charityBank);?>" data-charity-pinnumber="<?php echo ($result->charityPinnumber);?>" data-charity-amount="<?php echo ($result->charityTargetamount);?>"><i hidden><?php echo ($result->userID);?></i>Edit</button>
 
                                               <button class="dropdown-item Dpost" data-charity-id="<?php echo ($result->charityID);?>"><i hidden><?php echo ($result->userID);?></i>Delete</button>
                                               <button class="dropdown-item Ppost" data-charity-id="<?php echo ($result->charityID);?>" data-charity-picture="<?php echo ($result->charityPicture);?>"><i hidden><?php echo ($result->userID);?></i>Change Picture</button>
                                             </div>
                                             <br>
 
-                                            <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Charity Title: <?php echo ($result->charityTitle);?><br>Amount Needed: ₱<?php echo ($result->charityAmount);?>.00
+                                            <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Charity Title: <?php echo ($result->charityTitle);?><br>Amount Needed: ₱<?php echo ($result->charityTargetamount);?>.00
                                             <br>Organization Website: <a href="<?php echo ($result->charityWebsite);?>"><?php echo ($result->charityWebsite);?></a></p>                                           
                                             <br>
                                             <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
@@ -501,7 +501,7 @@ if($query->rowCount()>0)
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->charityTitle);?></h2></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charityAmount);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityTargetamount);?></h3></li>
                                               <li><Img hidden <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;"></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charityDescription);?></textarea></li>
                                               
@@ -825,7 +825,7 @@ if($query->rowCount()>0)
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount Needed<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
@@ -1130,24 +1130,18 @@ if(isset($_POST['btnComment']))
     $charityID=($_POST['charityID']);
     $Title=($_POST['Title']);
     $Description=($_POST['Description']);
-    $Bank=($_POST['Bank']);
-    $Pinnumber=($_POST['Pinnumber']);
     $Amount=($_POST['Amount']);
 
     $sql="update charity set
     charityTitle=:Title,
     charityDescription=:Description,
-    charityBank=:Bank,
-    charityPinnumber=:Pinnumber,
-    charityAmount=:Amount
+    charityTargetamount=:Amount
     where charityID=:charityID";
 
     $query=$dbh->prepare($sql); 
     $query->bindParam(':charityID',$charityID,PDO::PARAM_STR);
     $query->bindParam(':Title',$Title,PDO::PARAM_STR);
     $query->bindParam(':Description',$Description,PDO::PARAM_STR);
-    $query->bindParam(':Bank',$Bank,PDO::PARAM_STR);
-    $query->bindParam(':Pinnumber',$Pinnumber,PDO::PARAM_STR);
     $query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
     $query->execute();
   
@@ -1162,7 +1156,7 @@ if(isset($_POST['btnComment']))
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Follow some steps on how to Donate through Gcash</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Post</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body mx-3">
@@ -1187,7 +1181,7 @@ if(isset($_POST['btnComment']))
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount</label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount Needed</label>
         <div class="col-md-6 col-sm-6">
                <input read only type="text" class="form-control" id="charity_amount2" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
@@ -1426,7 +1420,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                 $('#char_amount').val(data[2]);
                 $('#char_qrcode').val(data[3]);
                 $('#char_description').val(data[4]);
-                $('#char_status').val(data[6]);
+                $('#char_status').val(data[7]);
                 
             });
         });

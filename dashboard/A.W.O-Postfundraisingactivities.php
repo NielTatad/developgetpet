@@ -460,6 +460,7 @@ if(isset($_POST['Post']))
     $Description=($_POST['Description']);
     $Website=($_POST['Website']);
     $Amount=($_POST['Amount']);
+    $GainAmount=($_POST['GainAmount']);
     $Picture = $_FILES["Picture"]["name"];
     $tmp_dir = $_FILES["Picture"]["tmp_name"];
     $QRCode = $_FILES["QRCode"]["name"];
@@ -468,7 +469,7 @@ if(isset($_POST['Post']))
     move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
     move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$QRCode");
     
-    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityAmount,charityWebsite,charityQRcode,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Amount,:Website,:QRCode,'$date','Unaccepted','Fundraising')";
+    $sql="INSERT INTO charity(userID,userName,userEmail,userAddress,userContactNo,charityTitle,charityDescription,charityPicture,charityTargetamount,charityGainamount,charityWebsite,charityQRcode,charityPostdate,charityStatus,charityPoststatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Title,:Description,:Picture,:Amount,:GainAmount,:Website,:QRCode,'$date','Unaccepted','Fundraising')";
     $query=$dbh->prepare($sql); 
     $query->bindParam(':ID',$ID,PDO::PARAM_STR);
     $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -479,6 +480,7 @@ if(isset($_POST['Post']))
     $query->bindParam(':Description',$Description,PDO::PARAM_STR);
     $query->bindParam(':Website',$Website,PDO::PARAM_STR);
     $query->bindParam(':Amount',$Amount,PDO::PARAM_STR);
+    $query->bindParam(':GainAmount',$GainAmount,PDO::PARAM_STR);
     $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
     $query->bindParam(':QRCode',$QRCode,PDO::PARAM_STR);
     $query->execute();
@@ -564,13 +566,20 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                         </div>
 
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Target Amount<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input type="text" id="amount" class="form-control" name="Amount" placeholder="₱00..."  min="0" max="4" required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                             </div>
                                         </div>
 
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Gcash QR Code</label>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Gain Amount<span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="gainamount" class="form-control" name="GainAmount" min="0" max="4" value="₱00" required="required" onkeypress='return event.charCode >= 48 && event.charCode <= 57' readonly/>
+                                            </div>
+                                        </div>
+
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Your Gcash QR Code</label>
                                         
                                         <div style="text-align: center" class="wrap-input100 validate-input">
                                         <input type="file" name="QRCode" id="QRCode" style="width:250px;height:40px;border:none;margin-right:445px" placeholder="Upload Picture">
