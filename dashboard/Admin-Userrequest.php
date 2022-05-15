@@ -120,7 +120,7 @@ th {
 				<div class="menu_section">						
 					<ul class="nav side-menu">
           
-                            <li>
+                          <li>
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Dashboard.php" style="font-size:15px;">Dashboard</a>
                             </li>
 
@@ -138,16 +138,8 @@ th {
 
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
-                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
-                                  <li><a href="#">Short-Term Care</a></li>
-                                </ul>
-                              </li>
-
-
-                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Donation</a></li>
-                                  <li><a href="#">Fundraising Activities</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageshorttermcarepost.php">Short-Term Care</a></li>
                                 </ul>
                               </li>
 
@@ -159,11 +151,8 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">History</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                </ul>
+                              <li>
+                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managefundraisingpost.php" style="font-size:15px;">Manage Fundraising Activities</a>
                               </li>
                                 
                               <li><a style="font-size:15px;">Report</a>
@@ -271,8 +260,6 @@ th {
           <div class="x_title">
             <h2>Manage User Request</h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-              </li>
           </ul>
             <div class="clearfix"></div>
           </div>

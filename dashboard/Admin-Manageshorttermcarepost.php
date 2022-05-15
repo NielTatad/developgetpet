@@ -257,7 +257,7 @@ th {
       <div class="col-md-12 col-sm-12">
         <div class="x_panel" style="border-radius:10px;border-width:2px;">
           <div class="x_title">
-            <h2>Manage Pet Adoption Post</h2>
+            <h2>Manage Short-Term Care Post</h2>
             <ul class="nav navbar-right panel_toolbox">
           </ul>
             <div class="clearfix"></div>
@@ -297,7 +297,7 @@ th {
 
                             <tbody>
                             <?php
-                            $sql="SELECT * from postpet where postStatus='Adoption' ";
+                            $sql="SELECT * from postpet where postStatus='Short-term care' ";
                             $query=$dbh->prepare($sql);
                             $query->execute();
                             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -377,7 +377,7 @@ $date = date('m/d/Y h:i A', time());
     $query3->execute();
 
     echo '<script>alert("Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Manageshorttermcarepost.php'</script>";
    }
 ?>
 <!-- //Delete Post Code -->
@@ -388,7 +388,7 @@ $date = date('m/d/Y h:i A', time());
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Pet Adoption Post</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Short-Term Care Post</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

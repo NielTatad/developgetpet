@@ -120,7 +120,7 @@ th {
 				<div class="menu_section">						
 					<ul class="nav side-menu">
 
-                            <li>
+                          <li>
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Dashboard.php" style="font-size:15px;">Dashboard</a>
                             </li>
 
@@ -138,16 +138,8 @@ th {
 
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
-                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
-                                  <li><a href="#">Short-Term Care</a></li>
-                                </ul>
-                              </li>
-
-
-                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Donation</a></li>
-                                  <li><a href="#">Fundraising Activities</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageshorttermcarepost.php">Short-Term Care</a></li>
                                 </ul>
                               </li>
 
@@ -159,11 +151,8 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">History</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                </ul>
+                              <li>
+                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managefundraisingpost.php" style="font-size:15px;">Manage Fundraising Activities</a>
                               </li>
                                 
                               <li><a style="font-size:15px;">Report</a>
@@ -268,7 +257,7 @@ th {
       <div class="col-md-12 col-sm-12">
         <div class="x_panel" style="border-radius:10px;border-width:2px;">
           <div class="x_title">
-            <h2>Manage Pet Information</h2>
+            <h2>Pet Information</h2>
             <ul class="nav navbar-right panel_toolbox">
           </ul>
             <div class="clearfix"></div>
@@ -298,17 +287,17 @@ th {
                             <th style="text-align:center" class="column-title">Pet Diet</th>
                             <th style="text-align:center" class="column-title">Pet Status</th>
                             <th style="text-align:center" class="column-title">Post Status</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            <!--<th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
                             <th class="bulk-actions" colspan="12">
                               <a class="antoo" style="color:#fff; font-weight:500;">Data to be Deleted (<span class="action-cnt"> </span>)</a>
-                            </th>
+                            </th>-->
                             </tr>
                             </thead>
 
                             <tbody>
                             <?php
-                            $sql="SELECT * from postpet";
+                            $sql="SELECT * from postpet where postStatus='Adoption' ";
                             $query=$dbh->prepare($sql);
                             $query->execute();
                             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -335,9 +324,9 @@ th {
                                 <td style="text-align:center" class=" "><?php echo htmlentities($result->Deworming);?></td>
                                 <td style="text-align:center" class=" "><?php echo htmlentities($result->petStatus);?></td>
                                 <td style="text-align:center" class=" "><?php echo htmlentities($result->postStatus);?></td>
-                                <?php if ($result->postStatus != 'Deleted' AND $result->petStatus != 'Adopted' AND $result->petStatus != 'Short-Term Care') { ?>
+                                <!--<?php if ($result->postStatus != 'Deleted' AND $result->petStatus != 'Adopted' AND $result->petStatus != 'Short-Term Care') { ?>
                                 <td style="text-align:center;" class="last"><button type="button" class="btn btn-danger deletebtn" data-pet-id="<?php echo ($result->petID);?>" data-master-id="<?php echo ($result->userID);?>">Delete</button>
-                                </td>
+                                </td>-->
                                 <?php } ?>                                
                               </tr>
                             <?php $cnt=$cnt+1;}}?>
