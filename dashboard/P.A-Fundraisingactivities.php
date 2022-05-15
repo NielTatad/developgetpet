@@ -224,15 +224,15 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php">Dog's For Adoption</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php">Cat's For Adoption</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php">Cat's</a></li>
                       </ul>
                     </li>
 
                     <li><a >Pet For Short-term care</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php">Dog's For Short-term care</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php">Cat's For Short-term care</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php">Cat's</a></li>
                       </ul>
                     </li>
 
@@ -479,11 +479,11 @@ if($query->rowCount()>0)
                           <div class="col-sm-12">
                             <h6 class="brief"><i>Organization Name: <?php echo ( $result->orgName);?></i></h6>
                             <div class="left col-md-7 col-sm-7">  
-                                <br><br>                        
-                              <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                <br><!--<p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>-->
                               <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Address: <?php echo ( $result->Address);?></li>
-                                <li><i class="fa fa-phone"></i> Phone #: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-map-marker"></i> Address: <?php echo ( $result->Address);?></li>
+                                <li><i class="fa fa-phone"></i> Phone: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-envelope"></i> Email: <?php echo ( $result->Email);?></li>
                               </ul>
                             </div>
                             <div class="right col-md-5 col-sm-5 text-center">
@@ -492,19 +492,19 @@ if($query->rowCount()>0)
                           </div>
                           <div class=" profile-bottom text-center">
                             <div class=" col-sm-6 emphasis">
-                              <p class="ratings">
+                              <!--<p class="ratings">
                                 <a>4.0</a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
+                              </p>-->
                             </div>
                             <div class=" col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-sm">
+                              <!--<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>-->
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-primary btn-sm deletebtn" data-user-id="<?php echo ($result->userID);?>">
                                 <i class="fa fa-user"> </i> View Profile
                               </button>
                             </div>

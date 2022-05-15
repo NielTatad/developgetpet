@@ -49,11 +49,12 @@ if($query->rowCount()>0)
     <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Custom Theme Style -->
 	  <link href="../build/css/custom.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
 .view-more-comment:hover {
     text-decoration: underline;
@@ -127,6 +128,8 @@ if($query->rowCount()>0)
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
                     </li>
+
+                  </ul>   
 
                   
               </div>
@@ -452,11 +455,11 @@ if($query->rowCount()>0)
                           <div class="col-sm-12">
                             <h6 class="brief"><i>Organization Name: <?php echo ( $result->orgName);?></i></h6>
                             <div class="left col-md-7 col-sm-7">  
-                                <br><br>                        
-                              <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                <br><!--<p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>-->
                               <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Address: <?php echo ( $result->Address);?></li>
-                                <li><i class="fa fa-phone"></i> Phone #: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-map-marker"></i> Address: <?php echo ( $result->Address);?></li>
+                                <li><i class="fa fa-phone"></i> Phone: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-envelope"></i> Email: <?php echo ( $result->Email);?></li>
                               </ul>
                             </div>
                             <div class="right col-md-5 col-sm-5 text-center">
@@ -465,19 +468,19 @@ if($query->rowCount()>0)
                           </div>
                           <div class=" profile-bottom text-center">
                             <div class=" col-sm-6 emphasis">
-                              <p class="ratings">
+                              <!--<p class="ratings">
                                 <a>4.0</a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
+                              </p>-->
                             </div>
                             <div class=" col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-sm">
+                              <!--<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>-->
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-primary btn-sm deletebtn" data-user-id="<?php echo ($result->userID);?>">
                                 <i class="fa fa-user"> </i> View Profile
                               </button>
                             </div>
@@ -1839,6 +1842,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- starrr -->
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
+  <script src="../build/js/custom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 </html>
