@@ -99,15 +99,15 @@ if($query->rowCount()>0)
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogslistadoption.php">Dog's For Adoption</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catslistadoption.php">Cat's For Adoption</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat's</a></li>
                       </ul>
                     </li>
 
-                    <li><a >Pet For Short-term care</a>
+                    <li><a >Pet For Short-Term Care</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogsshorttermcare.php">Dog's For Short-term care</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catsshorttermcare.php">Cat's For Short-term care</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat's</a></li>
                       </ul>
                     </li>
 
