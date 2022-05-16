@@ -233,8 +233,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dogslistadoption.php">Dog's </a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Catslistadoption.php">Cat's </a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-DogsForAdoption.php">Dog's </a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-CatsForAdoption.php">Cat's </a></li>
                       </ul>
                     </li>
 

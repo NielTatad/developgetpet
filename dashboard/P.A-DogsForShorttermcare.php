@@ -233,15 +233,15 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php">Dog's</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php">Cat's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-DogsForAdoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-CatsForAdoption.php">Cat's</a></li>
                       </ul>
                     </li>
 
                     <li><a >Pet For Short-Term Care</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php">Dog's</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php">Cat's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-DogsForShorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-CatsForShorttermcare.php">Cat's</a></li>
                       </ul>
                     </li>
 
@@ -446,7 +446,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>Available Cat For Short-Term Care</h2>
+                    <h2>Available Dog For Short-Term Care</h2>
                      <!-- Post Button -->
                      <a href="http://localhost/developgetpet/dashboard/P.A-PostShorttermcare.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post Pet</button></a>
                     <!-- //Post Button -->
@@ -458,7 +458,7 @@ if($query->rowCount()>0)
                                   
                   <!-- View Pet Post for Short-term Care Code -->
                   <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Short-term care' AND postStatus!='Deleted' AND petType='Cat' ORDER BY petID DESC";
+                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Short-term care' AND postStatus!='Deleted' AND petType='Dog' ORDER BY petID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -784,7 +784,7 @@ if(isset($_POST['Short-Term-Care']))
   if($MasterID == $ID){
 
   echo '<script>alert("Opps! You cannot adopt your own post pet")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
 
   }
   else{
@@ -1083,7 +1083,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
   
   }
 
@@ -1114,7 +1114,7 @@ if(isset($_POST['btnComment']))
     $query3->execute();
 
     echo '<script>alert("Your Comment Posted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
   }
   
 }
@@ -1185,7 +1185,7 @@ if(isset($_POST['btnComment']))
       $query1->execute();
 
       echo '<script>alert("Your Comment Updated Successfully!")</script>';
-      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+      echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
     }
   ?>
   <!-- //Edit Comment Code -->
@@ -1245,7 +1245,7 @@ if(isset($_POST['btnComment']))
     $query1->execute();
     
     echo '<script>alert("Comment Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
   }
   ?>
 	<!-- //Delete Comment Code -->
@@ -1304,7 +1304,7 @@ if(isset($_POST['btnComment']))
     $query2->execute();
 
     echo '<script>alert("Post Deleted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
    }
 ?>
 <!-- //Delete Post Code -->
@@ -1402,7 +1402,7 @@ if(isset($_POST['btnComment']))
     $query->execute();
   
     echo '<script>alert("Post Updated Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
   }
 ?>
 <!-- //Edit Post Code -->
@@ -1685,7 +1685,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 1 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture Code -->
@@ -1745,7 +1745,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 2 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture 2 Code -->
@@ -1805,7 +1805,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 3 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture 3 Code -->
@@ -1865,7 +1865,7 @@ $query->bindParam(':PostPicture',$PostPicture,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your Post Picture 4 Changed Successfully!")</script>';
-echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php'</script>";
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php'</script>";
 }
 ?>
 	<!-- //Change Post Picture 4 Code -->

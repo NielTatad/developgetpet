@@ -439,10 +439,6 @@ if(isset($_POST['Go']))
                <form method="post">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" name="Search" class="form-control" placeholder="Search for Pet Breeds...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" name="Go" type="submit" style="height:38px"><i class="fa fa-search fa-lg"></i></button>
-                    </span>
                   </div>
                 </div>
                </form>

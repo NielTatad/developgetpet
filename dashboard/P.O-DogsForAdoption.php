@@ -410,17 +410,9 @@ if($query->rowCount()>0)
 <?php
 if(isset($_POST['Go']))
 {
-  if($Search = $_POST['Search'] == "")
-  {
-   echo "<script>alert('No data entered!');</script>";
-   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php'</script>";
-  
-  }
-  else
-  {
 
    $Search=($_POST['Search']);
-
+   {
    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-SearchBreedAdoption.php'</script>";
     
    $_SESSION['Search'] = $Search;
@@ -439,7 +431,7 @@ if(isset($_POST['Go']))
                <form method="post">
                 <div class="col-md-5 col-sm-5 form-group pull-right top_search" style="float:right">
                   <div class="input-group">
-                    <input type="text" name="Search" class="form-control" placeholder="Search for Pet Breeds...">
+                    <input type="text" name="Search" class="form-control" placeholder="Search for Dog Breeds...">
                     <span class="input-group-btn">
                       <button class="btn btn-default" name="Go" type="submit" style="height:38px"><i class="fa fa-search fa-lg"></i></button>
                     </span>
