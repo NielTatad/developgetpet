@@ -413,9 +413,6 @@ if($query->rowCount()>0)
                 </div>
               </div>
             </div>
-            
-            
-
 <!-- /page content -->
 
 <div class="clearfix"></div>
@@ -625,7 +622,7 @@ $ContactNo=($_POST['ContactNo']);
 $Donatorsname=($_POST['Donatorsname']);
 $Message=($_POST['Message']);
   
-$sql="INSERT INTO message(userID,userName,userEmail,userAddress,userContactNo,messageDonatorsname,messageMessage,messageDate)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Donatorsname,:Message,'$date')";
+$sql="INSERT INTO newsfeed(userID,userName,userEmail,userAddress,userContactNo,newsfeedDonatorsname,newsfeedMessage,newsfeedDate)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Donatorsname,:Message,'$date')";
   
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);

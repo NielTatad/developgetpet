@@ -401,22 +401,17 @@ if($query->rowCount()>0)
           <div class="">
             <div class="page-title">
               <div class="title_left">
-              <br>
               <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
                   </div>
                 </div>
               </div>
             </div>
-            <br><br><br>
+            <br><br>
 
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
               <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -430,13 +425,31 @@ if($query->rowCount()>0)
               </symbol>
             </svg>
 
-
+            <?php
+                        $sql="SELECT * from newsfeed ORDER BY userID DESC LIMIT 3";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
 
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-              <strong><?php echo ($result->userName);?> has especially thanks!</strong> To Genesis Tagsip for donating an amount of ₱100.00.
+              <strong><?php echo ($result->userName);?> has especially thanks!</strong> To <?php echo ($result->newsfeedDonatorsname);?> <?php echo ($result->newsfeedMessage);?>.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <?php $cnt=$cnt+1;
+                            }
+                        } 
+                        else
+                        {
+                          echo "There isn't any information displayed.";
+                        }
+                        ?>
 
 
 <!-- Button trigger modal -->
