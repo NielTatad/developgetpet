@@ -156,6 +156,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <style>
+  </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -307,7 +309,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     }
                     </script>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
+                      <li class="nav-item" style= "height: 440; overflow-y: scroll;">
                       <?php
                         $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
                         $query=$dbh->prepare($sql);

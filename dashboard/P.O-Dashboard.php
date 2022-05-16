@@ -289,7 +289,7 @@ if($query->rowCount()>0)
                     }
                     </script>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
+                      <li class="nav-item" style= "height: 440; overflow-y: scroll;">
                       <?php
                         $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
                         $query=$dbh->prepare($sql);

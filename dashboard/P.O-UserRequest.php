@@ -944,7 +944,7 @@ if(isset($_POST['AcceptShort-Term-CareRequest']))
     $query->execute();
   
     $sql1="update postpet set
-    petStatus='Short-Term Care'
+    petStatus='In Short-term care'
     where petID=:petID";
     $query1=$dbh->prepare($sql1); 
     $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 

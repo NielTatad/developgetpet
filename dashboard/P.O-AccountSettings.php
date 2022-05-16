@@ -522,7 +522,7 @@ if($query->rowCount()>0)
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>&nbsp;&nbsp;&nbsp;<input readonly type="number" class="form-control" name="ContactNo" value="<?php echo ( $result->ownerContactNo);?>" style="background-color:#fff;width:230px;" required="required"/>
                                             <div class="col-md-6 col-sm-6">
-                                                <button type="button" onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-ChangeContactNo.php';" class="form-control" style="background-color:#e9ecef;width:160px;" required="required">Change Contact No.</button>
+                                                <button type="button" onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-ChangeContactNo.php';" class="form-control" style="background-color:#e9ecef;width:175px;" required="required">Change Contact No.</button>
                                             </div>
                                         </div>
                                         <div class="field item form-group">

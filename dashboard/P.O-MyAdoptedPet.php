@@ -471,7 +471,7 @@ if($query->rowCount()>0)
                       <div class="col-md-6 offset-md-3">
                       <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
 
-                      <button class="btn btn-round btn-primary short-term-return" style="border:#00cdc1;width: 90px;height:37px;">Recieved</button>
+                      <button class="btn btn-round btn-primary recievedbtn" style="border:#00cdc1;width: 90px;height:37px;" data-history-id="<?php echo($result->historyID);?>"  data-pet-id="<?php echo($result->petID);?>" data-master-id="<?php echo($masterid->userID);?>" data-user-id="<?php echo $ID;?>">Recieved</button>
                       </div>
                       </div>
 
@@ -635,6 +635,74 @@ if($query->rowCount()>0)
 </div>
 	<!-- //Modal View Pet Info -->
 
+    <!-- Recieved Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['btnRecieved']))
+{
+  $historyID=($_POST['historyID']);
+  $petID=($_POST['petID']);
+  $userID=($_POST['userID']);
+  $masterID=($_POST['masterID']);
+
+  $sql="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES(:historyID,:petID,'Recieved The Pet',:masterID,'$ID','I already recieved the pet','$date','Unread')";
+  $query=$dbh->prepare($sql);
+  $query->bindParam(':historyID',$historyID,PDO::PARAM_STR);
+  $query->bindParam(':petID',$petID,PDO::PARAM_STR);
+  $query->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+  $query->execute();
+
+  echo '<script>alert("Successfully Sent!")</script>';
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyAdoptedPet.php'</script>";
+}
+?>
+   <!--// Recieved Code -->
+
+  <!-- Modal Recieved -->
+<div class="modal fade" id="Recieved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Recieved</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you already recieved the pet?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="history_id" name="historyID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_id" name="userID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnRecieved" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button class="btn btn-round btn-danger" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Recieved -->
+
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
@@ -718,6 +786,20 @@ if($query->rowCount()>0)
     return $(this).text().trim() === "Read";
     }).hide();
     </script>
+
+<script type="text/javascript">
+  $(".recievedbtn").click(function () {
+    var history_id = $(this).attr('data-history-id');
+    var pet_id = $(this).attr('data-pet-id');
+    var master_id = $(this).attr('data-master-id');
+    var user_id = $(this).attr('data-user-id');
+    $('#Recieved').modal('show');
+    $("#history_id").val( history_id );
+    $("#pet_id").val( pet_id );
+    $("#master_id").val( master_id );
+    $("#user_id").val( user_id );
+  });
+  </script>
 
 <script type="text/javascript">
   $(".viewbtn").click(function () {

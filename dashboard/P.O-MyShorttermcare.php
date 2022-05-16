@@ -460,7 +460,8 @@ if($query->rowCount()>0)
                         foreach($masterids as $masterid)
                       {
                         ?>
-                    
+                    <?php if ($petid->petStatus == 'In Short-term care') { ?>
+
                       <?php if ($result->Title == 'Short-Term Care' AND $result->Status == 'Approved') { ?>
 
                       <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:20px" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?>&#13;&#10;Email: <?php echo ( $masterid->Email);?>&#13;&#10;Contact No: <?php echo ( $masterid->contactNo);?></textarea><br><br>
@@ -471,11 +472,17 @@ if($query->rowCount()>0)
                       <div class="col-md-6 offset-md-3">
                       <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-selected-range="<?php echo ( $petid->selectedRange);?>" data-charge="₱<?php echo ( $petid->Charge);?>.00" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
 
-                      <button class="btn btn-round btn-primary short-term-return" style="border:#00cdc1;width: 90px;height:37px;">Returned</button>
+                      <button class="btn btn-round btn-primary returnbtn" style="border:#00cdc1;width: 90px;height:37px;" data-history-id="<?php echo($result->historyID);?>"  data-pet-id="<?php echo($result->petID);?>" data-master-id="<?php echo($masterid->userID);?>" data-user-id="<?php echo $ID;?>" data-return-date="<?php echo($result->returnDate);?>">Return</button>
                       </div>
                       </div>
 
                       <?php } ?>
+                    <?php } ?>
+
+                    <?php if ($petid->petStatus != 'In Short-term care') { ?>
+                      <?php echo "There's no information to display."; ?>
+                    <?php } ?>
+                    
 
                       <?php $cnt3=$cnt3+1;}} ?>
                       <?php $cnt2=$cnt2+1;}} ?>
@@ -649,6 +656,95 @@ if($query->rowCount()>0)
 </div>
 	<!-- //Modal View Pet Info -->
 
+  <!-- Return Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+$current_date = date('m/d/Y', time());
+?>
+
+<?php
+if(isset($_POST['btnReturn']))
+{
+  if($current_date == $returnDate=$_POST['returnDate'])
+  {
+    $historyID=($_POST['historyID']);
+    $petID=($_POST['petID']);
+    $userID=($_POST['userID']);
+    $masterID=($_POST['masterID']);
+    $returnDate=($_POST['returnDate']);
+  
+    $sql1="update postpet set
+    petStatus='Available'
+    where petID=:petID";
+    $query1=$dbh->prepare($sql1); 
+    $query1->bindParam(':petID',$petID,PDO::PARAM_STR); 
+    $query1->execute();
+  
+    $sql="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES(:historyID,:petID,'Return The Pet',:masterID,'$ID','Today I will return your pet that I short-term care','$date','Unread')";
+    $query=$dbh->prepare($sql);
+    $query->bindParam(':historyID',$historyID,PDO::PARAM_STR);
+    $query->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query->bindParam(':returnDate',$returnDate,PDO::PARAM_STR);
+    $query->execute();
+  
+    echo '<script>alert("Successfully Sent!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyShorttermcare.php'</script>";
+  }
+
+  else{
+    echo '<script>alert("You cannot return if it is not the return date!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyShorttermcare.php'</script>";
+  }
+}
+?>
+   <!--// Return Code -->
+
+   <!-- Modal Return -->
+<div class="modal fade" id="Return" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Return</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>You cannot return if it is not the return date!</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="history_id2" name="historyID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_id2" name="petID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_id2" name="userID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="master_id2" name="masterID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="return_date2" name="returnDate" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnReturn" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button class="btn btn-round btn-danger" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Return -->
+
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
@@ -732,6 +828,22 @@ if($query->rowCount()>0)
     return $(this).text().trim() === "Read";
     }).hide();
     </script>
+
+<script type="text/javascript">
+  $(".returnbtn").click(function () {
+    var history_id2 = $(this).attr('data-history-id');
+    var pet_id2 = $(this).attr('data-pet-id');
+    var master_id2 = $(this).attr('data-master-id');
+    var user_id2 = $(this).attr('data-user-id');
+    var return_date2 = $(this).attr('data-return-date');
+    $('#Return').modal('show');
+    $("#history_id2").val( history_id2 );
+    $("#pet_id2").val( pet_id2 );
+    $("#master_id2").val( master_id2 );
+    $("#user_id2").val( user_id2 );
+    $("#return_date2").val( return_date2 );
+  });
+  </script>
 
 <script type="text/javascript">
   $(".viewbtn").click(function () {
