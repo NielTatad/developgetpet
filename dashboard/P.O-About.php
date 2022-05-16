@@ -536,15 +536,15 @@ if($query->rowCount()>0)
                         <a href="http://localhost/developgetpet/dashboard/P.O-PostCatsShorttermcare.php" role="tab" aria-controls="post_short-term-care" aria-selected="false">Post Cats Short-Term Care</a>
                       </li>
                       <li class="nav-item">
-                        <a href="" role="tab" aria-controls="post_tips" aria-selected="false">Post Tips</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostTips.php" role="tab" aria-controls="post_tips" aria-selected="false">Post Tips</a>
                       </li>
                     </ul>
                     <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a href="" role="tab" aria-controls="post_advice" aria-selected="false">Post Advice</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostAdvice.php" role="tab" aria-controls="post_advice" aria-selected="false">Post Advice</a>
                       </li>
                       <li class="nav-item">
-                        <a href="" role="tab" aria-controls="post_advice" aria-selected="false">Post Articles</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-PostArticles.php" role="tab" aria-controls="post_advice" aria-selected="false">Post Articles</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">

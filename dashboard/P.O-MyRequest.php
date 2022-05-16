@@ -661,7 +661,7 @@ if(isset($_POST['CancelRequest']))
   $query->bindParam(':Reason',$Reason,PDO::PARAM_STR); 
   $query->execute();
 
-  $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,UserID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Cancelled Adoption Request',:masterID,'$ID',:Reason,'$date','Unread')";
+  $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Cancelled Adoption Request',:masterID,'$ID',:Reason,'$date','Unread')";
   $query3=$dbh->prepare($sql3);
   $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
   $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
