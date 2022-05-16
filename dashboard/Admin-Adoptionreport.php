@@ -139,15 +139,7 @@ th {
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
-                                  <li><a href="#">Short-Term Care</a></li>
-                                </ul>
-                              </li>
-
-
-                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Donation</a></li>
-                                  <li><a href="#">Fundraising Activities</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageshorttermcarepost.php">Short-Term Care</a></li>
                                 </ul>
                               </li>
 
@@ -159,19 +151,15 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">History</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                </ul>
+                              <li>
+                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managefundraisingpost.php" style="font-size:15px;">Manage Fundraising Activities</a>
                               </li>
                                 
                               <li><a style="font-size:15px;">Report</a>
                                 <ul class="nav child_menu">
-                                  <li><a href="#">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                  <li><a href="#">Fund-raising activities</a></li>
-                                  <li><a href="#">Donation</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
                                 </ul>
                               </li>
 
@@ -267,7 +255,7 @@ th {
                   </div>
                   <div class="x_content" style="text-align:center;">
 
-                  <a class="btn btn-info" href="returnedReport.php" style="margin-top: 25px;float: left; margin-bottom: 25px;"><i class="sidebar-item-icon fa fa-print"></i><span class="nav-label">  Print</span></a>
+                  <a class="btn btn-info" href="Admin-Printadoptionreport.php" style="margin-top: 25px;float: left; margin-bottom: 25px;"><i class="sidebar-item-icon fa fa-print"></i><span class="nav-label">  Print</span></a>
                   <br>
                   <br>
                   <br>
@@ -282,7 +270,7 @@ th {
                           <table class="table table-striped jambo_table bulk_action">
                                     <thead>
                                     <tr class="headings">
-                                    <th style="text-align:center" class="column-title">Mater ID</th>
+                                    <th style="text-align:center" class="column-title">Master ID</th>
                                     <th style="text-align:center" class="column-title">User ID</th>
                                     <th style="text-align:center" class="column-title">Pet ID</th>
                                     <th hidden style="text-align:center" class="column-title">User ID</th>
@@ -290,7 +278,6 @@ th {
                                     <th style="text-align:center" class="column-title">Pet Name</th>
                                     <th style="text-align:center" class="column-title">Pet Type</th>
                                     <th style="text-align:center" class="column-title">Pet Breed</th>
-                                    <th style="text-align:center" class="column-title">Pet Photo</th>
                                     <th style="text-align:center" class="column-title">Post Status</th>
                                     <th style="text-align:center" class="column-title">Pet Status</th>
                                     <th style="text-align:center" class="column-title">Adopter</th>
@@ -342,14 +329,13 @@ th {
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
                                         <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->userName);?></td>
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result2->orgName);?><?php echo htmlentities($result2->userFirstname);?> <?php echo htmlentities($result2->userLastname);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petName);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petType);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petBreed);?></td>
-                                        <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result1->petPicture' style = height:80px; width: 80px;/>";?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result1->postStatus);?></td>     
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result1->petStatus);?></td>
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result2->orgName);?><?php echo htmlentities($result2->userFirstname);?> <?php echo htmlentities($result2->userLastname);?></td>                                                         
+                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->userName);?></td>                                                         
                                       </tr>
                                     <?php $cnt2=$cnt2+1;}}?>
                                     <?php $cnt1=$cnt1+1;}}?>

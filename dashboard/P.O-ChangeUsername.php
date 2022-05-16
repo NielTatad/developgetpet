@@ -151,12 +151,18 @@ if(isset($_POST['update']))
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet For Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat's</a></li>
+                      </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Pet For Short-term Care</a>
+                    <li><a >Pet For Short-Term Care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat's</a></li>
+                      </ul>
                     </li>
 
                     <li>

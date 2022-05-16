@@ -233,12 +233,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php">Pet Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php">Cat's</a></li>
+                      </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php">Short-term Care</a>
+                    <li><a >Pet For Short-term care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php">Cat's</a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -253,10 +259,17 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-Tips.php">Pet Care Tips</a>
                     </li>
 
-                    </ul>
-					</div>
-					</div>
-					<!-- /sidebar menu -->
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adopted.php">Pet Adopted</a>
+                    </li>
+
+              </ul> 
+
+                  
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
 
 							<!-- /menu footer buttons -->
               <div class="sidebar-footer hidden-small">

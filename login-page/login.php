@@ -131,6 +131,25 @@ if(isset($_POST['login']))
 
 
 }
+
+if(isset($_POST['PetAdopter']))
+{
+	
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.A-Registration.php'</script>";
+
+}
+if(isset($_POST['PetOwner']))
+{
+	
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/P.O-Registration.php'</script>";
+
+}
+if(isset($_POST['AnimalWelfareOrganization']))
+{
+	
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/login-page/A.W.O-Registration.php'</script>";
+
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -138,14 +157,12 @@ if(isset($_POST['login']))
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="fonts/icomoon/style.css">
 
     <link rel="stylesheet" href="css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
@@ -153,10 +170,15 @@ if(isset($_POST['login']))
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+
     <style>
     .material-icons {vertical-align:-16%}
     </style>
-    <title>GetPet</title>
+    <title>GETPET</title>
   </head>
   <body>
   
@@ -168,11 +190,12 @@ if(isset($_POST['login']))
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
           <a href="http://localhost/developgetpet/web/Dashboard.php">
-          <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-190px;margin-top:-50px;" alt=" " class="img-responsive"/><br></p>
+          <p style="text-align:center;"><img src="images/Logo.png" style="width:250px;height:250px;margin-bottom:-190px;margin-top:-50px;" alt=" " class="img-responsive"/><br><br><br></p>
           </a>
           </div>
-
+            <br>
             <form action="#" method="post">
+            <br><br>
             <strong style="font-size:14px;" >Username:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="text" name="Username" required="required" id="Username">
@@ -180,8 +203,7 @@ if(isset($_POST['login']))
 
             <strong style="font-size:14px;">Password:</strong>
             <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" id="Password">
-            
+						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" id="Password">          
 					  </div>
               
               <?php
@@ -205,7 +227,7 @@ if(isset($_POST['login']))
                 Not a member?
                 </span>
 
-                <a href="http://localhost/developgetpet/login-page/selectrole.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
+                <a href="#" class="txt2 bo1" style="color:blue; font-size: 12px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Sign up now!
                 </a><br>
 
@@ -215,7 +237,6 @@ if(isset($_POST['login']))
                 <a href="http://localhost/developgetpet/login-page/Email.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
                 Reset Password!
                 </a><br>
-
 					    </div>
             </form>
           </div>
@@ -223,6 +244,42 @@ if(isset($_POST['login']))
       </div>
     </div> 
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                      <form class="login100-form validate-form" method="post">
+            <b style="font-size:16px;">SELECT ROLE:</b>
+            <br>
+            <br>
+            <br>
+            <div style="text-align: center">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetAdopter" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+							  <a style="color:White">Pet Adopter</a>
+						    </button>
+					  </div><br>
+            <div style="text-align: center">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetOwner">
+							  <a style="color:White">Pet Owner</a>
+						    </button>
+					  </div><br>
+            
+            <div style="text-align: center">
+						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="AnimalWelfareOrganization">
+							  <a style="color:White">Animal Welfare Organization</a>
+						    </button>
+					  </div>
+            <br>
+            </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

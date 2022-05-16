@@ -78,7 +78,7 @@ th {
 				<div class="menu_section">						
 					<ul class="nav side-menu">
 
-                            <li>
+                          <li>
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Dashboard.php" style="font-size:15px;">Dashboard</a>
                             </li>
 
@@ -96,16 +96,8 @@ th {
 
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
-                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
-                                  <li><a href="#">Short-Term Care</a></li>
-                                </ul>
-                              </li>
-
-
-                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Donation</a></li>
-                                  <li><a href="#">Fundraising Activities</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageshorttermcarepost.php">Short-Term Care</a></li>
                                 </ul>
                               </li>
 
@@ -117,16 +109,17 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">History</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                </ul>
+                              <li>
+                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managefundraisingpost.php" style="font-size:15px;">Manage Fundraising Activities</a>
                               </li>
                                 
-                                <li>
-                                <li><a href="#" style="font-size:15px;">Report</a>
-                                </li>
+                              <li><a style="font-size:15px;">Report</a>
+                                <ul class="nav child_menu">
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
+                                </ul>
+                              </li>
 
         </ul>		
 				</div>
@@ -225,8 +218,6 @@ th {
           <div class="x_title">
             <h2>Manage User Information</h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-              </li>
           </ul>
             <div class="clearfix"></div>
           </div>
@@ -248,11 +239,14 @@ th {
                           <div class="col-sm-12">
                             <h4 class="brief"><i><?php echo ( $result->Role);?></i></h4>
                             <div class="left col-md-7 col-sm-7">
+                              <p hidden><?php echo ( $result->userID);?></p>
                               <h2><?php echo ( $result->userFirstname);?> <?php echo ( $result->userLastname);?> <?php echo ( $result->orgName);?></h2>
-                              <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                              <br>
+                              <!--<p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>-->
                               <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Address: <?php echo ( $result->Address);?></li>
-                                <li><i class="fa fa-phone"></i> Phone #: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-map-marker"></i> Address: <?php echo ( $result->Address);?></li>
+                                <li><i class="fa fa-phone"></i> Phone: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-envelope"></i> Email: <?php echo ( $result->Email);?></li>
                               </ul>
                             </div>
                             <div class="right col-md-5 col-sm-5 text-center">
@@ -261,20 +255,20 @@ th {
                           </div>
                           <div class=" profile-bottom text-center">
                             <div class=" col-sm-6 emphasis">
-                              <p class="ratings">
+                              <!--<p class="ratings">
                                 <a>4.0</a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
+                              </p>-->
                             </div>
                             <div class=" col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-sm">
-                                <i class="fa fa-user"> </i> View Profile
+                              <!--<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>-->
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-danger btn-sm deletebtn" data-user-id="<?php echo ($result->userID);?>">
+                                <i class="fa fa-trash"> </i> Remove Account
                               </button>
                             </div>
                           </div>
@@ -287,7 +281,101 @@ th {
     </div>
   </div>
 </div>
-        <!-- /page content -->
+<!-- /page content -->
+
+<!-- Delete Post Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+ <?php
+   if(isset($_POST['Delete']))
+   {
+     
+    $userID=($_POST['userID']);
+    $petID=($_POST['petID']);
+
+    $query ="Delete from login where userID=:userID";
+    $query = $dbh->prepare($query);
+    $query->bindValue('userID',$userID);
+    $query->execute();
+
+    $query1 ="Delete from register where userID=:userID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('userID',$userID);
+    $query1->execute();
+
+    $query2="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
+    $query2= $dbh->prepare($query2);
+    $query2->bindValue('petID',$petID);
+    $query2->execute();
+
+    $query3="Delete from comment where userID=:petID";
+    $query1 = $dbh->prepare($query3);
+    $query3->bindValue('petID',$petID);
+    $query3->execute();
+
+    $query4="Delete from notification where postID=:petID";
+    $query4 = $dbh->prepare($query4);
+    $query4->bindValue('petID',$petID);
+    $query4->execute();
+
+    $query5 ="Delete from petadopter where userID=:userID";
+    $query5 = $dbh->prepare($query5);
+    $query5->bindValue('userID',$userID);
+    $query5->execute();
+
+    $query6 ="Delete from petowner where userID=:userID";
+    $query6 = $dbh->prepare($query6);
+    $query6->bindValue('userID',$userID);
+    $query6->execute();
+
+    $query7 ="Delete from animalwelfareorganization where userID=:userID";
+    $query7 = $dbh->prepare($query7);
+    $query7->bindValue('userID',$userID);
+    $query7->execute();
+
+    echo '<script>alert("Remove Account Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userinformation.php'</script>";
+   }
+?>
+<!-- //Delete Post Code -->
+
+  <!-- Modal Delete Post -->
+<div class="modal fade" id="DeleteAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Remove Account</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to remove this account?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="user_id" name="userID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
+				</div>
+
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="Delete" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Delete Post -->
   
   <!-- ModalProfile -->
   <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -320,64 +408,6 @@ th {
 </div>
 	<!-- //ModalProfile -->
 
-<!-- Delete Post Code -->
-<?php
-   if(isset($_POST['Delete']))
-   {
-    $petID=($_POST['petID']);
-
-    $query="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
-    $query= $dbh->prepare($query);
-    $query->bindValue('petID',$petID);
-    $query->execute();
-    
-    if($query)
-    {
-    echo '<script>alert("Data Has been Successfully Deleted!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Petinformation.php'</script>";
-    }
-    else
-    {
-    echo '<script>alert("Data Has been Unsuccessfully Deleted!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Petinformation.php'</script>";
-    } 
-
-  }
-?>
-<!-- //Delete Post Code -->
-
-  <!-- Modal Delete Post -->
-<div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Data</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to delete this data?</p>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="form-group">
-         <div class="col-md-6 offset-md-3">
-              <button name="Delete" id="Deletedata" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
-              <button type='reset' class="btn btn-round btn-danger" name="Deletedata" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
-         </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- //Modal Delete Post -->
-
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
@@ -400,6 +430,14 @@ th {
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+  <script type="text/javascript">
+    $(".deletebtn").click(function () {
+    var user_id = $(this).attr('data-user-id');
+    $('#DeleteAccount').modal('show');
+    $("#user_id").val( user_id );
+    });
+  </script>
 
   </body>
 </html>

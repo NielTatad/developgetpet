@@ -128,7 +128,7 @@ th {
 
                             <li>
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Petinformation.php" style="font-size:15px;">Pet Information</a>
-                            </li>                   
+                            </li>
 
                             <li>
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Userinformation.php" style="font-size:15px;">User Information</a>
@@ -140,16 +140,8 @@ th {
 
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
-                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
-                                  <li><a href="#">Short-Term Care</a></li>
-                                </ul>
-                              </li>
-
-
-                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Donation</a></li>
-                                  <li><a href="#">Fundraising Activities</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageshorttermcarepost.php">Short-Term Care</a></li>
                                 </ul>
                               </li>
 
@@ -161,19 +153,15 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">History</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                </ul>
+                              <li>
+                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managefundraisingpost.php" style="font-size:15px;">Manage Fundraising Activities</a>
                               </li>
                                 
                               <li><a style="font-size:15px;">Report</a>
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                  <li><a href="#">Fund-raising activities</a></li>
-                                  <li><a href="#">Donation</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
                                 </ul>
                               </li>
 

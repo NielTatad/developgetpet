@@ -211,12 +211,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php">Pet Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php">Cat's</a></li>
+                      </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php">Short-term Care</a>
+                    <li><a >Pet For Short-term care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php">Cat's</a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -229,6 +235,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.A-Tips.php">Pet Care Tips</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.A-Adopted.php">Pet Adopted</a>
                     </li>
 
               </ul> 
@@ -503,31 +513,38 @@ $event=$query->fetchColumn();
 <br>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
-  <div class="carousel-inner" style="border-radius: 10px;">
+<div class="carousel-inner" style="border-radius: 10px;">
     <div class="carousel-item active">
       <img src="images/slider1.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3 style="color:black;">We are
-			<span>GetPet</span> were
-			<span>love </span> is wanted!</h3>
-			<h2 style="color:black;"><strong>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>We are GetPet were love is wanted!.</p>
+    <h6>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider2.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3 style="color:black;">we provide
-			<span>care</span> that your
-			<span>pet</span> deserves!</h3>
-			<h2 style="color:black;"><strong>A comprehensive guide to dog & cat care to make your pet feel your love</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>we provide care that your pet deserves!</p>
+    <h6>A comprehensive guide to dog & cat care to make your pet feel your love.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h3 style="color:black;">Helping everyone,			
-			<span>With everyone!</h3>
-			<h2 style="color:black;"><strong>I care not for a man’s religion whose dog and cat are not the better for it.</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>Helping everyone, With everyone!</p>
+    <h6>I care not for a man’s religion whose dog and cat are not the better for it.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
   </div>
@@ -610,8 +627,17 @@ $event=$query->fetchColumn();
             }
             ?>
 
-      </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.A-Adoption.php"><h2 style="text-align:center;">
-      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
+        </div>&nbsp
+                    <h2 style="text-align:center;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#00cdc1;border:#00cdc1;">
+                      Check Now!
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Adoption</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Adoption</a>
+                    </ul>
+                    </h2>
+      </div>
     </div>
   </div>
 </div>
@@ -687,8 +713,17 @@ $event=$query->fetchColumn();
             }
             ?>
 
-      </div>&nbsp<a href="http://localhost/developgetpet/dashboard/P.A-Shorttermcare.php"><h2 style="text-align:center;">
-      <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
+</div>&nbsp
+                    <h2 style="text-align:center;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#00cdc1;border:#00cdc1;">
+                      Check Now!
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Short-term care</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Short-term care</a>
+                    </ul>
+                    </h2>
+
     </div>
   </div>
 </div>
@@ -971,6 +1006,9 @@ if($query->rowCount()>0)
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </body>
 </html>

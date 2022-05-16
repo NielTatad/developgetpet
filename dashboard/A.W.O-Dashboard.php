@@ -210,8 +210,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php">Pet Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dogslistadoption.php">Dog's </a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Catslistadoption.php">Cat's </a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -224,6 +227,14 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adopted.php">Pet Adopted</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Donations.php">Manage Donation</a>
                     </li>
 
               </ul>
@@ -405,7 +416,29 @@ if($query->rowCount()>0)
                 </div>
               </div>
             </div>
-            
+            <br><br><br>
+
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+              </symbol>
+              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+              </symbol>
+              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </symbol>
+            </svg>
+
+
+
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+              <strong><?php echo ($result->userName);?> has especially thanks!</strong> To Genesis Tagsip for donating an amount of ₱100.00.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+
 <!-- Button trigger modal -->
 <?php
 $query=$dbh->prepare("SELECT COUNT(postStatus) FROM post WHERE postStatus='Event' AND postStatus != 'Deleted' ");
@@ -501,27 +534,34 @@ $event=$query->fetchColumn();
     <div class="carousel-item active">
       <img src="images/slider1.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3 style="color:black;">We are
-			<span>GetPet</span> were
-			<span>love </span> is wanted!</h3>
-			<h2 style="color:black;"><strong>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>We are GetPet were love is wanted!.</p>
+    <h6>When you adopt, not only do you save your loving new companion, but you make space for other animals who desperately need it, creating a domino effect of goodness.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider2.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <h3 style="color:black;">we provide
-			<span>care</span> that your
-			<span>pet</span> deserves!</h3>
-			<h2 style="color:black;"><strong>A comprehensive guide to dog & cat care to make your pet feel your love</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>we provide care that your pet deserves!</p>
+    <h6>A comprehensive guide to dog & cat care to make your pet feel your love.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
     <div class="carousel-item">
       <img src="images/slider3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h3 style="color:black;">Helping everyone,			
-			<span>With everyone!</h3>
-			<h2 style="color:black;"><strong>I care not for a man’s religion whose dog and cat are not the better for it.</strong></h2>
+      <figure class="text-center" style="background-color:black;opacity:0.6;border: 1px solid black;border-radius:2px;">
+  <blockquote class="blockquote">
+    <p>Helping everyone, With everyone!</p>
+    <h6>I care not for a man’s religion whose dog and cat are not the better for it.</h6>
+  </blockquote>
+</figure>
       </div>
     </div>
   </div>
@@ -535,7 +575,8 @@ $event=$query->fetchColumn();
   </button>
 </div>
 <br>
-            <!-- New Post For Adoption Code -->
+      
+<!-- New Post For Adoption Code -->
             <div class="clearfix"></div>
 
             <div class="row">
@@ -604,8 +645,17 @@ $event=$query->fetchColumn();
                         }
                         ?>
 
-                  </div>&nbsp<a href="http://localhost/developgetpet/dashboard/A.W.O-Adoption.php"><h2 style="text-align:center;">
-                  <button type="button" class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width:150px;">Check Now!</button></h2></a>
+                  </div>&nbsp
+                    <h2 style="text-align:center;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#00cdc1;border:#00cdc1;">
+                      Check Now!
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-Dogslistadoption.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Adoption</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-Catslistadoption.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Adoption</a>
+                    </ul>
+                    </h2>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1167,7 +1217,53 @@ img.onerror = function () {
         
         previousLength = newLength;
       }
-    </script>      
+    </script>    
+    
+    <script>
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+    var toastList = toastElList.map(function (toastEl) {
+    return new bootstrap.Toast(toastEl, option)
+    })
+    </script>
+
+    <script>
+    var toastTrigger = document.getElementById('liveToastBtn')
+var toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+  toastTrigger.addEventListener('click', function () {
+    var toast = new bootstrap.Toast(toastLiveExample)
+
+    toast.show()
+  })
+}  
+    </script>
+
+    <script>
+      toast.show()
+    </script>
+
+    <script>
+      toast.hide()
+    </script>
+
+    <script>
+      toast.dispose()
+    </script>
+
+    <script>
+      var myCollapseEl = document.getElementById('myCollapse')
+
+      myCollapseEl.addEventListener('shown.bs.collapse', function (event) {
+      // Action to execute once the collapsible area is expanded
+      })
+    </script>
+
+    <script>
+      var myToastEl = document.getElementById('myToast')
+myToastEl.addEventListener('hidden.bs.toast', function () {
+  // do something...
+})
+    </script>
 
 
     <!-- jQuery -->
@@ -1184,6 +1280,9 @@ img.onerror = function () {
     <script src="../build/js/custom.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 
   </body>
 </html>

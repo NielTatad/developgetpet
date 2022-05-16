@@ -119,8 +119,8 @@ th {
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 				<div class="menu_section">						
 					<ul class="nav side-menu">
-          
-                            <li>
+
+                          <li>
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Dashboard.php" style="font-size:15px;">Dashboard</a>
                             </li>
 
@@ -139,15 +139,7 @@ th {
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php">Pet Adoption</a></li>
-                                  <li><a href="#">Short-Term Care</a></li>
-                                </ul>
-                              </li>
-
-
-                                <li><a style="font-size:15px;">Manage Donation & Fundraising Activities</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Donation</a></li>
-                                  <li><a href="#">Fundraising Activities</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageshorttermcarepost.php">Short-Term Care</a></li>
                                 </ul>
                               </li>
 
@@ -159,16 +151,17 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">History</a>
-                                <ul class="nav child_menu">
-                                  <li><a href="#">Adoption</a></li>
-                                  <li><a href="#">Short Term-Care</a></li>
-                                </ul>
+                              <li>
+                                <li><a href="http://localhost/developgetpet/dashboard/Admin-Managefundraisingpost.php" style="font-size:15px;">Manage Fundraising Activities</a>
                               </li>
                                 
-                                <li>
-                                <li><a href="#" style="font-size:15px;">Report</a>
-                                </li>
+                              <li><a style="font-size:15px;">Report</a>
+                                <ul class="nav child_menu">
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
+                                </ul>
+                              </li>
 
         </ul>		
 				</div>
@@ -239,7 +232,6 @@ th {
             <div class="page-title">
               <div class="title_left">
               <br>
-              <h2><?php echo ($result->Role);?>'s Dashboard</h2>
               </div>
 
               <div class="title_right">
@@ -265,66 +257,84 @@ th {
       <div class="col-md-12 col-sm-12">
         <div class="x_panel" style="border-radius:10px;border-width:2px;">
           <div class="x_title">
-            <h2>Manage User Request</h2>
+            <h2>Manage Pet Adoption Post</h2>
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-              </li>
           </ul>
             <div class="clearfix"></div>
           </div>
           <div class="x_content" style="text-align:center;">
-                  
-            <!-- Manage Pet adoption post Code -->
-            <?php
-                        $sql="SELECT * from postpet WHERE petStatus='Available' AND postStatus='Adoption' AND postStatus!='Deleted' ORDER BY petID DESC LIMIT 10";
-                        $query=$dbh->prepare($sql);
-                        $query->execute();
-                        $results=$query->fetchALL(PDO::FETCH_OBJ);
-                        $cnt=1;
-                        if($query->rowCount()>0)
-                        {
-                          foreach($results as $result)
-                        {
-                           ?>
-                                  <div class="col-md-4">
-                                    <div class="card col-sm-12" style="border-radius:10px;border-width:2px;">                 
-                                      <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->petPicture'";?> class="rounded-circle img-responsive" alt="Post Images" style="height:180px;width:180px;">
-                                            
-                                            <h3 hidden class="card-title"><?php echo ($result->petID);?></h3>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-style:bold;font-size:25px;font-family:Arial, Helvetica, sans-serif;text-transform: uppercase;"><?php echo ($result->petName);?></h2></h2>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petSex);?> (<?php echo ($result->petBreed);?>)</h2></ul>
-                                            <h2 style="margin-right:5px;"><h2 class="card-title" style="font-size:15px;"><?php echo ($result->petStatus);?></h2></h2>                                
-                                            <h3 hidden class="card-title"><?php echo ($result->userID);?></h3>
-                                            <?php $user_id = $result->userID;
+      
+                  <div class="row">
+                  <div class="col-sm-12">
+                  <div class="card-box table-responsive">
+					
+                  <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                            <th style="text-align:center" class="column-title">Pet ID</th>
+                            <th hidden style="text-align:center" class="column-title">User ID</th>
+                            <th style="text-align:center" class="column-title">Pet Name</th>
+                            <th style="text-align:center" class="column-title">Pet Type</th>
+                            <th style="text-align:center" class="column-title">Pet Breed</th>
+                            <th style="text-align:center" class="column-title">Pet Age</th>
+                            <th style="text-align:center" class="column-title">Pet Color</th>
+                            <th style="text-align:center" class="column-title">Pet Weight</th>
+                            <th style="text-align:center" class="column-title">Pet Photo</th>
+                            <th style="text-align:center" class="column-title">Spay/Neuter</th>
+                            <th style="text-align:center" class="column-title">RabiesVaccine</th>
+                            <th style="text-align:center" class="column-title">Deworming</th>
+                            <th style="text-align:center" class="column-title">3 in 1 Vaccine</th>
+                            <th style="text-align:center" class="column-title">Pet Diet</th>
+                            <th style="text-align:center" class="column-title">Pet Status</th>
+                            <th style="text-align:center" class="column-title">Post Status</th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            </th>
+                            <th class="bulk-actions" colspan="12">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Data to be Deleted (<span class="action-cnt"> </span>)</a>
+                            </th>
+                            </tr>
+                            </thead>
 
-                                            $sql1="SELECT * from register WHERE userID='$user_id'";
-                                            $query1=$dbh->prepare($sql1);
-                                            $query1->execute();
-                                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
-                                            $cnt1=1;
-                                            if($query1->rowCount()>0)
-                                            {
-                                              foreach($userids as $userid)
-                                            {
-                                              ?>
-                                            
-                                            <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
-                                            <?php $cnt1=$cnt1+1;}} ?>
-                                            <label style=""><?php echo ($result->postDate);?></label><br>
-                                            
-                                    </div>
-                                  </div><br>
-                                </div>
-                              <?php $cnt=$cnt+1;
-                            }
-                        } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
-                        ?>
-                     <!-- //Manage Pet adoption post Code -->                   
+                            <tbody>
+                            <?php
+                            $sql="SELECT * from postpet where postStatus='Adoption' ";
+                            $query=$dbh->prepare($sql);
+                            $query->execute();
+                            $results=$query->fetchALL(PDO::FETCH_OBJ);
+                            $cnt=1;
+                            if($query->rowCount()>0)
+                            {
+                             foreach($results as $result)
+                            {
+                             ?>
+                              <tr class="even pointer">
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
+                                <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petName);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petType);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petBreed);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petAge);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petColor);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petWeight);?></td>
+                                <td style="text-align:center" class=" "><?php echo"<img src = '/developgetpet/web/images/$result->petPicture' style = height:80px; width: 80px;/>";?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->SpayNeuter);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->rabiesVaccine);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Deworming);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->threeinoneVaccine	);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->Deworming);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->petStatus);?></td>
+                                <td style="text-align:center" class=" "><?php echo htmlentities($result->postStatus);?></td>
+                                <?php if ($result->postStatus != 'Deleted' AND $result->petStatus != 'Adopted' AND $result->petStatus != 'Short-Term Care') { ?>
+                                <td style="text-align:center;" class="last"><button type="button" class="btn btn-danger deletebtn" data-pet-id="<?php echo ($result->petID);?>" data-master-id="<?php echo ($result->userID);?>">Delete</button>
+                                </td>
+                                <?php } ?>                                
+                              </tr>
+                            <?php $cnt=$cnt+1;}}?>
+                         </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div> 
             
           </div>
         </div>
@@ -332,49 +342,53 @@ th {
     </div>
   </div>
 </div>
-<!-- /page content -->
+        <!-- /page content -->
 
-<!-- Accept Post Code -->
-<?php
-   if(isset($_POST['Accept']))
+ <!-- Delete Post Code -->
+ <?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+ <?php
+   if(isset($_POST['Delete']))
    {
-    $charityID=($_POST['charityID']);
+    $petID=($_POST['petID']);
+    $masterID=($_POST['masterID']);
 
-    $query="update charity set charityStatus='Accepted' where charityID=:charityID";
+    $query="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
     $query= $dbh->prepare($query);
-    $query->bindValue(':charityID',$charityID);
+    $query->bindValue('petID',$petID);
     $query->execute();
 
-    echo '<script>alert("Request Accepted Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userrequest.php'</script>";
-   }
-?>
-<!-- //Accept Post Code -->
-
-<!-- Decline Post Code -->
-<?php
-   if(isset($_POST['Decline']))
-   {
-    $charityID=($_POST['charityID']);
-
-    $query1="update charity set charityStatus='Decline' where charityID=:charityID";
-    $query1= $dbh->prepare($query1);
-    $query1->bindValue(':charityID',$charityID);
+    $query1="Delete from comment where postID=:petID";
+    $query1 = $dbh->prepare($query1);
+    $query1->bindValue('petID',$petID);
     $query1->execute();
 
-    echo '<script>alert("Request Decline Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userrequest.php'</script>";
+    $query2="Delete from notification where postID=:petID";
+    $query2 = $dbh->prepare($query2);
+    $query2->bindValue('petID',$petID);
+    $query2->execute();
+ 
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:petID,:petID,'Post Deleted','$ID',:masterID,'Your Post Has Been Removed By Admin','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query3->execute();
+
+    echo '<script>alert("Deleted Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Managepetadoptionpost.php'</script>";
    }
 ?>
-<!-- //Decline Post Code -->
+<!-- //Delete Post Code -->
 
-  <!-- Modal Accept Post -->
-<div class="modal fade" id="AcceptPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <!-- Modal Delete Post -->
+<div class="modal fade" id="DeletePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Request Modal</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Delete Pet Adoption Post</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -382,15 +396,18 @@ th {
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <p>Are you sure, you want to accept this request?</p>
+					    <p>Are you sure you want to delete this post?</p>
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="char_id" name="charityID" required = "required" class="form-control" id="success">
+					    <input hidden id="pet_id" name="petID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-              <button name="Accept" id="AcceptRequest" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Accept</button>
-              <button class="btn btn-round btn-danger" name="Decline" type="submit" type='submit'    style="width:90px;height:37px;">Decline</button>
+              <button name="Delete" type="submit" type='submit' class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button type='reset' class="btn btn-round btn-danger" name="CancelRequest" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
          </div>
         </div>
       </form>
@@ -398,160 +415,7 @@ th {
     </div>
   </div>
 </div>
-	<!-- //Modal Accept Post -->
-
-
-  <!-- Modal Donation Information -->
-  <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <script>
-          function cleartext() {
-          document.getElementById("Reason").value="";
-          document.getElementById('adopt').disabled = true;
-            }
-        </script>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_id" name="CharityID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Title<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_title" name="PetName" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Bank Type<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_bank" name="Breed" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_amount" name="Gender" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Account Number<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_pin" name="Age" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-        <textarea disabled="yes" id="char_description" style="width:400px;height:100px;padding-top:-5px;background-color: #fff;resize: none;font-size:16px;"></textarea>
-        </div>
-        </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="des" name="Description"  required = "required" class="form-control">
-				</div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="char_picture" name="Picture"  required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="char_status" name="Availability" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden type="text" id="user_id" name ="MasterID" required = "required" class="form-control">
-				</div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_by" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted Date<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="post_date" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_email" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_address" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
-        <div class="col-md-6 col-sm-6">
-               <input readonly type="text" class="form-control" id="user_contactno" style="background-color:#fff;width:400px;" required="required"/>
-        </div>
-        </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //Modal Donation Information -->
-
-  <!-- ModalProfile -->
-  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="ownerID" value="<?php echo ( $result->adID);?>" required = "required" class="form-control" id="success">
-				</div>
-       
-        <div style="text-align: center">
-             <h6 class="mt-1 mb-2"><?php echo ($result->adUsername);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->adPassword);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->adEmail);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
-        </div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //ModalProfile -->
-
+	<!-- //Modal Delete Post -->
 
         <!-- footer content -->
         <footer>
@@ -595,59 +459,15 @@ th {
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-
-            $('.viewbtn').on('click', function () {
-
-                $('#View').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#char_id').val(data[0]);
-                $('#char_title').val(data[1]);
-                $('#char_bank').val(data[2]);
-                $('#char_amount').val(data[3]);
-                $('#char_pin').val(data[4]);
-                $('#char_description').val(data[5]);
-                $('#des').val(data[6]);
-                $('#char_picture').val(data[7]);
-                $('#char_status').val(data[8]);
-                $('#user_id').val(data[9]);
-                $('#post_by').val(data[10]);
-                $('#post_date').val(data[11]);
-                $('#user_email').val(data[12]);
-                $('#user_address').val(data[13]);
-                $('#user_contactno').val(data[14]);
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.acceptbtn').on('click', function () {
-
-                $('#AcceptPost').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#char_id').val(data[0]);
-            });
-        });
-    </script>    
+<script type="text/javascript">
+  $(".deletebtn").click(function () {
+    var pet_id = $(this).attr('data-pet-id');
+    var master_id = $(this).attr('data-master-id');
+    $('#DeletePost').modal('show');
+    $("#pet_id").val( pet_id );
+    $("#master_id").val( master_id );
+  });
+  </script>
 
     <div id="custom_notifications" class="custom-notifications dsp_none">
       <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">

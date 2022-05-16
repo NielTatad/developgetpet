@@ -251,8 +251,11 @@ if($query->rowCount()>0)
                     <li><a href="http://localhost/developgetpet/dashboard/AnimalWelfareOrganizationDashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/A.W.OPost.php">Pet Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Dogslistadoption.php">Dog's </a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Catslistadoption.php">Cat's </a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -265,6 +268,14 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Tips.php">Pet Care Tips</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Adopted.php">Pet Adopted</a>
+                    </li>
+
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/A.W.O-Donations.php">Manage Donation</a>
                     </li>
 
               </ul>

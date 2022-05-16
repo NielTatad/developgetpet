@@ -49,11 +49,12 @@ if($query->rowCount()>0)
     <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Custom Theme Style -->
 	  <link href="../build/css/custom.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
 .view-more-comment:hover {
     text-decoration: underline;
@@ -100,15 +101,15 @@ if($query->rowCount()>0)
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dogs</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cats</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat's</a></li>
                       </ul>
                     </li>
 
                     <li><a >Pet For Short-Term Care</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dogs</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cats</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat's</a></li>
                       </ul>
                     </li>
 
@@ -127,6 +128,8 @@ if($query->rowCount()>0)
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
                     </li>
+
+                  </ul>   
 
                   
               </div>
@@ -452,11 +455,11 @@ if($query->rowCount()>0)
                           <div class="col-sm-12">
                             <h6 class="brief"><i>Organization Name: <?php echo ( $result->orgName);?></i></h6>
                             <div class="left col-md-7 col-sm-7">  
-                                <br><br>                        
-                              <p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                <br><!--<p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>-->
                               <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Address: <?php echo ( $result->Address);?></li>
-                                <li><i class="fa fa-phone"></i> Phone #: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-map-marker"></i> Address: <?php echo ( $result->Address);?></li>
+                                <li><i class="fa fa-phone"></i> Phone: <?php echo ( $result->contactNo);?></li>
+                                <li><i class="fa fa-envelope"></i> Email: <?php echo ( $result->Email);?></li>
                               </ul>
                             </div>
                             <div class="right col-md-5 col-sm-5 text-center">
@@ -465,19 +468,19 @@ if($query->rowCount()>0)
                           </div>
                           <div class=" profile-bottom text-center">
                             <div class=" col-sm-6 emphasis">
-                              <p class="ratings">
+                              <!--<p class="ratings">
                                 <a>4.0</a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star"></span></a>
                                 <a href="#"><span class="fa fa-star-o"></span></a>
-                              </p>
+                              </p>-->
                             </div>
                             <div class=" col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-sm">
+                              <!--<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>-->
+                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-primary btn-sm deletebtn" data-user-id="<?php echo ($result->userID);?>">
                                 <i class="fa fa-user"> </i> View Profile
                               </button>
                             </div>
@@ -530,15 +533,9 @@ if($query->rowCount()>0)
                                             <label style="margin-top:-5px;"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:40px;height:40px;margin-top:10px;" class="rounded-circle img-responsive"><textarea disabled style="width:450px;height:auto;font-size:18px;border-style: none;background-color:transparent;resize: none;overflow:hidden;font-size:14px;text-align:left;padding-top: 2px;color: #73879C;margin-top:10px;" type='text'><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?>&#13;&#10;<?php echo ($result->charityPostdate);?></textarea><i class="fa fa-ellipsis-h menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i hidden><?php echo ($result->userID);?></i>
                                             </i>
 
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                              <button class="dropdown-item Epost" data-charity-id="<?php echo ($result->charityID);?>" data-charity-title="<?php echo ($result->charityTitle);?>" data-charity-description="<?php echo ($result->charityDescription);?>" data-charity-bank="<?php echo ($result->charityBank);?>" data-charity-pinnumber="<?php echo ($result->charityPinnumber);?>" data-charity-amount="<?php echo ($result->charityAmount);?>"><i hidden><?php echo ($result->userID);?></i>Edit</button>
-
-                                              <button class="dropdown-item Dpost" data-charity-id="<?php echo ($result->charityID);?>"><i hidden><?php echo ($result->userID);?></i>Delete</button>
-                                              <button class="dropdown-item Ppost" data-charity-id="<?php echo ($result->charityID);?>" data-charity-picture="<?php echo ($result->charityPicture);?>"><i hidden><?php echo ($result->userID);?></i>Change Picture</button>
-                                            </div>
                                             <br>
 
-                                            <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Charity Title: <?php echo ($result->charityTitle);?><br>Amount Needed: ₱<?php echo ($result->charityAmount);?>.00
+                                            <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Charity Title: <?php echo ($result->charityTitle);?><br>Amount Needed: ₱<?php echo ($result->charityTargetamount);?>.00
                                             <br>Organization Website: <?php echo ($result->charityWebsite);?></p>                                           
                                             <br>
                                             <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
@@ -549,7 +546,7 @@ if($query->rowCount()>0)
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->charityID);?></h3></li>
                                               <li><h2 hidden class="card-title"><?php echo ($result->charityTitle);?></h2></li>
-                                              <li><h3 hidden class="card-title"><?php echo ($result->charityAmount);?></h3></li>
+                                              <li><h3 hidden class="card-title"><?php echo ($result->charityTargetamount);?></h3></li>
                                               <li><Img hidden <?php echo"<img src = '/developgetpet/web/images/$result->charityQRcode'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;"></li>
                                               <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->charityDescription);?></textarea></li>
                                               
@@ -874,7 +871,7 @@ if($query->rowCount()>0)
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Amount Needed<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="char_amount" name="Amount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
@@ -1366,13 +1363,14 @@ $Email=($_POST['Email']);
 $Address=($_POST['Address']);
 $ContactNo=($_POST['ContactNo']);
 $Message=($_POST['Message']);
+$Identity=($_POST['Identity']);
 $Picture = $_FILES["Picture"]["name"];
 $tmp_dir = $_FILES["Picture"]["tmp_name"];
-
+  
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
-
-$sql="INSERT INTO donation(userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationReciept,donationDate,donationStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Message,:Picture,'$date','Not Recieved Yet')";
-
+  
+$sql="INSERT INTO donation(userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationIdentity,donationReciept,donationDate,donationStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Message,:Identity,:Picture,'$date','Not Recieved Yet')";
+  
 $query=$dbh->prepare($sql); 
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
@@ -1380,6 +1378,7 @@ $query->bindParam(':Email',$Email,PDO::PARAM_STR);
 $query->bindParam(':Address',$Address,PDO::PARAM_STR);
 $query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
 $query->bindParam(':Message',$Message,PDO::PARAM_STR);
+$query->bindParam(':Identity',$Identity,PDO::PARAM_STR);
 $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query->execute();
 
@@ -1458,17 +1457,17 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
 
                                         <div class="field item form-group">    
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Reciept</label>&nbsp&nbsp&nbsp
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align">Please attach your deposit slip for reference. Thank you!</label>&nbsp&nbsp&nbsp
                                         <div style="text-align: center" class="wrap-input100 validate-input">
-                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;" placeholder="Upload Reciept" multiple>
+                                        <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;margin-top:10px;border:none;" placeholder="Upload Reciept" multiple>
                                         </div>
                                         </div>
 
                                         <div class="field item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Please Select<span class="required"></span></label>
+                                        <label class="col-form-label col-md-3 col-sm-3  label-align" for="">Please Select if you want to appear your name in the Dashboard<span class="required"></span></label>
                                         <div class="col-md-6 col-sm-6">
-                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                                          <option selected>Open this select menu</option>
+                                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" style="margin-top:10px;" name="Identity">
+                                          <option selected>Open this to choose option</option>
                                           <option value="showidentity">Show My Identity</option>
                                           <option value="anonymous">Anonymous</option>
                                         </select>
@@ -1843,6 +1842,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 	<!-- starrr -->
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
+  <script src="../build/js/custom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 </html>

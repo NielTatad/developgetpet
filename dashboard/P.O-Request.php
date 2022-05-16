@@ -246,12 +246,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogslistadoption.php">Dog's For Adoption</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catslistadoption.php">Cat's For Adoption</a></li>
+                      </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Short-term Care</a>
+                    <li><a >Pet For Short-term care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Dogsshorttermcare.php">Dog's For Short-term care</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-Catsshorttermcare.php">Cat's For Short-term care</a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -264,7 +270,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
+                    </li>  
+                    
+                    <li>
+                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
                     </li>
+
+                </ul>
 
                   
               </div>

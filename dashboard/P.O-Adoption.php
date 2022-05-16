@@ -97,12 +97,18 @@ if($query->rowCount()>0)
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php"><i></i> Dashboard </a>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Adoption.php">Pet For Adoption</a>
+                    <li><a >Pet For Adoption</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat's</a></li>
+                      </ul>
                     </li>
 
-                    <li>
-                    <li><a href="http://localhost/developgetpet/dashboard/P.O-Shorttermcare.php">Pet For Short-term Care</a>
+                    <li><a >Pet For Short-Term Care</a>
+                      <ul class="nav child_menu">
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat's</a></li>
+                      </ul>
                     </li>
 
                     <li>
@@ -115,7 +121,7 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>
+                    </li> 
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
@@ -366,7 +372,7 @@ if(isset($_POST['Go']))
                             {
                               ?>   
                                     <div class="col-nd-4">
-                                        <div class="card" style="border-radius:10px;border-width:2px;width:550px;margin: 0 auto;float: none; margin-bottom: 10px;">
+                                        <div class="card" id="card" style="border-radius:10px;border-width:2px;width:550px;margin: 0 auto;float: none; margin-bottom: 10px;">
                                         
                                           <div class="card-body" style="box-shadow: 8px 8px 8px #888888;border-radius:10px;">
                                           
@@ -1795,8 +1801,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
-		</div>
-	</div>
+
+  
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
@@ -2297,6 +2303,18 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         }).prop('checked', false);
 
     </script>
+
+<script>
+     $(document).ready(function(){
+        $("#breed").on("keyup", function(){
+        var value = $(this).val().toLowerCase();
+         $("#card div").filter(function(){
+             $(this).toggle($(this).text().toLowerCase().indexof(value)>-1);
+        });
+   });
+  });
+</script>
+  
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
