@@ -407,10 +407,18 @@ if($query->rowCount()>0)
 <?php
 if(isset($_POST['Go']))
 {
+  if($Search = $_POST['Search'] == "")
+  {
+   echo "<script>alert('No data entered!');</script>";
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-SearchBreedAdoption.php'</script>";
+  
+  }
+  else
+  {
 
    $Search=($_POST['Search']);
-   {
-   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-SearchBreedShorttermcare.php'</script>";
+
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-SearchBreedAdoption.php'</script>";
     
    $_SESSION['Search'] = $Search;
 

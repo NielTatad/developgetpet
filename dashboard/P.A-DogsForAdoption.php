@@ -428,25 +428,47 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 
+<!-- Search Pet Breed Code  -->
+<?php
+if(isset($_POST['Go']))
+{
+  if($Search = $_POST['Search'] == "")
+  {
+   echo "<script>alert('No data entered!');</script>";
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-SearchBreedAdoption.php'</script>";
+  
+  }
+  else
+  {
+
+   $Search=($_POST['Search']);
+
+   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.A-SearchBreedAdoption.php'</script>";
+    
+   $_SESSION['Search'] = $Search;
+
+  }
+
+}
+?>
+
+<!-- //Search Pet Breed Code -->
+
 	  <!-- page content -->
     <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-              <br>
-              </div>
-
               <div class="title_right">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+               <form method="post">
+                <div class="col-md-5 col-sm-5 form-group pull-right top_search" style="float:right">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <input type="text" name="Search" class="form-control" placeholder="Search for Dog Breeds...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
+                      <button class="btn btn-default" name="Go" type="submit" style="height:38px"><i class="fa fa-search fa-lg"></i></button>
                     </span>
                   </div>
                 </div>
+               </form>
               </div>
-            </div>
 
             <!-- /page content -->
 
