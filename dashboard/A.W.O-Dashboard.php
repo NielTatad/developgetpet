@@ -430,11 +430,14 @@ if($query->rowCount()>0)
               </symbol>
             </svg>
 
+
+
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-              <strong>PAWS has especially thanks!</strong> To Genesis Tagsip for donating an amount of ₱100.00.
+              <strong><?php echo ($result->userName);?> has especially thanks!</strong> To Genesis Tagsip for donating an amount of ₱100.00.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+
 
 <!-- Button trigger modal -->
 <?php

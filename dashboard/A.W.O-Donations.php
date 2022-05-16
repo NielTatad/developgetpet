@@ -472,18 +472,24 @@ if($query->rowCount()>0)
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->donationID);?></h3></li>
-                                              <li><textarea hidden disabled="yes" id="description" style="width:350px;height:100px;padding-top:-5px;background-color: #fff;resize: none;color:#73879C;font-size:16px;"><?php echo ($result->donationMessage);?></textarea></li>
+                                              <li><textarea hidden disabled="yes" id="username"><?php echo ($result->userName);?></textarea></li>
+                                              <li><textarea hidden disabled="yes" id="message"><?php echo ($result->donationMessage);?></textarea></li>
+                                              <li><textarea hidden disabled="yes" id="identity"><?php echo ($result->donationIdentity);?></textarea></li>
+                                              <li><textarea hidden disabled="yes" id="status"><?php echo ($result->donationStatus);?></textarea></li>
                                               
                                           
                                               <?php $cnt1=$cnt1+1;}} ?>
                                               
                                               <br> 
+                                              <br>
+                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
+                                              <br><br>
                                             
                                             <!--<button name ="Post" type='submit' id="submit" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;width:130px;margin-right:10px;height:40px;float:left;">Recieved</button>
                                             <br><br><br>-->
                                             &nbsp&nbsp&nbsp
                                             <button name ="Post" type='submit' class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:130px;">Recieved</button>
-                                            <button type="button" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:140px;">Post Newsfeed</button>
+                                            <button type="button" class="btn btn-success messagebtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:140px;">Post Newsfeed</button>
                                             <button type="button" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:180px;">Give rate & Feedback</button>
                                             
                                               </ul>
@@ -508,6 +514,26 @@ if($query->rowCount()>0)
 </div>
 </div>
 <!-- /page content -->
+
+<script>
+<?php 
+$ID=$_SESSION['orgID'];
+$sql = "SELECT * from animalwelfareorganization where orgID=:ID";
+$query=$dbh->prepare($sql);
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+  foreach($results as $result)
+  {
+     ?>
+
+<?php
+?>
+<?php }} ?>
+</script>
 
 <!-- Accept Post Code -->
 <?php
@@ -581,6 +607,167 @@ if($query->rowCount()>0)
 </div>
 	<!-- //Modal Accept Post -->
 
+<!-- Message Post Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Sendmessage']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Address=($_POST['Address']);
+$ContactNo=($_POST['ContactNo']);
+$Donatorsname=($_POST['Donatorsname']);
+$Message=($_POST['Message']);
+  
+$sql="INSERT INTO message(userID,userName,userEmail,userAddress,userContactNo,messageDonatorsname,messageMessage,messageDate)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Donatorsname,:Message,'$date')";
+  
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Address',$Address,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+$query->bindParam(':Donatorsname',$Donatorsname,PDO::PARAM_STR);
+$query->bindParam(':Message',$Message,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Your Message has successfully saved!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Donations.php'</script>";
+
+}
+?>
+<!-- //Message Post Code -->
+
+<!-- Modal for Message-->
+<div class="modal fade" id="MessagePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Message Modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form class="" action="" method="post" novalidate enctype="multipart/form-data"> 
+      
+      <div hidden class="field item form-group">
+                                          <div class="col-md-6 col-sm-6">
+                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>"/>
+                                          </div> 
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>"/>
+                                            </div> 
+                                         </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Address" class='Address' value="<?php echo ($result->orgAddress);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Email" class='Email' value="<?php echo ($result->orgEmail);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                             <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->orgContactNo);?>"/>
+                                            </div>
+                                        </div>
+
+                                         <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Donators Name<span class="required"></span></label>
+                                          <div class="col-md-6 col-sm-6">
+                                                <input readonly type="text" class="form-control" id="char_username" id="Donatorsname" name="Donatorsname" style="background-color:#fff;width:400px;" required="required"/>
+                                          </div>
+                                          </div>
+
+                                        <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Leave Message(Optional)</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="Message" required="required" class="form-control" name="Message" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:400px;border-radius:4px;"></textarea>
+                                          </div>
+                                        </div><br>
+
+         <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+         <button name ="Sendmessage" type='submit' id="Sendmessage" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Send</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //Modal for Message-->  
+
+<!-- Modal Donation Information -->
+<div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cleartext()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="char_id" name="CharityID" required = "required" class="form-control">
+				</div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Donators Name<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_username" name="Username" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Message<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_message" name="Message" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Suggestion<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_suggestion" name="Suggestion" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required"></span></label>
+        <div class="col-md-6 col-sm-6">
+               <input readonly type="text" class="form-control" id="char_status" name="Status" style="background-color:#fff;width:400px;" required="required"/>
+        </div>
+        </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Donation Information -->
+
 </div>
 </div>
 
@@ -617,9 +804,9 @@ ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.c
                 $('#donation_id').val(data[0]);
             });
         });
-    </script>
+</script>
 
-    <script>
+<script>
         $(document).ready(function () {
 
             $('.acceptbtn').on('click', function () {
@@ -637,7 +824,53 @@ ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.c
                 $('#donation_id').val(data[0]);
             });
         });
-    </script> 
+</script> 
+
+<script>
+        $(document).ready(function () {
+
+            $('.messagebtn').on('click', function () {
+
+                $('#MessagePost').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#char_id').val(data[0]);
+                $('#char_username').val(data[1]);
+            });
+        });
+</script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.viewbtn').on('click', function () {
+
+                $('#View').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#char_id').val(data[0]);
+                $('#char_username').val(data[1]);
+                $('#char_message').val(data[2]);
+                $('#char_suggestion').val(data[3]);
+                $('#char_status').val(data[4]);
+                
+            });
+        });
+    </script>
 
 
 <!-- jQuery -->
