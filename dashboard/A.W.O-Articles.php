@@ -527,7 +527,7 @@ if($query->rowCount()>0)
                                             </div><br>
                                             <label style="margin-top:10px;">Posted by: <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:25px;height:25px;" class="rounded-circle img-responsive"> <?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></label><br>
                                             <label style=""><?php echo ($result->postDate);?></label><br><br>
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;"><br>
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:445px;width:500px;border-radius:10px;"><br>
                                             <br>
                                             <div class="field item form-group">  
                                             <div class="col-md-6 col-sm-6">

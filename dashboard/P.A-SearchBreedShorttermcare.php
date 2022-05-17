@@ -2,6 +2,7 @@
 session_start();
 include('C:\xampp\htdocs\developgetpet\includes\config.php');
 $ID=$_SESSION['adopterID'];
+$Search=$_SESSION['Search'];
 $sql = "SELECT * from petadopter where adopterID=:ID";
 $query=$dbh->prepare($sql);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
