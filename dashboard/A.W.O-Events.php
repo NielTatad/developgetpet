@@ -425,10 +425,10 @@ if($query->rowCount()>0)
               <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <!--<input type="text" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    </span>-->
                   </div>
                 </div>
               </div>
@@ -444,8 +444,10 @@ if($query->rowCount()>0)
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
-                  <div class="x_title">
-                  <h2>Posted Events</h2>
+                <div class="x_title">
+                    <h2>Posted Events</h2>
+                     <!-- Post Button -->
+                    <a href="http://localhost/developgetpet/dashboard/A.W.O-Postevent.php"><button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:150px;float:right;">Post Event</button></a>
                     <ul class="nav navbar-right panel_toolbox">
                    </ul>
                     <div class="clearfix"></div>
@@ -489,7 +491,7 @@ if($query->rowCount()>0)
                                             <br>
                                             <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postContent);?></p> 
 
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:445px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->postID);?></h3></li>

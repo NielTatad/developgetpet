@@ -464,7 +464,7 @@ if($query->rowCount()>0)
                                             <br>
                                             <p id="description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->postContent);?></p> 
 
-                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:300px;width:500px;border-radius:10px;">
+                                            <Img <?php echo"<img src = '/developgetpet/web/images/$result->postPicture'";?> class="card-ing-top" alt="Post Images" style="height:445px;width:500px;border-radius:10px;">
                                               <ul style="list-style:none;margin-left:-50px;">
                                               
                                               <li><h3 hidden class="card-title"><?php echo ($result->postID);?></h3></li>

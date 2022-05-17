@@ -405,10 +405,10 @@ if($query->rowCount()>0)
               <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <!--<input type="text" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                    </span>-->
                   </div>
                 </div>
               </div>
@@ -479,15 +479,15 @@ if($query->rowCount()>0)
                                               
                                               <br> 
                                               <br>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
-                                              <br><br>
+                                              <!--<button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
+                                              <br><br>-->
                                             
                                             <!--<button name ="Post" type='submit' id="submit" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;width:130px;margin-right:10px;height:40px;float:left;">Recieved</button>
                                             <br><br><br>-->
                                             &nbsp&nbsp&nbsp
+                                            <button type="button" class="btn btn-success messagebtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:210px;">Acknowledge Deposit Slip</button>
+                                            <!--<button type="button" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:180px;">Give Rate & Feedback</button>-->
                                             <button name ="Post" type='submit' class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:130px;">Recieved</button>
-                                            <button type="button" class="btn btn-success messagebtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:140px;">Post Newsfeed</button>
-                                            <button type="button" class="btn btn-success acceptbtn" style="background-color:#00cdc1;border:#00cdc1;height:35px;width:180px;">Give rate & Feedback</button>
                                             
                                               </ul>
                                             </div>
@@ -685,7 +685,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             </div>
                                         </div>
 
-                                         <div class="field item form-group">
+                                         <div hidden class="field item form-group">
                                           <label class="col-form-label col-md-3 col-sm-3  label-align">Donators Name<span class="required"></span></label>
                                           <div class="col-md-6 col-sm-6">
                                                 <input readonly type="text" class="form-control" id="char_username" id="Donatorsname" name="Donatorsname" style="background-color:#fff;width:400px;" required="required"/>
@@ -693,7 +693,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                           </div>
 
                                         <div class="field item form-group">
-                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Leave Message(Optional)</label>
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Give Acknowledge Message</label>
                                           <div class="col-md-6 col-sm-6">
                                             <textarea id="Message" required="required" class="form-control" name="Message" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:400px;border-radius:4px;"></textarea>
                                           </div>
@@ -710,6 +710,113 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   </div>
 </div>
 <!-- //Modal for Message-->  
+
+<!-- Message Post Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['Sendfeedback']))
+{
+
+$ID=($_POST['ID']);
+$Name=($_POST['Name']);
+$Email=($_POST['Email']);
+$Address=($_POST['Address']);
+$ContactNo=($_POST['ContactNo']);
+$Donatorsname=($_POST['Donatorsname']);
+$Message=($_POST['Message']);
+  
+$sql="INSERT INTO feedback(userID,userName,userEmail,userAddress,userContactNo,newsfeedDonatorsname,newsfeedMessage,newsfeedDate)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Donatorsname,:Message,'$date')";
+  
+$query=$dbh->prepare($sql); 
+$query->bindParam(':ID',$ID,PDO::PARAM_STR);
+$query->bindParam(':Name',$Name,PDO::PARAM_STR);
+$query->bindParam(':Email',$Email,PDO::PARAM_STR);
+$query->bindParam(':Address',$Address,PDO::PARAM_STR);
+$query->bindParam(':ContactNo',$ContactNo,PDO::PARAM_STR);
+$query->bindParam(':Donatorsname',$Donatorsname,PDO::PARAM_STR);
+$query->bindParam(':Message',$Message,PDO::PARAM_STR);
+$query->execute();
+
+echo '<script>alert("Your Message has successfully saved!")</script>';
+echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Donations.php'</script>";
+
+}
+?>
+<!-- //Message Post Code -->
+
+<!-- Modal for Message-->
+<div class="modal fade" id="MessagePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Message Modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form class="" action="" method="post" novalidate enctype="multipart/form-data"> 
+      
+      <div hidden class="field item form-group">
+                                          <div class="col-md-6 col-sm-6">
+                                            <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->orgID);?>"/>
+                                          </div> 
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="Name" value="<?php echo ($result->orgName);?>"/>
+                                            </div> 
+                                         </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Address" class='Address' value="<?php echo ($result->orgAddress);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                              <input class="form-control" name="Email" class='Email' value="<?php echo ($result->orgEmail);?>"/>
+                                            </div>
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                            <div class="col-md-6 col-sm-6">
+                                             <input class="form-control" name="ContactNo" class='ContactNo' value="<?php echo ($result->orgContactNo);?>"/>
+                                            </div>
+                                        </div>
+
+                                         <div hidden class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Donators Name<span class="required"></span></label>
+                                          <div class="col-md-6 col-sm-6">
+                                                <input readonly type="text" class="form-control" id="char_username" id="Donatorsname" name="Donatorsname" style="background-color:#fff;width:400px;" required="required"/>
+                                          </div>
+                                          </div>
+
+                                        <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Give Acknowledge Message</label>
+                                          <div class="col-md-6 col-sm-6">
+                                            <textarea id="Message" required="required" class="form-control" name="Message" placeholder="You can leave message..." data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10" style="height:100px;width:400px;border-radius:4px;"></textarea>
+                                          </div>
+                                        </div><br>
+
+         <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+         <button name ="Sendmessage" type='submit' id="Sendmessage" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Send</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //Modal for Message--> 
 
 <!-- Modal Donation Information -->
 <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -829,6 +936,27 @@ ADOPTING MEANS YOU SAVE A LIFE! <a href="mailto:GetPet@gmail.com">GetPet@gmail.c
             $('.messagebtn').on('click', function () {
 
                 $('#MessagePost').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#char_id').val(data[0]);
+                $('#char_username').val(data[1]);
+            });
+        });
+</script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.feedbackbtn').on('click', function () {
+
+                $('#FeedbackPost').modal('show');
 
                 $tr = $(this).closest('ul');
 

@@ -450,10 +450,6 @@ if($query->rowCount()>0)
             <?php $cnt=$cnt+1;
                             }
                         } 
-                        else
-                        {
-                          echo "There isn't any information displayed.";
-                        }
                         ?>
             
 <!-- Button trigger modal -->
@@ -667,8 +663,8 @@ $event=$query->fetchColumn();
                       Check Now!
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Dogslistadoption.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Adoption</a>
-                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Catslistadoption.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Adoption</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-DogsForAdoption.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Adoption</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-CatsForAdoption.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Adoption</a>
                     </ul>
                     </h2>
       </div>
@@ -753,8 +749,8 @@ $event=$query->fetchColumn();
                       Check Now!
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Dogsshorttermcare.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Short-term care</a>
-                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-Catsshorttermcare.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Short-term care</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-DogsForShorttermcare.php"><li class="fas fa-dog"></li>&nbsp View Dog's For Short-term care</a>
+                    <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/P.A-CatsForShorttermcare.php"><li class="fas fa-cat"></li>&nbsp View Cat's For Short-term care</a>
                     </ul>
                     </h2>
 
