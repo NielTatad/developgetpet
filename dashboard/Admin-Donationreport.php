@@ -291,17 +291,6 @@ th {
 
                                     <tbody>
                                     <?php
-                                    $sql="SELECT * from history WHERE Title='Adoption' ORDER BY historyID DESC";
-                                    $query=$dbh->prepare($sql);
-                                    $query->execute();
-                                    $results=$query->fetchALL(PDO::FETCH_OBJ);
-                                    $cnt=1;
-                                    if($query->rowCount()>0)
-                                    {
-                                    foreach($results as $result)
-                                    {
-                                    ?>
-                                      <?php
                                       $charity_id = $result->charityID;
                                       $sql1="SELECT * from charity WHERE charityID='$charity_id' AND charityStatus='Accepted' ORDER BY charityID DESC";
                                       $query1=$dbh->prepare($sql1);
@@ -340,7 +329,7 @@ th {
                                       </tr>
                                     <?php $cnt2=$cnt2+1;}}?>
                                     <?php $cnt1=$cnt1+1;}}?>
-                                    <?php $cnt=$cnt+1;}}?>
+                                    
                                 </tbody>
                             </table>
                           </div>

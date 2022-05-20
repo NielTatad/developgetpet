@@ -519,7 +519,7 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
                                               <?php $cnt1=$cnt1+1;}} ?>
                                               <div class="progress" style="border-radius:10px;margin-left:20px;width:500px;">
-                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%;">$500/$1000</div>
+                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="23" aria-valuemax="100" style="width:75%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp₱00.00/₱<?php echo ($result->charityTargetamount);?></div>
                                               </div>
                                               <br>
                                               <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-12px;float:left;margin-left:-10px;">View More Info</button>
@@ -1617,6 +1617,8 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
         }).prop('checked', false);
 
     </script>
+
+  
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
