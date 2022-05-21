@@ -154,6 +154,9 @@ if(isset($_POST['AnimalWelfareOrganization']))
 <!doctype html>
 <html lang="en">
   <head>
+  <script language="javascript" type="text/javascript">
+    window.history.forward();
+    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -205,6 +208,12 @@ if(isset($_POST['AnimalWelfareOrganization']))
             <div style="text-align: center" class="wrap-input100 validate-input">
 						<input class="input100" style="background-color:#f1f1f1;width:300px;height:40px;border-radius:5px;border:#00cdc1;" type="password" name="Password" required="required" id="Password">          
 					  </div>
+            <span class="txt2" style ="font-size: 12px;">
+                Forgot Password?
+                </span>
+                <a href="http://localhost/developgetpet/login-page/Email.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
+                Reset Password!
+                </a><br>
               
               <?php
                 date_default_timezone_set("Asia/Manila");
@@ -214,7 +223,6 @@ if(isset($_POST['AnimalWelfareOrganization']))
 					    </div>
               
               <div class="d-flex mb-5 align-items-center" >
-              <input type="checkbox" onclick="myfunction()" value="Show password">Show password
                 
               <!--</label>
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>--> 
@@ -231,12 +239,6 @@ if(isset($_POST['AnimalWelfareOrganization']))
                 Sign up now!
                 </a><br>
 
-                <span class="txt2" style ="font-size: 12px;">
-                Forgot Password?
-                </span>
-                <a href="http://localhost/developgetpet/login-page/Email.php" class="txt2 bo1" style="color:blue; font-size: 12px;" >
-                Reset Password!
-                </a><br>
 					    </div>
             </form>
           </div>

@@ -90,8 +90,8 @@ if($query->rowCount()>0)
 
 					<br />
 
-		 <!-- sidebar menu -->
-     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+			 <!-- sidebar menu -->
+       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
@@ -100,15 +100,15 @@ if($query->rowCount()>0)
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog's</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat</a></li>
                       </ul>
                     </li>
 
                     <li><a >Pet For Short-Term Care</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog's</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat</a></li>
                       </ul>
                     </li>
 
@@ -122,7 +122,7 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>
+                    </li>          
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
@@ -134,30 +134,22 @@ if($query->rowCount()>0)
             </div>
             <!-- /sidebar menu -->
 
-						 <!-- /menu footer buttons -->
-             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
+            <!-- /menu footer buttons -->
+         <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
-              <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
-              </a>
             </div>
             <!-- /menu footer buttons -->
-				</div>
-			</div>
 
-	  <!-- top navigation -->
-    <div class="top_nav">
+          </div>
+        </div>
+
+        <!-- top navigation -->
+      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
-                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                  <a><i class="fa fa-bars"></i></a>
                 </div>
                 <nav class="nav navbar-nav">
                 <ul class=" navbar-right">
@@ -204,7 +196,7 @@ if($query->rowCount()>0)
                         </script>
 
                       <?php
-                      $query2=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query2=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Adoption' AND requestStatus = 'Approved'");
                       $query2->execute();
 
                       $my_adopted=$query2->fetchColumn();
@@ -218,7 +210,7 @@ if($query->rowCount()>0)
                         }
                         </script>
                       <?php
-                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND requestStatus = 'Approved'");
                       $query3->execute();
 
                       $user_adopted=$query3->fetchColumn();
@@ -233,7 +225,7 @@ if($query->rowCount()>0)
                         </script>
 
                       <?php
-                      $query4=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query4=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Short-Term Care' AND requestStatus = 'Approved' AND petStatus != 'Returned'");
                       $query4->execute();
 
                       $my_shorttermcare=$query4->fetchColumn();
@@ -248,7 +240,7 @@ if($query->rowCount()>0)
                         </script>
                       
                       <?php
-                      $query5=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query5=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Short-Term Care' AND requestStatus = 'Approved' AND petStatus != 'Returned'");
                       $query5->execute();
 
                       $user_shorttermcare=$query5->fetchColumn();
@@ -331,7 +323,7 @@ if($query->rowCount()>0)
 
                             <a class ="dropdown-item">
                             <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
-                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" > </span>
                             <span>
                             <span>Admin</span>
                             <span class="time"><?php echo ($result->notificationDate);?></span>
@@ -357,32 +349,133 @@ if($query->rowCount()>0)
                             {
                               ?>
 
-    
-                        <a class ="dropdown-item">
+                        <form method="post">
+                        <button class ="dropdown-item" type="submit" style="margin-top:-15px">
                           <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
-                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
+                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> style="height:30px;width:30px" class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
-                            <span class="time"><?php echo ($result->notificationDate);?></span>
-                          </span>
+                          </span><br>
                           <span class="message">
                           <?php echo ($result->notificationDescription);?>
-                          </span>
-                        </a>
+                          </span><br>
+                          <span style="float:left;margin-top:10px" class="time"><b><?php echo ($result->notificationDate);?></b></span><br>
+                          </button>
+                        </form>
                          <?php $cnt1=$cnt1+1;}} ?>
                          <?php } ?>
-                        <?php $cnt=$cnt+1;}} ?>
+                        <?php $cnt=$cnt+1;
+                        }
+                        }
+                        else
+                        {
+                        echo "No Notification.";
+                        }  
+                        ?>
                       </li>
-                      <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
-                        <div class="text-center">
-                          <a class="dropdown-item">
-                            <a href="http://localhost/developgetpet/dashboard/P.O-Requestnotification.php">See All Alerts</a>
-                            <i class="fa fa-angle-right"></i>
-                          </a>
-                        </div>
+                      <li class="nav-item">
                       </li>
                     </ul>
                   </li>
+                  
+                
+                  <?php
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM message WHERE masterID='$ID' AND messageStatus != 'Read' ");
+                  $query->execute();
+
+                  $user_message=$query->fetchColumn();
+
+                  ?>
+                  <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;margin-right:10px;">
+								<a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+									<i class="fa fa-envelope"></i>
+									<span class="badge bg-green" id="user_message"><?php echo ($user_message);?></span>
+								</a>
+                <script type="text/javascript">
+                    var user_message = <?php echo ($user_message);?>;
+                    if (user_message === 0){
+                      document.getElementById("user_message").style.display = "none";
+                    }
+                    </script>
+								<ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+									
+									<li class="nav-item" style= "height: 440; overflow-y: scroll;">
+                  <?php
+                        $sql="SELECT * from message WHERE masterID='$ID' ORDER BY messageID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+
+                            <?php $user_id = $result->userID;
+
+                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                            $query1=$dbh->prepare($sql1);
+                            $query1->execute();
+                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                            $cnt1=1;
+                            if($query1->rowCount()>0)
+                            {
+                              foreach($userids as $userid)
+                            {
+                              ?>
+
+                        <?php
+                        if(isset($_POST['view_message']))
+                        {
+                          $masterID=($_POST['masterID']);
+                          $roomID=($_POST['roomID']);
+                          
+                          $sql="update message set
+                          messageStatus='Read'
+                          where roomID=:roomID";
+                          $query=$dbh->prepare($sql); 
+                          $query->bindParam(':roomID',$roomID,PDO::PARAM_STR); 
+                          $query->execute();
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Message.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+                          $_SESSION['roomID'] = $roomID;
+                          
+
+                        }
+                        ?>
+
+                        <form method="post">
+                        <button class ="dropdown-item" name="view_message" type="submit" style="margin-top:-15px">
+                          <span><b>Message</b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->messageStatus);?></span><br>
+                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" style="height:30px;width:30px" alt="Profile Image" /></span>
+                          <span>
+                            <input hidden name="roomID" value="<?php echo ($result->roomID);?>">
+                            <input hidden name="masterID" value="<?php echo ($result->userID);?>">
+                            <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
+                          </span><br>
+                          <span class="message">
+                          <?php echo ($result->messageContent);?>
+                          </span><br>
+                          <span style="float:left;margin-top:10px" class="time"><b><?php echo ($result->messageDate);?></b></span><br>
+                        </button>
+                        </form>
+                         <?php $cnt1=$cnt1+1;}} ?>
+                        <?php $cnt=$cnt+1;
+                        }
+                        }
+                        else
+                        {
+                        echo "No Message.";
+                        } 
+                        ?>
+									</li>
+                  <li class="nav-item">
+                  </li>
+								</ul>
+							</li>            
+
                 </ul>
               </nav>
             </div>
@@ -435,9 +528,9 @@ if(isset($_POST['Go']))
 	  <!-- page content -->
     <div class="right_col" role="main">
           <div class="">
-              <div class="title_right">
+          <div class="title_right">
                <form method="post">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                <div class="col-md-5 col-sm-5 form-group pull-right top_search" style="float:right">
                   <div class="input-group">
                     <input type="text" name="Search" class="form-control" placeholder="Search for Pet Breeds...">
                     <span class="input-group-btn">
@@ -749,6 +842,7 @@ if(isset($_POST['Adopt']))
   }
   else{
   
+  
   $MasterID=($_POST['MasterID']);
   $UserID=($_POST['UserID']);
   $Name=($_POST['Name']);
@@ -761,7 +855,8 @@ if(isset($_POST['Adopt']))
   $Breed=($_POST['Breed']);
   $Description=($_POST['Description']);
   $Reason=($_POST['Reason']);
-
+  $userEmail=($_POST['userEmail']);
+  
   $sql="INSERT INTO request(requestTitle,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,petDescription,requestReason,requestDate)VALUES('Adoption Request',:MasterID,:UserID,:Name,:Email,:Address,:ContactNo,:PetID,:Type,:PetName,:Breed,:Description,:Reason,'$date')";
   $query=$dbh->prepare($sql);
   $query->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
@@ -777,13 +872,13 @@ if(isset($_POST['Adopt']))
   $query->bindParam(':Description',$Description,PDO::PARAM_STR);
   $query->bindParam(':Reason',$Reason,PDO::PARAM_STR);
   $query->execute();
-
+  
   $sql2="SELECT requestID FROM request ORDER BY requestID DESC";
   $query2=$dbh->prepare($sql2);
   $query2->execute();
-
+  
   $ID=$query2->fetchColumn();
-
+  
   $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES('$ID',:PetID,'Adoption Request',:MasterID,:UserID,:Reason,'$date','Unread')";
   $query3=$dbh->prepare($sql3);
   $query3->bindParam(':PetID',$PetID,PDO::PARAM_STR);
@@ -791,7 +886,14 @@ if(isset($_POST['Adopt']))
   $query3->bindParam(':UserID',$UserID,PDO::PARAM_STR);
   $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
   $query3->execute();
-
+  
+    
+  $receiver = $userEmail;
+  $subject = "Adoption Request";
+  $body = "$Name\n$Reason";
+  $sender = $Email;
+  
+  mail($receiver, $subject, $body, $sender);
   echo '<script>alert("Just Wait for The Owner Accept Your Adoption Request!")</script>';
   echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyRequest.php'</script>";
 
@@ -884,6 +986,9 @@ if(isset($_POST['Adopt']))
               <input readonly type="text" class="form-control" name="ContactNo" value="<?php echo ($result->ownerContactNo);?>" style="background-color:#fff;width:400px;" required="required"/>
 
         </div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="user_email" name ="userEmail" required = "required" class="form-control">
+				</div>
 
         <div class="ln_solid">
         <br>
@@ -2169,23 +2274,25 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     </script>
 
 <script type="text/javascript">
-  $(".adoptbtn").click(function () {
-    var master_id = $(this).attr('data-master-id');
-    var pet_id = $(this).attr('data-pet-id');
-    var pet_name = $(this).attr('data-pet-name');
-    var pet_type = $(this).attr('data-pet-type');
-    var pet_breed = $(this).attr('data-pet-breed');
-    var pet_description = $(this).attr('data-pet-description');
-    $('#AdoptModal').modal('show');
-    $("#master_id").val( master_id );
-    $("#pet_id").val( pet_id );
-    $("#pet_name").val( pet_name );
-    $("#pet_type").val( pet_type );
-    $("#pet_breed").val( pet_breed );
-    $("#pet_description").val( pet_description );
+$(".adoptbtn").click(function () {
+var master_id = $(this).attr('data-master-id');
+var pet_id = $(this).attr('data-pet-id');
+var pet_name = $(this).attr('data-pet-name');
+var pet_type = $(this).attr('data-pet-type');
+var pet_breed = $(this).attr('data-pet-breed');
+var pet_description = $(this).attr('data-pet-description');
+var user_email = $(this).attr('data-user-email');
+$('#AdoptModal').modal('show');
+$("#master_id").val( master_id );
+$("#pet_id").val( pet_id );
+$("#pet_name").val( pet_name );
+$("#pet_type").val( pet_type );
+$("#pet_breed").val( pet_breed );
+$("#pet_description").val( pet_description );
+$("#user_email").val( user_email );
     
-  });
-  </script>
+});
+</script>
 
 <script type="text/javascript">
   $(".viewbtn").click(function () {

@@ -291,52 +291,132 @@ $date = date('m/d/Y h:i A', time());
  <?php
    if(isset($_POST['Delete']))
    {
-     
-    $userID=($_POST['userID']);
-    $petID=($_POST['petID']);
+        $userID=($_POST['userID']);
+        $petID=($_POST['petID']);
+        
+        $check_role = $dbh->prepare("SELECT Role from register WHERE userID=:userID");
+        $check_role->bindParam(':userID',$userID,PDO::PARAM_STR);
+        $check_role->setFetchMode(PDO:: FETCH_ASSOC);
+        $check_role->execute();
 
-    $query ="Delete from login where userID=:userID";
-    $query = $dbh->prepare($query);
-    $query->bindValue('userID',$userID);
-    $query->execute();
+        $row = $check_role->fetch();
+        
+        if($row['Role'] == 'Pet Owner')
+        {
+          $userID=($_POST['userID']);
+          $petID=($_POST['petID']);
+      
+          $query ="Delete from login where userID=:userID";
+          $query = $dbh->prepare($query);
+          $query->bindValue('userID',$userID);
+          $query->execute();
+      
+          $query1 ="Delete from register where userID=:userID";
+          $query1 = $dbh->prepare($query1);
+          $query1->bindValue('userID',$userID);
+          $query1->execute();
+      
+          $query2="update postpet set petStatus='Not available', postStatus ='Deleted' where userID=:userID";
+          $query2= $dbh->prepare($query2);
+          $query2->bindValue('usererID',$userID);
+          $query2->execute();
+      
+          $query3="Delete from comment where userID=:userID";
+          $query3 = $dbh->prepare($query3);
+          $query3->bindValue('userID',$userID);
+          $query3->execute();
+      
+          $query4="Delete from notification where userID=:userID";
+          $query4 = $dbh->prepare($query4);
+          $query4->bindValue('userID',$userID);
+          $query4->execute();
+      
+          $query5 ="Delete from petowner where ownerID=:userID";
+          $query5 = $dbh->prepare($query5);
+          $query5->bindValue('userID',$userID);
+          $query5->execute();
+      
+          echo '<script>alert("Remove Account Successfully!")</script>';
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userinformation.php'</script>";
+        }
 
-    $query1 ="Delete from register where userID=:userID";
-    $query1 = $dbh->prepare($query1);
-    $query1->bindValue('userID',$userID);
-    $query1->execute();
+        if($row['Role'] == 'Pet Adopter')
+        {
+          $userID=($_POST['userID']);
+          $petID=($_POST['petID']);
+      
+          $query ="Delete from login where userID=:userID";
+          $query = $dbh->prepare($query);
+          $query->bindValue('userID',$userID);
+          $query->execute();
+      
+          $query1 ="Delete from register where userID=:userID";
+          $query1 = $dbh->prepare($query1);
+          $query1->bindValue('userID',$userID);
+          $query1->execute();
+      
+          $query2="update postpet set petStatus='Not available', postStatus ='Deleted' where userID=:userID";
+          $query2= $dbh->prepare($query2);
+          $query2->bindValue('usererID',$userID);
+          $query2->execute();
+      
+          $query3="Delete from comment where userID=:userID";
+          $query3 = $dbh->prepare($query3);
+          $query3->bindValue('userID',$userID);
+          $query3->execute();
+      
+          $query4="Delete from notification where userID=:userID";
+          $query4 = $dbh->prepare($query4);
+          $query4->bindValue('userID',$userID);
+          $query4->execute();
+      
+          $query5 ="Delete from petadopter where adopterID=:userID";
+          $query5 = $dbh->prepare($query5);
+          $query5->bindValue('userID',$userID);
+          $query5->execute();
+      
+          echo '<script>alert("Remove Account Successfully!")</script>';
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userinformation.php'</script>";
+        }
 
-    $query2="update postpet set petStatus='Not available', postStatus ='Deleted' where petID=:petID";
-    $query2= $dbh->prepare($query2);
-    $query2->bindValue('petID',$petID);
-    $query2->execute();
-
-    $query3="Delete from comment where userID=:petID";
-    $query1 = $dbh->prepare($query3);
-    $query3->bindValue('petID',$petID);
-    $query3->execute();
-
-    $query4="Delete from notification where postID=:petID";
-    $query4 = $dbh->prepare($query4);
-    $query4->bindValue('petID',$petID);
-    $query4->execute();
-
-    $query5 ="Delete from petadopter where userID=:userID";
-    $query5 = $dbh->prepare($query5);
-    $query5->bindValue('userID',$userID);
-    $query5->execute();
-
-    $query6 ="Delete from petowner where userID=:userID";
-    $query6 = $dbh->prepare($query6);
-    $query6->bindValue('userID',$userID);
-    $query6->execute();
-
-    $query7 ="Delete from animalwelfareorganization where userID=:userID";
-    $query7 = $dbh->prepare($query7);
-    $query7->bindValue('userID',$userID);
-    $query7->execute();
-
-    echo '<script>alert("Remove Account Successfully!")</script>';
-    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userinformation.php'</script>";
+        if($row['Role'] == 'Animal Welfare Organization')
+        {
+          $userID=($_POST['userID']);
+          $petID=($_POST['petID']);
+      
+          $query ="Delete from login where userID=:userID";
+          $query = $dbh->prepare($query);
+          $query->bindValue('userID',$userID);
+          $query->execute();
+      
+          $query1 ="Delete from register where userID=:userID";
+          $query1 = $dbh->prepare($query1);
+          $query1->bindValue('userID',$userID);
+          $query1->execute();
+      
+          $query2="update postpet set petStatus='Not available', postStatus ='Deleted' where userID=:userID";
+          $query2= $dbh->prepare($query2);
+          $query2->bindValue('usererID',$userID);
+          $query2->execute();
+      
+          $query3="Delete from comment where userID=:userID";
+          $query3 = $dbh->prepare($query3);
+          $query3->bindValue('userID',$userID);
+          $query3->execute();
+      
+          $query4="Delete from notification where userID=:userID";
+          $query4 = $dbh->prepare($query4);
+          $query4->bindValue('userID',$userID);
+          $query4->execute();
+      
+          $query5 ="Delete from animalwelfareorganization where orgID=:userID";
+          $query5 = $dbh->prepare($query5);
+          $query5->bindValue('userID',$userID);
+          $query5->execute();
+      
+          echo '<script>alert("Remove Account Successfully!")</script>';
+          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userinformation.php'</script>";
+        }
    }
 ?>
 <!-- //Delete Post Code -->

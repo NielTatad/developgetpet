@@ -48,8 +48,8 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 			<div class="header">
 				<div class="logo" style="width:220px;height:200px;">
 					<h1>
-						<a href="http://localhost/developgetpet/Dashboard.php">
-							<img class="logo-img center-block" src="images/Logo/Logo.png" alt="" style="width:250px;height:250px;margin-left:-60px;margin-top:-50px;" />
+						<a href="http://localhost/developgetpet/web/Dashboard.php">
+							<img class="logo-img center-block" src="images/Logo/Logo.png" alt="" style="width:250px;height:250px;margin-left:-55px;margin-top:-50px;" />
 						</a>
 					</h1>
 				</div>
@@ -303,13 +303,13 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<div class="ih-item circle effect1 agile_services_grid">
 						<div class="spinner"></div>
 						<div class="img">
-							<img src="images/c4.jpg" alt=" " class="img-responsive" />
+							<img src="images/file-20200102-11924-1tf1zpr.jpg" alt=" " class="img-responsive" />
 						</div>
 					</div>
 					<fieldset>
-						<legend>Pets for Adoption</legend>
+						<legend>Pet Adoption</legend>
 						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
+						<p>Pet adoption is the process of transferring responsibility for a pet that was previously owned by another party such as a person, shelter, or rescue organization.</p>
 						</div>
 					</fieldset>
 				</div>
@@ -317,13 +317,14 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<div class="ih-item circle effect1 agile_services_grid">
 						<div class="spinner"></div>
 						<div class="img">
-							<img src="images/b3.jpg" alt=" " class="img-responsive" />
+							<img src="images/shutterstock_283679135_1467096931.jpg" alt=" " class="img-responsive" />
 						</div>
 					</div>
 					<fieldset>
 						<legend>Short-Term Care</legend>
 						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
+							Short-term care is the process of taking care temporarily while the owner is away.
+					       <p style="visibility:hidden">Short-term care is the process of taking care</p>
 						</div>
 					</fieldset>
 				</div>
@@ -331,13 +332,14 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<div class="ih-item circle effect1 agile_services_grid">
 						<div class="spinner"></div>
 						<div class="img">
-							<img src="images/c2.jpg" alt=" " class="img-responsive" />
+							<img src="images/images (2).jpg" alt=" " class="img-responsive" />
 						</div>
 					</div>
 					<fieldset>
 						<legend>Events</legend>
 						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
+							<p>Events is a process where owners bring their pet for free vaccination.</p>
+							<p style="visibility:hidden">Events is a process where owners bring their pet for free vaccination.Events is a process</p>
 						</div>
 					</fieldset>
 				</div>
@@ -348,13 +350,14 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<div class="ih-item circle effect1 agile_services_grid">
 						<div class="spinner"></div>
 						<div class="img">
-							<img src="images/b1.jpg" alt=" " class="img-responsive"/>
+							<img src="images/dog-bathing-products-thinkstockphotos-177871191.jpg" alt=" " class="img-responsive"/>
 						</div>
 					</div>
 					<fieldset>
 						<legend>Pet Care Tips</legend>
 						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
+					     <p>Pet Care Tips is a process where pet owners post tips about caring a pets.</P>
+						 <p style="visibility:hidden">Short-term care is the process of taking care</p>
 						</div>
 					</fieldset>
 				</div>
@@ -362,13 +365,14 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<div class="ih-item circle effect1 agile_services_grid">
 						<div class="spinner"></div>
 						<div class="img">
-							<img src="images/b5.jpg" alt=" " class="img-responsive"/>
+							<img src="images/Pet-Rescue-Fundraisers.jpg" alt=" " class="img-responsive"/>
 						</div>
 					</div>
 					<fieldset>
 						<legend>Fund-raising</legend>
 						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
+						<p>A fundraising event is an event designed to raise awareness and support for an organization's mission.</p>
+						<p style="visibility:hidden">Short-term care is the process</p>  
 						</div>
 					</fieldset>
 				</div>
@@ -376,13 +380,14 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 					<div class="ih-item circle effect1 agile_services_grid">
 						<div class="spinner"></div>
 						<div class="img">
-							<img src="images/b5.jpg" alt=" " class="img-responsive" />
+							<img src="images/dog-donation-charity.jpg" alt=" " class="img-responsive" />
 						</div>
 					</div>
 					<fieldset>
 						<legend>Donation</legend>
 						<div class="button-styles">
-						<a href="#contact" class="button2-w3l scroll">More info</a>
+					    <p>A donation is a gift for charity, humanitarian aid, or to benefit a cause.</p> 
+						<p style="visibility:hidden">Short-term care is the process of taking care</p>
 						</div>
 					</fieldset>
 				</div>
@@ -430,8 +435,8 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="modal-info">
-						<h4>Project Manager</h4>
-						<img src="images/team/jennevive.jpg" alt=" " class="img-responsive"/>
+						<h2 style="text-align:center"><b><i>Project Manager</i></b></h2><br>
+						<img src="images/279458684_332495032335173_9018705949801923015_n.png" alt=" " class="img-responsive"/>
 						<h5>Jennevive Baring</h5>
 						<p class="para-agileits-w3layouts">A project manager oversees different initiatives or projects of a business, 
 														   monitors their progress and completion, and ensures that they meet the expectations 
@@ -457,8 +462,8 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="modal-info">
-						<h4>Hacker</h4>
-						<img src="images/team/Genesis.jpg" alt=" " class="img-responsive"/>
+						<h2 style="text-align:center"><b><i>Hacker</i></b></h2><br>
+						<img src="images/279906677_2773142356324920_730297516632529165_n.png" alt=" " class="img-responsive"/>
 						<h5>Genesis Tagsip</h5>
 						<p class="para-agileits-w3layouts">An ethical hacker conducts advanced penetration tests 
 														   to identify vulnerabilities in computer systems, which 
@@ -488,8 +493,8 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="modal-info">
-						<h4>Hipster</h4>
-						<img src="images/team/Niel.jpg" alt=" " class="img-responsive"/>
+						<h2 style="text-align:center"><b><i>Hipster</i></b></h2><br>
+						<img src="images/279782527_695110775080494_8481380971480970947_n.png" alt=" " class="img-responsive"/>
 						<h5>Niel Tatad</h5>
 						<p class="para-agileits-w3layouts">The UI aspects include helping us refine the user interface for users, 
 														   teams, program managers, and visitors on our platform. The applicant should 
@@ -513,30 +518,6 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 	</div>
 	<!-- //ModalHipster -->
 
-	<!-- ModalHuslter -->
-	<div class="modal fade" id="huslter" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<div class="modal-info">
-						<h4>Huslter</h4>
-						<img src="images/team/Novelyn.jpg" alt=" " class="img-responsive"/>
-						<h5>Novelyn Vocales</h5>
-						<p class="para-agileits-w3layouts">A hustler does not give in easily or does not get bogged down by the problems around him. 
-														   On the contrary, a hustler tries to make a way out even though it may be a slow and incremental 
-														   effort process, but keeps doing so and ultimately ends up achieving the goal.</p>
-
-						<p class="para-agileits-w3layouts">Being a hustler is not an easy task it requires you to have a very strong will, be extremely 
-													       positive and have highly committed and disciplined work ethics.</p>							   
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //ModalHuslter -->
-
 	<!-- //blog -->
 
 	<!-- team -->
@@ -545,33 +526,24 @@ include('C:\xampp\htdocs\developgetpet\includes\config.php');
 			<h3 class="agile-title">Our Team</h3>
 			<div class="team-agileinfo agileits-w3layouts">
 				<div class="col-md-6 team-grid w3-agileits">
-						<img src="images/team/jennevive.jpg" alt=" " class="img-responsive" style="width:350px;height:350px;margin-left: 90px;" />
+						<img src="images/279458684_332495032335173_9018705949801923015_n.png" alt=" " class="img-responsive" style="width:350px;height:350px;margin-left: 90px;" />
 						<br>
 						<h4 style="margin-left: 200px;"><a href="#" data-toggle="modal" data-target="#PM">Jennevive Baring</a></h4>
 						<p style="margin-left: 200px;">Project Manager</p>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="col-md-6 team-grid w3-agileits">
-						<img src="images/team/Genesis.jpg" alt=" " class="img-responsive" style="width:350px;height:350px;margin-left: 50px;" />
+						<img src="images/279906677_2773142356324920_730297516632529165_n.png" alt=" " class="img-responsive" style="width:350px;height:350px;margin-left: 50px;" />
 						<br>
 						<h4 style="margin-left: 170px;"><a href="#" data-toggle="modal" data-target="#hacker">Genesis Tagsip</a></h4>
 						<p style="margin-left: 200px;">Hacker</p>
 					<div class="clearfix"> </div>
 				</div>
-				<div class="clearfix"> </div>
-			    <br><br>	
 				<div class="col-md-6 team-grid w3-agileits">
-						<img src="images/team/Niel.jpg" alt=" " class="img-responsive" style="width:350px;height:350px;margin-left: 90px;"/>
+						<img src="images/279782527_695110775080494_8481380971480970947_n.png" alt=" " class="img-responsive" style="width:350px;height:350px;margin-left: 90px;margin-top:20px;"/>
 						<br>
 						<h4 style="margin-left: 225px;"><a href="#" data-toggle="modal" data-target="#hipster">Niel Tatad</a></h4>
 						<p style="margin-left: 235px;">Hipster</p>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-6 team-grid w3-agileits">
-						<img src="images/team/Novelyn.jpg" alt=" " class="img-responsive" style="width:350px;height:350px;margin-left: 50px;" />
-						<br>
-						<h4 style="margin-left: 170px;"><a href="#" data-toggle="modal" data-target="#huslter">Novelyn Vocales</a></h4>
-						<p style="margin-left: 205px;">Huslter</p>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>

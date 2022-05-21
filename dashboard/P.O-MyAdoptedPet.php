@@ -65,8 +65,8 @@ if($query->rowCount()>0)
 
             <br />
 
-				 <!-- sidebar menu -->
-         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					 <!-- sidebar menu -->
+           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
@@ -75,15 +75,15 @@ if($query->rowCount()>0)
 
                     <li><a >Pet For Adoption</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog's</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForAdoption.php">Dog</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForAdoption.php">Cat</a></li>
                       </ul>
                     </li>
 
                     <li><a >Pet For Short-Term Care</a>
                       <ul class="nav child_menu">
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog's</a></li>
-                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat's</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-DogsForShorttermcare.php">Dog</a></li>
+                        <li><a href="http://localhost/developgetpet/dashboard/P.O-CatsForShorttermcare.php">Cat</a></li>
                       </ul>
                     </li>
 
@@ -97,7 +97,7 @@ if($query->rowCount()>0)
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Tips.php">Pet Care Tips</a>
-                    </li>
+                    </li>          
 
                     <li>
                     <li><a href="http://localhost/developgetpet/dashboard/P.O-Adopted.php">Pet Adopted</a>
@@ -109,30 +109,22 @@ if($query->rowCount()>0)
             </div>
             <!-- /sidebar menu -->
 
-				 <!-- /menu footer buttons -->
+            <!-- /menu footer buttons -->
          <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings" href="http://localhost/developgetpet/dashboard/P.O-AccountSettings.php">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
               <a data-toggle="tooltip" data-placement="top" title="Home" href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Inbox" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="cursor:pointer;">
-              <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
-              </a>
             </div>
             <!-- /menu footer buttons -->
+
           </div>
         </div>
 
-       <!-- top navigation -->
+        <!-- top navigation -->
       <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
-                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                  <a><i class="fa fa-bars"></i></a>
                 </div>
                 <nav class="nav navbar-nav">
                 <ul class=" navbar-right">
@@ -179,7 +171,7 @@ if($query->rowCount()>0)
                         </script>
 
                       <?php
-                      $query2=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query2=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Adoption' AND requestStatus = 'Approved'");
                       $query2->execute();
 
                       $my_adopted=$query2->fetchColumn();
@@ -193,7 +185,7 @@ if($query->rowCount()>0)
                         }
                         </script>
                       <?php
-                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND Status = 'Approved'");
+                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND requestStatus = 'Approved'");
                       $query3->execute();
 
                       $user_adopted=$query3->fetchColumn();
@@ -208,7 +200,7 @@ if($query->rowCount()>0)
                         </script>
 
                       <?php
-                      $query4=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query4=$dbh->prepare("SELECT COUNT(userID) FROM history WHERE userID='$ID' AND Title ='Short-Term Care' AND requestStatus = 'Approved' AND petStatus != 'Returned'");
                       $query4->execute();
 
                       $my_shorttermcare=$query4->fetchColumn();
@@ -223,7 +215,7 @@ if($query->rowCount()>0)
                         </script>
                       
                       <?php
-                      $query5=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Short-Term Care' AND Status = 'Approved'");
+                      $query5=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Short-Term Care' AND requestStatus = 'Approved' AND petStatus != 'Returned'");
                       $query5->execute();
 
                       $user_shorttermcare=$query5->fetchColumn();
@@ -289,7 +281,7 @@ if($query->rowCount()>0)
                     }
                     </script>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
+                      <li class="nav-item" style= "height: 440; overflow-y: scroll;">
                       <?php
                         $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
                         $query=$dbh->prepare($sql);
@@ -306,7 +298,7 @@ if($query->rowCount()>0)
 
                             <a class ="dropdown-item">
                             <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
-                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" > </span>
                             <span>
                             <span>Admin</span>
                             <span class="time"><?php echo ($result->notificationDate);?></span>
@@ -332,32 +324,133 @@ if($query->rowCount()>0)
                             {
                               ?>
 
-    
-                        <a class ="dropdown-item">
+                        <form method="post">
+                        <button class ="dropdown-item" type="submit" style="margin-top:-15px">
                           <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
-                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
+                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> style="height:30px;width:30px" class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
                             <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
-                            <span class="time"><?php echo ($result->notificationDate);?></span>
-                          </span>
+                          </span><br>
                           <span class="message">
                           <?php echo ($result->notificationDescription);?>
-                          </span>
-                        </a>
+                          </span><br>
+                          <span style="float:left;margin-top:10px" class="time"><b><?php echo ($result->notificationDate);?></b></span><br>
+                          </button>
+                        </form>
                          <?php $cnt1=$cnt1+1;}} ?>
                          <?php } ?>
-                        <?php $cnt=$cnt+1;}} ?>
+                        <?php $cnt=$cnt+1;
+                        }
+                        }
+                        else
+                        {
+                        echo "No Notification.";
+                        }  
+                        ?>
                       </li>
-                      <li onclick="window.location.href='http://localhost/developgetpet/dashboard/P.O-UserRequest.php';" class="nav-item">
-                        <div class="text-center">
-                          <a class="dropdown-item">
-                            <a href="http://localhost/developgetpet/dashboard/P.O-Requestnotification.php">See All Alerts</a>
-                            <i class="fa fa-angle-right"></i>
-                          </a>
-                        </div>
+                      <li class="nav-item">
                       </li>
                     </ul>
                   </li>
+                  
+                
+                  <?php
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM message WHERE masterID='$ID' AND messageStatus != 'Read' ");
+                  $query->execute();
+
+                  $user_message=$query->fetchColumn();
+
+                  ?>
+                  <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;margin-right:10px;">
+								<a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+									<i class="fa fa-envelope"></i>
+									<span class="badge bg-green" id="user_message"><?php echo ($user_message);?></span>
+								</a>
+                <script type="text/javascript">
+                    var user_message = <?php echo ($user_message);?>;
+                    if (user_message === 0){
+                      document.getElementById("user_message").style.display = "none";
+                    }
+                    </script>
+								<ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+									
+									<li class="nav-item" style= "height: 440; overflow-y: scroll;">
+                  <?php
+                        $sql="SELECT * from message WHERE masterID='$ID' ORDER BY messageID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+
+                            <?php $user_id = $result->userID;
+
+                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                            $query1=$dbh->prepare($sql1);
+                            $query1->execute();
+                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                            $cnt1=1;
+                            if($query1->rowCount()>0)
+                            {
+                              foreach($userids as $userid)
+                            {
+                              ?>
+
+                        <?php
+                        if(isset($_POST['view_message']))
+                        {
+                          $masterID=($_POST['masterID']);
+                          $roomID=($_POST['roomID']);
+                          
+                          $sql="update message set
+                          messageStatus='Read'
+                          where roomID=:roomID";
+                          $query=$dbh->prepare($sql); 
+                          $query->bindParam(':roomID',$roomID,PDO::PARAM_STR); 
+                          $query->execute();
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Message.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+                          $_SESSION['roomID'] = $roomID;
+                          
+
+                        }
+                        ?>
+
+                        <form method="post">
+                        <button class ="dropdown-item" name="view_message" type="submit" style="margin-top:-15px">
+                          <span><b>Message</b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->messageStatus);?></span><br>
+                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" style="height:30px;width:30px" alt="Profile Image" /></span>
+                          <span>
+                            <input hidden name="roomID" value="<?php echo ($result->roomID);?>">
+                            <input hidden name="masterID" value="<?php echo ($result->userID);?>">
+                            <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
+                          </span><br>
+                          <span class="message">
+                          <?php echo ($result->messageContent);?>
+                          </span><br>
+                          <span style="float:left;margin-top:10px" class="time"><b><?php echo ($result->messageDate);?></b></span><br>
+                        </button>
+                        </form>
+                         <?php $cnt1=$cnt1+1;}} ?>
+                        <?php $cnt=$cnt+1;
+                        }
+                        }
+                        else
+                        {
+                        echo "No Message.";
+                        } 
+                        ?>
+									</li>
+                  <li class="nav-item">
+                  </li>
+								</ul>
+							</li>            
+
                 </ul>
               </nav>
             </div>
@@ -404,7 +497,7 @@ if($query->rowCount()>0)
                   <div class="x_content" style="text-align:center;">
 <!-- View My Adopted Pet Code -->
 <?php
-            $sql="SELECT * from history WHERE userID='$ID' AND Title='Adoption' AND Status='Approved' ORDER BY historyID DESC";
+            $sql="SELECT * from history WHERE userID='$ID' AND Title='Adoption' AND requestStatus='Approved' ORDER BY historyID DESC";
             $query=$dbh->prepare($sql);
             $query->execute();
             $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -461,17 +554,38 @@ if($query->rowCount()>0)
                       {
                         ?>
                     
-                      <?php if ($result->Title == 'Adoption' AND $result->Status == 'Approved') { ?>
+                      <?php if ($result->Title == 'Adoption' AND $result->requestStatus == 'Approved') { ?>
 
-                      <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:20px" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?>&#13;&#10;Email: <?php echo ( $masterid->Email);?>&#13;&#10;Contact No: <?php echo ( $masterid->contactNo);?></textarea><br><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:20px" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?>&#13;&#10;Email: <?php echo ( $masterid->Email);?>&#13;&#10;Contact No: <?php echo ( $masterid->contactNo);?></textarea><br>
 
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:220px;height:210px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:210px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Approved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Status: <?php echo ($result->Status);?></textarea><br><br>
+                      <?php
+                        if(isset($_POST['Message']))
+                        {
+                          $masterID=($_POST['masterID']);
+                          $roomID=($_POST['roomID']);
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Message.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+                          $_SESSION['roomID'] = $roomID;
+                          
+
+                        }
+                        ?>
+                      
+                      <form method="post">
+                      <input hidden name="roomID" value="<?php echo ($masterid->userID);?>-<?php echo $ID;?>">
+                      <input hidden name="masterID" value="<?php echo ($masterid->userID);?>">
+                      <button class="btn btn-round btn-primary" name="Message" style="border:#00cdc1;width: 90px;height:37px;margin-right:600px;margin-top:5px">Message</button>
+                      <br><br>
+                      </form>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:220px;height:215px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:215px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Approved Date: <?php echo ($result->approvalDate);?>&#13;&#10;Request Status: <?php echo ($result->requestStatus);?>&#13;&#10;Status: <?php echo ($result->petStatus);?></textarea><br><br>
 
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                       <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
 
-                      <button class="btn btn-round btn-primary recievedbtn" style="border:#00cdc1;width: 90px;height:37px;" data-history-id="<?php echo($result->historyID);?>"  data-pet-id="<?php echo($result->petID);?>" data-master-id="<?php echo($masterid->userID);?>" data-user-id="<?php echo $ID;?>">Recieved</button>
+                      <button class="btn btn-round btn-primary recievedbtn" style="border:#00cdc1;width: 100px;height:37px;" data-history-id="<?php echo($result->historyID);?>"  data-pet-id="<?php echo($result->petID);?>" data-master-id="<?php echo($masterid->userID);?>" data-user-id="<?php echo $ID;?>">Recieved</button>
                       </div>
                       </div>
 
@@ -620,7 +734,7 @@ if($query->rowCount()>0)
         </div>
 
         <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By:<span class="required"></span></label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Posted By<span class="required"></span></label>
         <div class="col-md-6 col-sm-6">
                <input readonly type="text" class="form-control" id="master_name1" name="masterName" style="background-color:#fff;width:440px;" required="required"/>
         </div>
@@ -657,7 +771,8 @@ if(isset($_POST['btnRecieved']))
   $query->execute();
 
   echo '<script>alert("Successfully Sent!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyAdoptedPet.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Feedback.php'</script>";
+  $_SESSION['masterID'] = $masterID;
 }
 ?>
    <!--// Recieved Code -->
@@ -745,12 +860,6 @@ if(isset($_POST['btnRecieved']))
   }
   document.getElementById("profile").disabled = false;
 }
-    </script>
-
-    <script type="text/javascript">
-    $(".unread").filter(function(){
-    return $(this).text().trim() === "Read";
-    }).hide();
     </script>
 
 <script type="text/javascript">

@@ -831,7 +831,7 @@ if(isset($_POST['DeclineAdoptionRequest']))
     $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
     $query3->execute();
   
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,requestStatus)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
     $query4=$dbh->prepare($sql4);
     $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
@@ -955,7 +955,7 @@ if(isset($_POST['DeclineShort-Term-CareRequest']))
     $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
     $query3->execute();
   
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,requestStatus)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Disapproved')";
     $query4=$dbh->prepare($sql4);
     $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
@@ -1086,7 +1086,7 @@ if(isset($_POST['AcceptAdoptionRequest']))
     $query3->bindParam(':userID',$userID,PDO::PARAM_STR);
     $query3->execute();
   
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,Status)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved')";
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,requestStatus,petStatus)VALUES('Adoption',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','Approved','Adopted')";
     $query4=$dbh->prepare($sql4);
     $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query4->bindParam(':userID',$userID,PDO::PARAM_STR);
@@ -1223,7 +1223,7 @@ if(isset($_POST['AcceptShort-Term-CareRequest']))
     $day = $totalDays;
     $returndate=date('m/d/Y', strtotime("+$day days"));
   
-    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,returnDate,Status)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','$returndate','Approved')";
+    $sql4="INSERT INTO history(Title,requestID,masterID,userID,userName,userEmail,userAddress,userContactNo,petID,petType,petName,petBreed,requestDate,approvalDate,returnDate,requestStatus,petStatus)VALUES('Short-Term Care',:requestID,'$ID',:userID,:userName,:userEmail,:userAddress,:userContactNo,:petID,:petType,:petName,:petBreed,:requestDate,'$date','$returndate','Approved','In Short-term care')";
     $query4=$dbh->prepare($sql4);
     $query4->bindParam(':requestID',$requestID,PDO::PARAM_STR);
     $query4->bindParam(':userID',$userID,PDO::PARAM_STR);

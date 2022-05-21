@@ -93,6 +93,13 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
             padding: 100px;
             text-align: center;
         }
+
+        .view-more-comment:hover {
+    text-decoration: underline;
+}
+    .hide-more-comment:hover {
+    text-decoration: underline;
+}
   </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -117,19 +124,17 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
     <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md" onLoad="window.scroll(0, 500)">
+  <body class="nav-md" onLoad="window.scroll(0, 150)">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-               <a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
+              <a href="http://localhost/developgetpet/dashboard/P.O-Dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>&nbsp&nbsp&nbsp&nbspGETPET</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -147,7 +152,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
             <br />
 
-                   	 <!-- sidebar menu -->
+          	 <!-- sidebar menu -->
          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
@@ -596,14 +601,14 @@ if($query->rowCount()>0)
                         <div class="col-nd-4">
                             <div class="card">
                               <div class="card-body">
-
+                                  
                                   <div style="max-width:400px;margin:auto">
                                         <div class="Img-icons">
                                         <i class="fa fa-circle circle fa-4x" data-toggle="modal" href="#ProfilePicture"></i>
                                         <i class="fa fa-camera camera fa-2x" data-toggle="modal" href="#ProfilePicture"></i>
                                             <Img <?php echo"<img src = '/developgetpet/web/images/$result->ownerPicture'";?> class="rounded-circle img-responsive" id="Modalprofile" alt="Post Images" style="height:250px;width:250px;border-style: solid;border-color: #F5F5F5;border-width: 6px;">
                                         </div>
-                                  </div>                            
+                                  </div>                         
                                   <h2 class="card-title"><?php echo ($result->ownerFirstname);?> <?php echo ($result->ownerLastname);?></h2>
                                   
                           </div>
@@ -614,7 +619,7 @@ if($query->rowCount()>0)
                       
                       <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" href="http://localhost/developgetpet/dashboard/P.O-About.php" role="tab" aria-controls="about" aria-selected="false">About</a>
+                        <a href="http://localhost/developgetpet/dashboard/P.O-About.php" role="tab" aria-controls="about" aria-selected="false">About</a>
                       </li>
                       <li class="nav-item">
                         <a href="http://localhost/developgetpet/dashboard/P.O-PostDogsAdoption.php" role="tab" aria-controls="post_adoption" aria-selected="false">Post Dogs Adoption</a>
@@ -640,76 +645,43 @@ if($query->rowCount()>0)
                         <a href="http://localhost/developgetpet/dashboard/P.O-PostArticles.php" role="tab" aria-controls="post_advice" aria-selected="false">Post Articles</a>
                       </li>
                       <li class="nav-item">
-                        <a href="http://localhost/developgetpet/dashboard/P.O-Reviews.php" role="tab" aria-controls="post_adoption" aria-selected="false">Reviews</a>
+                        <a class="nav-link active" href="http://localhost/developgetpet/dashboard/P.O-Reviews.php" role="tab" aria-controls="post_adoption" aria-selected="false">Reviews</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="post1" role="tabpanel" aria-labelledby="post-tab">
-<!-- About Code -->
-<form class="" action="" method="post" novalidate enctype="multipart/form-data">
-                                         
-                                         <br>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerFirstname);?> <?php echo ( $result->ownerLastname);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerAddress);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerEmail);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Contact No<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerContactNo);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Birth Date<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerBirthdate);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Age<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerAge);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Gender<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->ownerGender);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <div class="field item form-group">
-                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Role<span class="required"></span></label>
-                                             <div class="col-md-6 col-sm-6">
-                                                 <input disabled type="text" class="form-control"  value="<?php echo ( $result->Role);?>" style="background-color:#fff;width:400px;"/>
-                                             </div>
-                                         </div>
-                                         <br><br>
-                                     </form>      
- 
-         <!-- // About Code -->  
-                      </div>
-                      <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="about-tab">
-                      <div class="x_content">
+ <!-- About Code -->
+ <?php
 
-                                </div>
-                      </div>
-                      <div class="tab-pane fade" id="request1" role="tabpanel" aria-labelledby="request-tab">
-                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk 
+$sql="SELECT * from feedback WHERE masterID='$ID'";
+$query=$dbh->prepare($sql);
+$query->execute();
+$results=$query->fetchALL(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount()>0)
+{
+foreach($results as $result)
+{
+
+  $sql1="SELECT * from register WHERE userID='$result->userID'";
+  $query1=$dbh->prepare($sql1);
+  $query1->execute();
+  $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+  $cnt1=1;
+  if($query1->rowCount()>0)
+  {
+    foreach($userids as $userid)
+  {
+    ?>
+
+  <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:50px;height:50px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:50px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:10px;border-style: none;padding-left:1px;" type='text'><?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?></textarea><br>
+  <label style="line-height:25px">&nbsp;&nbsp;&nbsp;Rating:</label><textarea disabled="yes" id="description" style="width:600px;height:30px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:1px;overflow: hidden;border-style: none;" type='text'><?php echo ($result->Ratings);?></textarea><br>
+  <label style="line-height:25px">Feedback:&nbsp;&nbsp;</label><textarea disabled="yes" id="message" name="Feedback" style="width:600px;height:100px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;outline: none;padding-top:1px;padding-left:2px;" placeholder="Write a feedback.." class="txtgrow" type='text'><?php echo ($result->feedbackContent);?></textarea><br><br>
+
+  <?php $cnt1=$cnt1+1;}} ?>
+  <?php $cnt=$cnt+1;}} ?> 
+ 
+         <!-- // About Code -->     
                       </div>
                     </div>     
                     
@@ -736,6 +708,7 @@ if($query->rowCount()>0)
   foreach($results as $result)
   {
      ?>
+<p></p>
 <?php
 ?>
 <?php }} ?>
@@ -792,6 +765,19 @@ if($query->rowCount()>0)
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
 
+    <script>
+     $( "#edit_comment" ).keyup(function() {
+  $("#btnEditComment").prop("disabled", !this.value);
+});
+    </script>
+
+<script>
+     $( "#comment" ).keyup(function() {
+  $("#btnComment").prop("disabled", !this.value);
+});
+    </script>
+
+
     <script type="text/javascript">
   $("#selected_profile_cancel").click(function () {
    
@@ -810,7 +796,23 @@ if($query->rowCount()>0)
 });
   </script>
 
-<script>
+<script type="text/javascript">
+  $("#selected_picture_cancel").click(function () {
+  
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+    <script type="text/javascript">
+  $("#selected_picture_close").click(function () {
+
+    PostPicture.value = "";
+    document.getElementById("btnChangePostPicture").disabled = true;
+});
+  </script>
+
+    <script>
       Picture.onchange = evt => {
   const [file] = Picture.files
   if (file) {
@@ -820,12 +822,213 @@ if($query->rowCount()>0)
 }
     </script>
 
-    <script type="text/javascript">
-    $(".unread").filter(function(){
-    return $(this).text().trim() === "Read";
-    }).hide();
+    <script>
+      PostPicture.onchange = evt => {
+  const [file] = PostPicture.files
+  if (file) {
+    post_picture.src = URL.createObjectURL(file)
+  }
+  document.getElementById("btnChangePostPicture").disabled = false;
+}
     </script>
-    
+
+    <script>
+    $(window).on("load", function () {
+    console.log("load");
+    $("div#view_more_comment_Div").hide();
+    });
+    </script>
+
+    <script>
+     $(function () {
+    $("textarea.txtgrow").each(function () {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight+10)+'px';
+    });
+    });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.viewbtn').on('click', function () {
+
+                $('#View').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#petid').val(data[0]);
+                $('#petname').val(data[1]);
+                $('#pettype').val(data[2]);
+                $('#petbreed').val(data[3]);
+                $('#petsex').val(data[4]);
+                $('#petage').val(data[5]);
+                $('#petcolor').val(data[6]);
+                $('#petweight').val(data[7]);
+                $('#vaccinationstatus').val(data[8]);
+                $('#dewormingstatus').val(data[9]);
+                $('#petdescription').val(data[10]);
+                $('#petstatus').val(data[13]);
+            });
+        });
+    </script>
+
+<script>
+        $(document).ready(function () {
+
+            $('.commentbtn').on('click', function () {
+
+                $('#Comment').modal('show');
+
+                $tr = $(this).closest('ul');
+
+                var data = $tr.children("li").map(function () {
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                $('#petid').val(data[0]);
+                $('#masterid').val(data[14]);
+            });
+        });
+    </script>
+
+<script type="text/javascript">
+  $(".Epost").click(function () {
+    var pet_id2 = $(this).attr('data-pet-id');
+    var pet_name2 = $(this).attr('data-pet-name');
+    var pet_type2 = $(this).attr('data-pet-type');
+    var pet_breed2 = $(this).attr('data-pet-breed');
+    var pet_sex2 = $(this).attr('data-pet-gender');
+    var pet_age2 = $(this).attr('data-pet-age');
+    var pet_color2 = $(this).attr('data-pet-color');
+    var pet_weight2 = $(this).attr('data-pet-weight');
+    var vaccination_status2 = $(this).attr('data-vaccination-status');
+    var deworming_status2 = $(this).attr('data-deworming-status');
+    var pet_description2 = $(this).attr('data-pet-description');
+    $('#EditPost').modal('show');
+    $("#pet_id2").val( pet_id2 );
+    $("#pet_name2").val( pet_name2 );
+    $("#pet_type2").val( pet_type2 );
+    $("#pet_breed2").val( pet_breed2 );
+    $("#pet_sex2").val( pet_sex2 );
+    $("#pet_age2").val( pet_age2 );
+    $("#pet_color2").val( pet_color2 );
+    $("#pet_weight2").val( pet_weight2 );
+    $("#vaccination_status2").val( vaccination_status2 );
+    $("#deworming_status2").val( deworming_status2 );
+    $("#pet_description2").val( pet_description2 );
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Ppost").click(function () {
+    var pet_id3 = $(this).attr('data-pet-id');
+    $('#ChangePostPicture').modal('show');
+    $("#pet_id3").val( pet_id3 );
+    var picture_file = $(this).attr('data-pet-picture');
+    $('#picture_file').val( picture_file );
+    document.getElementById('post_picture').src="/developgetpet/web/images/"+""+picture_file;
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Dpost").click(function () {
+    var pet_id1 = $(this).attr('data-pet-id');
+    $('#DeletePost').modal('show');
+    $("#pet_id1").val( pet_id1 );
+  });
+  </script>
+
+<script type="text/javascript">
+  $(".Ecomment").click(function () {
+    var commentid = $(this).attr('data-comment-id');
+    var edit_comment = $(this).attr('data-comment-content');
+    $("#edit_comment").val( edit_comment );
+    $("#commentid").val( commentid );
+    $('#EditComment').modal('show');
+  });
+  </script>
+
+ <script type="text/javascript">
+  $(".Dcomment").click(function () {
+    var comment_id = $(this).attr('data-comment-id');
+    $("#comment_id").val( comment_id );
+    $('#DeleteComment').modal('show');
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(".menu").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?>";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".Epost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Edit";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".Dpost").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Delete";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".Ecomment").filter(function(){
+  return $(this).text().trim() != "<?php echo $ID?> Edit";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".comment-count").filter(function(){
+  return $(this).text().trim() === "0";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $(".count-more-comment").filter(function(){
+  return $(this).text().trim() === "View 0 more comment";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $('p.view-more-comment').click(function() {
+      $('.view-more-comment-Div').show(); // To hide all other contents
+      $('.comment-Div').hide();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide -1 comment";
+  }).hide();
+  $("p.hide-more-comment").filter(function(){
+  return $(this).text().trim() === "Hide 0 comment";
+  }).hide();
+  </script>
+
+  <script type="text/javascript">
+  $('p.hide-more-comment').click(function() {
+      $('.view-more-comment-Div').hide(); // To hide all other contents
+      $('.comment-Div').show();
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(".unread").filter(function(){
+  return $(this).text().trim() === "Read";
+  }).hide();
+  </script>
 
     <div id="custom_notifications" class="custom-notifications dsp_none">
       <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
@@ -853,7 +1056,5 @@ if($query->rowCount()>0)
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
