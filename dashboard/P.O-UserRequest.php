@@ -968,6 +968,12 @@ if(isset($_POST['AcceptAdoptionRequest']))
     $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
     $query4->execute();
   
+    $receiver = $userEmail;
+    $subject = "Approved Adoption Request";
+    $body = "$Name\nApproved your adoption request";
+    $sender = $Email;
+  
+    mail($receiver, $subject, $body, $sender);
     echo '<script>alert("User Request Accepted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
 }
@@ -1022,6 +1028,12 @@ if(isset($_POST['AcceptAdoptionRequest']))
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="requestdate" name="requestDate" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden name="Email" value="<?php echo $result->ownerEmail; ?>" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden name="Name" value="<?php echo $result->ownerFirstname; ?> <?php echo $result->ownerLastname; ?>" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
