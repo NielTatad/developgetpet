@@ -247,38 +247,33 @@ if(isset($_POST['AnimalWelfareOrganization']))
     </div> 
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
+  <!-- Vertically centered modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                      <div class="modal-body">
-                      <form class="login100-form validate-form" method="post">
-            <b style="font-size:16px;">SELECT ROLE:</b>
-            <br>
-            <br>
-            <br>
-            <div style="text-align: center">
-						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetAdopter" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
-							  <a style="color:White">Pet Adopter</a>
-						    </button>
-					  </div><br>
-            <div style="text-align: center">
-						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="PetOwner">
-							  <a style="color:White">Pet Owner</a>
-						    </button>
-					  </div><br>
-            
-            <div style="text-align: center">
-						    <button class="login100-form-btn" style="background-color:#00cdc1;width:350px;height:40px;border:none;border-radius: 4px;" name="AnimalWelfareOrganization">
-							  <a style="color:White">Animal Welfare Organization</a>
-						    </button>
-					  </div>
-            <br>
-            </form>
-                      </div>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">Choose Account Type:</h5>
+                            
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3 justify-content-around">
+                                <a href="http://localhost/developgetpet/login-page/P.A-Registration.php" class="col-sm-3 text-center ms2" style="background-color:#00cdc1;width:100px;height:100px;border:none;border-radius:4px;">
+                                    <p style="color:white;padding-top:25px;">Pet <br> Adopter</p>
+                                </a>
+                                <a href="http://localhost/developgetpet/login-page/P.O-Registration.php" class="col-sm-3 text-center ms1" style="background-color:#00cdc1;width:50px;height:100px;border:none;border-radius:4px;">
+                                <p style="color:white;padding-top:25px;">Pet <br> Onwer</p>
+                                </a>
+                                <a href="http://localhost/developgetpet/login-page/A.W.O-Registration.php" class="col-sm-3 text-center ms1" style="background-color:#00cdc1;width:50px;height:100px;border:none;border-radius:4px;">
+                                <p style="color:white;padding-top:20px;">Animal Welfare Organization</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <p>Do you have an account? <a href="login.php">Login</a></p>
+                        </div>
                     </div>
-                  </div>
                 </div>
+            </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
