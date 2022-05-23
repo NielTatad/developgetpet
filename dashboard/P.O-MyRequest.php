@@ -555,13 +555,51 @@ if($query->rowCount()>0)
                       {
                         ?>
                        
+                      <li><h3 hidden class="card-title"><?php echo ($masterid->Email);?></h3></li>
+                      <li><h3 hidden class="card-title"><?php echo ($result->requestTitle);?></h3></li>
                       <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
                       
+                        <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?></textarea><br> 
+                      
+                      <?php
+                        if(isset($_POST['ViewProfile']))
+                        {
+                          $masterID=($_POST['masterID']);
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ViewProfile.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+
+                        }
+                        ?>
+                      <form method="post">
+                      <input hidden name="masterID" value="<?php echo ($masterid->userID);?>">
+                      <button class="btn btn-primary" name="ViewProfile" style="border:#00cdc1;width: 130px;height:35px;margin-right:600px;margin-top:5px"><i class="fa fa-user"> </i> View Profile</button>
+                      <br><br>
+                      </form>
+
                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:200px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:200px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ( $petid->selectedRange);?>&#13;&#10;Charge: ₱<?php echo ( $petid->Charge);?>.00&#13;&#10;Requested Date: <?php echo ($result->requestDate);?></textarea><br><br>
 
                       <?php } ?>
 
                       <?php if ($result->requestTitle == 'Adoption Request') { ?>
+
+                        <img <?php echo"<img src = '/developgetpet/web/images/$masterid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($masterid->orgName);?><?php echo ( $masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>&#13;&#10;Address: <?php echo ( $masterid->Address);?></textarea><br> 
+                      
+                      <?php
+                        if(isset($_POST['ViewProfile']))
+                        {
+                          $masterID=($_POST['masterID']);
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ViewProfile.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+
+                        }
+                        ?>
+                      <form method="post">
+                      <input hidden name="masterID" value="<?php echo ($masterid->userID);?>">
+                      <button class="btn btn-primary" name="ViewProfile" style="border:#00cdc1;width: 130px;height:35px;margin-right:600px;margin-top:5px"><i class="fa fa-user"> </i> View Profile</button>
+                      <br><br>
+                      </form>
 
                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?></textarea><br><br>
 
@@ -573,7 +611,7 @@ if($query->rowCount()>0)
                       
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
-                            <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
+                            <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>" data-user-email="<?php echo ($userid->Email);?>">View</button>
                             <button type="button" class="btn btn-round btn-danger cancelbtn"class="close" data-dismiss="modal" style="width:90px;height:37px;">Cancel</button>
                       </div>
                       </div>
@@ -745,26 +783,80 @@ if(isset($_POST['CancelRequest']))
   $petID=($_POST['petID']);
   $masterID=($_POST['masterID']);
   $Reason=($_POST['Reason']);
+  $masterEmail=($_POST['masterEmail']);
+  $requestTitle=($_POST['requestTitle']);
+  $Email=($_POST['Email']);
 
-  $sql="update request set
-  cancellationDate='$date', requestStatus='Cancelled', cancellationReason=:Reason
-  where requestID=:requestID";
-  $query=$dbh->prepare($sql); 
-  $query->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-  $query->bindParam(':Reason',$Reason,PDO::PARAM_STR); 
-  $query->execute();
+  if($requestTitle=$_POST['requestTitle']=="Adoption Request")
+  {
+    $requestID=($_POST['requestID']);
+    $petID=($_POST['petID']);
+    $masterID=($_POST['masterID']);
+    $Reason=($_POST['Reason']);
+    $masterEmail=($_POST['masterEmail']);
+    $requestTitle=($_POST['requestTitle']);
+    $Email=($_POST['Email']);
 
-  $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Cancelled Adoption Request',:masterID,'$ID',:Reason,'$date','Unread')";
-  $query3=$dbh->prepare($sql3);
-  $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
-  $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
-  $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
-  $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
-  $query3->execute();
+    $sql="update request set
+    cancellationDate='$date', requestStatus='Cancelled', cancellationReason=:Reason
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query->bindParam(':Reason',$Reason,PDO::PARAM_STR); 
+    $query->execute();
 
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Cancelled Adoption Request',:masterID,'$ID',:Reason,'$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
+    $query3->execute();
 
-  echo '<script>alert("Your Request Cancelled Successfully!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-CancelledRequest.php'</script>";
+    $receiver = $masterEmail;
+    $subject = "Cancelled Adoption Request";
+    $body = "$Name\n$Reason";
+    $sender = $Email;
+  
+    mail($receiver, $subject, $body, $sender);
+    echo '<script>alert("Your Request Cancelled Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-CancelledRequest.php'</script>";
+  }
+  if($requestTitle=$_POST['requestTitle']=="Short-Term Care Request")
+  {
+    $requestID=($_POST['requestID']);
+    $petID=($_POST['petID']);
+    $masterID=($_POST['masterID']);
+    $Reason=($_POST['Reason']);
+    $masterEmail=($_POST['masterEmail']);
+    $requestTitle=($_POST['requestTitle']);
+    $Email=($_POST['Email']); 
+    
+    $sql="update request set
+    cancellationDate='$date', requestStatus='Cancelled', cancellationReason=:Reason
+    where requestID=:requestID";
+    $query=$dbh->prepare($sql); 
+    $query->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query->bindParam(':Reason',$Reason,PDO::PARAM_STR); 
+    $query->execute();
+
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES(:requestID,:petID,'Cancelled Short-Term Care Request',:masterID,'$ID',:Reason,'$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':requestID',$requestID,PDO::PARAM_STR);
+    $query3->bindParam(':petID',$petID,PDO::PARAM_STR);
+    $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
+    $query3->execute();
+
+    $receiver = $masterEmail;
+    $subject = "Cancelled Short-Term Care Request Request";
+    $body = "$Name\n$Reason";
+    $sender = $Email;
+  
+    mail($receiver, $subject, $body, $sender);
+    echo '<script>alert("Your Request Cancelled Successfully!")</script>';
+    echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-CancelledRequest.php'</script>";
+  }
 }
 ?>
 
@@ -811,6 +903,15 @@ if(isset($_POST['CancelRequest']))
                 }
             }
         </script>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="master_email" name="masterEmail" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" id="request_title" name="requestTitle" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden type="text" name="Email" value="<?php echo $result->ownerEmail;?>" required = "required" class="form-control">
+				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
               <button name="CancelRequest" id="cancel" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" disabled>Yes</button>
@@ -930,6 +1031,8 @@ if(isset($_POST['CancelRequest']))
                 $('#request_id').val(data[0]);
                 $('#pet_id').val(data[1]);
                 $('#master_id').val(data[2]);
+                $('#master_email').val(data[3]);
+                $('#request_title').val(data[4]);
             });
         });
     </script>

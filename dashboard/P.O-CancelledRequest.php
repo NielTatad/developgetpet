@@ -554,15 +554,16 @@ if($query->rowCount()>0)
                       foreach($masterids as $masterid)
                     {
                       ?>
-                      <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
-
-                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:230px;height:210px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:210px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ($petid->selectedRange);?>&#13;&#10;Charge: ₱<?php echo ($petid->Charge);?>.00&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
-
-                      <?php } ?>
 
                       <?php if ($result->requestTitle == 'Adoption Request') { ?>
 
                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
+
+                      <?php } ?>
+
+                      <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
+
+                      <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:230px;height:210px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:210px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ($petid->selectedRange);?>&#13;&#10;Charge: ₱<?php echo ($petid->Charge);?>.00&#13;&#10;Requested Date: <?php echo ($result->requestDate);?>&#13;&#10;Cancelled Date: <?php echo ($result->cancellationDate);?></textarea><br><br>
 
                       <?php } ?>
 

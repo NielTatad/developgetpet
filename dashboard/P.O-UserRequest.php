@@ -548,7 +548,23 @@ if($query->rowCount()>0)
                       
                       <?php if ($result->requestTitle == 'Short-Term Care Request') { ?>
 
-                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Email: <?php echo ( $userid->Email);?>&#13;&#10;Contact No: <?php echo ( $userid->contactNo);?>&#13;&#10;Reason for Short-term care: <?php echo ( $result->requestReason);?></textarea><br><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Reason for Short-term care: <?php echo ( $result->requestReason);?></textarea><br> 
+                      
+                      <?php
+                        if(isset($_POST['ViewProfile']))
+                        {
+                          $masterID=($_POST['masterID']);
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ViewProfile.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+
+                        }
+                        ?>
+                      <form method="post">
+                      <input hidden name="masterID" value="<?php echo ($userid->userID);?>">
+                      <button class="btn btn-primary" name="ViewProfile" style="border:#00cdc1;width: 130px;height:35px;margin-right:600px;margin-top:5px"><i class="fa fa-user"> </i> View Profile</button>
+                      <br><br>
+                      </form>
 
                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:190px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:190px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Time Period: <?php echo ( $petid->selectedRange);?>&#13;&#10;Charge: ₱<?php echo ( $petid->Charge);?>.00&#13;&#10;Requested Date: <?php echo ($result->requestDate);?></textarea><br><br>
 
@@ -563,7 +579,24 @@ if($query->rowCount()>0)
 
                       <?php if ($result->requestTitle == 'Adoption Request') { ?>
 
-                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Email: <?php echo ( $userid->Email);?>&#13;&#10;Contact No: <?php echo ( $userid->contactNo);?>&#13;&#10;Reason for Adoption: <?php echo ( $result->requestReason);?></textarea><br><br>
+                      <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:160px;height:150px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:150px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C" class="txtgrow" type='text'>Name: <?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?>&#13;&#10;Address: <?php echo ( $userid->Address);?>&#13;&#10;Reason for Adoption: <?php echo ( $result->requestReason);?></textarea><br>
+
+
+                      <?php
+                        if(isset($_POST['ViewProfile']))
+                        {
+                          $masterID=($_POST['masterID']);
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ViewProfile.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+
+                        }
+                        ?>
+                      <form method="post">
+                      <input hidden name="masterID" value="<?php echo ($userid->userID);?>">
+                      <button class="btn btn-primary" name="ViewProfile" style="border:#00cdc1;width: 130px;height:35px;margin-right:600px;margin-top:5px"><i class="fa fa-user"> </i> View Profile</button>
+                      <br><br>
+                      </form>
 
                       <img <?php echo"<img src = '/developgetpet/web/images/$petid->petPicture'";?> alt="avatar" style="width:200px;height:180px;border-radius:10px;">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:180px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:15px" type='text'>Pet Name: <?php echo ( $petid->petName);?>&#13;&#10;Pet Type: <?php echo ( $petid->petType);?>&#13;&#10;Pet Gender: <?php echo ( $petid->petSex);?>&#13;&#10;Pet Breed: <?php echo ( $petid->petBreed);?>&#13;&#10;Requested Date: <?php echo ($result->requestDate);?></textarea><br><br>
 
@@ -1068,6 +1101,8 @@ if(isset($_POST['AcceptShort-Term-CareRequest']))
     $petBreed=($_POST['petBreed']);
     $totalDays=($_POST['totalDays']);
     $requestDate=($_POST['requestDate']);
+    $Email=($_POST['Email']);
+    $Name=($_POST['Name']);
   
     $sql="update request set
     approvalDate='$date', requestStatus='Approved'
@@ -1117,6 +1152,12 @@ if(isset($_POST['AcceptShort-Term-CareRequest']))
     $query4->bindParam(':requestDate',$requestDate,PDO::PARAM_STR);
     $query4->execute();
   
+    $receiver = $userEmail;
+    $subject = "Approved Short-Term Care Request";
+    $body = "$Name\nApproved your short-term care request";
+    $sender = $Email;
+  
+    mail($receiver, $subject, $body, $sender);
     echo '<script>alert("User Request Accepted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-UserRequest.php'</script>";
 }
@@ -1174,6 +1215,12 @@ if(isset($_POST['AcceptShort-Term-CareRequest']))
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="requestdate1" name="requestDate" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden name="Email" value="<?php echo $result->ownerEmail; ?>" required = "required" class="form-control">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden name="Name" value="<?php echo $result->ownerFirstname; ?> <?php echo $result->ownerLastname; ?>" required = "required" class="form-control">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">

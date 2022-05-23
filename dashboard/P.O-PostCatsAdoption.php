@@ -581,8 +581,6 @@ if($query->rowCount()>0)
                   <div class="x_title">
                     <h2>My Profile</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -986,7 +984,7 @@ if(isset($_POST['Adopt']))
 
   mail($receiver, $subject, $body, $sender);
   echo '<script>alert("Just Wait for The Owner Accept Your Adoption Request!")</script>';
-  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-PostCatsAdoption.php'</script>";
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-MyRequest.php'</script>";
 
   }
 

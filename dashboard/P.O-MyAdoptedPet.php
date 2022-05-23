@@ -575,7 +575,7 @@ if($query->rowCount()>0)
                       <form method="post">
                       <input hidden name="roomID" value="<?php echo ($masterid->userID);?>-<?php echo $ID;?>">
                       <input hidden name="masterID" value="<?php echo ($masterid->userID);?>">
-                      <button class="btn btn-round btn-primary" name="Message" style="border:#00cdc1;width: 90px;height:37px;margin-right:600px;margin-top:5px">Message</button>
+                      <button class="btn btn-primary" name="Message" style="border:#00cdc1;width: 120px;height:35px;margin-right:600px;margin-top:5px">Message</button>
                       <br><br>
                       </form>
 
@@ -833,24 +833,6 @@ if(isset($_POST['btnRecieved']))
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>
     <script src="../vendors/validator/validator.js"></script>
-
-    <script type="text/javascript">
-  $("#selected_profile_cancel").click(function () {
-   
-    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
-    Picture.value = "";
-    document.getElementById("profile").disabled = true;
-});
-  </script>
-
-    <script type="text/javascript">
-  $("#selected_profile_close").click(function () {
-   
-    profile_picture.src = <?php echo"'/developgetpet/web/images/$result->ownerPicture'";?>;
-    Picture.value = "";
-    document.getElementById("profile").disabled = true;
-});
-  </script>
 
 <script>
       Picture.onchange = evt => {

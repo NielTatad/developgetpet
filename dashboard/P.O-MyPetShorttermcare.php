@@ -574,8 +574,8 @@ if($query->rowCount()>0)
                       
                       <form method="post">
                       <input hidden name="roomID" value="<?php echo ($masterid->userID);?>-<?php echo $ID;?>">
-                      <input hidden name="masterID" value="<?php echo ($masterid->userID);?>">
-                      <button class="btn btn-round btn-primary" name="Message" style="border:#00cdc1;width: 90px;height:37px;margin-right:600px;margin-top:5px">Message</button>
+                      <input hidden name="masterID" value="<?php echo ($userid->userID);?>">
+                      <button class="btn btn-primary" name="Message" style="border:#00cdc1;width: 120px;height:35px;margin-right:600px;margin-top:5px">Message</button>
                       <br><br>
                       </form>
 
@@ -584,6 +584,8 @@ if($query->rowCount()>0)
                       <div style="text-align: center" class="form-group">
                       <div class="col-md-6 offset-md-3">
                       <button class="btn btn-round btn-success viewbtn" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;" data-pet-id="<?php echo ($petid->petID);?>" data-pet-name="<?php echo ($petid->petName);?>" data-pet-type="<?php echo ($petid->petType);?>" data-pet-breed="<?php echo ($petid->petBreed);?>" data-pet-gender="<?php echo ($petid->petSex);?>" data-pet-age="<?php echo ($petid->petAge);?>" data-pet-color="<?php echo ($petid->petColor);?>" data-pet-weight="<?php echo ($petid->petWeight);?>" data-pet-spayneuter="<?php echo ($petid->SpayNeuter);?>" data-pet-rabiesvaccine="<?php echo ($petid->rabiesVaccine);?>" data-pet-deworming="<?php echo ($petid->Deworming);?>" data-pet-threeinonevaccine="<?php echo ($petid->threeinoneVaccine);?>" data-pet-diet="<?php echo ($petid->petDiet);?>" data-selected-range="<?php echo ( $petid->selectedRange);?>" data-charge="₱<?php echo ( $petid->Charge);?>.00" data-pet-description="<?php echo ($petid->petDescription);?>" data-pet-status="<?php echo ($petid->petStatus);?>" data-master-name="<?php echo ($masterid->orgName);?><?php echo ($masterid->userFirstname);?> <?php echo ($masterid->userLastname);?>">View</button>
+
+                      <button class="btn btn-round btn-primary feedbackbtn" style="border:#00cdc1;width: 100px;height:37px;" data-master-id="<?php echo($userid->userID);?>" data-user-id="<?php echo $ID;?>">Feedback</button>
 
                       </div>
                       </div>
@@ -762,6 +764,54 @@ if($query->rowCount()>0)
 </div>
 	<!-- //Modal View Pet Info -->
 
+    <!-- Feedback Code -->
+<?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>
+
+<?php
+if(isset($_POST['btnFeedback']))
+{
+  $masterID=($_POST['masterID']);
+  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Feedback.php'</script>";
+  $_SESSION['masterID'] = $masterID;
+}
+?>
+   <!--// Feedback Code -->
+
+  <!-- Modal Feedback -->
+<div class="modal fade" id="Feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Feedback</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post">
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <p>Are you sure, you want to give a feedback?</p>
+				</div><br>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="form-group">
+         <div class="col-md-6 offset-md-3">
+              <button name="btnFeedback" type="submit" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width: 90px;height:37px;">Yes</button>
+              <button class="btn btn-round btn-danger" class="close" data-dismiss="modal" style="width:90px;height:37px;">No</button>
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- //Modal Feedback -->
+
         <!-- footer content -->
         <footer>
         <p class="tweet-p1">
@@ -839,6 +889,14 @@ if($query->rowCount()>0)
     return $(this).text().trim() === "Read";
     }).hide();
     </script>
+
+<script type="text/javascript">
+  $(".feedbackbtn").click(function () {
+    var master_id = $(this).attr('data-master-id');
+    $('#Feedback').modal('show');
+    $("#master_id").val( master_id );
+  });
+  </script>
 
 <script type="text/javascript">
   $(".viewbtn").click(function () {

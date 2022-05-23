@@ -580,9 +580,7 @@ if($query->rowCount()>0)
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
                     <h2>My Profile</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
+                    <ul class="nav navbar-right panel_toolbox"> 
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -702,7 +700,7 @@ if($query->rowCount()>0)
                                             <div class="field item form-group">  
                                             <div class="col-md-6 col-sm-6">
                                            <!--<textarea id="description" required="required" class="form-control" id="Title" name="Title"  style="height:40px;resize: none;overflow:hidden;width:880px;border-radius:10px;" readonly><?php echo ($result->postTitle);?></textarea>-->
-                                           <h5 class="card-title" id="description" id="Title" name="Title" style="text-align:left;resize:none;">Title: <?php echo ($result->postTitle);?></h5>
+                                           <h5 class="card-title" id="description" id="Title" name="Title" style="text-align:left;resize:none;width:880px">Title: <?php echo ($result->postTitle);?></h5>
                                             </div>
                                             </div>                                
                                             <div class="field item form-group">                                        

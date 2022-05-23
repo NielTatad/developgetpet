@@ -593,7 +593,7 @@ if($query->rowCount()>0)
                   <br>                
                   <!-- View Pet Post for Adotion Code -->
                   <?php
-                        $sql="SELECT * from charity WHERE charityStatus='Accepted' AND charityPoststatus='Fundraising' AND charityPoststatus!='Deleted' ORDER BY charityID DESC";
+                        $sql="SELECT * from charity WHERE charityStatus='Accepted' AND charityPoststatus='Fundraising' AND charityPoststatus!='Deleted' AND charityGainamount != charityTargetamount AND charityGainamount < charityTargetamount ORDER BY charityID DESC";
                         $query=$dbh->prepare($sql);
                         $query->execute();
                         $results=$query->fetchALL(PDO::FETCH_OBJ);
@@ -629,7 +629,7 @@ if($query->rowCount()>0)
                                             <p id="title" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;">Charity Title: <?php echo ($result->charityTitle);?><br>Amount Needed: ₱<?php echo ($result->charityTargetamount);?>.00
                                             <br>Organization Website: <?php echo ($result->charityWebsite);?></p>                                           
                                             <br>
-                                            <p id="Description" style="font-size:25px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
+                                            <p id="Description" style="font-size:16px;margin-top:10px;padding-left:10px;text-align:left;"><?php echo ($result->charityDescription);?></p>
                                                                                       
                                               <Img <?php echo"<img src = '/developgetpet/web/images/$result->charityPicture'";?> class="card-ing-top" alt="Post Images" style="height:450px;width:500px;border-radius:10px;">
                                               <br>                                      
@@ -653,15 +653,29 @@ if($query->rowCount()>0)
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Email);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->Address);?></h3></li>
                                               <li><h3 hidden class="card-title"><?php echo ( $userid->contactNo);?></h3></li>
-                                              <?php $cnt1=$cnt1+1;}} ?>
-                                              <div class="progress" style="border-radius:10px;margin-left:20px;width:500px;">
-                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%;">$500/$1000</div>
-                                              </div>
+                                              <?php $cnt1=$cnt1+1;}} ?>&nbsp&nbsp
+                                                <progress id="file" value="<?php echo ($result->charityGainamount);?>" max="<?php echo ($result->charityTargetamount);?>" style="height:20px;width:450px;"></progress><br>
+                                                <label for="file">₱<?php echo ($result->charityGainamount);?>.00/₱<?php echo ($result->charityTargetamount);?>.00</label>
                                               <br>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-15px;float:left;margin-left:-10px;">View More Info</button>
                                               <br>
-                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;margin-right:140px;background-color:#00cdc1;color:white;" data-char-code="<?php echo ( $result->charityQRcode);?>"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
-                                              <br>
+                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;background-color:#00cdc1;color:white;" data-char-code="<?php echo ( $result->charityQRcode);?>" data-char-id="<?php echo ( $result->charityID);?>" data-master-id="<?php echo ( $result->userID);?>"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button> 
+                                              <?php
+                                                if(isset($_POST['Message']))
+                                                {
+                                                  $masterID=($_POST['masterID']);
+                                                  $roomID=($_POST['roomID']);
+                                        
+                                                  echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Message.php'</script>";
+                                                  $_SESSION['masterID'] = $masterID;
+                                                  
+
+                                                }
+                                                ?>
+                                              
+                                              <form method="post">
+                                              <input hidden name="masterID" value="<?php echo ($result->userID);?>">
+                                              <button class="btn btn-primary" name="Message" style="border:#00cdc1;width:150px;height:35px;margin-top:5px">Message</button>
+                                              </form>
 
                                               <?php
                                               $count=$dbh->prepare("SELECT COUNT(postID) FROM comment WHERE postID='$result->charityID'");
@@ -788,7 +802,7 @@ if($query->rowCount()>0)
                                               {
                                                 ?>
                                               <label style="margin-top:4px;"><img <?php echo"<img src = '/developgetpet/web/images/$userID->Image'";?> alt="avatar" style="width:30px;height:30px;margin-bottom:4px;" class="rounded-circle img-responsive">&nbsp
-                                              <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:450px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;">Write a comment...</button>
+                                              <button type="button" class="btn-round commentbtn" style="border: none;height:30px;width:450px;background-color:#e9ecef;font-size:14px;text-align:left;padding: 0.375rem 0.75rem;color: #808080;outline: none;" data-char-id="<?php echo ( $result->charityID);?>"  data-master-id="<?php echo ( $result->userID);?>">Write a comment...</button>
                                               <div class="clearfix"></div>
                                               <?php $cnt4=$cnt4+1;}} ?>
 
@@ -833,107 +847,6 @@ if($query->rowCount()>0)
 ?>
 <?php }} ?>
 </script>
-
-  <!-- ModalProfile -->
-  <div class="modal fade" id="Profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Profile</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-              <input type="file" name="Picture" id="Picture" style="width:250px;height:40px;border:none;margin-left:160px;margin-top:5px;" placeholder="Upload Photo">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center">
-						  <button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:150px;height:35px;border:none;" name="profile" type="submit" id="insert" value="Insert">
-							 <a style="color:White"> Update Profile </a>
-						 </button>
-				</div>
-        <div style="text-align: center">
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgName);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgContactNo);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgAddress);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->orgEmail);?></h6>
-             <h6 class="mt-1 mb-2"><?php echo ($result->Role);?></h6>
-        </div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- //ModalProfile -->
-  
-  <!-- ModalSettings -->
-  <div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Account Settings</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      <form method="post">
-        <div class="modal-header">
-              <img <?php echo"<img src = '/developgetpet/web/images/$result->orgLogo'";?> alt="avatar" style="width:150px;height:150px;margin-left:125px;margin-top:-20px;" class="rounded-circle img-responsive">
-        </div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input type="hidden" name="orgID" value="<?php echo ( $result->orgID);?>" required = "required" class="form-control" id="success">
-				</div>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Orgname" required="required" value="<?php echo ($result->orgName);?>" placeholder="Organization Name">
-				</div><br>
-        <div  style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;font-family:Arial;" type="text" name="ContactNo" onkeypress="isInputNumber(event)" maxlength="11" value="<?php echo ($result->orgContactNo);?>" placeholder="Contact No.">
-						<script>
-            
-                        function isInputNumber(evt){
-                
-                        var ch = String.fromCharCode(evt.which);
-                
-                        if(!(/[0-9]/.test(ch))){
-                        evt.preventDefault();
-                       }
-					}
-                    </script>
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Address" required="required" value="<?php echo ($result->orgAddress);?>" placeholder="Address">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Email" required="required" value="<?php echo ($result->orgEmail);?>" placeholder="Email">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="text" name="Username" required="required" value="<?php echo ($result->orgUsername);?>" placeholder="Username">
-				</div><br>
-        <div style="text-align: center" class="wrap-input100 validate-input" data-validate = "Valid username is required: ex@abc.xyz">
-						<input class="input100" style="background-color:#f1f1f1;width:250px;height:40px;border:none;" type="Password" name="Password" required="required" value="<?php echo ($result->orgPassword);?>" placeholder="Password">
-				</div><br><br>
-        <div style="text-align: center">
-						<button  class="btn btn-round btn-success" style="background-color:#00cdc1;width:250px;height:40px;border:none;" name="update" type="submit" id="insert" value="Insert">
-							<a style="color:White"> Update </a>
-						</button>
-				</div><br>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- //ModalSettings -->
 
   <!-- Modal Donation Information -->
   <div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -1036,8 +949,9 @@ if(isset($_POST['btnComment']))
 
     $commentID=$query2->fetchColumn();
 
-    $sql3="INSERT INTO notification(activityID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID','Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES('$commentID',:charityid,'Comment on Your Post','$ID',:masterid,:Comment,'$date','Unread')";
     $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':charityid',$charityid,PDO::PARAM_STR);
     $query3->bindParam(':masterid',$masterid,PDO::PARAM_STR);
     $query3->bindParam(':Comment',$Comment,PDO::PARAM_STR);
     $query3->execute();
@@ -1070,13 +984,13 @@ if(isset($_POST['btnComment']))
       <div class="modal-body mx-3">
       <form method="post">
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="charityid" name="charityid" required = "required" class="form-control" id="success">
+					    <input  id="charityid" name="charityid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="masterid" name="masterid" required = "required" class="form-control" id="success">
+					    <input  id="masterid" name="masterid" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
-					    <input hidden id="userid" name="userid" value="<?php echo ($result->orgID);?>" required = "required" class="form-control" id="success">
+					    <input hidden id="userid" name="userid" value="<?php echo ($result->ownerID);?>" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="wrap-input100 validate-input">
               <textarea id="comment" name="Comment" required = "required" class="form-control" id="success" placeholder="Write a comment..." style="height:100px;resize: none;font-size:16px;"></textarea>
@@ -1448,6 +1362,8 @@ $date = date('m/d/Y h:i A', time());
 if(isset($_POST['Sendreciept']))
 {
 
+$cID=($_POST['cID']);
+$mID=($_POST['mID']);
 $ID=($_POST['ID']);
 $Name=($_POST['Name']);
 $Email=($_POST['Email']);
@@ -1460,9 +1376,11 @@ $tmp_dir = $_FILES["Picture"]["tmp_name"];
   
 move_uploaded_file($tmp_dir, "C:/xampp/htdocs/developgetpet/web/images/$Picture");
   
-$sql="INSERT INTO donation(userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationIdentity,donationReciept,donationDate,donationStatus)VALUES(:ID,:Name,:Email,:Address,:ContactNo,:Message,:Identity,:Picture,'$date','Not Recieved Yet')";
+$sql="INSERT INTO donation(charityID,masterID,userID,userName,userEmail,userAddress,userContactNo,donationMessage,donationIdentity,donationReciept,donationDate,donationStatus)VALUES(:cID,:mID,:ID,:Name,:Email,:Address,:ContactNo,:Message,:Identity,:Picture,'$date','Not Recieved Yet')";
   
 $query=$dbh->prepare($sql); 
+$query->bindParam(':cID',$cID,PDO::PARAM_STR);
+$query->bindParam(':mID',$mID,PDO::PARAM_STR);
 $query->bindParam(':ID',$ID,PDO::PARAM_STR);
 $query->bindParam(':Name',$Name,PDO::PARAM_STR);
 $query->bindParam(':Email',$Email,PDO::PARAM_STR);
@@ -1472,6 +1390,19 @@ $query->bindParam(':Message',$Message,PDO::PARAM_STR);
 $query->bindParam(':Identity',$Identity,PDO::PARAM_STR);
 $query->bindParam(':Picture',$Picture,PDO::PARAM_STR);
 $query->execute();
+
+$sql2="SELECT donationID FROM donation ORDER BY donationID DESC";
+$query2=$dbh->prepare($sql2);
+$query2->execute();
+
+$donationID=$query2->fetchColumn();
+
+$sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES('$donationID',:cID,'Donation',:mID,'$ID',:Message,'$date','Unread')";
+$query3=$dbh->prepare($sql3);
+$query3->bindParam(':cID',$cID,PDO::PARAM_STR);
+$query3->bindParam(':mID',$mID,PDO::PARAM_STR);
+$query3->bindParam(':Message',$Message,PDO::PARAM_STR);
+$query3->execute();
 
 echo '<script>alert("Your Reciept has successfully uploaded!")</script>';
 echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Fundraisingactivities.php'</script>";
@@ -1515,10 +1446,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
       </div>
       
       <form class="" action="" method="post" novalidate enctype="multipart/form-data"> 
+                                        
+                                        
       
                                         <div hidden class="field item form-group">
                                           <div class="col-md-6 col-sm-6">
                                             <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="ID" value="<?php echo ($result->ownerID);?>"/>
+                                          </div> 
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                          <div class="col-md-6 col-sm-6">
+                                            <input id="c_id" class="form-control" data-validate-length-range="6" data-validate-words="2" name="cID"/>
+                                          </div> 
+                                        </div>
+
+                                        <div hidden class="field item form-group">
+                                          <div class="col-md-6 col-sm-6">
+                                            <input id="m_id" class="form-control" data-validate-length-range="6" data-validate-words="2" name="mID"/>
                                           </div> 
                                         </div>
 
@@ -1725,31 +1670,26 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     $("#").val( char_qrcodefile );
     $('#Viewdonate').modal('show');
     var char_qrcodefile = $(this).attr('data-char-code');
+    var c_id = $(this).attr('data-char-id');
+    var m_id = $(this).attr('data-master-id');
     $('#char_qrcodefile').val( char_qrcodefile );
+    $('#c_id').val( c_id );
+    $('#m_id').val( m_id );
     document.getElementById('char_qrcode').src="/developgetpet/web/images/"+""+char_qrcodefile;
   });
 </script>
 
-<script>
-        $(document).ready(function () {
+<script type="text/javascript">
+  $(".commentbtn").click(function () {
+    var charityid = $(this).attr('data-char-id');
+    var masterid = $(this).attr('data-master-id');
+  
+    $('#Comment').modal('show');
+    $("#charityid").val( charityid );
+    $("#masterid").val( masterid );
 
-            $('.commentbtn').on('click', function () {
-
-                $('#Comment').modal('show');
-
-                $tr = $(this).closest('ul');
-
-                var data = $tr.children("li").map(function () {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                $('#charityid').val(data[0]);
-                $('#masterid').val(data[9]);
-            });
-        });
-</script>
+  });
+  </script>
 
 <script type="text/javascript">
   $(".Ppost").click(function () {

@@ -128,7 +128,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md" onLoad="window.scroll(0, 150)">
+  <body class="nav-md" onLoad="window.scroll(0, 500)">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -579,8 +579,6 @@ if($query->rowCount()>0)
                   <div class="x_title">
                     <h2>My Profile</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link" style="margin-left:50px"><i class="fa fa-chevron-up"></i></a>
-                      </li>      
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -674,12 +672,20 @@ foreach($results as $result)
   {
     ?>
 
+  <br>
   <img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> alt="avatar" style="width:50px;height:50px;border-radius:10px;" class="rounded-circle img-responsive">&nbsp;<textarea disabled="yes" id="description" style="width:600px;height:50px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:10px;border-style: none;padding-left:1px;" type='text'><?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?></textarea><br>
   <label style="line-height:25px">&nbsp;&nbsp;&nbsp;Rating:</label><textarea disabled="yes" id="description" style="width:600px;height:30px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;padding-top:1px;overflow: hidden;border-style: none;" type='text'><?php echo ($result->Ratings);?></textarea><br>
   <label style="line-height:25px">Feedback:&nbsp;&nbsp;</label><textarea disabled="yes" id="message" name="Feedback" style="width:600px;height:100px;font-size:16px;border-radius:10px; background-color: #fff;resize: none;border-color:#73879C;color:#73879C;outline: none;padding-top:1px;padding-left:2px;" placeholder="Write a feedback.." class="txtgrow" type='text'><?php echo ($result->feedbackContent);?></textarea><br><br>
 
   <?php $cnt1=$cnt1+1;}} ?>
-  <?php $cnt=$cnt+1;}} ?> 
+  <?php $cnt=$cnt+1;
+          }
+          }
+          else
+          {
+           echo "There's no information to display.";
+          }
+          ?> 
  
          <!-- // About Code -->     
                       </div>

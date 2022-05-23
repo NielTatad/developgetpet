@@ -571,7 +571,7 @@ if($query->rowCount()>0)
                         $query->execute();
     
                         echo '<script>alert("Successfully Sent!")</script>';
-                        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-Dashboard.php'</script>";
+                        echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/P.O-ViewReviews.php'</script>";
                     }
 
                     }
