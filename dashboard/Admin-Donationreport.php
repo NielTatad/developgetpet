@@ -143,11 +143,11 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">Manage Pet Care Tips</a>
+                              <li><a style="font-size:15px;">Manage Pet Care Tips</a>
                                 <ul class="nav child_menu">
-                                  <li><a href="#">Tips</a></li>
-                                  <li><a href="#">Advice</a></li>
-                                  <li><a href="#">Articles</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managetips.php">Tips</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageadvice.php">Advice</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managearticles.php">Articles</a></li>
                                 </ul>
                               </li>
 
@@ -158,8 +158,7 @@ th {
                               <li><a style="font-size:15px;">Report</a>
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
-                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
-                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>                                 
                                 </ul>
                               </li>
 

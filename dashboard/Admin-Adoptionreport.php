@@ -143,11 +143,11 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">Manage Pet Care Tips</a>
+                              <li><a style="font-size:15px;">Manage Pet Care Tips</a>
                                 <ul class="nav child_menu">
-                                  <li><a href="#">Tips</a></li>
-                                  <li><a href="#">Advice</a></li>
-                                  <li><a href="#">Articles</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managetips.php">Tips</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageadvice.php">Advice</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managearticles.php">Articles</a></li>
                                 </ul>
                               </li>
 
@@ -158,8 +158,7 @@ th {
                               <li><a style="font-size:15px;">Report</a>
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
-                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
-                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>                                
                                 </ul>
                               </li>
 
@@ -270,10 +269,10 @@ th {
                           <table class="table table-striped jambo_table bulk_action">
                                     <thead>
                                     <tr class="headings">
-                                    <th style="text-align:center" class="column-title">Master ID</th>
-                                    <th style="text-align:center" class="column-title">User ID</th>
-                                    <th style="text-align:center" class="column-title">Pet ID</th>
+                                    <th hidden style="text-align:center" class="column-title">Master ID</th>
                                     <th hidden style="text-align:center" class="column-title">User ID</th>
+                                    <th hidden style="text-align:center" class="column-title">Pet ID</th>
+                                    <th hidden hidden style="text-align:center" class="column-title">User ID</th>
                                     <th style="text-align:center" class="column-title">Pet Owner</th>
                                     <th style="text-align:center" class="column-title">Pet Name</th>
                                     <th style="text-align:center" class="column-title">Pet Type</th>
@@ -325,10 +324,10 @@ th {
                                       {
                                       ?>
                                       <tr class="even pointer">
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->masterID);?></td>
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
-                                        <td style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
+                                        <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->masterID);?></td>
                                         <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
+                                        <td hidden style="text-align:center" class=" "><?php echo htmlentities($result->petID);?></td>
+                                        <td hidden hidden style="text-align:center" class=" "><?php echo htmlentities($result->userID);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result2->orgName);?><?php echo htmlentities($result2->userFirstname);?> <?php echo htmlentities($result2->userLastname);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petName);?></td>
                                         <td style="text-align:center" class=" "><?php echo htmlentities($result->petType);?></td>

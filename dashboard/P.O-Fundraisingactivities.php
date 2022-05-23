@@ -517,10 +517,6 @@ if($query->rowCount()>0)
                   <h2>Fundraising Activities Post</h2> 
                   </div>                 
 
-                    <!-- View Org -->
-                    <button type="button" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:300px;float:right;" data-bs-toggle="modal" data-bs-target="#Vieworgs">View Animal Welfare Organization's</button>  
-                    <!-- //View Org -->
-
                     <!-- View Org Modal -->
                     <div class="modal fade" id="Vieworgs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl">

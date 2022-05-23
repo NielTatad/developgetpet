@@ -1176,7 +1176,7 @@ if(isset($_POST['btnComment']))
         <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Gain Amount</label>
         <div class="col-md-6 col-sm-6">
-               <input read only type="text" class="form-control" id="g_amount" name="charityGainamount" style="background-color:#fff;width:400px;" required="required"/>
+               <input type="number" min="1" class="form-control" id="g_amount" name="charityGainamount" style="background-color:#fff;width:400px;" required="required"/>
         </div>
         </div>
        

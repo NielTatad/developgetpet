@@ -120,7 +120,7 @@ th {
 				<div class="menu_section">						
 					<ul class="nav side-menu">
 
-                          <li>
+                            <li>
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Dashboard.php" style="font-size:15px;">Dashboard</a>
                             </li>
 
@@ -132,9 +132,23 @@ th {
                             <li><a href="http://localhost/developgetpet/dashboard/Admin-Userinformation.php" style="font-size:15px;">User Information</a>
                             </li>
 
+                            <?php
+                      
+                            $query=$dbh->prepare("SELECT COUNT(charityStatus) FROM charity WHERE charityStatus='Unaccepted' AND charityStatus='Unaccepted'");
+                            $query->execute();
+
+                            $user_request=$query->fetchColumn();
+
+                            ?>
                             <li>
-                            <li><a href="http://localhost/developgetpet/dashboard/Admin-Userrequest.php" style="font-size:15px;">User Request</a>
+                            <li><a href="http://localhost/developgetpet/dashboard/Admin-Userrequest.php" style="font-size:15px;">User Request <span class="badge bg-red" id="user_request" value=""><?php echo ($user_request);?></span></a>
                             </li>
+                            <script type="text/javascript">
+                            var user_request = <?php echo ($user_request);?>;
+                            if (user_request === 0){
+                              document.getElementById("user_request").style.display = "none";
+                            }
+                            </script>
 
                             <li><a style="font-size:15px;">Manage Pet Adoption & Short-Term Care</a>
                                 <ul class="nav child_menu">
@@ -143,11 +157,11 @@ th {
                                 </ul>
                               </li>
 
-                                <li><a style="font-size:15px;">Manage Pet Care Tips</a>
+                              <li><a style="font-size:15px;">Manage Pet Care Tips</a>
                                 <ul class="nav child_menu">
-                                  <li><a href="#">Tips</a></li>
-                                  <li><a href="#">Advice</a></li>
-                                  <li><a href="#">Articles</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managetips.php">Tips</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Manageadvice.php">Advice</a></li>
+                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Managearticles.php">Articles</a></li>
                                 </ul>
                               </li>
 
@@ -159,7 +173,6 @@ th {
                                 <ul class="nav child_menu">
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Adoptionreport.php">Adoption</a></li>
                                   <li><a href="http://localhost/developgetpet/dashboard/Admin-Shorttermcarereport.php">Short Term-Care</a></li>
-                                  <li><a href="http://localhost/developgetpet/dashboard/Admin-Donationreport.php">Donation</a></li>
                                 </ul>
                               </li>
 
@@ -169,9 +182,6 @@ th {
 					<!-- /sidebar menu -->
             <!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
-                    <a data-toggle="modal" data-target="#Settings" data-placement="top" title="Settings">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
                     <a data-toggle="tooltip" data-placement="top" title="Logout" href="http://localhost/developgetpet/login-page/login.php">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
@@ -193,21 +203,15 @@ th {
                       <?php echo ($result->adUsername);?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" data-toggle="modal" data-target="#Settings"> Profile</a>
                       <!--<a class="dropdown-item"  href="javascript:;">
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item"  href="http://localhost/developgetpet/dashboard/page_404.php" id="contact">Contact Us</a>
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
   
                   <li role="presentation" class="nav-item dropdown open" style="margin-top:1px;">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false" >
-                      <i class="fa fa-bell"></i>
-                      <!--<span class="badge bg-green">6</span>-->
-                    </a>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       
                       <li class="nav-item">
@@ -234,16 +238,6 @@ th {
               <br>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <!-- Post Button 
@@ -297,7 +291,7 @@ th {
 
                             <tbody>
                             <?php
-                            $sql="SELECT * from postpet where postStatus='Adoption' ";
+                            $sql="SELECT * from postpet";
                             $query=$dbh->prepare($sql);
                             $query->execute();
                             $results=$query->fetchALL(PDO::FETCH_OBJ);

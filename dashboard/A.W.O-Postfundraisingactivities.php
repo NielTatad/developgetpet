@@ -510,6 +510,20 @@ if(isset($_POST['Post']))
     $query->bindParam(':QRCode',$QRCode,PDO::PARAM_STR);
     $query->execute();
 
+    $sql2="SELECT charityID FROM charity ORDER BY charityID DESC";
+    $query2=$dbh->prepare($sql2);
+    $query2->execute();
+
+    $charityID=$query2->fetchColumn();
+
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,masterID,userID,notificationDescription,notificationDate,notificationStatus)VALUES('$charityID','$charityID','Fundraising Request','1','$ID',:Reason,'$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':PetID',$PetID,PDO::PARAM_STR);
+    $query3->bindParam(':MasterID',$MasterID,PDO::PARAM_STR);
+    $query3->bindParam(':UserID',$UserID,PDO::PARAM_STR);
+    $query3->bindParam(':Reason',$Reason,PDO::PARAM_STR);
+    $query3->execute();
+
 echo '<script>alert("Posted Successfully! Please wait for the admin approval of your post Thank you!")</script>';
 echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Postfundraisingactivities.php'</script>";
 
