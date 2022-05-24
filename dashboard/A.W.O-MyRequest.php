@@ -263,6 +263,23 @@ if($query->rowCount()>0)
 
                             <?php } ?>
 
+                            <?php if ($result->notificationTitle == 'Admin Accepted Request') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" > </span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
                             <?php if ($result->notificationTitle != 'Post Deleted') { ?>
                             <?php $user_id = $result->userID;
 
@@ -442,7 +459,7 @@ if($query->rowCount()>0)
               <div class="col-md-12 col-sm-12">
                 <div class="x_panel" style="border-radius:10px;border-width:2px;">
                   <div class="x_title">
-                    <h2>My Request</h2>
+                    <h2>My Pending Request</h2>
                     <ul class="nav navbar-right panel_toolbox">     
                     </ul>
                     <div class="clearfix"></div>
@@ -522,7 +539,7 @@ if($query->rowCount()>0)
                                                 <progress id="file" value="<?php echo ($result->charityGainamount);?>" max="<?php echo ($result->charityTargetamount);?>" style="height:20px;width:450px;"></progress><br>
                                                 <label for="file">₱<?php echo ($result->charityGainamount);?>.00/₱<?php echo ($result->charityTargetamount);?>.00</label>
                                               <br>
-                                              <button type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-12px;float:left;margin-left:-10px;">View More Info</button>
+                                              <button hidden type="button" class="btn btn-link viewbtn" style="height:30px;width:150px;font-size:14px;margin-top:-12px;float:left;margin-left:-10px;">View More Info</button>
                                               <br>
                                               <br>
 

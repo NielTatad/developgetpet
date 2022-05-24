@@ -342,14 +342,25 @@ th {
 
 <!-- Accept Post Code -->
 <?php
+date_default_timezone_set("Asia/Manila");
+$date = date('m/d/Y h:i A', time());
+?>  
+<?php
    if(isset($_POST['Accept']))
    {
     $charityID=($_POST['charityID']);
+    $masterID=($_POST['masterID']);
 
     $query="update charity set charityStatus='Accepted' where charityID=:charityID";
     $query= $dbh->prepare($query);
     $query->bindValue(':charityID',$charityID);
     $query->execute();
+
+    $sql3="INSERT INTO notification(activityID,postID,notificationTitle,userID,masterID,notificationDescription,notificationDate,notificationStatus)VALUES(:charityID,:charityID,'Admin Accepted Request','$ID',:masterID,'Your Request Has Been Accepted By Admin','$date','Unread')";
+    $query3=$dbh->prepare($sql3);
+    $query3->bindParam(':charityID',$charityID,PDO::PARAM_STR);
+    $query3->bindParam(':masterID',$masterID,PDO::PARAM_STR);
+    $query3->execute();
 
     echo '<script>alert("Request Accepted Successfully!")</script>';
     echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/Admin-Userrequest.php'</script>";
@@ -392,6 +403,9 @@ th {
 				</div><br>
         <div style="text-align: center" class="wrap-input100 validate-input">
 					    <input hidden id="char_id" name="charityID" required = "required" class="form-control" id="success">
+				</div>
+        <div style="text-align: center" class="wrap-input100 validate-input">
+					    <input hidden id="master_id" name="masterID" required = "required" class="form-control" id="success">
 				</div>
         <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
@@ -638,6 +652,7 @@ th {
                 console.log(data);
 
                 $('#char_id').val(data[0]);
+                $('#master_id').val(data[7]);
             });
         });
     </script>    

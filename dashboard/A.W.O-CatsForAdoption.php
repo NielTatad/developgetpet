@@ -138,8 +138,8 @@ if($query->rowCount()>0)
 				</div>
 			</div>
 
-	      <!-- top navigation -->
-        <div class="top_nav">
+	    <!-- top navigation -->
+      <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
                   <a><i class="fa fa-bars"></i></a>
@@ -270,6 +270,23 @@ if($query->rowCount()>0)
                         {
                            ?>
                             <?php if ($result->notificationTitle == 'Post Deleted') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" > </span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle == 'Admin Accepted Request') { ?>
 
 
                             <a class ="dropdown-item">

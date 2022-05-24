@@ -283,11 +283,11 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 				</div>
 			</div>
 
-	   <!-- top navigation -->
-     <div class="top_nav">
+	  <!-- top navigation -->
+    <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle">
-                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                  <a><i class="fa fa-bars"></i></a>
                 </div>
                 <nav class="nav navbar-nav">
                 <ul class=" navbar-right">
@@ -301,7 +301,85 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                           <span class="badge bg-red pull-right">50%</span>
                           <span>Settings</span>
                         </a>-->
-                    <a class="dropdown-item" data-toggle="modal" data-target="#Settings">Settings</a>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-AccountSettings.php">Account Settings</a>
+                      <?php
+                      
+                      $query=$dbh->prepare("SELECT COUNT(userID) FROM charity WHERE userID='$ID' AND charityStatus='Unaccepted' AND charityPoststatus='Fundraising' AND charityPoststatus!='Deleted'");
+                      $query->execute();
+
+                      $myrequest=$query->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-MyRequest.php">My Request <span class="badge bg-red" id="myrequest" value=""><?php echo ($myrequest);?></span></a>
+                      <script type="text/javascript">
+                        var myrequest = <?php echo ($myrequest);?>;
+                        if (myrequest === 0){
+                          document.getElementById("myrequest").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query1=$dbh->prepare("SELECT COUNT(masterID) FROM request WHERE masterID='$ID' AND requestStatus != 'Cancelled' AND requestStatus != 'Disapproved' AND requestStatus != 'Approved'");
+                      $query1->execute();
+
+                      $user_request=$query1->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php">User Request <span class="badge bg-red" id="user_request" value=""> <?php echo ($user_request);?></span></a>
+                      <script type="text/javascript">
+                        var user_request = <?php echo ($user_request);?>;
+                        if (user_request === 0){
+                          document.getElementById("user_request").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query3=$dbh->prepare("SELECT COUNT(masterID) FROM history WHERE masterID='$ID' AND Title ='Adoption' AND requestStatus = 'Approved'");
+                      $query3->execute();
+
+                      $user_adopted=$query3->fetchColumn();
+
+                      ?>
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-MyPetAdoptedByUser.php">My Pet Adopted By User <span class="badge bg-red" id="user_adopted" value=""> <?php echo ($user_adopted);?></a>
+                      <script type="text/javascript">
+                        var user_adopted = <?php echo ($user_adopted);?>;
+                        if (user_adopted === 0){
+                          document.getElementById("user_adopted").style.display = "none";
+                        }
+                        </script>
+
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(masterID) FROM donation WHERE masterID='$ID' AND donationStatus='Not Recieved Yet'");
+                      $query->execute();
+
+                      $donation=$query->fetchColumn();
+
+                      ?>
+                  
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-Donations.php">Donation <span class="badge bg-red" id="donation" value=""><?php echo ($donation);?></span></a>
+                      <script type="text/javascript">
+                        var donation = <?php echo ($donation);?>;
+                        if (donation === 0){
+                          document.getElementById("donation").style.display = "none";
+                        }
+                        </script>
+                      
+                      <?php
+                      $query=$dbh->prepare("SELECT COUNT(masterID) FROM donation WHERE masterID='$ID' AND donationStatus='Recieved'");
+                      $query->execute();
+
+                      $history=$query->fetchColumn();
+
+                      ?>
+                  
+                      <a class="dropdown-item" href="http://localhost/developgetpet/dashboard/A.W.O-History.php">Donation History <span class="badge bg-red" id="adoption" value=""><?php echo ($history);?></span></a>
+                      <script type="text/javascript">
+                        var adoption = <?php echo ($history);?>;
+                        if (adoption === 0){
+                          document.getElementById("adoption").style.display = "none";
+                        }
+                        </script>
+                        
                       <a class="dropdown-item"  href="http://localhost/developgetpet/login-page/login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
@@ -324,7 +402,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                     }
                     </script>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
+                      <li class="nav-item" style= "height: 440; overflow-y: scroll;">
                       <?php
                         $sql="SELECT * from notification WHERE masterID='$ID' ORDER BY notificationID DESC";
                         $query=$dbh->prepare($sql);
@@ -341,7 +419,24 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
                             <a class ="dropdown-item">
                             <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
-                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" ></span>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" > </span>
+                            <span>
+                            <span>Admin</span>
+                            <span class="time"><?php echo ($result->notificationDate);?></span>
+                            </span>
+                            <span class="message">
+                            <?php echo ($result->notificationDescription);?>
+                            </span>
+                            </a>
+
+                            <?php } ?>
+
+                            <?php if ($result->notificationTitle == 'Admin Accepted Request') { ?>
+
+
+                            <a class ="dropdown-item">
+                            <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
+                            <span class="image"><img src="/developgetpet/web/images/logo.png" style=" border:1px solid #ced4da;" class="rounded-circle img-responsive" alt="Profile Image" > </span>
                             <span>
                             <span>Admin</span>
                             <span class="time"><?php echo ($result->notificationDate);?></span>
@@ -367,32 +462,133 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                             {
                               ?>
 
-    
-                        <a class ="dropdown-item">
+                        <form method="post">
+                        <button class ="dropdown-item" type="submit" style="margin-top:-15px">
                           <span><b><?php echo ($result->notificationTitle);?></b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->notificationStatus);?></span><br>
-                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" alt="Profile Image" /></span>
+                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> style="height:30px;width:30px" class="rounded-circle img-responsive" alt="Profile Image" /></span>
                           <span>
-                            <span><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?><?php echo ($userid->orgName);?></span>
-                            <span class="time"><?php echo ($result->notificationDate);?></span>
-                          </span>
+                            <span><?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?></span>
+                          </span><br>
                           <span class="message">
                           <?php echo ($result->notificationDescription);?>
-                          </span>
-                        </a>
+                          </span><br>
+                          <span style="float:left;margin-top:10px" class="time"><b><?php echo ($result->notificationDate);?></b></span><br>
+                          </button>
+                        </form>
                          <?php $cnt1=$cnt1+1;}} ?>
                          <?php } ?>
-                        <?php $cnt=$cnt+1;}} ?>
+                        <?php $cnt=$cnt+1;
+                        }
+                        }
+                        else
+                        {
+                        echo "No Notification.";
+                        }  
+                        ?>
                       </li>
-                      <li onclick="window.location.href='http://localhost/developgetpet/dashboard/A.W.O-UserRequest.php';" class="nav-item">
-                        <div class="text-center">
-                          <a class="dropdown-item">
-                            <a href="http://localhost/developgetpet/dashboard/A.W.O-Requestnotification.php">See All Alerts</a>
-                            <i class="fa fa-angle-right"></i>
-                          </a>
-                        </div>
+                      <li class="nav-item">
                       </li>
                     </ul>
                   </li>
+                  
+                
+                  <?php
+                  $query=$dbh->prepare("SELECT COUNT(masterID) FROM message WHERE masterID='$ID' AND messageStatus != 'Read' ");
+                  $query->execute();
+
+                  $user_message=$query->fetchColumn();
+
+                  ?>
+                  <li role="presentation" class="nav-item dropdown open" style="margin-top:6px;margin-right:10px;">
+								<a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+									<i class="fa fa-envelope"></i>
+									<span class="badge bg-green" id="user_message"><?php echo ($user_message);?></span>
+								</a>
+                <script type="text/javascript">
+                    var user_message = <?php echo ($user_message);?>;
+                    if (user_message === 0){
+                      document.getElementById("user_message").style.display = "none";
+                    }
+                    </script>
+								<ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+									
+									<li class="nav-item" style= "height: 440; overflow-y: scroll;">
+                  <?php
+                        $sql="SELECT * from message WHERE masterID='$ID' ORDER BY messageID DESC";
+                        $query=$dbh->prepare($sql);
+                        $query->execute();
+                        $results=$query->fetchALL(PDO::FETCH_OBJ);
+                        $cnt=1;
+                        if($query->rowCount()>0)
+                        {
+                          foreach($results as $result)
+                        {
+                           ?>
+
+                            <?php $user_id = $result->userID;
+
+                            $sql1="SELECT * from register WHERE userID='$user_id'";
+                            $query1=$dbh->prepare($sql1);
+                            $query1->execute();
+                            $userids=$query1->fetchALL(PDO::FETCH_OBJ);
+                            $cnt1=1;
+                            if($query1->rowCount()>0)
+                            {
+                              foreach($userids as $userid)
+                            {
+                              ?>
+
+                        <?php
+                        if(isset($_POST['view_message']))
+                        {
+                          $masterID=($_POST['masterID']);
+                          $roomID=($_POST['roomID']);
+                          
+                          $sql="update message set
+                          messageStatus='Read'
+                          where roomID=:roomID";
+                          $query=$dbh->prepare($sql); 
+                          $query->bindParam(':roomID',$roomID,PDO::PARAM_STR); 
+                          $query->execute();
+                
+                          echo "<script type ='text/javascript'> document.location='http://localhost/developgetpet/dashboard/A.W.O-Message.php'</script>";
+                          $_SESSION['masterID'] = $masterID;
+                          $_SESSION['roomID'] = $roomID;
+                          
+
+                        }
+                        ?>
+
+                        <form method="post">
+                        <button class ="dropdown-item" name="view_message" type="submit" style="margin-top:-15px">
+                          <span><b>Message</b></span>&ensp;<span id="unread" class="rounded-circle badge unread" style="height:10px;width:10px;background-color:#1877F2;color: transparent;"><?php echo ($result->messageStatus);?></span><br>
+                          <span class="image"><img <?php echo"<img src = '/developgetpet/web/images/$userid->Image'";?> class="rounded-circle img-responsive" style="height:30px;width:30px" alt="Profile Image" /></span>
+                          <span>
+                            <input hidden name="roomID" value="<?php echo ($result->roomID);?>">
+                            <input hidden name="masterID" value="<?php echo ($result->userID);?>">
+                            <span><?php echo ($userid->orgName);?><?php echo ( $userid->userFirstname);?> <?php echo ($userid->userLastname);?></span>
+                          </span><br>
+                          <span class="message">
+                          <?php echo ($result->messageContent);?>
+                          </span><br>
+                          <span style="float:left;margin-top:10px" class="time"><b><?php echo ($result->messageDate);?></b></span><br>
+                        </button>
+                        </form>
+                         <?php $cnt1=$cnt1+1;}} ?>
+                        <?php $cnt=$cnt+1;
+                        }
+                        }
+                        else
+                        {
+                        echo "No Message.";
+                        } 
+                        ?>
+									</li>
+                  <li class="nav-item">
+                  </li>
+								</ul>
+							</li>            
+
                 </ul>
               </nav>
             </div>

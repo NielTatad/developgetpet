@@ -264,7 +264,7 @@ if(isset($_POST['AnimalWelfareOrganization']))
                                     <p style="color:white;padding-top:25px;">Pet <br> Adopter</p>
                                 </a>
                                 <a href="http://localhost/developgetpet/login-page/P.O-Registration.php" class="col-sm-3 text-center ms1" style="background-color:#00cdc1;width:50px;height:100px;border:none;border-radius:4px;">
-                                <p style="color:white;padding-top:25px;">Pet <br> Onwer</p>
+                                <p style="color:white;padding-top:25px;">Pet <br> Owner</p>
                                 </a>
                                 <a href="http://localhost/developgetpet/login-page/A.W.O-Registration.php" class="col-sm-3 text-center ms1" style="background-color:#00cdc1;width:50px;height:100px;border:none;border-radius:4px;">
                                 <p style="color:white;padding-top:20px;">Animal Welfare Organization</p>
