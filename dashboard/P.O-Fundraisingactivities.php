@@ -654,7 +654,9 @@ if($query->rowCount()>0)
                                                 <label for="file">₱<?php echo ($result->charityGainamount);?>.00/₱<?php echo ($result->charityTargetamount);?>.00</label>
                                               <br>
                                               <br>
-                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;background-color:#00cdc1;color:white;" data-char-code="<?php echo ( $result->charityQRcode);?>" data-char-id="<?php echo ( $result->charityID);?>" data-master-id="<?php echo ( $result->userID);?>"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button> 
+                                              <button type="button" class="btn btn-success viewdonatebtn" style="height:35px;width:150px;font-size:14px;margin-top:-10px;float:center;background-color:#00cdc1;color:white;" data-char-code="<?php echo ( $result->charityQRcode);?>" data-char-id="<?php echo ( $result->charityID);?>" data-master-id="<?php echo ( $result->userID);?>"><i hidden><?php echo ( $result->userID);?></i> Donate Now!</button>
+                                              <br>
+                                              Or 
                                               <?php
                                                 if(isset($_POST['Message']))
                                                 {
@@ -670,7 +672,7 @@ if($query->rowCount()>0)
                                               
                                               <form method="post">
                                               <input hidden name="masterID" value="<?php echo ($result->userID);?>">
-                                              <button class="btn btn-primary" name="Message" style="border:#00cdc1;width:150px;height:35px;margin-top:5px">Message</button>
+                                              <button class="btn btn-primary" name="Message" style="border:#00cdc1;width:150px;height:35px;margin-top:5px">Message Us!</button>
                                               </form>
 
                                               <?php

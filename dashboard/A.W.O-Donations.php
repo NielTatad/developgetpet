@@ -711,7 +711,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Message Modal</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="margin-left:20px;">Give Credit Modal</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -755,10 +755,10 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
                                             </div>
                                         </div>
 
-                                         <div hidden class="field item form-group">
-                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Donators Name<span class="required"></span></label>
+                                         <div class="field item form-group">
+                                          <label class="col-form-label col-md-3 col-sm-3  label-align">Give Credits to: <span class="required" style="margin-bottom:20px;"></span></label>
                                           <div class="col-md-6 col-sm-6">
-                                                <input readonly type="text" class="form-control" id="char_username" id="Donatorsname" name="Donatorsname" style="background-color:#fff;width:400px;" required="required"/>
+                                                <input readonly type="text" class="form-control" id="char_username" id="Donatorsname" name="Donatorsname" style="background-color:#fff;width:250px;" required="required"/>
                                           </div>
                                           </div>
 
@@ -771,7 +771,7 @@ echo "<script type ='text/javascript'> document.location='http://localhost/devel
 
          <div style="text-align: center" class="form-group">
          <div class="col-md-6 offset-md-3">
-         <button name ="Sendmessage" type='submit' id="Sendmessage" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">OK</button>
+         <button name ="Sendmessage" type='submit' id="Sendmessage" class="btn btn-round btn-success" style="background-color:#00cdc1;border:#00cdc1;width:130px;height:40px;">Ok</button>
          </div>
         </div>
       </form>
